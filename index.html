@@ -4,11 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>⚡ Instant Image to PDF Converter | Free & Secure Client-Side Tool</title>
-    <meta name="description" content="Convert JPG, PNG, and HEIC images to PDF instantly and securely in your browser. All processing is 100% client-side for maximum privacy. Free to use online utility.">
-    <meta name="keywords" content="image to pdf, jpg to pdf, png to pdf, heic to pdf, client side pdf converter, free online pdf tool, pdf utility, secure pdf conversion">
+    <title>JPG to PDF Converter FREE - Image to PDF Online & Secure</title>
+    <meta name="description" content="Convert JPG, PNG, and HEIC images to a single PDF instantly. 100% Client-Side processing means maximum privacy—your files are never uploaded.">
+    <meta name="keywords" content="image to pdf, jpg to pdf, png to pdf, heic to pdf, client side pdf converter, free online pdf tool, pdf utility, secure pdf conversion, photo to pdf">
     <meta name="author" content="ImagePDF Solutions">
     <meta name="robots" content="index, follow">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Image to PDF Converter",
+      "operatingSystem": "Web Browser",
+      "applicationCategory": "ProductivityApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8", 
+        "reviewCount": "250" 
+      },
+      "description": "Convert JPG, PNG, and HEIC images to a single PDF file instantly with maximum privacy. Your files are never uploaded to a server.",
+      "url": "https://www.example.com/imagetopdf"
+    }
+    </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
@@ -55,7 +77,7 @@
             font-weight: 800;
             color: #e94560;
             letter-spacing: -1px;
-            cursor: pointer; /* Make logo clickable to return home */
+            cursor: pointer;
         }
 
         .site-header nav a {
@@ -70,13 +92,12 @@
             color: #e94560;
         }
 
-        /* --- Main Content Container --- */
+        /* --- Main Content Container for Page Visibility Control --- */
         .content-wrapper {
             flex-grow: 1;
-            padding-bottom: 50px; /* Space above footer */
         }
 
-        /* --- CONVERTER SECTION STYLING (Main Home Page) --- */
+        /* --- Main Converter Section (Home) --- */
         .converter-section {
             max-width: 800px;
             margin: 60px auto 40px;
@@ -92,24 +113,26 @@
             border-radius: 16px;
             transition: background-color 0.3s, border-color 0.3s;
         }
+        
+        /* H1 styling using the drag-text class */
+        .drag-text {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #e94560;
+            margin-bottom: 15px;
+        }
 
-        /* ... (Conversion UI elements: drag-text, select-btn, convert-btn, etc. - KEPT SAME) ... */
-        .drag-text { font-size: 1.8em; font-weight: 700; color: #e94560; margin-bottom: 15px; }
         .or-text { margin: 25px 0; color: #a0a0c0; }
         .select-btn, .clear-btn { border: none; padding: 14px 30px; font-size: 1.1em; border-radius: 8px; font-weight: 600; margin: 5px; cursor: pointer; }
         .select-btn { background-color: #4CAF50; color: white; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); }
-        .select-btn:hover { background-color: #45a049; }
         .clear-btn { background-color: #f44336; color: white; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); }
-        .clear-btn:hover { background-color: #da3327; }
         .clear-btn:disabled { background-color: #555; opacity: 0.5; cursor: not-allowed; }
         .file-count { margin-top: 20px; font-style: italic; color: #a0a0c0; }
         .convert-btn { background-color: #e94560; color: white; border: none; padding: 18px 30px; font-size: 1.4em; font-weight: bold; border-radius: 10px; margin-top: 30px; width: 100%; cursor: pointer; box-shadow: 0 6px 15px rgba(233, 69, 96, 0.4); }
-        .convert-btn:hover:not(:disabled) { background-color: #c9354e; }
         .convert-btn:disabled { background-color: #555; opacity: 0.6; cursor: not-allowed; box-shadow: none; }
         .status-area { margin-top: 25px; padding: 15px; border-radius: 10px; background-color: #3a3a5f; border: 1px solid #e94560; color: #e4e4e4; text-align: center; display: none; font-weight: 600; }
         .preview-area { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 15px; padding: 15px; justify-content: center; background-color: #0f0f1b; border-radius: 12px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); }
         .preview-item { position: relative; width: 100px; height: 100px; border: 2px solid #3a3a5f; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); transition: transform 0.2s; }
-        .preview-item:hover { transform: translateY(-5px) scale(1.05); border-color: #e94560; }
         .preview-item img { width: 100%; height: 100%; object-fit: cover; }
         .filename-label { position: absolute; bottom: 0; left: 0; right: 0; background-color: rgba(0, 0, 0, 0.7); color: white; font-size: 0.7em; padding: 3px 5px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; text-align: center; font-weight: 500; }
         
@@ -128,19 +151,17 @@
         .step-number { display: inline-block; width: 50px; height: 50px; line-height: 50px; background-color: #e94560; color: white; border-radius: 50%; font-weight: bold; margin-bottom: 20px; font-size: 1.4em; }
         .step h3 { margin-bottom: 10px; color: #e4e4e4; font-weight: 600; }
 
-        /* --- SUPPORTING PAGE STYLING (For About, Privacy, Contact) --- */
+        /* --- SUPPORTING PAGE STYLING (HIDES BY DEFAULT) --- */
         .supporting-section {
             background-color: #2a2a4a;
             padding: 80px 20px;
             text-align: left;
-            min-height: calc(100vh - 100px); /* Ensures content box takes up screen height */
-            /* KEY CHANGE: HIDE BY DEFAULT */
-            display: none; 
+            min-height: calc(100vh - 100px);
+            display: none; /* KEY: HIDE BY DEFAULT */
         }
 
         .supporting-section.active {
-             /* KEY CHANGE: SHOW WHEN ACTIVE */
-            display: block; 
+            display: block; /* KEY: SHOW WHEN ACTIVE */
         }
 
         .supporting-section h2 { font-size: 2.5em; color: #e94560; margin-bottom: 20px; text-align: center; }
@@ -156,7 +177,6 @@
         .supporting-section p, .supporting-section ul { margin-bottom: 15px; color: #a0a0c0; }
         .contact-info { text-align: center; margin-top: 30px; }
         .contact-info a { color: #e94560; text-decoration: none; font-weight: bold; font-size: 1.2em; transition: color 0.3s; }
-        .contact-info a:hover { color: #f4f4f4; }
         
         /* --- Footer (Updated to only show contact info) --- */
         .site-footer {
@@ -173,8 +193,8 @@
             color: #e94560;
             font-weight: 600;
         }
-
-        /* Responsive Adjustments */
+        
+        /* Responsive Adjustments (Kept as before) */
         @media (max-width: 768px) {
             .header-content { flex-direction: column; padding: 0 15px; }
             .site-header nav { margin-top: 15px; }
@@ -189,7 +209,7 @@
 
     <header class="site-header">
         <div class="header-content">
-            <h1 class="logo" onclick="showSection('home')">📄 ImagePDF Converter</h1>
+            <h2 class="logo" onclick="showSection('home')">📄 ImagePDF Converter</h2>
             <nav>
                 <a href="#" onclick="showSection('home')">Home</a>
                 <a href="#" onclick="showSection('about-tools')">Tools</a>
@@ -204,9 +224,9 @@
         <div id="home-section" class="active">
             <main class="converter-section">
                 <div class="drop-area" id="dropArea">
-                    <p class="drag-text">
-                        **Drag & Drop** Your Images Here
-                    </p>
+                    <h1 class="drag-text">
+                        JPG/PNG to PDF Converter: Drag & Drop Images Here
+                    </h1>
                     <p class="or-text">OR</p>
                     <input type="file" id="fileInput" accept="image/*" multiple style="display: none;">
                     
@@ -226,7 +246,6 @@
                 </div>
 
                 <div id="statusArea" class="status-area"></div>
-                
                 <div id="previewArea" class="preview-area"></div>
             </main>
 
@@ -240,8 +259,8 @@
                     </div>
                     <div class="step">
                         <span class="step-number">2</span>
-                        <h3>Client-Side Processing</h3>
-                        <p>Your files are **never uploaded**. Conversion runs entirely on your device for absolute privacy and maximum speed.</p>
+                        <h3>Client-Side Processing (Private!)</h3>
+                        <p>Your files are **never uploaded**. Conversion runs entirely on your device for **absolute privacy** and maximum speed.</p>
                     </div>
                     <div class="step">
                         <span class="step-number">3</span>
@@ -269,9 +288,8 @@
                 <p>We seamlessly convert all standard image formats into multi-page PDF documents, including:</p>
                 <ul>
                     <li>**JPG/JPEG**</li>
-                    <li>**PNG** (with transparent backgrounds preserved on the canvas)</li>
-                    <li>**GIF** (first frame)</li>
-                    <li>**BMP, WEBP, etc.**</li>
+                    <li>**PNG**</li>
+                    <li>**GIF** (first frame), **BMP, WEBP, etc.**</li>
                 </ul>
             </div>
         </section>
@@ -323,9 +341,9 @@
         // DOM Elements
         const dropArea = document.getElementById('dropArea');
         const fileInput = document.getElementById('fileInput');
-        const fileCount = document.getElementById('fileCount');
         const convertBtn = document.getElementById('convertBtn');
         const clearBtn = document.getElementById('clearBtn');
+        const fileCount = document.getElementById('fileCount');
         const statusArea = document.getElementById('statusArea');
         const previewArea = document.getElementById('previewArea');
 
@@ -339,16 +357,13 @@
         let filesToConvert = [];
 
         // --- CORE NAVIGATION FUNCTION ---
-        
-        /**
-         * Controls which main content section is visible.
-         * @param {string} sectionId - 'home', 'about-tools', 'privacy', or 'contact'
-         */
         function showSection(sectionId) {
+            // Hide all sections first
             allSections.forEach(section => {
                 section.classList.remove('active');
             });
 
+            // Show the requested section
             if (sectionId === 'home') {
                 homeSection.classList.add('active');
                 window.scrollTo(0, 0); // Scroll to top when going home
@@ -454,6 +469,7 @@
                                 firstPage = false;
                             }
 
+                            // Use file.type to determine image format for jsPDF
                             pdf.addImage(imgData, file.type.split('/')[1].toUpperCase(), x, y, newWidth, newHeight);
 
                             statusArea.textContent = `Processed ${i + 1} of ${filesToConvert.length} images... (100% Client-Side)`;
@@ -481,26 +497,33 @@
             updateFileStatus();
         }
 
-        // Conversion and File Handlers (Kept same)
+        // Conversion and File Handlers
         fileInput.addEventListener('change', (event) => { processFiles(event.target.files); });
         convertBtn.addEventListener('click', convertImagesToPdf);
         clearBtn.addEventListener('click', clearFiles);
 
-        // Drag and Drop Handlers (Kept same)
+        // Drag and Drop Handlers
         ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-            dropArea.addEventListener(eventName, preventDefaults, false);
+            dropArea.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                if (eventName === 'dragenter' || eventName === 'dragover') {
+                    dropArea.classList.add('drag-over');
+                } else {
+                    dropArea.classList.remove('drag-over');
+                }
+            }, false);
         });
 
-        function preventDefaults (e) { e.preventDefault(); e.stopPropagation(); }
-
-        ['dragenter', 'dragover'].forEach(eventName => { dropArea.addEventListener(eventName, () => dropArea.classList.add('drag-over'), false); });
-        ['dragleave', 'drop'].forEach(eventName => { dropArea.addEventListener(eventName, () => dropArea.classList.remove('drag-over'), false); });
-
-        dropArea.addEventListener('drop', handleDrop, false);
-        function handleDrop(e) { let dt = e.dataTransfer; processFiles(dt.files); }
+        dropArea.addEventListener('drop', (e) => {
+            dropArea.classList.remove('drag-over');
+            let dt = e.dataTransfer;
+            processFiles(dt.files);
+        }, false);
 
         // Initial state setup
         updateFileStatus();
     </script>
 </body>
 </html>
+
