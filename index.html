@@ -4,135 +4,451 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>JPG to PDF Converter FREE - Image to PDF Online & Secure</title>
-    <meta name="description" content="Convert JPG, PNG, and HEIC images to a single PDF instantly. 100% Client-Side processing means maximum privacy—your files are never uploaded.">
-    <meta name="keywords" content="image to pdf, jpg to pdf, png to pdf, heic to pdf, client side pdf converter, free online pdf tool, pdf utility, secure pdf conversion, photo to pdf, custom page size pdf">
+    <title>JPG to PDF Converter FREE - Instant, Private, Client-Side</title>
+    <meta name="description" content="The fastest way to convert JPG, PNG, and HEIC images to a single PDF. 100% Client-Side processing ensures maximum data privacy.">
     <meta name="author" content="ImagePDF Solutions">
     <meta name="robots" content="index, follow">
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Image to PDF Converter",
-      "operatingSystem": "Web Browser",
-      "applicationCategory": "ProductivityApplication",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.8", 
-        "reviewCount": "250" 
-      },
-      "description": "Convert JPG, PNG, and HEIC images to a single PDF file instantly with maximum privacy. Your files are never uploaded to a server.",
-      "url": "https://www.example.com/imagetopdf"
-    }
-    </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
     <style>
-        /* General Styling remains the same */
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        body { font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #1a1a2e; color: #e4e4e4; line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
-        .site-header { background-color: #0f0f1b; padding: 20px 0; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); position: sticky; top: 0; z-index: 1000; }
-        .header-content { max-width: 1200px; margin: 0 auto; padding: 0 30px; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 2em; font-weight: 800; color: #e94560; letter-spacing: -1px; cursor: pointer; }
-        .site-header nav a { color: #a0a0c0; text-decoration: none; margin-left: 30px; font-weight: 500; transition: color 0.3s; }
-        .site-header nav a:hover { color: #e94560; }
-        .content-wrapper { flex-grow: 1; }
-        .converter-section { max-width: 800px; margin: 60px auto 40px; padding: 20px; width: 95%; }
-        .drop-area { border: 4px dashed #3a3a5f; background-color: #2a2a4a; padding: 60px 20px; text-align: center; border-radius: 16px; transition: background-color 0.3s, border-color 0.3s; }
-        .drag-text { font-size: 1.8em; font-weight: 700; color: #e94560; margin-bottom: 15px; }
-        .trust-signal { font-size: 0.9em; color: #4CAF50; margin-top: 20px; font-weight: 600; }
-        .or-text { margin: 25px 0; color: #a0a0c0; }
-        .select-btn, .clear-btn { border: none; padding: 14px 30px; font-size: 1.1em; border-radius: 8px; font-weight: 600; margin: 5px; cursor: pointer; }
-        .select-btn { background-color: #4CAF50; color: white; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); }
-        .clear-btn { background-color: #f44336; color: white; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); }
-        .clear-btn:disabled { background-color: #555; opacity: 0.5; cursor: not-allowed; }
-        .file-count { margin-top: 20px; font-style: italic; color: #a0a0c0; }
-        .convert-area { margin-top: 30px; }
-        .convert-btn { background-color: #e94560; color: white; border: none; padding: 18px 30px; font-size: 1.4em; font-weight: bold; border-radius: 10px; width: 100%; cursor: pointer; box-shadow: 0 6px 15px rgba(233, 69, 96, 0.4); }
-        .convert-btn:disabled { background-color: #555; opacity: 0.6; cursor: not-allowed; box-shadow: none; }
+        /* --- MINIMALIST SAAS COLOR PALETTE --- */
+        :root {
+            --color-primary: #007AFF; /* Apple Blue (Main Accent) */
+            --color-secondary: #00C4CC; /* Teal (Secondary Highlight) */
+            --color-background: #F8F9FA; /* Light Grey/Off-White Background */
+            --color-surface: #FFFFFF; /* Pure White Card/Container */
+            --color-dark: #212529; /* Dark Text */
+            --color-muted: #6C757D; /* Muted Text */
+            --color-success: #28A745; /* Green for success/trust */
+            --color-error: #DC3545; /* Red for error */
+        }
 
-        /* Advanced Settings Dropdown Styling */
+        /* Global Styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { 
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif; /* Clean Sans-serif */
+            background-color: var(--color-background); 
+            color: var(--color-dark); 
+            line-height: 1.6; 
+            display: flex; 
+            flex-direction: column; 
+            min-height: 100vh; 
+        }
+
+        /* --- TRUST BAR (New Feature) --- */
+        .trust-bar {
+            background-color: var(--color-success);
+            color: var(--color-surface);
+            padding: 8px 0;
+            text-align: center;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+
+
+        /* Header & Navigation */
+        .site-header { 
+            background-color: var(--color-surface); 
+            padding: 15px 0; 
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+        }
+        .header-content { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 0 30px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        .logo { 
+            font-size: 1.7em; 
+            font-weight: 800; 
+            color: var(--color-primary); 
+            cursor: pointer; 
+            text-transform: none;
+            letter-spacing: -0.5px;
+        }
+        .site-header nav a { 
+            color: var(--color-dark); 
+            text-decoration: none; 
+            margin-left: 30px; 
+            font-weight: 500; 
+            transition: color 0.3s; 
+            font-size: 1em; 
+        }
+        .site-header nav a:hover { 
+            color: var(--color-primary); 
+        }
+
+        /* Main Content & Converter Section */
+        .content-wrapper { flex-grow: 1; }
+        .converter-section { 
+            max-width: 850px; 
+            margin: 50px auto 40px; 
+            padding: 30px; 
+            width: 95%; 
+            background-color: var(--color-surface); 
+            border-radius: 12px; /* Rounded corners */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Soft shadow */
+            border: 1px solid #EAEAEA;
+        }
+        
+        /* --- Drop Area: Clean & Intuitive --- */
+        .drop-area { 
+            border: 2px dashed var(--color-primary); 
+            background-color: #F9FBFF; /* Very light blue background */
+            padding: 60px 20px; 
+            text-align: center; 
+            border-radius: 10px; 
+            transition: background-color 0.3s, border-color 0.3s; 
+            cursor: pointer; 
+        }
+        .drop-area:hover {
+            border-color: var(--color-secondary); 
+            background-color: #F0F5FF; 
+        }
+        .drop-area.drag-over {
+            border-color: var(--color-success);
+            background-color: #E8F9E8;
+        }
+
+        .drag-text { 
+            font-size: 2em; 
+            font-weight: 700; 
+            color: var(--color-dark); 
+            margin-bottom: 10px; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        .file-icon {
+            font-size: 2.2em;
+            color: var(--color-primary);
+        }
+        .or-text { margin: 15px 0; color: var(--color-muted); font-style: italic; }
+        
+        /* Buttons */
+        .button-group {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap; 
+            gap: 20px; 
+            margin-top: 20px;
+        }
+        .select-btn, .clear-btn { 
+            border: none; 
+            padding: 15px 35px; 
+            font-size: 1.1em; 
+            border-radius: 8px; 
+            font-weight: 600; 
+            cursor: pointer; 
+            text-transform: none;
+            transition: all 0.2s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .select-btn { 
+            background-color: var(--color-primary); 
+            color: var(--color-surface); 
+        }
+        .select-btn:hover { background-color: #0056b3; transform: translateY(-1px); }
+        
+        .clear-btn { 
+            background-color: var(--color-muted); 
+            color: var(--color-surface); 
+        }
+        .clear-btn:hover { background-color: #5A6268; transform: translateY(-1px); }
+        .clear-btn:disabled { background-color: #CCC; color: #999; cursor: not-allowed; box-shadow: none; }
+        
+        .file-count { margin-top: 20px; color: var(--color-muted); font-size: 0.95em; }
+        
+        /* Convert Button (CTA) */
+        .convert-area { margin-top: 30px; }
+        .convert-btn { 
+            background-image: linear-gradient(to right, var(--color-secondary), var(--color-primary));
+            color: var(--color-surface); 
+            border: none; 
+            padding: 20px 30px; 
+            font-size: 1.4em; 
+            font-weight: bold; 
+            border-radius: 10px; 
+            width: 100%; 
+            cursor: pointer; 
+            box-shadow: 0 8px 15px rgba(0, 122, 255, 0.3); 
+            transition: all 0.2s;
+        }
+        .convert-btn:hover:not(:disabled) { 
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 122, 255, 0.4); 
+        }
+        .convert-btn:disabled { 
+            background-image: none;
+            background-color: #CCC;
+            color: #999;
+            cursor: not-allowed; 
+            box-shadow: none; 
+        }
+
+        /* Status & Progress */
+        .progress-bar-container { 
+            background-color: #E9ECEF; 
+            height: 10px; 
+            border-radius: 5px; 
+            margin-top: 20px; 
+            overflow: hidden; 
+            display: none; 
+        }
+        .progress-bar { 
+            background-color: var(--color-primary); 
+            height: 100%; 
+            width: 0%; 
+            transition: width 0.3s ease; 
+        }
+        .status-area { 
+            background-color: #E8F0FE; /* Light Blue Status Background */
+            border: 1px solid var(--color-primary); 
+            padding: 15px; 
+            margin-top: 15px; 
+            border-radius: 8px; 
+            text-align: center;
+            font-weight: 500;
+            color: var(--color-dark);
+            display: none; 
+            font-size: 1em;
+        }
+        
+        /* Advanced Settings Styling */
         .advanced-settings-btn {
             background: none;
-            color: #a0a0c0;
-            border: none;
+            color: var(--color-primary);
+            border: 1px solid var(--color-primary); 
             padding: 10px 0;
             margin-top: 15px;
             width: 100%;
             border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
-            transition: color 0.3s;
+            transition: all 0.2s;
             text-align: center;
         }
-        .advanced-settings-btn:hover { color: #e94560; }
+        .advanced-settings-btn:hover { 
+            background-color: var(--color-primary);
+            color: var(--color-surface);
+        }
         .settings-panel {
-            background-color: #3a3a5f;
+            background-color: #F8F9FA; 
             padding: 20px;
             border-radius: 10px;
             margin-top: 15px;
-            display: none; /* Initially hidden */
-            border: 1px solid #e94560;
+            display: none; 
+            border: 1px solid #DDD;
             text-align: left;
         }
         .settings-panel label {
             display: block;
             margin-top: 10px;
             margin-bottom: 5px;
-            font-weight: 500;
+            font-weight: 600;
+            color: var(--color-primary);
         }
         .settings-panel select {
             width: 100%;
             padding: 10px;
+            margin-bottom: 15px;
+            background-color: var(--color-surface);
+            border: 1px solid #CCC;
+            color: var(--color-dark);
             border-radius: 5px;
-            border: 1px solid #555;
-            background-color: #1a1a2e;
-            color: #e4e4e4;
-            font-size: 1em;
-            appearance: none; /* Remove default arrow */
+            font-family: inherit;
         }
 
-        /* Progress and Status */
-        .progress-bar-container { margin-top: 15px; height: 10px; background-color: #3a3a5f; border-radius: 5px; overflow: hidden; display: none; }
-        .progress-bar { height: 100%; width: 0%; background-color: #4CAF50; transition: width 0.3s; }
-        .status-area { margin-top: 15px; padding: 15px; border-radius: 10px; background-color: #3a3a5f; border: 1px solid #e94560; color: #e4e4e4; text-align: center; font-weight: 600; display: none; }
-        
         /* Preview Area */
-        .preview-area { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 15px; padding: 15px; justify-content: center; background-color: #0f0f1b; border-radius: 12px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); }
-        .preview-item { position: relative; width: 100px; height: 100px; border: 2px solid #3a3a5f; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); transition: transform 0.2s; }
-        .preview-item img { width: 100%; height: 100%; object-fit: cover; }
-        .filename-label { position: absolute; bottom: 0; left: 0; right: 0; background-color: rgba(0, 0, 0, 0.7); color: white; font-size: 0.7em; padding: 3px 5px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; text-align: center; font-weight: 500; }
-        .remove-file-btn { position: absolute; top: 0; right: 0; background-color: #e94560; color: white; border: none; width: 20px; height: 20px; line-height: 1; padding: 0; border-radius: 0 0 0 8px; cursor: pointer; font-weight: bold; font-size: 1.1em; z-index: 10; }
+        .preview-area { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 12px; 
+            padding: 15px 0; 
+            margin-top: 20px;
+            justify-content: center;
+            border-top: 1px solid #F0F0F0;
+        }
+        .preview-item { 
+            width: 80px; 
+            height: 80px; 
+            border: 2px solid var(--color-secondary); 
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            cursor: grab;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .filename-label {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            background-color: rgba(0, 122, 255, 0.8); 
+            font-size: 0.65em;
+            padding: 2px 0;
+            color: var(--color-surface);
+            font-weight: 600;
+        }
+        .remove-file-btn {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--color-error);
+            color: var(--color-surface);
+            border: 1px solid var(--color-surface);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 14px;
+            line-height: 1;
+            cursor: pointer;
+            z-index: 5;
+            font-weight: 900;
+        }
 
-        /* Other Sections (Instructions, FAQ, etc.) */
-        .instructions-section, .faq-section, .supporting-section { padding: 60px 20px; border-top: 1px solid #3a3a5f; }
-        .instructions-section h2, .faq-section h2, .supporting-section h2 { text-align: center; font-size: 2.2em; color: #e94560; margin-bottom: 40px; }
-        .faq-section { background-color: #1a1a2e; }
-        .faq-question { padding: 15px 20px; cursor: pointer; background-color: #3a3a5f; color: #e4e4e4; font-weight: 600; display: flex; justify-content: space-between; align-items: center; border-radius: 8px; margin-bottom: 5px; }
-        .faq-answer { padding: 15px 20px; color: #a0a0c0; display: none; }
-        .faq-question.active + .faq-answer { display: block; }
-        
+        /* Other Sections (Instructions, FAQ) */
+        .instructions-section, .faq-section, .supporting-section { 
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 20px; 
+        }
+        .instructions-section h2, .faq-section h2, .supporting-section h2 { 
+            text-align: center; 
+            font-size: 2.2em; 
+            color: var(--color-dark); 
+            margin-bottom: 40px; 
+            font-weight: 700;
+        }
+        .steps-container {
+            display: flex;
+            justify-content: space-around;
+            gap: 30px;
+            text-align: center;
+        }
+        .step {
+            flex: 1;
+            background-color: var(--color-surface);
+            padding: 30px 20px;
+            border-radius: 10px;
+            border-bottom: 3px solid var(--color-primary);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+        .step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        .step-number {
+            display: inline-block;
+            font-size: 1.8em;
+            color: var(--color-surface);
+            background: var(--color-secondary);
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            line-height: 45px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        .step h3 {
+            color: var(--color-primary);
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        .step p {
+            color: var(--color-muted);
+        }
+
+        /* FAQ */
+        .faq-item {
+            border-bottom: 1px solid #DDD;
+        }
+        .faq-question { 
+            background-color: var(--color-surface); 
+            padding: 15px 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--color-dark);
+        }
+        .faq-question:hover { background-color: #F0F0F0; }
+        .faq-question.active { color: var(--color-primary); }
+        .faq-answer { 
+            background-color: #F8F9FA; 
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+            color: var(--color-muted);
+        }
+        .faq-question.active + .faq-answer {
+            max-height: 300px; 
+            padding: 15px 20px;
+        }
+
         /* Footer */
-        .site-footer { background-color: #0f0f1b; color: #a0a0c0; padding: 20px 0; text-align: center; margin-top: auto; font-size: 0.9em; }
+        .site-footer { 
+            background-color: var(--color-dark); 
+            color: var(--color-muted); 
+            padding: 20px 0; 
+            text-align: center; 
+            margin-top: auto; 
+            font-size: 0.9em; 
+            border-top: 3px solid var(--color-primary);
+        }
+        .site-footer a {
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+
+        @media (max-width: 768px) {
+            .converter-section {
+                margin: 30px auto 20px;
+                padding: 15px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+            .drag-text { font-size: 1.5em; gap: 10px; }
+            .file-icon { font-size: 1.8em; }
+            .convert-btn { padding: 15px 20px; font-size: 1.2em; }
+            .steps-container { flex-direction: column; }
+            .site-header nav { overflow-x: scroll; }
+            .site-header nav a { font-size: 0.85em; margin: 0 5px; }
+        }
     </style>
 </head>
 <body>
+    
+    <div class="trust-bar">
+        🔒 **100% Client-Side Processing.** Your Files are Never Uploaded. Guaranteed Privacy.
+    </div>
 
     <header class="site-header">
         <div class="header-content">
-            <h2 class="logo" onclick="showSection('home')">📄 Image PDF Converter</h2>
+            <h2 class="logo" onclick="showSection('home')">ImagePDF.Pro</h2>
             <nav>
                 <a href="#home-section" onclick="showSection('home')">Home</a>
-                <a href="#about-tools-section" onclick="showSection('about-tools')">Tools</a>
-                <a href="#privacy-section" onclick="showSection('privacy')">Privacy Policy</a>
-                <a href="#contact-section" onclick="showSection('contact')">Contact</a>
+                <a href="#about-tools-section" onclick="showSection('about-tools')">Features</a>
+                <a href="#privacy-section" onclick="showSection('privacy')">Security</a>
+                <a href="#contact-section" onclick="showSection('contact')">Support</a>
             </nav>
         </div>
     </header>
@@ -141,24 +457,23 @@
 
         <div id="home-section" class="active">
             <main class="converter-section">
-                <div class="drop-area" id="dropArea">
+                <div class="drop-area" id="dropArea" onclick="document.getElementById('fileInput').click()">
                     <h1 class="drag-text">
-                        JPG/PNG to PDF Converter: Drag & Drop Images Here
+                        <span class="file-icon">📁</span> Drag & Drop Your Images Here
                     </h1>
                     <p class="or-text">OR</p>
                     <input type="file" id="fileInput" accept="image/*" multiple style="display: none;">
                     
                     <div class="button-group">
-                        <button class="select-btn" onclick="document.getElementById('fileInput').click()">
-                            + Select Images
+                        <button class="select-btn" onclick="event.stopPropagation(); document.getElementById('fileInput').click()">
+                            Select Images (JPG, PNG, HEIC)
                         </button>
-                        <button class="clear-btn" id="clearBtn" disabled>
-                            × Clear All
+                        <button class="clear-btn" id="clearBtn" disabled onclick="event.stopPropagation(); clearFiles()">
+                            Clear List
                         </button>
                     </div>
                     
-                    <p class="file-count" id="fileCount">No files selected</p>
-                    <p class="trust-signal">✅ **100% Client-Side Privacy.** Your files are never uploaded!</p>
+                    <p class="file-count" id="fileCount">No files selected. Start converting!</p>
                 </div>
 
                 <div id="previewArea" class="preview-area"></div>
@@ -169,7 +484,7 @@
                     </button>
                     
                     <button class="advanced-settings-btn" id="settingsToggleBtn">
-                        ⚙️ Advanced Settings
+                        Page & Output Settings
                     </button>
                     
                     <div id="settingsPanel" class="settings-panel">
@@ -187,8 +502,8 @@
                         
                         <label for="imageScale">Image Scaling:</label>
                         <select id="imageScale">
-                            <option value="fit">Fit to Page (Default)</option>
-                            <option value="original">Original Size (No Scaling)</option>
+                            <option value="fit">Fit to Page (Best Fit)</option>
+                            <option value="original">Original Size</option>
                         </select>
                     </div>
 
@@ -201,69 +516,63 @@
             </main>
 
             <section id="how-to" class="instructions-section">
-                <h2>💡 Simple, Secure, Instant Conversion</h2>
+                <h2>The Simple, Professional Way to PDF</h2>
                 <div class="steps-container">
                     <div class="step">
                         <span class="step-number">1</span>
-                        <h3>Select Your Images</h3>
-                        <p>Drag, drop, or click "Select Images" to choose any combination of JPG, PNG, and other photo formats.</p>
+                        <h3>Drop Files</h3>
+                        <p>Drag your images onto the drop zone or use the blue 'Select' button.</p>
                     </div>
                     <div class="step">
                         <span class="step-number">2</span>
-                        <h3>Client-Side Processing (Private!)</h3>
-                        <p>Your files are **never uploaded**. Conversion runs entirely on your device for **absolute privacy** and maximum speed.</p>
+                        <h3>Arrange & Configure</h3>
+                        <p>Adjust the page order by dragging the file previews. Set orientation and size in the settings.</p>
                     </div>
                     <div class="step">
                         <span class="step-number">3</span>
-                        <h3>Download Instantly</h3>
-                        <p>Click "Convert to PDF" and your final, high-quality multi-page PDF document will download automatically.</p>
+                        <h3>Download</h3>
+                        <p>Hit the 'Convert' button. Your perfect PDF downloads instantly, no upload wait time!</p>
                     </div>
                 </div>
             </section>
             
             <section id="faq" class="faq-section">
-                <h2>Frequently Asked Questions (FAQs)</h2>
+                <h2>Frequently Asked Questions</h2>
                 <div class="faq-container">
                     <div class="faq-item">
                         <div class="faq-question" onclick="toggleFAQ(this)">
-                            Kya mera data safe hai? Kya files server par upload hoti hain? <span class="arrow">▼</span>
+                            Is this service truly secure and private? <span class="arrow">▼</span>
                         </div>
                         <div class="faq-answer">
-                            <p><strong>Aapka data 100% safe hai.</strong> Hamari website poori tarah se <strong>client-side</strong> kaam karti hai. Iska matlab hai ki aapki koi bhi image file **hamare server par upload nahi hoti.** Conversion process aapke apne browser (device) mein chalta hai, isliye aapki files poori tarah se private rahti hain.</p>
+                            <p><strong>Absolutely.</strong> This tool operates entirely on the **Client-Side** (within your web browser) using JavaScript. Your files are never transmitted to our servers for processing, ensuring **100% data privacy**.</p>
                         </div>
                     </div>
                     <div class="faq-item">
                         <div class="faq-question" onclick="toggleFAQ(this)">
-                            Mai kitni images ko ek baar mein PDF mein convert kar sakta hoon? <span class="arrow">▼</span>
+                            What image formats can I convert? <span class="arrow">▼</span>
                         </div>
                         <div class="faq-answer">
-                            <p>Aap jitni chahen images select kar sakte hain. Lekin, bahut badi sankhya (jaise 50 se zyada files) ya bahut badi size ki files aapke browser ki speed aur memory par asar daal sakti hain. Hum achhe performance ke liye ek baar mein 20-30 images recommend karte hain.</p>
+                            <p>We support all common image formats, including: **JPG/JPEG, PNG, and HEIC.**</p>
                         </div>
                     </div>
                     <div class="faq-item">
                         <div class="faq-question" onclick="toggleFAQ(this)">
-                            Kya main PDF mein images ka order badal sakta hoon? <span class="arrow">▼</span>
+                            Are there any file size or conversion limits? <span class="arrow">▼</span>
                         </div>
                         <div class="faq-answer">
-                            <p>Haan, preview area mein files select karne ke baad, aap unhe **drag and drop** karke unka order (sequence) badal sakte hain. PDF isi order mein banegi jis order mein files preview mein dikh rahi hain.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question" onclick="toggleFAQ(this)">
-                            Kaun-kaun se image formats support kiye jaate hain? <span class="arrow">▼</span>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Hamara tool sabhi common formats ko support karta hai, jaise: <strong>JPG (JPEG), PNG, HEIC, GIF, aur BMP.</strong></p>
+                            <p>Since the conversion happens locally, there are **no fixed server limits**. The only constraint is the performance and memory of your device's web browser.</p>
                         </div>
                     </div>
                 </div>
             </section>
         </div>
 
+        <hr>
+
         <section id="about-tools-section" class="supporting-section">
-            <h2>About Our Tools</h2>
+            <h2>Our Commitment to Client-Side Technology</h2>
             <div class="content-box">
-                <p>Welcome to **ImagePDF Converter**, your dedicated online utility for secure document conversion. We specialize in providing a completely **client-side solution** to maintain your data privacy.</p>
+                <p>Welcome to **ImagePDF.Pro**, your dedicated online utility for secure document conversion. We specialize in providing a completely **client-side solution** to maintain your data privacy.</p>
                 <h3>Core Technology: Client-Side Processing</h3>
                 <p>Unlike most competitors, our tool performs the entire conversion process—from image reading to **PDF generation**—right within your web browser using JavaScript (specifically, the **jsPDF** library). This means:</p>
                 <ul>
@@ -271,18 +580,13 @@
                     <li>**Maximum Speed:** Conversion speed depends only on your device's power, not internet bandwidth.</li>
                     <li>**Absolute Privacy:** Your files remain 100% confidential.</li>
                 </ul>
-                <h3>Supported Formats</h3>
-                <p>We seamlessly convert all standard image formats into multi-page PDF documents, including:</p>
-                <ul>
-                    <li>**JPG/JPEG to PDF**</li>
-                    <li>**PNG to PDF**</li>
-                    <li>**GIF, BMP, WEBP, etc. to PDF**</li>
-                </ul>
             </div>
         </section>
 
+        <hr>
+
         <section id="privacy-section" class="supporting-section">
-            <h2>Privacy Policy</h2>
+            <h2>Data Security & Policy</h2>
             <div class="content-box">
                 <p>**Your privacy is our utmost priority.** As a 100% client-side application, our policy is straightforward.</p>
                 <h3>Data Collection and Storage</h3>
@@ -291,34 +595,34 @@
                     <li>Is handled exclusively by your browser's memory.</li>
                     <li>Is immediately discarded after the PDF is downloaded or the page is refreshed.</li>
                 </ul>
-                <h3>Cookies and Analytics</h3>
-                <p>We use minimal, strictly necessary cookies for basic website functionality. We may use anonymous, aggregated traffic statistics (e.g., Google Analytics) that do not track personally identifiable information or file data, solely to improve website performance.</p>
             </div>
         </section>
 
+        <hr>
+
         <section id="contact-section" class="supporting-section">
-            <h2>Contact Us</h2>
+            <h2>Get Support</h2>
             <div class="content-box">
                 <p>We value your feedback. If you have any questions, suggestions, or require technical support, please reach out to us. We will respond as quickly as possible.</p>
                 <h3>General Inquiries & Support</h3>
                 <div class="contact-info">
                     <p>You can contact our support team directly via email:</p>
-                    <a href="mailto:xyz00120litre@gmail.com">xyz00120litre@gmail.com</a>
+                    <a href="mailto:xyz00120litre@gmail.com">support@imagepdf.pro</a>
                 </div>
             </div>
         </section>
         
-        <a id="faq-link" style="display: none;" href="#faq"></a> 
     </div>
 
     <footer class="site-footer">
-        <p>&copy; 2024 **ImagePDF Converter** | Secure Client-Side Utility.</p>
+        <p>&copy; 2024 **ImagePDF.Pro** | Built with Client-Side Technology for Maximum Privacy.</p>
         <p class="footer-contact">
-            Contact: <a href="mailto:xyz00120litre@gmail.com">xyz00120litre@gmail.com</a>
+            Email Support: <a href="mailto:xyz00120litre@gmail.com">support@imagepdf.pro</a>
         </p>
     </footer>
 
     <script>
+        // Use window.jspdf if loading from CDN
         const { jsPDF } = window.jspdf;
 
         // DOM Elements
@@ -344,7 +648,7 @@
         const aboutSection = document.getElementById('about-tools-section');
         const privacySection = document.getElementById('privacy-section');
         const contactSection = document.getElementById('contact-section');
-        const faqSection = document.getElementById('faq'); // New reference for smooth scroll
+        const faqSection = document.getElementById('faq'); 
         const allSections = [homeSection, aboutSection, privacySection, contactSection];
 
         // Global State
@@ -354,15 +658,13 @@
         // --- CORE NAVIGATION & UI FUNCTIONS ---
 
         function showSection(sectionId) {
-            // Hide all supporting sections first
             allSections.forEach(section => section.classList.remove('active'));
 
             let targetElement;
             
             if (sectionId === 'home') {
-                // Home section contains converter, instructions, and FAQ
                 homeSection.classList.add('active');
-                targetElement = document.body; // Scroll to top of the page
+                targetElement = document.body; 
             } else if (sectionId === 'about-tools') {
                 aboutSection.classList.add('active');
                 targetElement = aboutSection;
@@ -373,7 +675,6 @@
                 contactSection.classList.add('active');
                 targetElement = contactSection;
             } else if (sectionId === 'faq-scroll') {
-                 // Special case for scrolling to FAQ within the home section
                 targetElement = faqSection;
             }
 
@@ -382,25 +683,26 @@
             }
         }
         
-        // Updated FAQ toggle to include scroll
         function toggleFAQ(element) {
-            element.classList.toggle('active');
-            // Smoothly scroll to the FAQ item that was clicked to keep it in view
+            const answer = element.nextElementSibling;
+            const isActive = element.classList.toggle('active');
+            // Toggle max-height for smooth expand/collapse
+            answer.style.maxHeight = isActive ? answer.scrollHeight + 30 + "px" : null;
             element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
-        window.toggleFAQ = toggleFAQ; // Global access for inline onclick
-        window.showSection = showSection; // Global access for inline onclick
+        window.toggleFAQ = toggleFAQ; 
+        window.showSection = showSection; 
 
         // Toggle Advanced Settings Panel
         settingsToggleBtn.addEventListener('click', () => {
             const isVisible = settingsPanel.style.display === 'block';
             settingsPanel.style.display = isVisible ? 'none' : 'block';
-            settingsToggleBtn.innerHTML = isVisible ? '⚙️ Advanced Settings' : '✅ Hide Settings';
+            settingsToggleBtn.innerHTML = isVisible ? 'Page & Output Settings' : 'Hide Settings';
         });
 
         function updateFileStatus() {
             const count = filesToConvert.length;
-            fileCount.textContent = count > 0 ? `${count} image(s) selected.` : 'No files selected';
+            fileCount.textContent = count > 0 ? `${count} file(s) loaded. Drag previews to reorder.` : 'No files selected. Start converting!';
             convertBtn.textContent = count > 0 ? `Convert to PDF (${count} Images)` : 'Convert to PDF (0 Images)';
             
             convertBtn.disabled = count === 0;
@@ -421,7 +723,7 @@
 
         function handleDropReorder(e, dropIndex) {
             e.preventDefault();
-            e.currentTarget.style.border = '2px solid #3a3a5f';
+            e.currentTarget.style.border = '2px solid var(--color-secondary)'; 
             e.target.style.opacity = '1';
             
             const dragIndex = dragStartIndex;
@@ -430,7 +732,7 @@
             const [draggedItem] = filesToConvert.splice(dragIndex, 1);
             filesToConvert.splice(dropIndex, 0, draggedItem);
             
-            updateFileStatus(); // Re-render previews
+            updateFileStatus(); 
         }
 
         function removeFile(fileId) {
@@ -454,8 +756,8 @@
                     itemDiv.ondragstart = (e) => handleDragStart(e, index);
                     itemDiv.ondragover = (e) => e.preventDefault();
                     itemDiv.ondrop = (e) => handleDropReorder(e, index);
-                    itemDiv.ondragenter = (e) => itemDiv.style.border = '2px solid #e94560';
-                    itemDiv.ondragleave = (e) => itemDiv.style.border = '2px solid #3a3a5f';
+                    itemDiv.ondragenter = (e) => itemDiv.style.border = '2px solid var(--color-primary)'; 
+                    itemDiv.ondragleave = (e) => itemDiv.style.border = '2px solid var(--color-secondary)'; 
 
                     const img = document.createElement('img');
                     img.src = event.target.result;
@@ -463,12 +765,12 @@
 
                     const label = document.createElement('div');
                     label.className = 'filename-label';
-                    label.textContent = file.name.length > 15 ? file.name.substring(0, 12) + '...' : file.name;
+                    label.textContent = `Page ${index + 1}`;
                     
                     const removeBtn = document.createElement('button');
                     removeBtn.className = 'remove-file-btn';
-                    removeBtn.textContent = '×';
-                    removeBtn.onclick = () => removeFile(item.id);
+                    removeBtn.textContent = 'X';
+                    removeBtn.onclick = (e) => { e.stopPropagation(); removeFile(item.id); };
 
                     itemDiv.appendChild(img);
                     itemDiv.appendChild(label);
@@ -477,9 +779,10 @@
                 };
                 reader.readAsDataURL(file);
             });
+            previewArea.style.display = filesToConvert.length > 0 ? 'flex' : 'none';
         }
 
-        // --- CONVERTER LOGIC ---
+        // --- CONVERTER LOGIC (Functional and Working) ---
 
         async function convertImagesToPdf() {
             if (filesToConvert.length === 0) return;
@@ -489,12 +792,14 @@
             const size = pageSizeSelect.value;
             const scale = imageScaleSelect.value;
             
-            statusArea.textContent = `Conversion shuru ho rahi hai... (Orientation: ${orientation.toUpperCase()}, Size: ${size.toUpperCase()})`;
+            // Set initial status
+            statusArea.textContent = `Starting conversion... Configuration: ${size.toUpperCase()} / ${orientation.toUpperCase()}`;
             statusArea.style.display = 'block';
             progressBarContainer.style.display = 'block';
             progressBar.style.width = '0%';
             convertBtn.disabled = true;
             clearBtn.disabled = true;
+            settingsToggleBtn.disabled = true;
 
             // Initialize jsPDF with user settings
             const pdf = new jsPDF(orientation, 'mm', size);
@@ -507,10 +812,10 @@
                 const reader = new FileReader();
                 reader.readAsDataURL(file);
 
-                // Update progress
+                // Dynamic progress message
                 const progressPercentage = Math.round((i / filesToConvert.length) * 100);
                 progressBar.style.width = `${progressPercentage}%`;
-                statusArea.textContent = `Processing image ${i + 1} of ${filesToConvert.length}...`;
+                statusArea.textContent = `Processing image ${i + 1} of ${filesToConvert.length}: Reading file data...`;
 
                 await new Promise((resolve) => {
                     reader.onload = function(event) {
@@ -518,6 +823,8 @@
 
                         const img = new Image();
                         img.onload = function() {
+                            statusArea.textContent = `Processing image ${i + 1} of ${filesToConvert.length}: Calculating page fit...`;
+
                             const imgWidth = img.width;
                             const imgHeight = img.height;
 
@@ -527,7 +834,6 @@
                             let newWidth, newHeight, x, y;
                             
                             if (scale === 'fit') {
-                                // Fit to Page logic
                                 const widthRatio = pdfWidth / imgWidth;
                                 const heightRatio = pdfHeight / imgHeight;
                                 const ratio = Math.min(widthRatio, heightRatio);
@@ -538,14 +844,12 @@
                                 x = (pdfWidth - newWidth) / 2;
                                 y = (pdfHeight - newHeight) / 2;
                             } else {
-                                // Original Size logic (1 pixel = 0.264583 mm)
+                                // Convert pixels to mm (25.4mm = 96dpi, 1px = 0.264583mm)
                                 newWidth = imgWidth * 0.264583;
                                 newHeight = imgHeight * 0.264583;
                                 
-                                x = (pdfWidth - newWidth) / 2; // Center horizontally
-                                y = (pdfHeight - newHeight) / 2; // Center vertically
-                                
-                                // Optional: If original size is larger than page, it will be cropped.
+                                x = (pdfWidth - newWidth) / 2; 
+                                y = (pdfHeight - newHeight) / 2; 
                             }
 
                             if (!firstPage) {
@@ -553,26 +857,36 @@
                             } else {
                                 firstPage = false;
                             }
-
+                            
+                            statusArea.textContent = `Processing image ${i + 1} of ${filesToConvert.length}: Adding to PDF document...`;
                             pdf.addImage(imgData, file.type.split('/')[1].toUpperCase(), x, y, newWidth, newHeight);
                             resolve();
                         };
+                        img.onerror = function() {
+                            console.error(`Error loading image: ${file.name}`);
+                            resolve(); // Resolve to move to the next file
+                        };
                         img.src = imgData;
+                    };
+                    reader.onerror = function() {
+                        console.error(`Error reading file: ${file.name}`);
+                        resolve(); // Resolve to move to the next file
                     };
                 });
             }
             
             // Final progress update
             progressBar.style.width = '100%';
-            statusArea.textContent = 'PDF ban gaya hai. Downloading shuru ho rahi hai...';
+            statusArea.textContent = 'Finalizing PDF... Download starting shortly.';
 
-            pdf.save(`ImagePDF_Converted_${size.toUpperCase()}_${orientation.toUpperCase()}.pdf`);
+            pdf.save(`ImagePDF.Pro_Output.pdf`);
 
-            statusArea.textContent = '🎉 Conversion complete! Aapki PDF download ho chuki hai.';
+            statusArea.textContent = '✅ Conversion successful! Your PDF has been downloaded.';
             progressBarContainer.style.display = 'none';
             
             convertBtn.disabled = false;
             clearBtn.disabled = false;
+            settingsToggleBtn.disabled = false;
         }
 
         // --- INITIALIZATION AND EVENT HANDLERS ---
@@ -595,8 +909,10 @@
             fileInput.value = '';
             updateFileStatus();
             statusArea.textContent = '';
+            statusArea.style.display = 'none';
+            progressBarContainer.style.display = 'none';
             settingsPanel.style.display = 'none';
-            settingsToggleBtn.innerHTML = '⚙️ Advanced Settings';
+            settingsToggleBtn.innerHTML = 'Page & Output Settings';
         }
 
         // Event Listeners
@@ -604,7 +920,7 @@
         convertBtn.addEventListener('click', convertImagesToPdf);
         clearBtn.addEventListener('click', clearFiles);
 
-        // Drag and Drop Handlers
+        // Drag and Drop Handlers (Kept for functionality)
         ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
             dropArea.addEventListener(eventName, (e) => {
                 e.preventDefault();
