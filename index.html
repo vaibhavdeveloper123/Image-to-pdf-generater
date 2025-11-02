@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Free JPG to PDF Converter | Fast, Secure & 100% Client-Side - ClientPDF</title>
+    <meta name="description" content="Convert JPG, PNG & HEIC to a single PDF instantly. 100% client-side (no uploads), private, and fast. Arrange pages, choose orientation and download — free. The secure converter from ClientPDF." />
+    <link rel="canonical" href="https://clientpdf.pro/" />
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <style>
+        :root {
+            --color-primary: #007AFF; /* Blue */
+            --color-secondary: #00C4CC; /* Cyan */
+            --color-background: #F8F9FA;
+            --color-surface: #FFFFFF;
+            --color-dark: #212529;
+            --color-muted: #6C757D;
+            --color-success: #28A745;
+            --color-error: #DC3545;
+        }
+        
+        *{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
+        body{
+            font-family:Inter, 'Segoe UI', Arial, sans-serif;
+            background:var(--color-background);
+            color:var(--color-dark);
+            line-height:1.6;
+            display:flex;
+            flex-direction:column;
+            min-height:100vh;
+        }
+
+        /* --- Global & Header --- */
+        .trust-bar{background:var(--color-success);color:var(--color-surface);padding:8px 0;text-align:center;font-size:.9em;font-weight:600}
+        .site-header{background:var(--color-surface);padding:15px 0;box-shadow:0 2px 4px rgba(0,0,0,.05);position:sticky;top:0;z-index:1000}
+        .header-content{max-width:1200px;margin:0 auto;padding:0 30px;display:flex;justify-content:space-between;align-items:center}
+        .logo{font-size:1.6em;font-weight:800;color:var(--color-primary);cursor:pointer;letter-spacing:-.5px}
+        nav a{color:var(--color-dark);text-decoration:none;margin-left:30px;font-weight:500;transition:color .3s}
+        nav a:hover{color:var(--color-primary)}
+        .content-wrapper{flex-grow:1}
+
+        /* --- Converter Section (Original styles) --- */
+        .converter-section{max-width:850px;margin:50px auto;padding:30px;width:95%;background:var(--color-surface);border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.1);border:1px solid #EAEAEA}
+        .drop-area{border:2px dashed var(--color-primary);background:#F9FBFF;padding:60px 20px;text-align:center;border-radius:10px;transition:background-color .3s,border-color .3s;cursor:pointer}
+        .drag-text{font-size:2em;font-weight:700;color:var(--color-dark);margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:15px}
+        .file-icon{font-size:2.2em;color:var(--color-primary)}
+        .or-text{margin:15px 0;color:var(--color-muted);font-style:italic}
+        .button-group{display:flex;justify-content:center;flex-wrap:wrap;gap:20px;margin-top:20px}
+        .select-btn,.clear-btn{border:none;padding:15px 35px;font-size:1.1em;border-radius:8px;font-weight:600;cursor:pointer;box-shadow:0 4px 6px rgba(0,0,0,.1)}
+        .select-btn{background:var(--color-primary);color:var(--color-surface)}
+        .convert-btn{background-image:linear-gradient(to right,var(--color-secondary),var(--color-primary));color:var(--color-surface);border:none;padding:20px 30px;font-size:1.4em;font-weight:bold;border-radius:10px;width:100%;cursor:pointer;box-shadow:0 8px 15px rgba(0,122,255,.3)}
+        .preview-area{display:flex;flex-wrap:wrap;gap:12px;padding:15px 0;margin-top:20px;justify-content:center;border-top:1px solid #F0F0F0}
+        .preview-item{width:80px;height:80px;border:2px solid var(--color-secondary);border-radius:8px;overflow:hidden;position:relative;cursor:grab;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 5px rgba(0,0,0,.1)}
+        .filename-label{position:absolute;bottom:0;width:100%;text-align:center;background:rgba(0,122,255,.8);font-size:.65em;padding:2px 0;color:var(--color-surface);font-weight:600}
+        .remove-file-btn{position:absolute;top:-5px;right:-5px;background:var(--color-error);color:var(--color-surface);border:1px solid var(--color-surface);border-radius:50%;width:20px;height:20px;font-size:14px;line-height:1;cursor:pointer;font-weight:900}
+        .instructions-section{max-width:1000px;margin:0 auto;padding:60px 20px}
+        .steps-container{display:flex;justify-content:space-around;gap:30px;text-align:center}
+        .step{flex:1;background:var(--color-surface);padding:30px 20px;border-radius:10px;border-bottom:3px solid var(--color-primary);box-shadow:0 4px 10px rgba(0,0,0,.05)}
+        .site-footer{background:var(--color-dark);color:var(--color-muted);padding:20px 0;text-align:center;margin-top:auto;font-size:.9em;border-top:3px solid var(--color-primary)}
+        
+        /* --- NEW: Landing Page Styles --- */
+        #landing-page {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 20px;
+            text-align: center;
+            background-color: #f0f4f8; /* Light blue-gray background */
+            flex-grow: 1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            background: var(--color-surface);
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            border-top: 5px solid var(--color-primary);
+        }
+
+        .hero-content h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: 900;
+            color: var(--color-dark);
+            line-height: 1.1;
+        }
+
+        .hero-content h1 strong {
+            color: var(--color-primary);
+        }
+
+        .hero-content p {
+            font-size: 1.35em;
+            color: var(--color-muted);
+            margin-bottom: 35px;
+        }
+
+        .security-features {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+            color: var(--color-dark);
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+
+        .feature-icon {
+            font-size: 1.5em;
+            color: var(--color-secondary);
+        }
+
+        .get-started-btn {
+            background-image: linear-gradient(to right, var(--color-primary), #00A3FF);
+            color: var(--color-surface);
+            border: none;
+            padding: 18px 50px;
+            font-size: 1.5em;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 10px 20px rgba(0, 122, 255, 0.4);
+        }
+
+        .get-started-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(0, 122, 255, 0.5);
+        }
+
+        /* --- Utility & Responsiveness --- */
+        .hidden {
+            display: none !important;
+        }
+
+        @media(max-width:992px) {
+            .hero-content h1 { font-size: 2.5em; }
+            .hero-content p { font-size: 1.1em; }
+            .security-features { flex-direction: column; gap: 15px; }
+            .get-started-btn { font-size: 1.3em; padding: 15px 40px; }
+        }
+
+        @media(max-width:768px){
+            .converter-section{margin:30px auto 20px;padding:15px}
+            .drag-text{font-size:1.5em}
+            .convert-btn{padding:15px 20px;font-size:1.2em}
+            .steps-container{flex-direction:column}
+            .site-header nav{overflow-x:scroll}
+            .site-header nav a{font-size:.85em;margin:0 5px}
+            .hero-content { padding: 30px; }
+            .hero-content h1 { font-size: 2em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="trust-bar" aria-hidden="false">
+        🔒 <strong>100% Client-Side Processing.</strong> Your files are processed in-browser only — no upload.
+    </div>
+
+    <header class="site-header" role="banner">
+        <div class="header-content">
+            <h2 class="logo" onclick="toggleView('landing-page')" aria-label="ClientPDF Home">ClientPDF</h2>
+            <nav role="navigation" aria-label="Main navigation">
+                <a href="#" onclick="toggleView('landing-page')">Home</a>
+                <a href="#about-tools-section">Features</a>
+                <a href="#privacy-section">Security</a>
+                <a href="#contact-section">Support</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="content-wrapper" id="main">
+
+        <section id="landing-page">
+            <div class="hero-content">
+                <h1>
+                    The **Fastest & Most Secure** <br>
+                    <strong>JPG to PDF Converter</strong>
+                </h1>
+                <p>
+                    Convert your images instantly, with zero risk. <br>
+                    **Processing is 100% client-side** (in your browser) for maximum privacy.
+                </p>
+
+                <div class="security-features">
+                    <div class="feature-item">
+                        <span class="feature-icon">⚡</span> Instant Conversion
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🔒</span> No File Uploads
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✨</span> Free Forever
+                    </div>
+                </div>
+
+                <button class="get-started-btn" onclick="toggleView('home-section')" aria-label="Start converting your images to PDF now">
+                    Get Started Now
+                </button>
+            </div>
+        </section>
+
+
+        <section id="home-section" class="hidden" aria-labelledby="main-heading">
+            <main class="converter-section" role="application" aria-label="JPG to PDF converter">
+                <h1 id="main-heading" style="font-size:1.5em;margin-bottom:18px">Free JPG to PDF Converter — Fast, Secure & 100% Client-Side</h1>
+
+                <div class="drop-area" id="dropArea" onclick="document.getElementById('fileInput').click()" role="button" aria-label="Drop images here or click to select">
+                    <h2 class="drag-text">
+                        <span class="file-icon" aria-hidden="true">📁</span>
+                        Drag &amp; Drop Your Images Here
+                    </h2>
+                    <p class="or-text">OR</p>
+                    <input type="file" id="fileInput" accept="image/*" multiple style="display:none" aria-label="Select images" />
+
+                    <div class="button-group">
+                        <button class="select-btn" onclick="event.stopPropagation(); document.getElementById('fileInput').click()" aria-label="Select images">Select Images (JPG, PNG, HEIC)</button>
+                        <button class="clear-btn" id="clearBtn" disabled onclick="event.stopPropagation(); clearFiles()" aria-label="Clear file list">Clear List</button>
+                    </div>
+
+                    <p class="file-count" id="fileCount">No files selected. Start converting!</p>
+                </div>
+
+                <div id="previewArea" class="preview-area" aria-live="polite"></div>
+
+                <div class="convert-area" style="margin-top:18px">
+                    <button class="convert-btn" id="convertBtn" disabled aria-disabled="true">Convert to PDF (0 Images)</button>
+                    <button class="advanced-settings-btn" id="settingsToggleBtn" aria-expanded="false" aria-controls="settingsPanel">Page & Output Settings</button>
+
+                    <div id="settingsPanel" class="settings-panel" style="display:none" role="region" aria-hidden="true">
+                        <label for="pageOrientation">PDF Orientation:</label>
+                        <select id="pageOrientation">
+                            <option value="p">Portrait (Default)</option>
+                            <option value="l">Landscape</option>
+                        </select>
+
+                        <label for="pageSize">PDF Page Size:</label>
+                        <select id="pageSize">
+                            <option value="a4">A4 (Default)</option>
+                            <option value="letter">Letter</option>
+                        </select>
+
+                        <label for="imageScale">Image Scaling:</label>
+                        <select id="imageScale">
+                            <option value="fit">Fit to Page (Best Fit)</option>
+                            <option value="original">Original Size</option>
+                        </select>
+                    </div>
+                    <div id="progressBarContainer" class="progress-bar-container" style="display:none" aria-hidden="true">
+                        <div id="progressBar" class="progress-bar" style="width:0%"></div>
+                    </div>
+
+                    <div id="statusArea" class="status-area" style="display:none" role="status" aria-live="polite"></div>
+                </div>
+            </main>
+
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : 'd71abad2466ac39c8d34cd4e900267b3',
+                    'format' : 'iframe',
+                    'height' : 90,
+                    'width' : 728,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/d71abad2466ac39c8d34cd4e900267b3/invoke.js"></script>
+
+            <section id="how-to" class="instructions-section" aria-labelledby="how-to-heading">
+                <h2 id="how-to-heading">Convert images to PDF quickly — how it works</h2>
+                <div class="steps-container">
+                    <div class="step">
+                        <h3>1. Select Images</h3>
+                        <p>Click the button or drag your JPG, PNG, or HEIC files into the drop zone.</p>
+                    </div>
+                    <div class="step">
+                        <h3>2. Arrange & Set</h3>
+                        <p>Drag and drop the images to set the PDF page order. Adjust orientation and size if needed.</p>
+                    </div>
+                    <div class="step">
+                        <h3>3. Convert Instantly</h3>
+                        <p>Hit 'Convert' to instantly generate and download your PDF. All done **locally**.</p>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+        &copy; 2025 ClientPDF. All rights reserved. | <a href="#" style="color:var(--color-surface);text-decoration:underline">Privacy Policy</a>
+    </footer>
+
+    <script>
+        // --- View Toggling Function ---
+        // This function handles switching between the landing page and the converter
+        function toggleView(viewId) {
+            const landingPage = document.getElementById('landing-page');
+            const homeSection = document.getElementById('home-section');
+
+            if (viewId === 'landing-page') {
+                landingPage.classList.remove('hidden');
+                homeSection.classList.add('hidden');
+                document.title = "Free JPG to PDF Converter | Fast, Secure & 100% Client-Side - ClientPDF"; // Reset title for landing page
+            } else {
+                // If moving to the converter, we ensure the title reflects the tool is active
+                document.title = "JPG to PDF Converter - Start Conversion";
+                landingPage.classList.add('hidden');
+                homeSection.classList.remove('hidden');
+                // Scroll to the top of the new section for a good user experience
+                document.getElementById('main').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        
+        // --- Placeholder Converter Functions (Must be implemented for full functionality) ---
+
+        // Placeholder for file storage
+        let files = []; 
+
+        function handleFileSelect(event) {
+            const newFiles = Array.from(event.target.files);
+            // In a real application, you would read the files here
+            files.push(...newFiles);
+            updateUI(); // Function to update count, preview, etc.
+        }
+
+        function clearFiles() {
+            files = [];
+            document.getElementById('fileInput').value = ''; // Clear input field
+            updateUI();
+        }
+
+        function updateUI() {
+            const fileCountElement = document.getElementById('fileCount');
+            const convertBtn = document.getElementById('convertBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const previewArea = document.getElementById('previewArea');
+
+            fileCountElement.textContent = files.length > 0 ? `${files.length} images selected.` : 'No files selected. Start converting!';
+            
+            convertBtn.disabled = files.length === 0;
+            convertBtn.textContent = `Convert to PDF (${files.length} Images)`;
+            convertBtn.setAttribute('aria-disabled', files.length === 0);
+
+            clearBtn.disabled = files.length === 0;
+
+            // Simple preview update (without actual image rendering)
+            previewArea.innerHTML = '';
+            if (files.length > 0) {
+                files.forEach((file, index) => {
+                    // Create a simple box representation for the file
+                    const previewItem = document.createElement('div');
+                    previewItem.className = 'preview-item';
+                    previewItem.title = file.name;
+                    previewItem.innerHTML = `
+                        <span style="font-size:2em;">📄</span>
+                        <div class="filename-label">${file.name.substring(0, 10)}...</div>
+                        <button class="remove-file-btn" onclick="removeFile(${index}); event.stopPropagation();">×</button>
+                    `;
+                    previewArea.appendChild(previewItem);
+                });
+            }
+        }
+
+        function removeFile(index) {
+            files.splice(index, 1);
+            updateUI();
+        }
+        
+        // Connect event listeners
+        document.getElementById('fileInput').addEventListener('change', handleFileSelect);
+        
+        // Settings Toggle
+        document.getElementById('settingsToggleBtn').addEventListener('click', function() {
+            const panel = document.getElementById('settingsPanel');
+            const isExpanded = this.getAttribute('aria-expanded') === 'true' || false;
+            
+            panel.style.display = isExpanded ? 'none' : 'block';
+            this.setAttribute('aria-expanded', !isExpanded);
+            panel.setAttribute('aria-hidden', isExpanded);
+        });
+        
+        // Drag and Drop (Basic Logic)
+        const dropArea = document.getElementById('dropArea');
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropArea.addEventListener(eventName, () => dropArea.style.borderColor = var(--color-secondary), false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, () => dropArea.style.borderColor = var(--color-primary), false);
+        });
+
+        dropArea.addEventListener('drop', handleDrop, false);
+
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const filesFromDrop = Array.from(dt.files);
+            
+            // Filter to only accept images (optional, but good practice)
+            const newFiles = filesFromDrop.filter(file => file.type.startsWith('image/'));
+            
+            files.push(...newFiles);
+            updateUI();
+        }
+
+        // Initialize UI on load
+        updateUI(); 
+        
+        // --- The actual conversion logic using jsPDF would be implemented here ---
+        document.getElementById('convertBtn').addEventListener('click', async () => {
+             // In a real implementation:
+             // 1. Validate files
+             // 2. Loop through files, read as data URLs (using FileReader)
+             // 3. Add image to jsPDF document (doc.addImage)
+             // 4. Save the PDF (doc.save)
+             // 5. Update the progress bar/status area
+             alert("Conversion triggered! (Requires jsPDF implementation logic)");
+        });
+
+
+    </script>
+</body>
+</html>
