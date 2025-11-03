@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>QR Code Generator: Instant Client-Side QR Code Creator | ImagePDF.Pro</title>
+    <meta name="description" content="Generate QR codes instantly from any text, URL, or data right in your web browser. 100% Client-Side and secure." />
+    <meta name="keywords" content="qr code generator, create qr code, client-side qr, free qr code" />
+    <link rel="canonical" href="https://yourwebsite.com/qr-generator.html" />
+
+    <script src="https://unpkg.com/qrcode@1.5.1/build/qrcode.min.js"></script>
+
+    <style>
+        /* (CSS from index.html is copied here for consistent styling) */
+        :root { --color-primary:#007AFF; --color-secondary:#00C4CC; --color-background:#F8F9FA; --color-surface:#FFFFFF; --color-dark:#212529; --color-muted:#6C757D; --color-success:#28A745; --color-error:#DC3545; }
+        *{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
+        body{font-family:Inter, 'Segoe UI', Arial, sans-serif;background:var(--color-background);color:var(--color-dark);line-height:1.6;display:flex;flex-direction:column;min-height:100vh}
+        .trust-bar{background:var(--color-success);color:var(--color-surface);padding:8px 0;text-align:center;font-size:.9em;font-weight:600}
+        .site-header{background:var(--color-surface);padding:15px 0;box-shadow:0 2px 4px rgba(0,0,0,.05);position:sticky;top:0;z-index:1000}
+        .header-content{max-width:1200px;margin:0 auto;padding:0 30px;display:flex;justify-content:space-between;align-items:center}
+        .logo{font-size:1.6em;font-weight:800;color:var(--color-primary);cursor:pointer;letter-spacing:-.5px}
+        nav a{color:var(--color-dark);text-decoration:none;margin-left:20px;font-weight:500;transition:color .3s}
+        nav a:hover{color:var(--color-primary)}
+        .content-wrapper{flex-grow:1}
+
+        /* Tool Specific Styles */
+        .tool-container {max-width: 800px; margin: 40px auto; padding: 30px; background: var(--color-surface); border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,.08); text-align: center;}
+        .tool-container h1 {color: var(--color-primary); margin-bottom: 20px;}
+        
+        .input-area {margin-bottom: 20px;}
+        #qrData {width: 100%; min-height: 100px; padding: 10px; border: 1px solid #CCC; border-radius: 5px; box-sizing: border-box; font-size: 1em;}
+        #qrData::placeholder {color: #AAA;}
+
+        .result-area {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        #qrcodeCanvasContainer {
+            margin: 20px auto;
+            border: 1px solid #EEE;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block; /* Center the canvas */
+        }
+        
+        .btn-primary {background: var(--color-primary); color: white; padding: 10px 25px; border-radius: 8px; text-decoration: none; font-weight: 600; border: none; cursor: pointer; transition: background .3s; display: inline-block; margin-top: 10px;}
+        .btn-primary:hover {background: #0056b3;}
+        .status-message {margin-top: 20px; font-weight: 600; min-height: 20px; color: var(--color-error);}
+        
+        /* Footer Styles */
+        .site-footer {text-align: center; padding: 20px; background: var(--color-surface); border-top: 1px solid #EEE; margin-top: auto;}
+        .footer-nav a {margin: 0 10px; color: var(--color-muted); text-decoration: none;}
+        .footer-nav a:hover {color: var(--color-primary);}
+
+    </style>
+</head>
+<body>
+    <div class="trust-bar" aria-hidden="false">
+        🔒 <strong>100% Client-Side Processing.</strong> QR Code is generated in-browser only — **Maximum Privacy**.
+    </div>
+
+    <header class="site-header" role="banner">
+        <div class="header-content">
+            <h2 class="logo" onclick="window.location.href='index.html'" aria-label="ImagePDF.Pro Home">ImagePDF.Pro</h2>
+            <nav role="navigation" aria-label="Main navigation">
+                <a href="index.html">Home</a>
+                <a href="jpg-to-pdf.html">JPG to PDF</a>
+                <a href="pdf-merger.html">PDF Merger</a>
+                <a href="image-compressor.html">Compress</a>
+                <a href="pdf-splitter.html">PDF Split</a>
+                <a href="qr-generator.html" style="color: var(--color-primary); font-weight: 700;">QR Generator</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="content-wrapper">
+        <section class="tool-container">
+            <h1>🤳 QR Code Generator — Secure & Instant</h1>
+            <p>Enter your text or URL below to instantly generate a QR code. Your data is never sent to a server.</p>
+            
+            <div class="input-area">
+                <textarea id="qrData" placeholder="Paste your URL, text, WiFi credentials, or contact info here..."></textarea>
+            </div>
+
+            <div class="result-area">
+                <button class="btn-primary" id="generateButton" onclick="generateQrCode()" disabled>Generate QR Code</button>
+                <div id="statusMessage" class="status-message"></div>
+                
+                <div id="qrcodeCanvasContainer">
+                    </div>
+                
+                <a class="btn-primary" id="downloadButton" style="display: none;">Download QR Code (PNG)</a>
+            </div>
+            
+        </section>
+        
+        <section class="info-section" style="max-width: 800px; margin-top: 20px;">
+            <h2>How it Works</h2>
+            <p>1. **Input Data:** Enter any information (URL, phone number, simple text) into the box.</p>
+            <p>2. **Generate:** Click the 'Generate QR Code' button.</p>
+            <p>3. **Download:** The QR code image will appear instantly, and you can download it as a PNG file.</p>
+        </section>
+
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-nav">
+            <a href="jpg-to-pdf.html">JPG to PDF</a> |
+            <a href="pdf-merger.html">PDF Merge</a> |
+            <a href="pdf-splitter.html">PDF Split</a> |
+            <a href="image-compressor.html">Compress Image</a> |
+            <a href="sitemap.xml">Sitemap</a>
+        </div>
+        <p>&copy; 2024 <strong>ImagePDF.Pro</strong> | Built with client-side technology for maximum privacy.</p>
+        <p style="margin-top: 5px;"><a href="#privacy-section" style="color:#00C4CC;">Privacy Policy</a> | <a href="#support-section" style="color:#00C4CC;">Contact Us</a></p>
+    </footer>
+
+    <script>
+        const dataInput = document.getElementById('qrData');
+        const canvasContainer = document.getElementById('qrcodeCanvasContainer');
+        const statusMessage = document.getElementById('statusMessage');
+        const generateButton = document.getElementById('generateButton');
+        const downloadButton = document.getElementById('downloadButton');
+
+        // Initial check and event listener for input changes
+        dataInput.addEventListener('input', () => {
+            const data = dataInput.value.trim();
+            generateButton.disabled = data.length === 0;
+            statusMessage.textContent = '';
+            // Optional: Auto-generate on input if data is long enough
+            if (data.length > 5) {
+                 // generateQrCode(); // Uncomment this line for instant generation
+            }
+        });
+
+        // --- Generation Logic ---
+
+        function generateQrCode() {
+            const data = dataInput.value.trim();
+            
+            if (data.length === 0) {
+                statusMessage.textContent = 'Please enter some data to generate the QR code.';
+                return;
+            }
+            
+            // Clear previous QR code
+            canvasContainer.innerHTML = '';
+            downloadButton.style.display = 'none';
+            statusMessage.textContent = 'Generating...';
+
+            try {
+                // The qrcode library generates a canvas element
+                const canvas = document.createElement('canvas');
+                canvasContainer.appendChild(canvas);
+
+                // Use the qrcode library to draw directly to the canvas
+                QRCode.toCanvas(canvas, data, {
+                    errorCorrectionLevel: 'H', // High error correction
+                    margin: 2,
+                    scale: 8, // Adjust size
+                    color: {
+                        dark: '#000000',
+                        light: '#ffffff'
+                    }
+                }, function (error) {
+                    if (error) {
+                        console.error(error);
+                        statusMessage.textContent = 'Failed to generate QR code.';
+                    } else {
+                        statusMessage.textContent = '';
+                        setupDownloadLink(canvas);
+                    }
+                });
+
+            } catch (error) {
+                console.error("QR Code Generation Error:", error);
+                statusMessage.textContent = `An error occurred: ${error.message}`;
+            }
+        }
+
+        // --- Download Logic ---
+        
+        function setupDownloadLink(canvas) {
+            // Convert canvas content to a data URL (PNG format)
+            const dataURL = canvas.toDataURL('image/png');
+            
+            downloadButton.href = dataURL;
+            downloadButton.download = 'ImagePDFPro_QR_Code.png';
+            downloadButton.style.display = 'inline-block';
+        }
+        
+    </script>
+</body>
+</html>
