@@ -9,7 +9,7 @@
     <meta name="keywords" content="qr code generator, create qr code, client-side qr, free qr code" />
     <link rel="canonical" href="https://yourwebsite.com/qr-generator.html" />
 
-    <script src="https://unpkg.com/qrcode@1.5.1/build/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
 
     <style>
         /* (CSS from index.html is copied here for consistent styling) */
@@ -29,7 +29,7 @@
         .tool-container h1 {color: var(--color-primary); margin-bottom: 20px;}
         
         .input-area {margin-bottom: 20px;}
-        #qrData {width: 100%; min-height: 100px; padding: 10px; border: 1px solid #CCC; border-radius: 5px; box-sizing: border-box; font-size: 1em;}
+        #qrData {width: 100%; min-height: 100px; padding: 10px; border: 1px solid #CCC; border-radius: 5px; box-sizing: border-box; font-size: 1em; resize: vertical;}
         #qrData::placeholder {color: #AAA;}
 
         .result-area {
@@ -41,10 +41,11 @@
         
         #qrcodeCanvasContainer {
             margin: 20px auto;
-            border: 1px solid #EEE;
             padding: 10px;
             border-radius: 5px;
-            display: inline-block; /* Center the canvas */
+            display: inline-block; 
+            max-width: 300px;
+            max-height: 300px;
         }
         
         .btn-primary {background: var(--color-primary); color: white; padding: 10px 25px; border-radius: 8px; text-decoration: none; font-weight: 600; border: none; cursor: pointer; transition: background .3s; display: inline-block; margin-top: 10px;}
@@ -98,11 +99,11 @@
             
         </section>
         
-        <section class="info-section" style="max-width: 800px; margin-top: 20px;">
+        <section class="info-section" style="max-width: 800px; margin: 20px auto; padding: 30px;">
             <h2>How it Works</h2>
             <p>1. **Input Data:** Enter any information (URL, phone number, simple text) into the box.</p>
             <p>2. **Generate:** Click the 'Generate QR Code' button.</p>
-            <p>3. **Download:** The QR code image will appear instantly, and you can download it as a PNG file.</p>
+            <p>3. **Download:** The QR code image will appear instantly, and you can download it as a **PNG file**.</p>
         </section>
 
     </main>
@@ -126,15 +127,15 @@
         const generateButton = document.getElementById('generateButton');
         const downloadButton = document.getElementById('downloadButton');
 
-        // Initial check and event listener for input changes
+        // Enable/Disable the button based on input
         dataInput.addEventListener('input', () => {
             const data = dataInput.value.trim();
+            // Button is enabled if there is any text input
             generateButton.disabled = data.length === 0;
             statusMessage.textContent = '';
-            // Optional: Auto-generate on input if data is long enough
-            if (data.length > 5) {
-                 // generateQrCode(); // Uncomment this line for instant generation
-            }
+            // Hide download button when text changes
+            downloadButton.style.display = 'none';
+            canvasContainer.innerHTML = '';
         });
 
         // --- Generation Logic ---
@@ -160,18 +161,18 @@
                 // Use the qrcode library to draw directly to the canvas
                 QRCode.toCanvas(canvas, data, {
                     errorCorrectionLevel: 'H', // High error correction
-                    margin: 2,
-                    scale: 8, // Adjust size
+                    margin: 4,
+                    scale: 6, // Adjust size for better resolution
                     color: {
                         dark: '#000000',
                         light: '#ffffff'
                     }
                 }, function (error) {
                     if (error) {
-                        console.error(error);
-                        statusMessage.textContent = 'Failed to generate QR code.';
+                        console.error("QR Error:", error);
+                        statusMessage.textContent = 'Failed to generate QR code. Try shorter text.';
                     } else {
-                        statusMessage.textContent = '';
+                        statusMessage.textContent = 'QR Code generated successfully! Download below.';
                         setupDownloadLink(canvas);
                     }
                 });
@@ -185,11 +186,11 @@
         // --- Download Logic ---
         
         function setupDownloadLink(canvas) {
-            // Convert canvas content to a data URL (PNG format)
+            // Get the data URL from the canvas
             const dataURL = canvas.toDataURL('image/png');
             
             downloadButton.href = dataURL;
-            downloadButton.download = 'ImagePDFPro_QR_Code.png';
+            downloadButton.download = `ImagePDFPro_QR_Code_${Date.now()}.png`; // Unique filename
             downloadButton.style.display = 'inline-block';
         }
         
