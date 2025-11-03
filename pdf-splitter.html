@@ -35,16 +35,15 @@
         .result-area {margin-top: 30px;}
         .btn-primary {background: var(--color-primary); color: white; padding: 10px 25px; border-radius: 8px; text-decoration: none; font-weight: 600; border: none; cursor: pointer; transition: background .3s;}
         .btn-primary:hover {background: #0056b3;}
-        .btn-secondary {background: var(--color-muted); color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; border: none; cursor: pointer; margin-top: 10px; display: inline-block;}
         .status-message {margin-top: 20px; font-weight: 600; min-height: 20px;}
         
         .page-range-input {margin: 20px 0; display: none; text-align: left; background: #F8F8F8; padding: 15px; border-radius: 8px;}
         .page-range-input label {display: block; margin-bottom: 10px; font-weight: 500;}
         .page-range-input input {width: 100%; padding: 10px; border: 1px solid #CCC; border-radius: 5px; box-sizing: border-box;}
         
-        .split-results {margin-top: 20px; display: flex; flex-direction: column; gap: 10px; text-align: left;}
-        .split-results a {color: var(--color-success); font-weight: 600; text-decoration: none;}
-        .split-results a:hover {text-decoration: underline;}
+        .split-results {margin-top: 20px; display: flex; flex-direction: column; gap: 10px; text-align: center;}
+        .split-results a {color: white; font-weight: 600; text-decoration: none; display: inline-block; margin-top: 15px; background: var(--color-success); padding: 10px 20px; border-radius: 8px;}
+        .split-results a:hover {background: #1e7e34;}
 
         /* Footer Styles */
         .site-footer {text-align: center; padding: 20px; background: var(--color-surface); border-top: 1px solid #EEE; margin-top: auto;}
@@ -67,6 +66,7 @@
                 <a href="pdf-merger.html">PDF Merger</a>
                 <a href="image-compressor.html">Compress</a>
                 <a href="pdf-splitter.html" style="color: var(--color-primary); font-weight: 700;">PDF Split</a>
+                <a href="qr-generator.html">QR Generator</a>
             </nav>
         </div>
     </header>
@@ -98,11 +98,11 @@
             
         </section>
         
-        <section class="info-section" style="max-width: 800px; margin-top: 20px;">
+        <section class="info-section" style="max-width: 800px; margin: 20px auto; padding: 30px;">
             <h2>How to Use PDF Splitter</h2>
             <p>1. **Select File:** Click the grey area or drag your PDF file.</p>
-            <p>2. **Enter Range:** Specify which pages you want to extract (e.g., `1-5` for the first five pages, or `2, 4, 7` for specific pages).</p>
-            <p>3. **Split:** Click 'Split PDF Now'. The new PDF(s) will be prepared and downloaded instantly without any server upload.</p>
+            <p>2. **Enter Range:** Specify which pages you want to extract. For example: `1-5` for the first five pages, or `2, 4, 7` for specific pages, or `1-3, 5, 8-10` for mixed ranges.</p>
+            <p>3. **Split:** Click 'Split PDF Now'. The new PDF will be downloaded instantly without any server upload.</p>
         </section>
 
     </main>
@@ -120,10 +120,8 @@
     </footer>
 
     <script>
-        const { PDFDocument, StandardFonts, rgb } = PDFLib;
+        const { PDFDocument } = PDFLib;
         let selectedFile = null;
-
-        // --- File Handling Functions ---
 
         document.getElementById('fileInput').addEventListener('change', handleFileSelect);
 
@@ -132,11 +130,11 @@
             if (file && file.type === 'application/pdf') {
                 selectedFile = file;
                 document.getElementById('dropArea').querySelector('p').innerHTML = `File Loaded: <strong>${file.name}</strong>`;
-                document.getElementById('statusMessage').textContent = 'Please enter the page range you want to extract.';
-                document.getElementById('pageRangeInput').style.display = 'block';
-                document.getElementById('splitButton').disabled = false;
+                document.getElementById('statusMessage').textContent = 'Loading file...';
+                document.getElementById('splitButton').disabled = true; // Disable until pages are counted
+                document.getElementById('splitResults').innerHTML = ''; // Clear previous results
+                document.getElementById('pagesToExtract').value = ''; // Clear previous range
                 
-                // Read the PDF to get total pages for guidance
                 readPdfAndGetPages(file);
             } else {
                 document.getElementById('statusMessage').textContent = 'Please select a valid PDF file.';
@@ -150,83 +148,93 @@
                 const pdfDoc = await PDFDocument.load(arrayBuffer);
                 const totalPages = pdfDoc.getPageCount();
                 document.getElementById('totalPagesDisplay').textContent = totalPages;
+                
+                document.getElementById('statusMessage').textContent = `PDF Loaded. Total Pages: ${totalPages}. Enter page range.`;
+                document.getElementById('pageRangeInput').style.display = 'block';
+                document.getElementById('splitButton').disabled = false;
             } catch (error) {
                 console.error("Error reading PDF for page count:", error);
-                document.getElementById('totalPagesDisplay').textContent = 'Error';
+                document.getElementById('statusMessage').textContent = 'Error loading PDF. The file might be corrupted or encrypted.';
+                resetState();
             }
         }
         
         function resetState() {
             selectedFile = null;
+            document.getElementById('fileInput').value = ''; // Reset file input
             document.getElementById('dropArea').querySelector('p').innerHTML = '<strong>Click to Select PDF</strong> or Drag & Drop File Here';
             document.getElementById('statusMessage').textContent = '';
             document.getElementById('pageRangeInput').style.display = 'none';
             document.getElementById('splitButton').disabled = true;
             document.getElementById('splitResults').innerHTML = '';
             document.getElementById('pagesToExtract').value = '';
+            document.getElementById('totalPagesDisplay').textContent = '0';
         }
 
 
         // --- Splitting Logic ---
 
         async function splitPdf() {
-            if (!selectedFile) {
-                document.getElementById('statusMessage').textContent = 'Please select a PDF file first.';
-                return;
-            }
+            if (!selectedFile) return;
 
             const rangeString = document.getElementById('pagesToExtract').value.trim();
-            if (!rangeString) {
-                document.getElementById('statusMessage').textContent = 'Please enter a valid page range (e.g., 1-5, 8).';
+            document.getElementById('splitResults').innerHTML = ''; // Clear results
+            
+            // Re-read total pages
+            const totalPages = parseInt(document.getElementById('totalPagesDisplay').textContent);
+
+            if (!rangeString || totalPages === 0) {
+                document.getElementById('statusMessage').textContent = 'Please enter a valid page range or load a PDF.';
                 return;
             }
             
             document.getElementById('splitButton').disabled = true;
             document.getElementById('statusMessage').textContent = 'Processing... Please wait (100% Client-Side).';
-            document.getElementById('splitResults').innerHTML = '';
+            
 
             try {
-                const arrayBuffer = await selectedFile.arrayBuffer();
-                const originalPdfDoc = await PDFDocument.load(arrayBuffer);
-                const totalPages = originalPdfDoc.getPageCount();
-
-                // 1. Parse the range string (e.g., "1, 3-5, 8") into an array of page indices (0-based)
-                const pagesToExtract = parsePageRanges(rangeString, totalPages);
+                const pagesToExtractIndices = parsePageRanges(rangeString, totalPages);
                 
-                if (pagesToExtract.length === 0) {
-                    document.getElementById('statusMessage').textContent = 'Invalid or empty page range entered.';
+                if (pagesToExtractIndices.length === 0) {
+                    document.getElementById('statusMessage').textContent = 'Invalid or empty page range entered. Check your input against the total pages.';
                     document.getElementById('splitButton').disabled = false;
                     return;
                 }
                 
-                // 2. Create the new document
+                const arrayBuffer = await selectedFile.arrayBuffer();
+                const originalPdfDoc = await PDFDocument.load(arrayBuffer);
+
+                // Create the new document
                 const newPdfDoc = await PDFDocument.create();
                 
-                // 3. Copy pages from the original document to the new document
-                const copiedPages = await newPdfDoc.copyPages(originalPdfDoc, pagesToExtract);
+                // Copy pages using their 0-based indices
+                const copiedPages = await newPdfDoc.copyPages(originalPdfDoc, pagesToExtractIndices);
                 copiedPages.forEach(page => newPdfDoc.addPage(page));
 
-                // 4. Serialize the PDFDocument to bytes
+                // Serialize the PDFDocument to bytes
                 const pdfBytes = await newPdfDoc.save();
 
-                // 5. Create a download link
+                // Create a download link
                 const blob = new Blob([pdfBytes], { type: 'application/pdf' });
                 const url = URL.createObjectURL(blob);
 
                 const resultDiv = document.getElementById('splitResults');
                 const link = document.createElement('a');
                 link.href = url;
-                link.download = `Split_${selectedFile.name.replace('.pdf', '')}_Pages_${rangeString.replace(/[, ]/g, '-')}.pdf`;
-                link.textContent = `✅ Download Split PDF (${pagesToExtract.length} Pages)`;
-                link.className = 'btn-primary';
-                link.style.marginTop = '15px';
+                
+                // Clean up the filename for download
+                const cleanRange = rangeString.replace(/[, ]/g, '-').replace(/--/g, '-').replace(/^-|-$/g, '');
+                link.download = `Split_${selectedFile.name.replace('.pdf', '')}_Pages_${cleanRange}.pdf`;
+                
+                link.textContent = `✅ Download Split PDF (${pagesToExtractIndices.length} Pages)`;
+                
                 resultDiv.appendChild(link);
                 
                 document.getElementById('statusMessage').textContent = 'Successfully split the PDF!';
 
             } catch (error) {
                 console.error("PDF Split Error:", error);
-                document.getElementById('statusMessage').textContent = `An error occurred during splitting: ${error.message}.`;
+                document.getElementById('statusMessage').textContent = `An error occurred during splitting. Please check the console for details.`;
             } finally {
                 document.getElementById('splitButton').disabled = false;
             }
@@ -234,27 +242,28 @@
 
         /**
          * Parses a range string (e.g., "1, 3-5, 8") into a 0-based array of page indices.
-         * @param {string} rangeStr The user input range string.
-         * @param {number} totalPages The total number of pages in the PDF.
-         * @returns {number[]} An array of 0-based page indices to extract.
          */
         function parsePageRanges(rangeStr, totalPages) {
             const indices = new Set();
-            const parts = rangeStr.split(',').map(p => p.trim()).filter(p => p);
+            // Remove spaces and convert to lowercase for easier parsing
+            const parts = rangeStr.replace(/\s/g, '').split(',').filter(p => p); 
 
             for (const part of parts) {
                 if (part.includes('-')) {
                     // Handle range (e.g., 3-5)
-                    const [startStr, endStr] = part.split('-').map(s => s.trim());
+                    const [startStr, endStr] = part.split('-');
                     const startPage = parseInt(startStr);
                     const endPage = parseInt(endStr);
 
-                    if (isNaN(startPage) || isNaN(endPage) || startPage < 1 || startPage > totalPages || endPage < 1 || endPage > totalPages || startPage > endPage) {
-                        continue; // Skip invalid range
-                    }
-
-                    for (let i = startPage; i <= endPage; i++) {
-                        indices.add(i - 1); // 1-based page number to 0-based index
+                    // Robust validation for ranges
+                    if (!isNaN(startPage) && !isNaN(endPage) && 
+                        startPage >= 1 && startPage <= totalPages && 
+                        endPage >= 1 && endPage <= totalPages && 
+                        startPage <= endPage) {
+                        
+                        for (let i = startPage; i <= endPage; i++) {
+                            indices.add(i - 1); // 1-based page number to 0-based index
+                        }
                     }
                 } else {
                     // Handle single page (e.g., 1 or 8)
@@ -281,10 +290,7 @@
             dropArea.style.borderColor = '#DDD';
             const file = e.dataTransfer.files[0];
             if (file && file.type === 'application/pdf') {
-                // Assign the dropped file to the input for standard handling
-                const dataTransfer = new DataTransfer();
-                dataTransfer.items.add(file);
-                document.getElementById('fileInput').files = dataTransfer.files;
+                document.getElementById('fileInput').files = e.dataTransfer.files;
                 handleFileSelect({ target: document.getElementById('fileInput') });
             } else {
                 document.getElementById('statusMessage').textContent = 'Only PDF files are supported for drag and drop.';
