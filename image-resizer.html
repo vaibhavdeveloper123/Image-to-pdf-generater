@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<title>Image Resizer — I ❤ ImagePDF.Pro</title>
+<meta name="description" content="Resize an image by width or height online — Fast, Private & 100% Client-side.">
+
+<link rel="canonical" href="https://YOURDOMAIN/image-resizer.html" />
+
+<!-- OG / Twitter -->
+<meta property="og:title" content="Image Resizer — I ❤ ImagePDF.Pro" />
+<meta property="og:description" content="Resize image dimensions online — free & secure." />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<!-- JSON-LD -->
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"SoftwareApplication",
+ "name":"Image Resizer",
+ "operatingSystem":"Web",
+ "applicationCategory":"Utility",
+ "url":"https://YOURDOMAIN/image-resizer.html",
+ "description":"Resize image dimensions instantly online."
+}
+</script>
+
+<style>
+body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:#f7f8fc;color:#222}
+header{
+ background:#fff;border-bottom:1px solid #eee;padding:12px 20px;
+ display:flex;justify-content:space-between;align-items:center;
+ position:sticky;top:0;z-index:99;box-shadow:0 2px 8px rgba(0,0,0,.06)
+}
+.logo{font-size:22px;font-weight:800;color:#d9232e;cursor:pointer}
+.container{max-width:980px;margin:20px auto;padding:0 15px}
+
+.box{
+ background:#fff;border-radius:12px;border:1px solid #eee;
+ padding:22px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.04)
+}
+input[type=file]{margin:14px 0}
+input[type=number]{
+ width:120px;padding:8px;border-radius:8px;
+ border:1px solid #bbb;font-size:15px;margin:8px
+}
+button{
+ background:#d9232e;color:#fff;border:0;padding:12px 22px;border-radius:10px;
+ cursor:pointer;font-size:16px;font-weight:600;margin-top:12px
+}
+.btn2{
+ background:#fff;border:1px solid #d9232e;color:#d9232e
+}
+
+.ad-box{
+ margin:16px 0;background:#fff;border:1px dashed #aaa;border-radius:10px;
+ padding:16px;text-align:center;font-size:14px;color:#777
+}
+.preview{
+ display:flex;flex-direction:column;align-items:center;
+ gap:12px;margin-top:16px
+}
+.preview img{max-width:250px;border-radius:10px}
+
+.info{
+ margin-top:22px;background:#fff;padding:18px;border-radius:12px;
+ border:1px solid #eee;box-shadow:0 2px 8px rgba(0,0,0,.04)
+}
+.info h2{color:#d9232e;margin-top:0}
+
+footer{
+ background:#fff;border-top:1px solid #eee;margin-top:40px;
+ padding:16px;text-align:center;color:#555
+}
+</style>
+</head>
+
+<body>
+
+<header>
+ <div class="logo" onclick="location.href='index.html'">I ❤ ImagePDF.Pro</div>
+</header>
+
+<div class="container">
+
+  <!-- TOP AD -->
+  <div class="ad-box">[TOP AD — paste ad code]</div>
+
+  <h1 style="text-align:center;">Image Resizer</h1>
+  <p style="text-align:center;color:#666;">Resize image width & height — 100% Offline</p>
+
+  <div class="box">
+
+    <input type="file" accept="image/*" id="fileInput">
+
+    <div>
+      <input type="number" id="width" placeholder="Width (px)">
+      <input type="number" id="height" placeholder="Height (px)">
+    </div>
+
+    <button id="resizeBtn">Resize Image</button>
+
+    <div class="preview" id="previewBox"></div>
+  </div>
+
+  <!-- MID AD -->
+  <div class="ad-box">[MID AD — paste ad code]</div>
+
+  <div class="info">
+    <h2>🔐 Privacy</h2>
+    <p>✅ 100% Offline — Images never leave your device.</p>
+  </div>
+
+  <div class="info">
+    <h2>❓ FAQ</h2>
+    <p><b>Is image uploaded online?</b></p>
+    <p>No — Everything happens inside your browser.</p>
+
+    <p><b>Which formats?</b></p>
+    <p>JPG, PNG, WebP, BMP.</p>
+  </div>
+
+  <!-- BOTTOM AD -->
+  <div class="ad-box">[BOTTOM AD — paste ad code]</div>
+</div>
+
+<footer>
+  © 2025 I ❤ ImagePDF.Pro — Client-side Tools
+</footer>
+
+<script>
+const fileInput = document.getElementById("fileInput");
+const resizeBtn = document.getElementById("resizeBtn");
+const previewBox = document.getElementById("previewBox");
+const widthInput = document.getElementById("width");
+const heightInput = document.getElementById("height");
+
+let img = new Image();
+let originalData = { w:0, h:0, size:0 };
+
+fileInput.addEventListener("change", e=>{
+  const file = e.target.files[0];
+  if(!file) return;
+
+  originalData.size = (file.size/1024).toFixed(1);
+
+  const reader = new FileReader();
+  reader.onload = event=>{
+    img.src = event.target.result;
+    img.onload = ()=>{
+      originalData.w = img.width;
+      originalData.h = img.height;
+      showPreview(img.src, {
+        w: img.width,
+        h: img.height,
+        s: originalData.size
+      }, true);
+    };
+  };
+  reader.readAsDataURL(file);
+});
+
+function showPreview(src, data, original=false){
+  previewBox.innerHTML = `
+    <h3>${original?"Original":"Resized"} Image</h3>
+    <img src="${src}">
+    <p>${data.w} × ${data.h}px — ${data.s} KB</p>
+  `;
+}
+
+resizeBtn.addEventListener("click",()=>{
+  if(!img.src) return alert("Upload an image first!");
+
+  const w = parseInt(widthInput.value) || img.width;
+  const h = parseInt(heightInput.value) || img.height;
+
+  const canvas = document.createElement("canvas");
+  canvas.width = w;
+  canvas.height = h;
+  const ctx = canvas.getContext("2d");
+  ctx.drawImage(img, 0, 0, w, h);
+
+  canvas.toBlob(blob=>{
+    const newURL = URL.createObjectURL(blob);
+    showPreview(newURL,{
+      w, h, s:(blob.size/1024).toFixed(1)
+    });
+
+    const a = document.createElement("a");
+    a.href = newURL;
+    a.download = "resized-image.jpg";
+    a.textContent = "Download Resized Image";
+    a.style.display="inline-block";
+    a.style.marginTop="12px";
+    previewBox.appendChild(a);
+
+  },"image/jpeg",0.9);
+});
+</script>
+
+</body>
+</html>
