@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>JPG to PDF — I ❤ ImagePDF.Pro</title>
 <meta name="description" content="Convert JPG/PNG images to a single PDF offline. Drag & drop, reorder, preview and download — 100% client-side & private." />
-<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/jpg-to-pdf.html" />
+<link rel="canonical" href="https://YOURDOMAIN.github.io/jpg-to-pdf.html" />
 
 <!-- OpenGraph / Twitter -->
 <meta property="og:title" content="JPG to PDF — I ❤ ImagePDF.Pro" />
@@ -71,4 +71,248 @@
   .upload-area p{margin:8px 0;color:#333}
 
   .controls{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px;align-items:center}
-  .controls button{background:#d9232e;color:#fff;border:0
+  .controls button{background:#d9232e;color:#fff;border:0;padding:10px 14px;border-radius:8px;cursor:pointer;font-weight:700}
+  .controls .secondary{background:#fff;border:1px solid #d9d9d9;color:#333;padding:8px 12px}
+  .info{margin-top:20px;background:#fff;padding:16px;border-radius:12px;border:1px solid #eee;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+  .thumb-list{display:flex;flex-direction:column;gap:12px;margin-top:16px}
+  .thumb{display:flex;gap:12px;align-items:center;background:#fff;padding:10px;border-radius:10px;border:1px solid #eee}
+  .thumb img{width:120px;height:auto;border-radius:8px;object-fit:cover}
+  .thumb .meta{flex:1}
+  .meta b{display:block;margin-bottom:6px}
+  .meta small{color:#666}
+  .actions{display:flex;flex-direction:column;gap:8px}
+  .actions button{background:#f3f4f6;border:1px solid #e5e7eb;padding:6px 8px;border-radius:6px;cursor:pointer}
+  .actions .primary{background:#d9232e;color:#fff;border:0}
+  footer{background:#fff;border-top:1px solid #eee;margin-top:30px;padding:16px;text-align:center;color:#555}
+  @media (max-width:720px){
+    .thumb{flex-direction:column;align-items:flex-start}
+    .thumb img{width:100%;max-height:220px}
+    .actions{flex-direction:row}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo" onclick="location.href='index.html'">I ❤ ImagePDF.Pro</div>
+</header>
+
+<div class="container">
+
+  <!-- TOP AD Placeholder -->
+  <div class="ad-box" id="ad-top">
+    <!-- AD SLOT: Recommended sizes: 728×90 (desktop) / 320×50 (mobile).
+         To use AdSterra: paste your AdSterra zone script here (replace this comment). -->
+    [TOP AD - paste Ad code here]
+  </div>
+
+  <h1 style="text-align:center">JPG → PDF</h1>
+  <p style="text-align:center;color:#555">Drag & drop images, reorder them, then convert to a single PDF — all offline in your browser.</p>
+
+  <!-- Upload area -->
+  <div class="upload-area" id="dropZone" aria-label="Upload images">
+    <strong>Drag & drop images here</strong>
+    <p>or click to choose (JPG, PNG). You can select multiple files.</p>
+    <input type="file" id="fileInput" accept="image/*" multiple style="display:none" />
+  </div>
+
+  <!-- Controls -->
+  <div class="controls" role="group" aria-label="Controls">
+    <button id="convertBtn">Convert to PDF</button>
+    <button id="clearBtn" class="secondary">Clear</button>
+    <div style="margin-left:auto;color:#555;font-size:14px">Page format: A4 (portrait)</div>
+  </div>
+
+  <!-- thumb list -->
+  <div class="thumb-list" id="thumbList" aria-live="polite"></div>
+
+  <!-- MID AD Placeholder -->
+  <div class="ad-box" id="ad-mid">
+    <!-- AD SLOT: Recommended size 300×250.
+         Paste AdSterra (or other ad) code here. -->
+    [MID AD - paste Ad code here]
+  </div>
+
+  <!-- Info / privacy -->
+  <div class="info" role="region" aria-labelledby="privacyHeading">
+    <h2 id="privacyHeading">🔐 Privacy & Security</h2>
+    <p>✅ 100% client-side processing — your images never leave your device.</p>
+    <p>✅ No uploads, no storage, and no tracking.</p>
+  </div>
+
+  <div class="info" role="region" aria-labelledby="howHeading">
+    <h2 id="howHeading">✨ How it works</h2>
+    <p>1) Add images → 2) Reorder thumbnails if needed → 3) Click Convert → PDF downloads automatically.</p>
+  </div>
+
+  <!-- BOTTOM AD Placeholder -->
+  <div class="ad-box" id="ad-bottom">
+    <!-- AD SLOT: Recommended size 300×250 (or 320×50 sticky).
+         Paste AdSterra (or other) code here for best revenue. -->
+    [BOTTOM AD - paste Ad code here]
+  </div>
+
+  <div class="info" role="region" aria-labelledby="faqHeading">
+    <h2 id="faqHeading">❓ FAQs</h2>
+    <p><b>Is this free?</b> Yes — it runs in your browser at no cost.</p>
+    <p><b>Are images uploaded?</b> No — everything happens locally.</p>
+  </div>
+
+</div>
+
+<footer>© 2025 I ❤ ImagePDF.Pro — Client-side Tools</footer>
+
+<!-- Working JS -->
+<script>
+/* Utility: readable file size */
+function niceSize(bytes){
+  if(bytes < 1024) return bytes + " B";
+  if(bytes < 1024*1024) return (bytes/1024).toFixed(2) + " KB";
+  return (bytes/(1024*1024)).toFixed(2) + " MB";
+}
+
+/* Elements */
+const dropZone = document.getElementById('dropZone');
+const fileInput = document.getElementById('fileInput');
+const thumbList = document.getElementById('thumbList');
+const convertBtn = document.getElementById('convertBtn');
+const clearBtn = document.getElementById('clearBtn');
+
+let filesArr = []; // {file, url, width, height}
+
+/* Input / drop handling */
+dropZone.addEventListener('click', ()=> fileInput.click());
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.style.borderColor = "#d9232e"; });
+dropZone.addEventListener('dragleave', ()=> dropZone.style.borderColor = "#aaa");
+dropZone.addEventListener('drop', e => {
+  e.preventDefault();
+  dropZone.style.borderColor = "#aaa";
+  handleFiles(e.dataTransfer.files);
+});
+fileInput.addEventListener('change', ()=> handleFiles(fileInput.files));
+
+function handleFiles(fileList){
+  const list = Array.from(fileList).filter(f => f.type.startsWith('image/'));
+  if(!list.length) return;
+  list.forEach(f => {
+    const url = URL.createObjectURL(f);
+    const entry = { file: f, url, width: 0, height: 0 };
+    filesArr.push(entry);
+    const img = new Image();
+    img.onload = function(){
+      entry.width = img.naturalWidth;
+      entry.height = img.naturalHeight;
+      renderList();
+    };
+    img.src = url;
+  });
+  renderList();
+}
+
+/* Render thumbnails */
+function renderList(){
+  thumbList.innerHTML = "";
+  filesArr.forEach((entry, idx) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'thumb';
+
+    const img = document.createElement('img');
+    img.src = entry.url;
+    img.alt = entry.file.name;
+
+    const meta = document.createElement('div');
+    meta.className = 'meta';
+    const name = document.createElement('b'); name.textContent = entry.file.name;
+    const info = document.createElement('small');
+    const dim = (entry.width && entry.height) ? `${entry.width}×${entry.height}px` : '';
+    info.textContent = `${dim} • ${niceSize(entry.file.size)}`;
+
+    meta.appendChild(name);
+    meta.appendChild(info);
+
+    const actions = document.createElement('div');
+    actions.className = 'actions';
+
+    const up = document.createElement('button'); up.textContent = '↑'; up.title='Move up';
+    up.onclick = ()=> { if(idx>0){ swap(idx, idx-1); } };
+
+    const down = document.createElement('button'); down.textContent = '↓'; down.title='Move down';
+    down.onclick = ()=> { if(idx<filesArr.length-1){ swap(idx, idx+1); } };
+
+    const remove = document.createElement('button'); remove.textContent = 'Remove'; remove.title='Remove image';
+    remove.onclick = ()=> { URL.revokeObjectURL(entry.url); filesArr.splice(idx,1); renderList(); };
+
+    actions.appendChild(up); actions.appendChild(down); actions.appendChild(remove);
+
+    wrap.appendChild(img); wrap.appendChild(meta); wrap.appendChild(actions);
+
+    thumbList.appendChild(wrap);
+  });
+}
+
+/* Swap helper */
+function swap(a,b){
+  const tmp = filesArr[a];
+  filesArr[a] = filesArr[b];
+  filesArr[b] = tmp;
+  renderList();
+}
+
+/* Clear */
+clearBtn.addEventListener('click', ()=>{
+  filesArr.forEach(e => URL.revokeObjectURL(e.url));
+  filesArr = [];
+  fileInput.value = "";
+  renderList();
+});
+
+/* Convert to PDF */
+convertBtn.addEventListener('click', async ()=>{
+  if(!filesArr.length){ alert('Please add at least one image'); return; }
+
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF({unit:'pt',format:'a4'}); // points
+  const pageWidth = pdf.internal.pageSize.getWidth();
+  const pageHeight = pdf.internal.pageSize.getHeight();
+  const margin = 20;
+
+  for(let i=0;i<filesArr.length;i++){
+    const entry = filesArr[i];
+    const dataUrl = await fileToDataURL(entry.file);
+    const img = new Image();
+    await new Promise((resolve, reject)=>{
+      img.onload = () => resolve();
+      img.onerror = () => reject('Image load error');
+      img.src = dataUrl;
+    });
+
+    const iw = img.naturalWidth;
+    const ih = img.naturalHeight;
+    const ratio = Math.min((pageWidth - 2*margin)/iw, (pageHeight - 2*margin)/ih, 1);
+    const dw = iw * ratio;
+    const dh = ih * ratio;
+    const x = (pageWidth - dw)/2;
+    const y = (pageHeight - dh)/2;
+
+    if(i>0) pdf.addPage();
+    // choose format depending on original type
+    const mime = entry.file.type === 'image/png' ? 'PNG' : 'JPEG';
+    pdf.addImage(dataUrl, mime, x, y, dw, dh, undefined, 'FAST');
+  }
+
+  const fname = 'images-to-pdf_' + Date.now() + '.pdf';
+  pdf.save(fname);
+});
+
+/* file -> dataURL helper */
+function fileToDataURL(file){
+  return new Promise((res, rej)=>{
+    const r = new FileReader();
+    r.onload = ()=> res(r.result);
+    r.onerror = ()=> rej('File read error');
+    r.readAsDataURL(file);
+  });
+}
+</script>
+</body>
+</html>
