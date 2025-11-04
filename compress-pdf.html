@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<title>Compress PDF — I ❤ ImagePDF.Pro</title>
+<meta name="description" content="Compress PDF file size offline — fast, secure & free. 100% client-side PDF compression.">
+
+<link rel="canonical" href="https://YOURDOMAIN.github.io/compress-pdf.html" />
+
+<!-- OG -->
+<meta property="og:title" content="Compress PDF — I ❤ ImagePDF.Pro">
+<meta property="og:description" content="Compress PDF offline. Fast, secure & fully client-side.">
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image"/>
+
+<!-- PDF-LIB -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+
+<!-- JSON-LD SCHEMA -->
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@graph":[
+  {
+   "@type":"SoftwareApplication",
+   "name":"Compress PDF",
+   "applicationCategory":"Utility",
+   "operatingSystem":"Web",
+   "url":"https://YOURDOMAIN.github.io/compress-pdf.html",
+   "description":"Compress PDF offline — fast & secure."
+  },
+  {
+   "@type":"FAQPage",
+   "mainEntity":[
+    {
+     "@type":"Question",
+     "name":"Is this tool free?",
+     "acceptedAnswer":{"@type":"Answer","text":"Yes, 100% free."}
+    },
+    {
+     "@type":"Question",
+     "name":"Are files uploaded to server?",
+     "acceptedAnswer":{"@type":"Answer","text":"No — compressed locally in your browser."}
+    }
+   ]
+  }
+ ]
+}
+</script>
+
+<style>
+body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:#f6f8fb;color:#222}
+header{
+ background:#fff;border-bottom:1px solid #eee;padding:12px 20px;display:flex;
+ justify-content:space-between;align-items:center;
+ position:sticky;top:0;z-index:99;box-shadow:0 2px 8px rgba(0,0,0,.06)
+}
+.logo{font-size:22px;font-weight:800;color:#d9232e;cursor:pointer}
+.container{max-width:980px;margin:20px auto;padding:0 15px}
+.ad-box{
+ margin:16px 0;background:#fff;border:1px dashed #aaa;border-radius:10px;
+ padding:16px;text-align:center;font-size:14px;color:#777
+}
+.upload-area{
+ border:2px dashed #aaa;padding:22px;border-radius:12px;background:#fff;text-align:center;cursor:pointer
+}
+.upload-area:hover{border-color:#d9232e}
+.upload-area p{margin:8px 0;color:#444}
+
+button.main{
+ background:#d9232e;color:#fff;border:0;padding:14px 28px;border-radius:10px;cursor:pointer;
+ font-size:20px;font-weight:700;text-align:center;display:inline-block;margin:18px auto;
+}
+select{padding:10px;border-radius:8px;border:1px solid #bbb;font-size:15px}
+.info{
+ margin-top:22px;background:#fff;padding:18px;border-radius:12px;border:1px solid #eee;
+ box-shadow:0 2px 8px rgba(0,0,0,.04)
+}
+.info h2{color:#d9232e;margin-top:0}
+footer{
+ background:#fff;border-top:1px solid #eee;margin-top:40px;padding:16px;text-align:center;color:#555
+}
+</style>
+</head>
+
+<body>
+
+<header>
+ <div class="logo" onclick="location.href='index.html'">I ❤ ImagePDF.Pro</div>
+</header>
+
+<div class="container">
+
+  <!-- TOP AD -->
+  <div class="ad-box">[TOP AD — paste here]</div>
+
+  <h1 style="text-align:center;">Compress PDF</h1>
+  <p style="text-align:center;color:#666;">Reduce PDF size — secure & offline</p>
+
+  <!-- Upload -->
+  <div class="upload-area" id="dropZone">
+    <strong>Drag & Drop PDF Here</strong>
+    <p>or click to browse</p>
+    <input type="file" id="fileInput" accept="application/pdf" style="display:none" />
+  </div>
+
+  <br>
+
+  <div style="text-align:center;">
+    <label><b>Compression Level:</b></label><br>
+    <select id="quality">
+      <option value="0.4">High Compression</option>
+      <option value="0.6" selected>Balanced</option>
+      <option value="0.8">Low Compression</option>
+    </select>
+  </div>
+
+  <!-- CTA -->
+  <div style="text-align:center;">
+    <button id="compressBtn" class="main">Compress PDF</button>
+  </div>
+
+  <!-- MID AD -->
+  <div class="ad-box">[MID AD — paste here]</div>
+
+  <!-- Sections -->
+  <div class="info">
+    <h2>🔐 Privacy & Security</h2>
+    <p>✅ 100% Local Processing — Nothing is uploaded.</p>
+    <p>✅ Safe for confidential use.</p>
+  </div>
+
+  <div class="info">
+    <h2>✨ Why Use This?</h2>
+    <p>✅ Fast Compression</p>
+    <p>✅ Browser-based</p>
+    <p>✅ Works on mobile</p>
+    <p>✅ No install needed</p>
+  </div>
+
+  <!-- BOTTOM AD -->
+  <div class="ad-box">[BOTTOM AD — paste here]</div>
+
+  <div class="info">
+    <h2>❓ FAQ</h2>
+    <p><b>Is it free?</b> Yes</p>
+    <p><b>Is it secure?</b> Yes, PDFs never leave device</p>
+  </div>
+
+</div>
+
+<footer>© 2025 I ❤ ImagePDF.Pro — Client-side Tools</footer>
+
+<script>
+const dropZone = document.getElementById("dropZone");
+const fileInput = document.getElementById("fileInput");
+const compressBtn = document.getElementById("compressBtn");
+const qualitySel = document.getElementById("quality");
+
+let inputPDF = null;
+
+/* Drag + file input */
+dropZone.addEventListener("click",()=>fileInput.click());
+dropZone.addEventListener("dragover",e=>{e.preventDefault();dropZone.style.borderColor="#d9232e"});
+dropZone.addEventListener("dragleave",()=>dropZone.style.borderColor="#aaa");
+dropZone.addEventListener("drop",e=>{
+ e.preventDefault();
+ loadPDF(e.dataTransfer.files[0]);
+});
+fileInput.addEventListener("change",()=>loadPDF(fileInput.files[0]));
+
+function loadPDF(file){
+ if(!file || file.type!=="application/pdf") return alert("Upload valid PDF!");
+ inputPDF = file;
+ alert("PDF Loaded: " + file.name);
+}
+
+/* Compress Logic */
+compressBtn.addEventListener("click",async ()=>{
+ if(!inputPDF) return alert("Select PDF first!");
+
+ const { PDFDocument } = PDFLib;
+ const pdfBytes = await inputPDF.arrayBuffer();
+ const pdf = await PDFDocument.load(pdfBytes);
+
+ const newPDF = await PDFDocument.create();
+ const pages = await newPDF.copyPages(pdf, pdf.getPageIndices());
+
+ const quality = parseFloat(qualitySel.value);
+
+ for(const p of pages){
+   const { width, height } = p.getSize();
+   const jpgImage = await newPDF.embedJpg(
+       await p.renderToImage({ width: width * quality, height: height * quality })
+   );
+   const page = newPDF.addPage([width, height]);
+   page.drawImage(jpgImage, {
+       x: 0, y: 0, width, height
+   });
+ }
+
+ const output = await newPDF.save();
+ download(output, "compressed.pdf");
+});
+
+/* Download */
+function download(data, name){
+ const blob = new Blob([data],{type:"application/pdf"});
+ const url = URL.createObjectURL(blob);
+ const a = document.createElement("a");
+ a.href = url;
+ a.download = name;
+ a.click();
+ URL.revokeObjectURL(url);
+}
+</script>
+
+</body>
+</html>
