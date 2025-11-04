@@ -1,302 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 
-    <title>PDF Splitter: Client-Side PDF Splitting Tool | ImagePDF.Pro</title>
-    <meta name="description" content="Split any PDF file into multiple smaller PDFs right in your browser. Fast, secure, and 100% client-side processing using PDF-Lib." />
-    <meta name="keywords" content="pdf splitter, split pdf, extract pages from pdf, client-side pdf, pdf-lib" />
-    <link rel="canonical" href="https://secure-img-to-pdf.vercel.app/pdf-splitter" />
-    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+<title>Split PDF — I ❤ ImagePDF.Pro</title>
+<meta name="description" content="Split pages from a PDF — choose page ranges or individual pages and download instantly. Everything is processed privately inside your browser." />
 
-    <style>
-        /* (CSS from index.html is copied here for consistent styling) */
-        :root { --color-primary:#007AFF; --color-secondary:#00C4CC; --color-background:#F8F9FA; --color-surface:#FFFFFF; --color-dark:#212529; --color-muted:#6C757D; --color-success:#28A745; --color-error:#DC3545; }
-        *{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
-        body{font-family:Inter, 'Segoe UI', Arial, sans-serif;background:var(--color-background);color:var(--color-dark);line-height:1.6;display:flex;flex-direction:column;min-height:100vh}
-        .trust-bar{background:var(--color-success);color:var(--color-surface);padding:8px 0;text-align:center;font-size:.9em;font-weight:600}
-        .site-header{background:var(--color-surface);padding:15px 0;box-shadow:0 2px 4px rgba(0,0,0,.05);position:sticky;top:0;z-index:1000}
-        .header-content{max-width:1200px;margin:0 auto;padding:0 30px;display:flex;justify-content:space-between;align-items:center}
-        .logo{font-size:1.6em;font-weight:800;color:var(--color-primary);cursor:pointer;letter-spacing:-.5px}
-        nav a{color:var(--color-dark);text-decoration:none;margin-left:20px;font-weight:500;transition:color .3s}
-        nav a:hover{color:var(--color-primary)}
-        .content-wrapper{flex-grow:1}
+<link rel="canonical" href="https://YOURDOMAIN.github.io/split-pdf.html" />
 
-        /* Tool Specific Styles */
-        .tool-container {max-width: 800px; margin: 40px auto; padding: 30px; background: var(--color-surface); border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,.08); text-align: center;}
-        .tool-container h1 {color: var(--color-primary); margin-bottom: 20px;}
-        .file-upload-area {border: 2px dashed #DDD; padding: 40px; border-radius: 8px; cursor: pointer; transition: border-color .3s;}
-        .file-upload-area:hover {border-color: var(--color-primary);}
-        .file-upload-area p {margin: 0; color: var(--color-muted); font-size: 1.1em;}
-        #fileInput {display: none;}
-        
-        .result-area {margin-top: 30px;}
-        .btn-primary {background: var(--color-primary); color: white; padding: 10px 25px; border-radius: 8px; text-decoration: none; font-weight: 600; border: none; cursor: pointer; transition: background .3s;}
-        .btn-primary:hover {background: #0056b3;}
-        .status-message {margin-top: 20px; font-weight: 600; min-height: 20px;}
-        
-        .page-range-input {margin: 20px 0; display: none; text-align: left; background: #F8F8F8; padding: 15px; border-radius: 8px;}
-        .page-range-input label {display: block; margin-bottom: 10px; font-weight: 500;}
-        .page-range-input input {width: 100%; padding: 10px; border: 1px solid #CCC; border-radius: 5px; box-sizing: border-box;}
-        
-        .split-results {margin-top: 20px; display: flex; flex-direction: column; gap: 10px; text-align: center;}
-        .split-results a {color: white; font-weight: 600; text-decoration: none; display: inline-block; margin-top: 15px; background: var(--color-success); padding: 10px 20px; border-radius: 8px;}
-        .split-results a:hover {background: #1e7e34;}
+<!-- OG / Twitter -->
+<meta property="og:title" content="Split PDF — I ❤ ImagePDF.Pro" />
+<meta property="og:description" content="Split pages from a PDF securely — works offline, free & fast." />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
 
-        /* Footer Styles */
-        .site-footer {text-align: center; padding: 20px; background: var(--color-surface); border-top: 1px solid #EEE; margin-top: auto;}
-        .footer-nav a {margin: 0 10px; color: var(--color-muted); text-decoration: none;}
-        .footer-nav a:hover {color: var(--color-primary);}
+<!-- PDF-lib -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
 
-    </style>
+<!-- JSON-LD -->
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "SoftwareApplication",
+   "name": "Split PDF",
+   "applicationCategory": "Utility",
+   "operatingSystem": "Web",
+   "url": "https://YOURDOMAIN.github.io/split-pdf.html",
+   "description": "Split selected pages from a PDF — secure, free, and offline."
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Is this tool free?",
+     "acceptedAnswer": {"@type":"Answer","text":"Yes — fully free to use."}
+    },
+    {
+     "@type": "Question",
+     "name": "Are my files uploaded?",
+     "acceptedAnswer": {"@type":"Answer","text":"No — processing happens locally in your browser."}
+    }
+   ]
+  }
+ ]
+}
+</script>
+
+<style>
+body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:#f6f8fb;color:#222}
+header{
+  background:#fff;border-bottom:1px solid #eee;padding:12px 20px;
+  display:flex;justify-content:space-between;align-items:center;
+  position:sticky;top:0;z-index:99;box-shadow:0 2px 8px rgba(0,0,0,.06)
+}
+.logo{font-size:22px;font-weight:800;color:#d9232e;cursor:pointer}
+.container{max-width:980px;margin:20px auto;padding:0 15px}
+.ad-box{margin:16px 0;background:#fff;border:1px dashed #aaa;border-radius:10px;padding:16px;text-align:center;font-size:14px;color:#777}
+
+.upload-area{
+  border:2px dashed #aaa;padding:22px;border-radius:12px;background:#fff;text-align:center;cursor:pointer;
+}
+.upload-area:hover{border-color:#d9232e}
+.upload-area p{margin:8px 0;color:#444}
+
+.controls{
+  margin-top:18px;text-align:center;
+}
+button.main{
+  background:#d9232e;color:#fff;border:0;padding:14px 28px;border-radius:10px;cursor:pointer;
+  font-size:20px;font-weight:700;text-align:center;display:inline-block;
+}
+input.range-box{
+  width:100%;padding:10px;border:1px solid #ccc;border-radius:8px;font-size:16px;margin-top:10px;
+}
+
+.info{margin-top:22px;background:#fff;padding:18px;border-radius:12px;border:1px solid #eee;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.info h2{color:#d9232e;margin-top:0}
+
+footer{background:#fff;border-top:1px solid #eee;margin-top:40px;padding:16px;text-align:center;color:#555}
+</style>
 </head>
+
 <body>
-    <div class="trust-bar" aria-hidden="false">
-        🔒 <strong>100% Client-Side Processing.</strong> Your file is split in-browser only — **Maximum Privacy**.
-    </div>
 
-    <header class="site-header" role="banner">
-        <div class="header-content">
-            <h2 class="logo" onclick="window.location.href='index.html'" aria-label="ImagePDF.Pro Home">ImagePDF.Pro</h2>
-            <nav role="navigation" aria-label="Main navigation">
-                <a href="index.html">Home</a>
-                <a href="jpg-to-pdf.html">JPG to PDF</a>
-                <a href="pdf-merger.html">PDF Merger</a>
-                <a href="image-compressor.html">Compress</a>
-                <a href="pdf-splitter.html" style="color: var(--color-primary); font-weight: 700;">PDF Split</a>
-                <a href="qr-generator.html">QR Generator</a>
-            </nav>
-        </div>
-    </header>
+<header>
+ <div class="logo" onclick="location.href='index.html'">I ❤ ImagePDF.Pro</div>
+</header>
 
-    <main class="content-wrapper">
-        <section class="tool-container">
-            <h1>✂️ PDF Splitter — Client-Side Tool</h1>
-            <p>Select a PDF file to split it into individual pages or specific page ranges.</p>
-            
-            <div id="dropArea" class="file-upload-area" onclick="document.getElementById('fileInput').click()">
-                <p><strong>Click to Select PDF</strong> or Drag & Drop File Here</p>
-                <input type="file" id="fileInput" accept=".pdf" />
-            </div>
+<div class="container">
 
-            <div id="pageRangeInput" class="page-range-input">
-                <label for="pagesToExtract">
-                    Total Pages: <strong id="totalPagesDisplay">0</strong>. Enter Pages to Extract (e.g., 1, 3-5, 8):
-                </label>
-                <input type="text" id="pagesToExtract" placeholder="Enter page numbers or ranges (e.g., 1, 3-5, 8)" />
-            </div>
+  <!-- ✅ TOP AD -->
+  <div class="ad-box">[TOP AD — paste Ad code here]</div>
 
-            <div class="result-area">
-                <button class="btn-primary" id="splitButton" onclick="splitPdf()" disabled>Split PDF Now</button>
-                <div id="statusMessage" class="status-message"></div>
-                
-                <div id="splitResults" class="split-results">
-                    </div>
-            </div>
-            
-        </section>
-        
-        <section class="info-section" style="max-width: 800px; margin: 20px auto; padding: 30px;">
-            <h2>How to Use PDF Splitter</h2>
-            <p>1. **Select File:** Click the grey area or drag your PDF file.</p>
-            <p>2. **Enter Range:** Specify which pages you want to extract. For example: `1-5` for the first five pages, or `2, 4, 7` for specific pages, or `1-3, 5, 8-10` for mixed ranges.</p>
-            <p>3. **Split:** Click 'Split PDF Now'. The new PDF will be downloaded instantly without any server upload.</p>
-        </section>
+  <h1 style="text-align:center;">Split PDF</h1>
+  <p style="text-align:center;color:#666;">Upload → Select page ranges → Split → Download new PDF</p>
 
-    </main>
+  <!-- Upload -->
+  <div class="upload-area" id="dropZone">
+    <strong>Drag & Drop PDF Here</strong>
+    <p>or click to browse</p>
+    <input type="file" id="fileInput" accept="application/pdf" style="display:none" />
+  </div>
 
-    <footer class="site-footer" role="contentinfo">
-        <div class="footer-nav">
-            <a href="jpg-to-pdf.html">JPG to PDF</a> |
-            <a href="pdf-merger.html">PDF Merge</a> |
-            <a href="pdf-splitter.html">PDF Split</a> |
-            <a href="image-compressor.html">Compress Image</a> |
-            <a href="sitemap.xml">Sitemap</a>
-        </div>
-        <p>&copy; 2024 <strong>ImagePDF.Pro</strong> | Built with client-side technology for maximum privacy.</p>
-        <p style="margin-top: 5px;"><a href="#privacy-section" style="color:#00C4CC;">Privacy Policy</a> | <a href="#support-section" style="color:#00C4CC;">Contact Us</a></p>
-    </footer>
+  <div style="text-align:center;margin-top:15px;">
+    <div><b>Total Pages:</b> <span id="pageCount">0</span></div>
+  </div>
 
-    <script>
-        const { PDFDocument } = PDFLib;
-        let selectedFile = null;
+  <div class="controls">
+    <label>Select pages (ex: <b>1-3,5,7</b>)</label>
+    <input class="range-box" type="text" id="pageInput" placeholder="Enter page numbers here" />
+    <br><br>
+    <button id="splitBtn" class="main">Split PDF</button>
+  </div>
 
-        document.getElementById('fileInput').addEventListener('change', handleFileSelect);
+  <!-- ✅ MID AD -->
+  <div class="ad-box">[MID AD — paste Ad code here]</div>
 
-        function handleFileSelect(event) {
-            const file = event.target.files[0];
-            if (file && file.type === 'application/pdf') {
-                selectedFile = file;
-                document.getElementById('dropArea').querySelector('p').innerHTML = `File Loaded: <strong>${file.name}</strong>`;
-                document.getElementById('statusMessage').textContent = 'Loading file...';
-                document.getElementById('splitButton').disabled = true; // Disable until pages are counted
-                document.getElementById('splitResults').innerHTML = ''; // Clear previous results
-                document.getElementById('pagesToExtract').value = ''; // Clear previous range
-                
-                readPdfAndGetPages(file);
-            } else {
-                document.getElementById('statusMessage').textContent = 'Please select a valid PDF file.';
-                resetState();
-            }
-        }
+  <!-- Privacy -->
+  <div class="info">
+    <h2>🔐 Privacy & Security</h2>
+    <p>✅ 100% local — files never upload anywhere.</p>
+  </div>
 
-        async function readPdfAndGetPages(file) {
-            try {
-                const arrayBuffer = await file.arrayBuffer();
-                const pdfDoc = await PDFDocument.load(arrayBuffer);
-                const totalPages = pdfDoc.getPageCount();
-                document.getElementById('totalPagesDisplay').textContent = totalPages;
-                
-                document.getElementById('statusMessage').textContent = `PDF Loaded. Total Pages: ${totalPages}. Enter page range.`;
-                document.getElementById('pageRangeInput').style.display = 'block';
-                document.getElementById('splitButton').disabled = false;
-            } catch (error) {
-                console.error("Error reading PDF for page count:", error);
-                document.getElementById('statusMessage').textContent = 'Error loading PDF. The file might be corrupted or encrypted.';
-                resetState();
-            }
-        }
-        
-        function resetState() {
-            selectedFile = null;
-            document.getElementById('fileInput').value = ''; // Reset file input
-            document.getElementById('dropArea').querySelector('p').innerHTML = '<strong>Click to Select PDF</strong> or Drag & Drop File Here';
-            document.getElementById('statusMessage').textContent = '';
-            document.getElementById('pageRangeInput').style.display = 'none';
-            document.getElementById('splitButton').disabled = true;
-            document.getElementById('splitResults').innerHTML = '';
-            document.getElementById('pagesToExtract').value = '';
-            document.getElementById('totalPagesDisplay').textContent = '0';
-        }
+  <div class="info">
+    <h2>✨ Why This Tool?</h2>
+    <p>✅ Fast local processing</p>
+    <p>✅ Select page numbers</p>
+    <p>✅ No installation</p>
+    <p>✅ Safe for private documents</p>
+  </div>
 
+  <!-- ✅ BOTTOM AD -->
+  <div class="ad-box">[BOTTOM AD — paste Ad code here]</div>
 
-        // --- Splitting Logic ---
+  <div class="info">
+    <h2>❓ FAQ</h2>
+    <p><b>Is it free?</b> Yes</p>
+    <p><b>Are files uploaded?</b> No — processed locally</p>
+  </div>
 
-        async function splitPdf() {
-            if (!selectedFile) return;
+</div>
 
-            const rangeString = document.getElementById('pagesToExtract').value.trim();
-            document.getElementById('splitResults').innerHTML = ''; // Clear results
-            
-            // Re-read total pages
-            const totalPages = parseInt(document.getElementById('totalPagesDisplay').textContent);
+<footer>
+  © 2025 I ❤ ImagePDF.Pro — Client-side Tools
+</footer>
 
-            if (!rangeString || totalPages === 0) {
-                document.getElementById('statusMessage').textContent = 'Please enter a valid page range or load a PDF.';
-                return;
-            }
-            
-            document.getElementById('splitButton').disabled = true;
-            document.getElementById('statusMessage').textContent = 'Processing... Please wait (100% Client-Side).';
-            
+<!-- ✅ WORKING JS -->
+<script>
+const dropZone = document.getElementById("dropZone");
+const fileInput = document.getElementById("fileInput");
+const pageCountEl = document.getElementById("pageCount");
+const splitBtn = document.getElementById("splitBtn");
+const pageInput = document.getElementById("pageInput");
 
-            try {
-                const pagesToExtractIndices = parsePageRanges(rangeString, totalPages);
-                
-                if (pagesToExtractIndices.length === 0) {
-                    document.getElementById('statusMessage').textContent = 'Invalid or empty page range entered. Check your input against the total pages.';
-                    document.getElementById('splitButton').disabled = false;
-                    return;
-                }
-                
-                const arrayBuffer = await selectedFile.arrayBuffer();
-                const originalPdfDoc = await PDFDocument.load(arrayBuffer);
+let loadedPDF = null;
+let totalPages = 0;
 
-                // Create the new document
-                const newPdfDoc = await PDFDocument.create();
-                
-                // Copy pages using their 0-based indices
-                const copiedPages = await newPdfDoc.copyPages(originalPdfDoc, pagesToExtractIndices);
-                copiedPages.forEach(page => newPdfDoc.addPage(page));
+/* Drop + browse */
+dropZone.addEventListener("click",()=>fileInput.click());
+dropZone.addEventListener("dragover",e=>{e.preventDefault();dropZone.style.borderColor="#d9232e"});
+dropZone.addEventListener("dragleave",()=>dropZone.style.borderColor="#aaa");
+dropZone.addEventListener("drop",e=>{
+  e.preventDefault();
+  dropZone.style.borderColor="#aaa";
+  loadFile(e.dataTransfer.files[0]);
+});
+fileInput.addEventListener("change",()=>loadFile(fileInput.files[0]));
 
-                // Serialize the PDFDocument to bytes
-                const pdfBytes = await newPdfDoc.save();
+async function loadFile(file){
+  if(!file || file.type !== "application/pdf") return alert("Upload a valid PDF file!");
 
-                // Create a download link
-                const blob = new Blob([pdfBytes], { type: 'application/pdf' });
-                const url = URL.createObjectURL(blob);
+  const bytes = await file.arrayBuffer();
+  loadedPDF = await PDFLib.PDFDocument.load(bytes);
+  totalPages = loadedPDF.getPageCount();
+  pageCountEl.textContent = totalPages;
+}
 
-                const resultDiv = document.getElementById('splitResults');
-                const link = document.createElement('a');
-                link.href = url;
-                
-                // Clean up the filename for download
-                const cleanRange = rangeString.replace(/[, ]/g, '-').replace(/--/g, '-').replace(/^-|-$/g, '');
-                link.download = `Split_${selectedFile.name.replace('.pdf', '')}_Pages_${cleanRange}.pdf`;
-                
-                link.textContent = `✅ Download Split PDF (${pagesToExtractIndices.length} Pages)`;
-                
-                resultDiv.appendChild(link);
-                
-                document.getElementById('statusMessage').textContent = 'Successfully split the PDF!';
+/* Parse page list like: 1-3,5,7 */
+function parsePages(str){
+  let pages = [];
+  str.split(",").forEach(part=>{
+    if(part.includes("-")){
+      const [s,e] = part.split("-").map(n=>parseInt(n,10));
+      for(let i=s;i<=e;i++) pages.push(i);
+    } else {
+      pages.push(parseInt(part,10));
+    }
+  });
+  return [...new Set(pages)].filter(n=>n>=1 && n<=totalPages);
+}
 
-            } catch (error) {
-                console.error("PDF Split Error:", error);
-                document.getElementById('statusMessage').textContent = `An error occurred during splitting. Please check the console for details.`;
-            } finally {
-                document.getElementById('splitButton').disabled = false;
-            }
-        }
+/* Split */
+splitBtn.addEventListener("click", async ()=>{
+  if(!loadedPDF) return alert("Upload a PDF first!");
 
-        /**
-         * Parses a range string (e.g., "1, 3-5, 8") into a 0-based array of page indices.
-         */
-        function parsePageRanges(rangeStr, totalPages) {
-            const indices = new Set();
-            // Remove spaces and convert to lowercase for easier parsing
-            const parts = rangeStr.replace(/\s/g, '').split(',').filter(p => p); 
+  const p = parsePages(pageInput.value.trim());
+  if(!p.length) return alert("Enter valid pages!");
 
-            for (const part of parts) {
-                if (part.includes('-')) {
-                    // Handle range (e.g., 3-5)
-                    const [startStr, endStr] = part.split('-');
-                    const startPage = parseInt(startStr);
-                    const endPage = parseInt(endStr);
+  const newPDF = await PDFLib.PDFDocument.create();
+  const pages = await newPDF.copyPages(loadedPDF, p.map(n=>n-1));
+  pages.forEach(pg=>newPDF.addPage(pg));
 
-                    // Robust validation for ranges
-                    if (!isNaN(startPage) && !isNaN(endPage) && 
-                        startPage >= 1 && startPage <= totalPages && 
-                        endPage >= 1 && endPage <= totalPages && 
-                        startPage <= endPage) {
-                        
-                        for (let i = startPage; i <= endPage; i++) {
-                            indices.add(i - 1); // 1-based page number to 0-based index
-                        }
-                    }
-                } else {
-                    // Handle single page (e.g., 1 or 8)
-                    const singlePage = parseInt(part);
-                    if (!isNaN(singlePage) && singlePage >= 1 && singlePage <= totalPages) {
-                        indices.add(singlePage - 1); // 1-based page number to 0-based index
-                    }
-                }
-            }
-            return Array.from(indices).sort((a, b) => a - b);
-        }
-        
-        // Drag and drop support
-        const dropArea = document.getElementById('dropArea');
-        dropArea.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            dropArea.style.borderColor = var(--color-primary);
-        });
-        dropArea.addEventListener('dragleave', () => {
-            dropArea.style.borderColor = '#DDD';
-        });
-        dropArea.addEventListener('drop', (e) => {
-            e.preventDefault();
-            dropArea.style.borderColor = '#DDD';
-            const file = e.dataTransfer.files[0];
-            if (file && file.type === 'application/pdf') {
-                document.getElementById('fileInput').files = e.dataTransfer.files;
-                handleFileSelect({ target: document.getElementById('fileInput') });
-            } else {
-                document.getElementById('statusMessage').textContent = 'Only PDF files are supported for drag and drop.';
-                resetState();
-            }
-        });
+  const out = await newPDF.save();
+  download(out, "split.pdf");
+});
 
-    </script>
+/* Download helper */
+function download(data,filename){
+  const blob = new Blob([data],{type:"application/pdf"});
+  const url = URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=url;
+  a.download=filename;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+</script>
+
 </body>
 </html>
