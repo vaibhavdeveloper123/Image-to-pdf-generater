@@ -1,406 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>JPG to PDF — I ❤ ImagePDF.Pro</title>
+<meta name="description" content="Convert JPG/PNG images to a single PDF file offline. Drag & drop, reorder, preview and download — 100% client-side & private." />
 
-    <title>Free JPG to PDF Converter | Fast, Secure & 100% Client-Side</title>
-    <meta name="description" content="Convert JPG, PNG & HEIC to a single PDF instantly. 100% client-side (no uploads), private, and fast. Arrange pages, choose orientation and download — free." />
-    <meta name="keywords" content="jpg to pdf, convert jpg to pdf, image to pdf, png to pdf, heic to pdf, offline jpg to pdf, client side pdf converter, free jpg to pdf" />
-    <meta name="author" content="ImagePDF.Pro" />
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
-    <link rel="canonical" href="https://secure-img-to-pdf.vercel.app/tools/jpg-to-pdf" />
-    <meta property="og:site_name" content="ImagePDF.Pro" />
-    <meta property="og:title" content="Free JPG to PDF Converter | Fast, Secure & 100% Client-Side" />
-    <meta property="og:description" content="Convert JPG, PNG & HEIC to PDF instantly. No uploads — processing happens in your browser for maximum privacy." />
-    <meta property="og:type" content="website" />
-    <script async type="text/javascript" src="//www.highperformanceformat.com/a5/d8/d5/a5d8d5d1439247d7f766e4a2e2f6d0f6.js"></script> 
-    <style>
-        /* (YOUR COMPLETE CSS BLOCK GOES HERE) */
-        :root { --color-primary:#007AFF; --color-secondary:#00C4CC; --color-background:#F8F9FA; --color-surface:#FFFFFF; --color-dark:#212529; --color-muted:#6C757D; --color-success:#28A745; --color-error:#DC3545; }
-        *{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
-        body{font-family:Inter, 'Segoe UI', Arial, sans-serif;background:var(--color-background);color:var(--color-dark);line-height:1.6;display:flex;flex-direction:column;min-height:100vh}
-        .trust-bar{background:var(--color-success);color:var(--color-surface);padding:8px 0;text-align:center;font-size:.9em;font-weight:600}
-        .site-header{background:var(--color-surface);padding:15px 0;box-shadow:0 2px 4px rgba(0,0,0,.05);position:sticky;top:0;z-index:1000}
-        .header-content{max-width:1200px;margin:0 auto;padding:0 30px;display:flex;justify-content:space-between;align-items:center}
-        .logo{font-size:1.6em;font-weight:800;color:var(--color-primary);cursor:pointer;letter-spacing:-.5px}
-        nav a{color:var(--color-dark);text-decoration:none;margin-left:30px;font-weight:500;transition:color .3s}
-        nav a:hover{color:var(--color-primary)}
-        .content-wrapper{flex-grow:1}
-        .tool-section{max-width:850px;margin:50px auto;padding:30px;width:95%;background:var(--color-surface);border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.1);border:1px solid #EAEAEA}
-        .drop-area{border:2px dashed var(--color-primary);background:#F9FBFF;padding:60px 20px;text-align:center;border-radius:10px;transition:background-color .3s,border-color .3s;cursor:pointer}
-        .drag-text{font-size:2em;font-weight:700;color:var(--color-dark);margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:15px}
-        .file-icon{font-size:2.2em;color:var(--color-primary)}
-        .or-text{margin:15px 0;color:var(--color-muted);font-style:italic}
-        .select-btn{border:none;padding:15px 35px;font-size:1.1em;border-radius:8px;font-weight:600;cursor:pointer;box-shadow:0 4px 6px rgba(0,0,0,.1)}
-        .select-btn{background:var(--color-primary);color:var(--color-surface)}
-        .files-area{margin-top:20px;padding:20px;background:#fff;border-radius:10px;border:1px solid #e1e4e8}
-        .file-card{display:flex;justify-content:space-between;align-items:center;padding:10px 15px;margin-bottom:10px;border-radius:6px;background:#f9f9f9;border:1px solid #eee}
-        .file-name{font-weight:600}
-        .remove-file{background:none;border:none;color:var(--color-error);font-size:1.2em;cursor:pointer;padding:5px}
-        .convert-area{margin-top:30px;text-align:center}
-        .convert-btn{background-image:linear-gradient(to right,var(--color-secondary),var(--color-primary));color:var(--color-surface);border:none;padding:20px 30px;font-size:1.4em;font-weight:bold;border-radius:10px;width:100%;cursor:pointer;box-shadow:0 8px 15px rgba(0,122,255,.3);margin-top:20px}
-        .progress-bar-container{margin-top:20px;width:100%;background:#e0e0e0;border-radius:10px;overflow:hidden}
-        .progress-bar{height:25px;width:0;background-color:var(--color-success);text-align:center;line-height:25px;color:white;font-weight:bold}
-        .settings-panel{margin-top:20px;padding:20px;background:#f9f9f9;border-radius:10px;border:1px solid #eee}
-        .settings-panel h3{margin-bottom:15px;color:var(--color-primary)}
-        .settings-panel label{display:block;margin-bottom:8px;font-weight:500}
-        .settings-panel select{width:100%;padding:10px;border-radius:6px;border:1px solid #ccc;margin-bottom:15px}
-        .clear-btn{background:#6c757d;color:white;border:none;padding:10px 15px;border-radius:6px;cursor:pointer}
-        .instructions-section,.faq-section,.supporting-section{max-width:1000px;margin:0 auto;padding:60px 20px}
-        .site-footer{background:var(--color-dark);color:var(--color-muted);padding:20px 0;text-align:center;margin-top:auto;font-size:.9em;border-top:3px solid var(--color-primary)}
-        @media(max-width:768px){.tool-section{margin:30px auto 20px;padding:15px}.drag-text{font-size:1.5em}}
-    </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<!-- jsPDF (for image -> pdf) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+  /* Keep styling consistent with compressor page */
+  body{margin:0;font-family:Inter,Arial;background:#f6f8fb;color:#222}
+  header{
+    background:#fff;border-bottom:1px solid #eee;padding:12px 20px;
+    display:flex;justify-content:space-between;align-items:center;
+    position:sticky;top:0;z-index:99;box-shadow:0 2px 8px rgba(0,0,0,.06)
+  }
+  .logo{font-size:22px;font-weight:800;color:#d9232e;cursor:pointer}
+  .container{max-width:980px;margin:18px auto;padding:0 15px}
+
+  .upload-area{
+    border:2px dashed #aaa;padding:22px;border-radius:12px;background:#fff;text-align:center;cursor:pointer;
+  }
+  .upload-area:hover{border-color:#d9232e}
+  .upload-area p{margin:8px 0;color:#333}
+
+  .controls{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px;align-items:center}
+  .controls button{background:#d9232e;color:#fff;border:0;padding:10px 14px;border-radius:8px;cursor:pointer;font-weight:700}
+  .controls .small{background:#fff;border:1px solid #d9d9d9;color:#333;padding:8px 12px}
+  .info{margin-top:20px;background:#fff;padding:16px;border-radius:12px;border:1px solid #eee;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+  .info h2{color:#d9232e;margin:0 0 10px}
+
+  .thumb-list{display:flex;flex-direction:column;gap:12px;margin-top:16px}
+  .thumb {
+    display:flex;gap:12px;align-items:center;background:#fff;padding:10px;border-radius:10px;border:1px solid #eee;
+  }
+  .thumb img{width:110px;height:auto;border-radius:8px;object-fit:cover}
+  .thumb .meta{flex:1}
+  .meta b{display:block;margin-bottom:6px}
+  .meta small{color:#666}
+  .actions{display:flex;flex-direction:column;gap:8px}
+  .actions button{background:#f3f4f6;border:1px solid #e5e7eb;padding:6px 8px;border-radius:6px;cursor:pointer}
+  .actions .primary{background:#d9232e;color:#fff;border:0}
+
+  /* ad placeholder */
+  .ad-box{margin:18px 0;background:#fff;border:1px dashed #aaa;border-radius:10px;padding:16px;text-align:center;font-size:14px;color:#777}
+
+  footer{background:#fff;border-top:1px solid #eee;margin-top:30px;padding:16px;text-align:center;color:#555}
+  @media (max-width:720px){
+    .thumb{flex-direction:column;align-items:flex-start}
+    .thumb img{width:100%;max-height:220px}
+    .actions{flex-direction:row}
+  }
+</style>
 </head>
 <body>
-    <div class="trust-bar" aria-hidden="false">
-        🔒 <strong>100% Client-Side Processing.</strong> Your files are processed in-browser only — no upload.
-    </div>
 
-    <header class="site-header" role="banner">
-        <div class="header-content">
-            <h2 class="logo" onclick="window.location.href='index.html'" aria-label="Client PDF Home">ImagePDF.Pro</h2>
-            <nav role="navigation" aria-label="Main navigation">
-    <a href="index.html">Home</a>
-    <a href="jpg-to-pdf.html">JPG to PDF</a>
-    <a href="pdf-merger.html">PDF Merger</a> 
-    <a href="image-compressor.html">Compress</a>
-</nav>
+<header>
+  <div class="logo" onclick="location.href='../index.html'">I ❤ ImagePDF.Pro</div>
+</header>
 
-        </div>
-    </header>
+<div class="container">
 
-    <main class="content-wrapper">
-        <section class="tool-section" role="application" aria-label="JPG to PDF Converter">
-            <h1 style="font-size:1.5em;margin-bottom:18px;text-align:center">JPG, PNG & HEIC to PDF Converter (Client-Side)</h1>
-            
-            <div style="margin: 20px 0; text-align: center;">
-                <script type="text/javascript">
-                    atOptions = {
-                        'key' : '313aa5ef00a3371bb8d0dd587b260a57', // Replace with your Adsterra Code
-                        'format' : 'iframe',
-                        'height' : 60,
-                        'width' : 468,
-                        'params' : {}
-                    };
-                </script>
-                <script type="text/javascript" src="//www.highperformanceformat.com/313aa5ef00a3371bb8d0dd587b260a57/invoke.js"></script>
-            </div>
-            <div class="drop-area" id="dropArea" onclick="document.getElementById('fileInput').click()" role="button">
-                <h2 class="drag-text">
-                    <span class="file-icon" aria-hidden="true">⬇️</span>
-                    Drag &amp; Drop Your Images Here
-                </h2>
-                <p class="or-text">OR</p>
-                <input type="file" id="fileInput" accept="image/jpeg,image/png,image/heic" multiple style="display:none" />
-                <button class="select-btn" onclick="event.stopPropagation(); document.getElementById('fileInput').click()">Select Images</button>
-                <p class="file-count" id="fileStatus" style="margin-top:10px;">No files selected.</p>
-            </div>
+  <!-- TOP AD -->
+  <div class="ad-box">[TOP AD SLOT — recommended Adsterra: 728×90 (desktop) / 320×50 (mobile)]</div>
 
-            <div id="filesArea" class="files-area" style="display:none;">
-                <p style="margin-bottom:15px; font-weight:600;">Files for conversion (Drag to reorder):</p>
-                <div id="fileList" style="margin-bottom:15px;">
-                    </div>
-                <button class="clear-btn" id="clearBtn" aria-label="Clear all files">Clear All Files</button>
-            </div>
+  <h1 style="text-align:center">JPG → PDF</h1>
+  <p style="text-align:center;color:#555">Drag & drop images, reorder them, then convert to a single PDF — all offline.</p>
 
-            <div id="settingsToggle" class="settings-panel" style="display:none;">
-                <button id="settingsToggleBtn" style="background:none;border:none;color:var(--color-primary);font-weight:600;cursor:pointer;display:block;width:100%;text-align:left;padding:0;" aria-expanded="false" aria-controls="settingsPanel">Page & Output Settings 🔽</button>
-                <div id="settingsPanel" style="display:none;margin-top:15px;">
-                    <h3>PDF Output Settings</h3>
-                    <label for="pageOrientation">Page Orientation:</label>
-                    <select id="pageOrientation">
-                        <option value="portrait">Portrait (Vertical)</option>
-                        <option value="landscape">Landscape (Horizontal)</option>
-                    </select>
+  <!-- Upload area -->
+  <div class="upload-area" id="dropZone">
+    <strong>Drag & drop images here</strong>
+    <p>or click to choose (JPG, PNG). Hold multiple files or select many.</p>
+    <input type="file" id="fileInput" accept="image/*" multiple style="display:none" />
+  </div>
 
-                    <label for="pageSize">Page Size:</label>
-                    <select id="pageSize">
-                        <option value="a4">A4 (210 x 297 mm)</option>
-                        <option value="letter">Letter (8.5 x 11 in)</option>
-                        <option value="legal">Legal (8.5 x 14 in)</option>
-                        <option value="fit">Fit Image to Page (Best for large images)</option>
-                    </select>
-                </div>
-            </div>
+  <!-- Controls -->
+  <div class="controls">
+    <button id="convertBtn">Convert to PDF</button>
+    <button id="clearBtn" class="small">Clear</button>
+    <div style="margin-left:auto;color:#555;font-size:14px">Page format: A4 (portrait)</div>
+  </div>
 
-            <div class="convert-area">
-                <button class="convert-btn" id="convertBtn" disabled>Convert to PDF</button>
-                <div id="progressBarContainer" class="progress-bar-container" style="display:none;">
-                    <div id="progressBar" class="progress-bar">0%</div>
-                </div>
-            </div>
-        </section>
+  <!-- Thumbnails / order -->
+  <div class="thumb-list" id="thumbList" aria-live="polite"></div>
 
-        <div style="margin: 20px auto; text-align: center;">
-            <script type="text/javascript">
-                atOptions = {
-                    'key' : 'c86965263f96cf9e5f0bf8d6fe3ba28c', // Replace with your Adsterra Code
-                    'format' : 'iframe',
-                    'height' : 50,
-                    'width' : 320,
-                    'params' : {}
-                };
-            </script>
-            <script type="text/javascript" src="//www.highperformanceformat.com/c86965263f96cf9e5f0bf8d6fe3ba28c/invoke.js"></script>
-        </div>
-        <section id="about-tools-section" class="instructions-section">
-            </section>
+  <!-- MID AD -->
+  <div class="ad-box">[MID AD SLOT — recommended Adsterra: 300×250]</div>
 
-    </main>
-    <footer class="site-footer" role="contentinfo">
-        <p>&copy; 2024 <strong>ImagePDF.Pro</strong> | Built with client-side technology for maximum privacy.</p>
-    </footer>
+  <!-- Info / privacy -->
+  <div class="info">
+    <h2>🔐 Privacy & Security</h2>
+    <p>✅ 100% client-side processing — your images never leave your device.</p>
+    <p>✅ No uploads, no storage, no tracking.</p>
+  </div>
 
-    <script>
-        // (COPY/PASTE YOUR COMPLETE JAVASCRIPT LOGIC FROM YOUR ORIGINAL FILE HERE)
-        // ... all your existing functions like processFiles, convertImagesToPdf, etc.
-        const fileInput = document.getElementById('fileInput');
-        const dropArea = document.getElementById('dropArea');
-        const fileList = document.getElementById('fileList');
-        const fileStatus = document.getElementById('fileStatus');
-        const filesArea = document.getElementById('filesArea');
-        const convertBtn = document.getElementById('convertBtn');
-        const clearBtn = document.getElementById('clearBtn');
-        const progressBar = document.getElementById('progressBar');
-        const progressBarContainer = document.getElementById('progressBarContainer');
-        const settingsPanel = document.getElementById('settingsPanel');
-        const settingsToggleBtn = document.getElementById('settingsToggleBtn');
-        const pageOrientation = document.getElementById('pageOrientation');
-        const pageSize = document.getElementById('pageSize');
-        let files = []; // Array to store processed file objects
-        const { jsPDF } = window.jspdf;
+  <div class="info" style="margin-top:12px">
+    <h2>✨ How it works</h2>
+    <p>1) Add images → 2) Reorder thumbnails if needed → 3) Click Convert → PDF downloads automatically.</p>
+  </div>
 
-        // Utility to format file size
-        function formatBytes(bytes, decimals = 2) {
-            if (bytes === 0) return '0 Bytes';
-            const k = 1024;
-            const dm = decimals < 0 ? 0 : decimals;
-            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-            const i = Math.floor(Math.log(bytes) / Math.log(k));
-            return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
-        }
+  <!-- BOTTOM AD -->
+  <div class="ad-box">[BOTTOM AD SLOT — recommended Adsterra: 300×250 or sticky 320×50]</div>
 
-        // Handles file input and drag/drop
-        function processFiles(fileList) {
-            Array.from(fileList).forEach(file => {
-                if (file.type.startsWith('image/')) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        files.push({
-                            id: Date.now() + files.length,
-                            name: file.name,
-                            size: file.size,
-                            type: file.type,
-                            dataUrl: e.target.result // Base64 Data URL
-                        });
-                        renderFileList();
-                        updateFileStatus();
-                        convertBtn.disabled = false;
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
-            filesArea.style.display = 'block';
-            settingsPanel.style.display = 'block';
-        }
+  <div class="info" style="margin-top:16px">
+    <h2>❓ FAQ</h2>
+    <p><b>Is this free?</b> Yes. This runs in your browser.</p>
+    <p><b>Are images uploaded?</b> No, everything is processed locally.</p>
+  </div>
 
-        // Renders the list of file cards (Draggable)
-        function renderFileList() {
-            fileList.innerHTML = '';
-            files.forEach((file, index) => {
-                const card = document.createElement('div');
-                card.className = 'file-card';
-                card.draggable = true;
-                card.dataset.index = index;
-                card.innerHTML = `
-                    <span class="file-name" title="${file.name}">${index + 1}. ${file.name.substring(0, 30)}... (${formatBytes(file.size)})</span>
-                    <button class="remove-file" data-id="${file.id}" aria-label="Remove ${file.name}">❌</button>
-                `;
-                fileList.appendChild(card);
-            });
+</div>
 
-            addDragListeners();
-            addRemoveListeners();
-        }
+<footer>© 2025 I ❤ ImagePDF.Pro — Client-side Tools</footer>
 
-        // Draggable functionality
-        function addDragListeners() {
-            const cards = fileList.querySelectorAll('.file-card');
-            cards.forEach(card => {
-                card.addEventListener('dragstart', e => {
-                    e.dataTransfer.setData('text/plain', e.target.dataset.index);
-                    e.target.classList.add('dragging');
-                });
+<script>
+/* Helper: file size text */
+function niceSize(bytes){
+  if(bytes < 1024) return bytes + " B";
+  if(bytes < 1024*1024) return (bytes/1024).toFixed(2) + " KB";
+  return (bytes/(1024*1024)).toFixed(2) + " MB";
+}
 
-                card.addEventListener('dragover', e => {
-                    e.preventDefault();
-                    const draggingCard = document.querySelector('.dragging');
-                    if (draggingCard && draggingCard !== e.currentTarget) {
-                        const reference = e.currentTarget;
-                        const box = reference.getBoundingClientRect();
-                        const offset = e.clientY - box.top;
+/* Elements */
+const dropZone = document.getElementById('dropZone');
+const fileInput = document.getElementById('fileInput');
+const thumbList = document.getElementById('thumbList');
+const convertBtn = document.getElementById('convertBtn');
+const clearBtn = document.getElementById('clearBtn');
 
-                        if (offset > box.height / 2) {
-                            fileList.insertBefore(draggingCard, reference.nextSibling);
-                        } else {
-                            fileList.insertBefore(draggingCard, reference);
-                        }
-                    }
-                });
-
-                card.addEventListener('dragend', () => {
-                    card.classList.remove('dragging');
-                    updateFileOrder();
-                });
-            });
-        }
-
-        // Updates the file array based on card order
-        function updateFileOrder() {
-            const currentOrder = Array.from(fileList.children).map(card => {
-                const originalIndex = parseInt(card.dataset.index);
-                return files[originalIndex];
-            });
-
-            // Update the global files array
-            files = currentOrder;
-            // Rerender to show new index numbers
-            renderFileList();
-        }
-
-        // Remove functionality
-        function addRemoveListeners() {
-            fileList.querySelectorAll('.remove-file').forEach(button => {
-                button.addEventListener('click', e => {
-                    const idToRemove = parseInt(e.target.dataset.id);
-                    files = files.filter(file => file.id !== idToRemove);
-                    renderFileList();
-                    updateFileStatus();
-                });
-            });
-        }
-
-        // Status updates
-        function updateFileStatus() {
-            fileStatus.textContent = `${files.length} files selected.`;
-            if (files.length === 0) {
-                fileStatus.textContent = 'No files selected.';
-                convertBtn.disabled = true;
-                filesArea.style.display = 'none';
-                settingsPanel.style.display = 'none';
-                progressBarContainer.style.display = 'none';
-            }
-        }
-
-        // Clear All Files
-        function clearFiles() {
-            files = [];
-            renderFileList();
-            updateFileStatus();
-        }
-
-        // Core Conversion Logic (simplified for brevity, assumes you have the full logic)
-        async function convertImagesToPdf() {
-            if (files.length === 0) return;
-
-            convertBtn.disabled = true;
-            progressBarContainer.style.display = 'block';
-            progressBar.style.width = '0%';
-            progressBar.textContent = '0%';
-
-            const orientation = pageOrientation.value === 'landscape' ? 'l' : 'p';
-            const size = pageSize.value;
-
-            // Start PDF generation
-            const pdf = new jsPDF(orientation, 'mm', size === 'fit' ? 'a4' : size);
-            
-            for (let i = 0; i < files.length; i++) {
-                const file = files[i];
-                const img = new Image();
-                img.src = file.dataUrl;
-
-                await new Promise(resolve => {
-                    img.onload = () => {
-                        const imgWidth = img.width;
-                        const imgHeight = img.height;
-                        const pageData = size === 'fit' ? pdf.internal.pageSize : { width: pdf.internal.pageSize.getWidth(), height: pdf.internal.pageSize.getHeight() };
-                        let finalWidth;
-                        let finalHeight;
-                        let x = 0;
-                        let y = 0;
-
-                        if (size === 'fit') {
-                            const ratio = Math.min(pageData.width / imgWidth, pageData.height / imgHeight);
-                            finalWidth = imgWidth * ratio;
-                            finalHeight = imgHeight * ratio;
-                            x = (pageData.width - finalWidth) / 2;
-                            y = (pageData.height - finalHeight) / 2;
-                        } else {
-                            finalWidth = pageData.width;
-                            finalHeight = pageData.height;
-                        }
-                        
-                        if (i > 0) pdf.addPage();
-                        
-                        pdf.addImage(
-                            file.dataUrl,
-                            file.type.split('/')[1].toUpperCase().replace('JPEG', 'JPG'),
-                            x,
-                            y,
-                            finalWidth,
-                            finalHeight
-                        );
-                        
-                        // Update progress bar
-                        const progress = Math.round(((i + 1) / files.length) * 100);
-                        progressBar.style.width = progress + '%';
-                        progressBar.textContent = progress + '%';
-                        resolve();
-                    };
-                });
-            }
-
-            // Save the PDF
-            pdf.save('images_to_pdf.pdf');
-            
-            // Reset state
-            convertBtn.disabled = false;
-            progressBar.style.width = '0%';
-            progressBar.textContent = '0%';
-            progressBarContainer.style.display = 'none';
-        }
-
-        // Toggle Settings Panel
-        settingsToggleBtn.addEventListener('click', () => {
-            const isExpanded = settingsPanel.style.display !== 'none';
-            settingsPanel.style.display = isExpanded ? 'none' : 'block';
-            settingsToggleBtn.innerText = isExpanded ? 'Page & Output Settings 🔽' : 'Page & Output Settings 🔼';
-            settingsToggleBtn.setAttribute('aria-expanded', !isExpanded);
-        });
-
-        // event listeners
-        fileInput.addEventListener('change', e => processFiles(e.target.files));
-        convertBtn.addEventListener('click', convertImagesToPdf);
-        clearBtn.addEventListener('click', clearFiles);
-
-        ['dragenter','dragover','dragleave','drop'].forEach(eventName => {
-            dropArea.addEventListener(eventName, e => {
-                e.preventDefault(); e.stopPropagation();
-                if (eventName === 'dragenter' || eventName === 'dragover') dropArea.classList.add('drag-over');
-                else dropArea.classList.remove('drag-over');
-            }, false);
-        });
-
-        dropArea.addEventListener('drop', e => {
-            dropArea.classList.remove('drag-over');
-            const dt = e.dataTransfer;
-            processFiles(dt.files);
-        }, false);
-
-        // initial state
-        updateFileStatus();
-    </script>
-</body>
-</html>
+let files
