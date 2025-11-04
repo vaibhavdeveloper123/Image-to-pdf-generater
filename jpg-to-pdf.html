@@ -4,129 +4,71 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>JPG to PDF — I ❤ ImagePDF.Pro</title>
-<meta name="description" content="Convert JPG/PNG images to a single PDF file offline. Drag & drop, reorder, preview and download — 100% client-side & private." />
+<meta name="description" content="Convert JPG/PNG images to a single PDF offline. Drag & drop, reorder, preview and download — 100% client-side & private." />
+<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/jpg-to-pdf.html" />
 
-<!-- jsPDF (for image -> pdf) -->
+<!-- OpenGraph / Twitter -->
+<meta property="og:title" content="JPG to PDF — I ❤ ImagePDF.Pro" />
+<meta property="og:description" content="Convert JPG/PNG images to a single PDF offline. Drag & drop, reorder, preview and download — 100% client-side & private." />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<!-- jsPDF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
+<!-- JSON-LD: WebSite + SoftwareApplication + FAQ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "name": "ImagePDF.Pro",
+      "url": "https://YOURDOMAIN.github.io",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://YOURDOMAIN.github.io/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "JPG to PDF Converter",
+      "operatingSystem": "Web",
+      "applicationCategory": "Utility",
+      "url": "https://YOURDOMAIN.github.io/jpg-to-pdf.html",
+      "description": "Convert JPG or PNG images to a single PDF document in the browser."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is JPG to PDF free?",
+          "acceptedAnswer": {"@type":"Answer","text":"Yes — this runs entirely in your browser and is free to use."}
+        },
+        {
+          "@type": "Question",
+          "name": "Are my images uploaded?",
+          "acceptedAnswer": {"@type":"Answer","text":"No — conversions happen locally in your browser; files are not uploaded."}
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 <style>
-  /* Keep styling consistent with compressor page */
-  body{margin:0;font-family:Inter,Arial;background:#f6f8fb;color:#222}
-  header{
-    background:#fff;border-bottom:1px solid #eee;padding:12px 20px;
-    display:flex;justify-content:space-between;align-items:center;
-    position:sticky;top:0;z-index:99;box-shadow:0 2px 8px rgba(0,0,0,.06)
-  }
+  /* Layout / visual (consistent with compressor) */
+  body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:#f6f8fb;color:#222}
+  header{background:#fff;border-bottom:1px solid #eee;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:99;box-shadow:0 2px 8px rgba(0,0,0,.06)}
   .logo{font-size:22px;font-weight:800;color:#d9232e;cursor:pointer}
   .container{max-width:980px;margin:18px auto;padding:0 15px}
+  .ad-box{margin:18px 0;background:#fff;border:1px dashed #aaa;border-radius:10px;padding:16px;text-align:center;font-size:14px;color:#777}
 
-  .upload-area{
-    border:2px dashed #aaa;padding:22px;border-radius:12px;background:#fff;text-align:center;cursor:pointer;
-  }
+  .upload-area{border:2px dashed #aaa;padding:22px;border-radius:12px;background:#fff;text-align:center;cursor:pointer}
   .upload-area:hover{border-color:#d9232e}
   .upload-area p{margin:8px 0;color:#333}
 
   .controls{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px;align-items:center}
-  .controls button{background:#d9232e;color:#fff;border:0;padding:10px 14px;border-radius:8px;cursor:pointer;font-weight:700}
-  .controls .small{background:#fff;border:1px solid #d9d9d9;color:#333;padding:8px 12px}
-  .info{margin-top:20px;background:#fff;padding:16px;border-radius:12px;border:1px solid #eee;box-shadow:0 2px 8px rgba(0,0,0,.04)}
-  .info h2{color:#d9232e;margin:0 0 10px}
-
-  .thumb-list{display:flex;flex-direction:column;gap:12px;margin-top:16px}
-  .thumb {
-    display:flex;gap:12px;align-items:center;background:#fff;padding:10px;border-radius:10px;border:1px solid #eee;
-  }
-  .thumb img{width:110px;height:auto;border-radius:8px;object-fit:cover}
-  .thumb .meta{flex:1}
-  .meta b{display:block;margin-bottom:6px}
-  .meta small{color:#666}
-  .actions{display:flex;flex-direction:column;gap:8px}
-  .actions button{background:#f3f4f6;border:1px solid #e5e7eb;padding:6px 8px;border-radius:6px;cursor:pointer}
-  .actions .primary{background:#d9232e;color:#fff;border:0}
-
-  /* ad placeholder */
-  .ad-box{margin:18px 0;background:#fff;border:1px dashed #aaa;border-radius:10px;padding:16px;text-align:center;font-size:14px;color:#777}
-
-  footer{background:#fff;border-top:1px solid #eee;margin-top:30px;padding:16px;text-align:center;color:#555}
-  @media (max-width:720px){
-    .thumb{flex-direction:column;align-items:flex-start}
-    .thumb img{width:100%;max-height:220px}
-    .actions{flex-direction:row}
-  }
-</style>
-</head>
-<body>
-
-<header>
-  <div class="logo" onclick="location.href='../index.html'">I ❤ ImagePDF.Pro</div>
-</header>
-
-<div class="container">
-
-  <!-- TOP AD -->
-  <div class="ad-box">[TOP AD SLOT — recommended Adsterra: 728×90 (desktop) / 320×50 (mobile)]</div>
-
-  <h1 style="text-align:center">JPG → PDF</h1>
-  <p style="text-align:center;color:#555">Drag & drop images, reorder them, then convert to a single PDF — all offline.</p>
-
-  <!-- Upload area -->
-  <div class="upload-area" id="dropZone">
-    <strong>Drag & drop images here</strong>
-    <p>or click to choose (JPG, PNG). Hold multiple files or select many.</p>
-    <input type="file" id="fileInput" accept="image/*" multiple style="display:none" />
-  </div>
-
-  <!-- Controls -->
-  <div class="controls">
-    <button id="convertBtn">Convert to PDF</button>
-    <button id="clearBtn" class="small">Clear</button>
-    <div style="margin-left:auto;color:#555;font-size:14px">Page format: A4 (portrait)</div>
-  </div>
-
-  <!-- Thumbnails / order -->
-  <div class="thumb-list" id="thumbList" aria-live="polite"></div>
-
-  <!-- MID AD -->
-  <div class="ad-box">[MID AD SLOT — recommended Adsterra: 300×250]</div>
-
-  <!-- Info / privacy -->
-  <div class="info">
-    <h2>🔐 Privacy & Security</h2>
-    <p>✅ 100% client-side processing — your images never leave your device.</p>
-    <p>✅ No uploads, no storage, no tracking.</p>
-  </div>
-
-  <div class="info" style="margin-top:12px">
-    <h2>✨ How it works</h2>
-    <p>1) Add images → 2) Reorder thumbnails if needed → 3) Click Convert → PDF downloads automatically.</p>
-  </div>
-
-  <!-- BOTTOM AD -->
-  <div class="ad-box">[BOTTOM AD SLOT — recommended Adsterra: 300×250 or sticky 320×50]</div>
-
-  <div class="info" style="margin-top:16px">
-    <h2>❓ FAQ</h2>
-    <p><b>Is this free?</b> Yes. This runs in your browser.</p>
-    <p><b>Are images uploaded?</b> No, everything is processed locally.</p>
-  </div>
-
-</div>
-
-<footer>© 2025 I ❤ ImagePDF.Pro — Client-side Tools</footer>
-
-<script>
-/* Helper: file size text */
-function niceSize(bytes){
-  if(bytes < 1024) return bytes + " B";
-  if(bytes < 1024*1024) return (bytes/1024).toFixed(2) + " KB";
-  return (bytes/(1024*1024)).toFixed(2) + " MB";
-}
-
-/* Elements */
-const dropZone = document.getElementById('dropZone');
-const fileInput = document.getElementById('fileInput');
-const thumbList = document.getElementById('thumbList');
-const convertBtn = document.getElementById('convertBtn');
-const clearBtn = document.getElementById('clearBtn');
-
-let files
+  .controls button{background:#d9232e;color:#fff;border:0
