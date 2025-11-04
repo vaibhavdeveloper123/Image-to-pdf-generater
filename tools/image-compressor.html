@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Image Compressor — I ❤ ImagePDF.Pro</title>
 
-<meta name="description" content="Compress images offline — 100% secure client-side image compression tool. No uploads, no tracking." />
+<meta name="description" content="Compress images offline — secure, private, fast client-side image compression with preview & size comparison." />
 
 <style>
     body{margin:0;font-family:Inter,Arial;background:#f6f8fb;color:#222}
@@ -15,34 +15,44 @@
       position:sticky;top:0;z-index:99;box-shadow:0 2px 8px rgba(0,0,0,.06)
     }
     .logo{font-size:22px;font-weight:800;color:#d9232e;cursor:pointer}
-    .wrap{max-width:900px;margin:20px auto;padding:0 15px}
+    .container{max-width:900px;margin:20px auto;padding:0 15px}
 
-    .box{
-      background:#fff;padding:18px;border-radius:14px;border:1px solid #e8e8e8;
-      box-shadow:0 2px 12px rgba(0,0,0,.05);text-align:center
+    .upload-box{
+      border:2px dashed #aaa;padding:30px;text-align:center;border-radius:14px;
+      background:#fff;cursor:pointer;transition:.2s
     }
+    .upload-box:hover{border-color:#d9232e}
+    .upload-box p{color:#444;font-size:15px;margin-top:6px}
 
-    input[type=file]{
-      padding:12px;border:1px dashed #aaa;border-radius:8px;width:100%;
-      background:#fafafa;margin-bottom:14px
+    .preview-box{
+      display:flex;gap:20px;flex-wrap:wrap;margin-top:20px
     }
+    .preview{
+      background:#fff;padding:10px;border-radius:12px;
+      border:1px solid #eee;flex:1;min-width:240px
+    }
+    img{max-width:100%;border-radius:10px}
 
-    #qualityRange{width:100%;margin-top:10px}
+    .range-box{text-align:center;margin-top:20px}
+    #qualityRange{width:100%}
+
     button{
       margin-top:12px;background:#d9232e;border:0;color:#fff;font-weight:600;
       padding:10px 18px;border-radius:8px;cursor:pointer
     }
     button:hover{background:#b6111c}
-
     .info{
       margin-top:26px;background:#fff;padding:18px;border-radius:12px;
       border:1px solid #eee;box-shadow:0 2px 8px rgba(0,0,0,.04)
     }
     .info h2{color:#d9232e;margin-top:0}
-
     footer{
       background:#fff;border-top:1px solid #eee;margin-top:40px;padding:16px;
       text-align:center;color:#555
+    }
+    .ad-box{
+      margin:18px 0;background:#fff;border:1px dashed #aaa;border-radius:10px;
+      padding:16px;text-align:center;font-size:14px;color:#777
     }
 </style>
 </head>
@@ -53,51 +63,85 @@
   <div class="logo" onclick="location.href='../index.html'">I ❤ ImagePDF.Pro</div>
 </header>
 
+<div class="container">
 
-<div class="wrap">
+  <!-- ✅ AD SLOT — Top Banner -->
+  <div class="ad-box">[TOP AD SLOT HERE — 728×90 / 320×50]</div>
 
   <h1 style="text-align:center;">Image Compressor</h1>
   <p style="text-align:center;color:#555;margin-bottom:20px;">
     Compress images offline — 100% secure & private
   </p>
 
-  <div class="box">
-    <input type="file" id="imgInput" accept="image/*" />
 
-    <label style="font-weight:600;">Quality</label>
-    <input type="range" id="qualityRange" min="10" max="100" value="70" />
-
-    <button onclick="compressImage()">Compress</button>
-
-    <br><br>
-    <a id="downloadBtn" style="display:none;font-weight:600;color:#d9232e;" download>⬇ Download Compressed</a>
+  <!-- ✅ Upload Section -->
+  <div class="upload-box" id="dropZone">
+    <strong>Drag & Drop Image Here</strong>
+    <p>OR Click to choose</p>
+    <input type="file" id="imgInput" accept="image/*" style="display:none">
   </div>
 
 
-  <!-- ✅ Privacy -->
+  <div class="range-box">
+    <label><b>Quality: <span id="qVal">70%</span></b></label>
+    <input type="range" id="qualityRange" min="10" max="100" value="70" />
+    <button onclick="compressImage()">Compress</button>
+  </div>
+
+
+  <!-- ✅ Preview Section -->
+  <div class="preview-box">
+    
+    <!-- BEFORE -->
+    <div class="preview">
+      <h3>Before</h3>
+      <img id="beforeImg" />
+      <p id="beforeSize"></p>
+    </div>
+
+    <!-- AFTER -->
+    <div class="preview">
+      <h3>After</h3>
+      <img id="afterImg" />
+      <p id="afterSize"></p>
+      <a id="downloadBtn" style="display:none;font-weight:600;color:#d9232e;" download>⬇ Download Compressed</a>
+    </div>
+
+  </div>
+
+  <!-- ✅ AD MID -->
+  <div class="ad-box">[MID AD SLOT HERE — 300×250]</div>
+
+
+  <!-- 🔐 Privacy -->
   <div class="info">
     <h2>🔐 Privacy & Security</h2>
     <p>✅ 100% Client-side — No uploads</p>
-    <p>✅ Your images never leave your device</p>
-    <p>✅ No storage or tracking</p>
+    <p>✅ Images never leave your device</p>
+    <p>✅ No storage / tracking</p>
   </div>
 
-  <!-- ✅ Why -->
+  <!-- WHY -->
   <div class="info">
-    <h2>✨ Why Use ImagePDF.Pro?</h2>
-    <p>⚡ Fast image compression</p>
-    <p>🛡 Secure offline processing</p>
-    <p>📱 Mobile-friendly</p>
-    <p>🎯 Simple interface</p>
+    <h2>✨ Why Choose ImagePDF.Pro?</h2>
+    <p>⚡ Instant compression</p>
+    <p>📱 Mobile friendly</p>
+    <p>🛡 Works offline</p>
+    <p>🎯 Clean & simple UI</p>
   </div>
 
-  <!-- ✅ FAQ -->
+  <!-- FAQ -->
   <div class="info">
     <h2>❓ FAQs</h2>
-    <p><b>Is this tool free?</b><br>Yes, completely free.</p>
-    <p><b>Are my images uploaded?</b><br>No, compression happens offline.</p>
-    <p><b>Is it safe?</b><br>100% safe — no server involved.</p>
+    <p><b>Is it free?</b> Yes</p>
+    <p><b>Are images uploaded?</b> No</p>
+    <p><b>Is it safe?</b> 100% Local processing</p>
   </div>
+
+
+  <!-- ✅ AD Bottom -->
+  <div class="ad-box">[BOTTOM AD SLOT HERE — 300×250]</div>
+
 </div>
 
 
@@ -108,18 +152,49 @@
 
 <!-- ✅ WORKING JS -->
 <script>
+const dropZone = document.getElementById("dropZone");
 const input = document.getElementById("imgInput");
 const slider = document.getElementById("qualityRange");
+const qVal = document.getElementById("qVal");
+
+const beforeImg = document.getElementById("beforeImg");
+const afterImg = document.getElementById("afterImg");
+const beforeSize = document.getElementById("beforeSize");
+const afterSize = document.getElementById("afterSize");
 const out = document.getElementById("downloadBtn");
 
 let selectedImg = null;
 
-input.addEventListener("change", ()=>{
-  selectedImg = input.files[0];
-  if(!selectedImg){
-    alert("Please select an image");
-  }
+slider.addEventListener("input", ()=> qVal.textContent = slider.value+"%" );
+
+dropZone.addEventListener("click", ()=> input.click());
+
+dropZone.addEventListener("dragover", (e)=>{
+  e.preventDefault();
+  dropZone.style.borderColor="#d9232e";
 });
+
+dropZone.addEventListener("dragleave", ()=>{
+  dropZone.style.borderColor="#aaa";
+});
+
+dropZone.addEventListener("drop", (e)=>{
+  e.preventDefault();
+  dropZone.style.borderColor="#aaa";
+  input.files = e.dataTransfer.files;
+  handleFile();
+});
+
+input.addEventListener("change", handleFile);
+
+function handleFile(){
+  selectedImg = input.files[0];
+  if(!selectedImg) return;
+
+  beforeImg.src = URL.createObjectURL(selectedImg);
+  beforeSize.innerHTML = "Size: " + (selectedImg.size/1024).toFixed(2) + " KB";
+}
+
 
 function compressImage(){
   if(!selectedImg){
@@ -147,8 +222,11 @@ function compressImage(){
         (blob)=>{
           const link = URL.createObjectURL(blob);
           out.href = link;
+          afterImg.src = link;
           out.download = "compressed.jpg";
           out.style.display = "inline-block";
+
+          afterSize.innerHTML = "Size: " + (blob.size/1024).toFixed(2) + " KB";
         },
         "image/jpeg",
         quality
