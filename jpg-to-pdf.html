@@ -115,13 +115,35 @@
     <p>or click to choose (JPG, PNG). You can select multiple files.</p>
     <input type="file" id="fileInput" accept="image/*" multiple style="display:none" />
   </div>
-
-  <!-- Controls -->
-  <div class="controls" role="group" aria-label="Controls">
-    <button id="convertBtn">Convert to PDF</button>
-    <button id="clearBtn" class="secondary">Clear</button>
-    <div style="margin-left:auto;color:#555;font-size:14px">Page format: A4 (portrait)</div>
-  </div>
+<!-- ✅ New Convert Button Section -->
+<div style="text-align:center; margin-top:18px;">
+    <button id="convertBtn"
+      style="
+        background:#d9232e;
+        color:#fff;
+        border:0;
+        padding:14px 26px;
+        border-radius:10px;
+        cursor:pointer;
+        font-size:20px;
+        font-weight:700;
+      ">
+      Convert to PDF
+    </button>
+    <br><br>
+    <button id="clearBtn"
+      style="
+        background:#fff;
+        border:1px solid #d9d9d9;
+        color:#333;
+        padding:9px 14px;
+        border-radius:8px;
+        cursor:pointer;
+        font-weight:600;
+      ">
+      Clear All
+    </button>
+</div>
 
   <!-- thumb list -->
   <div class="thumb-list" id="thumbList" aria-live="polite"></div>
