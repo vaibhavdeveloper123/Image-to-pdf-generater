@@ -1,130 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Base64 Encoder & Decoder Online | Client-Side Tool</title>
-    <meta name="description" content="Encode and Decode text to/from Base64 instantly in your browser. Also supports converting images to Base64 Data URLs. Secure and private." />
-    <link rel="canonical" href="https://yourwebsite.com/base64-converter" />
-    
-    <style>
-        /* (COPY/PASTE YOUR COMPLETE CSS BLOCK HERE) */
-        :root { --color-primary:#007AFF; --color-secondary:#00C4CC; --color-background:#F8F9FA; --color-surface:#FFFFFF; --color-dark:#212529; --color-muted:#6C757D; --color-success:#28A745; --color-error:#DC3545; }
-        *{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
-        body{font-family:Inter, 'Segoe UI', Arial, sans-serif;background:var(--color-background);color:var(--color-dark);line-height:1.6;display:flex;flex-direction:column;min-height:100vh}
-        .trust-bar{background:var(--color-success);color:var(--color-surface);padding:8px 0;text-align:center;font-size:.9em;font-weight:600}
-        .site-header{background:var(--color-surface);padding:15px 0;box-shadow:0 2px 4px rgba(0,0,0,.05);position:sticky;top:0;z-index:1000}
-        .header-content{max-width:1200px;margin:0 auto;padding:0 30px;display:flex;justify-content:space-between;align-items:center}
-        .logo{font-size:1.6em;font-weight:800;color:var(--color-primary);cursor:pointer;letter-spacing:-.5px}
-        nav a{color:var(--color-dark);text-decoration:none;margin-left:20px;font-weight:500;transition:color .3s}
-        nav a:hover{color:var(--color-primary)}
-        .content-wrapper{flex-grow:1}
-        .tool-section{max-width:850px;margin:50px auto;padding:30px;width:95%;background:var(--color-surface);border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.1);border:1px solid #EAEAEA}
-        textarea{width:100%;min-height:250px;padding:15px;border:2px solid #ccc;border-radius:8px;font-size:1.1em;resize:vertical;margin-bottom:15px}
-        .action-btns{display:flex;gap:15px;margin-bottom:20px}
-        .action-btns button{flex:1;padding:12px;font-size:1.1em;font-weight:600;border:none;border-radius:8px;cursor:pointer;transition:background .3s}
-        #encodeBtn{background:var(--color-primary);color:white}
-        #decodeBtn{background:var(--color-secondary);color:white}
-        .utility-btns{display:flex;gap:15px;margin-top:20px}
-        .utility-btns button{flex:1;padding:10px;border:1px solid #ccc;background:#f0f0f0;border-radius:6px;cursor:pointer}
-        #fileInput{display:none}
-    </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<title>Base64 Encoder & Decoder — I ❤ ImagePDF.Pro</title>
+<meta name="description" content="Convert text to Base64 and decode Base64 to text — fast, private, and free. 100% client-side.">
+
+<link rel="canonical" href="https://YOURDOMAIN/base64-encoder-decoder.html" />
+
+<!-- OG / Twitter -->
+<meta property="og:title" content="Base64 Encoder & Decoder — I ❤ ImagePDF.Pro" />
+<meta property="og:description" content="Encode or decode Base64 instantly — no upload, secure, & free." />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<!-- JSON-LD -->
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@graph":[
+   {
+     "@type":"SoftwareApplication",
+     "name":"Base64 Encoder Decoder",
+     "applicationCategory":"Utility",
+     "operatingSystem":"Web",
+     "url":"https://YOURDOMAIN/base64-encoder-decoder.html",
+     "description":"Encode Base64 and decode Base64 text — free, local, secure."
+   },
+   {
+     "@type":"FAQPage",
+     "mainEntity":[
+       {
+         "@type":"Question",
+         "name":"Is Base64 encoding secure?",
+         "acceptedAnswer":{"@type":"Answer","text":"No — Base64 is reversible. It's for data formatting, not security."}
+       },
+       {
+         "@type":"Question",
+         "name":"Does this tool upload data?",
+         "acceptedAnswer":{"@type":"Answer","text":"No — encoding & decoding happen completely in your browser."}
+       }
+     ]
+   }
+ ]
+}
+</script>
+
+<style>
+body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:#f6f8fb;color:#222}
+header{
+ background:#fff;border-bottom:1px solid #eee;padding:12px 20px;
+ display:flex;justify-content:space-between;align-items:center;
+ position:sticky;top:0;z-index:99;box-shadow:0 2px 8px rgba(0,0,0,.06)
+}
+.logo{font-size:22px;font-weight:800;color:#d9232e;cursor:pointer}
+.container{max-width:980px;margin:20px auto;padding:0 15px}
+
+.ad-box{
+ margin:16px 0;background:#fff;border:1px dashed #aaa;border-radius:10px;
+ padding:16px;text-align:center;font-size:14px;color:#777
+}
+
+.box{
+ background:#fff;border-radius:12px;border:1px solid #eee;
+ padding:22px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.04)
+}
+
+textarea{
+ width:100%;min-height:140px;padding:12px;border-radius:8px;
+ border:1px solid #ccc;font-size:15px;margin-top:12px
+}
+
+button{
+ background:#d9232e;color:#fff;border:0;padding:12px 22px;border-radius:10px;
+ cursor:pointer;font-size:16px;font-weight:600;margin-top:12px
+}
+.btn2{
+ background:#fff;border:1px solid #d9232e;color:#d9232e
+}
+
+.info{
+ margin-top:22px;background:#fff;padding:18px;border-radius:12px;
+ border:1px solid #eee;box-shadow:0 2px 8px rgba(0,0,0,.04)
+}
+.info h2{color:#d9232e;margin-top:0}
+
+footer{
+ background:#fff;border-top:1px solid #eee;margin-top:40px;
+ padding:16px;text-align:center;color:#555
+}
+</style>
 </head>
+
 <body>
-    <div class="trust-bar">🔒 <strong>100% Client-Side Processing.</strong> All encoding/decoding is done in your browser.</div>
-    <header class="site-header">
-        <div class="header-content">
-            <h2 class="logo" onclick="window.location.href='index.html'">ImagePDF.Pro</h2>
-            <nav>
-                <a href="index.html">Home</a>
-                <a href="jpg-to-pdf.html">JPG to PDF</a>
-                <a href="pdf-merger.html">PDF Merger</a>
-                <a href="image-compressor.html">Compress</a>
-            </nav>
-        </div>
-    </header>
 
-    <main class="content-wrapper">
-        <section class="tool-section">
-            <h1 style="font-size:1.5em;margin-bottom:18px;text-align:center">Base64 Encoder & Decoder</h1>
-            
-            <textarea id="textInput" placeholder="Paste your text or Base64 code here."></textarea>
+<header>
+ <div class="logo" onclick="location.href='index.html'">I ❤ ImagePDF.Pro</div>
+</header>
 
-            <div class="action-btns">
-                <button id="encodeBtn">Encode to Base64 ➡️</button>
-                <button id="decodeBtn">Decode from Base64 ⬅️</button>
-            </div>
-            
-            <div class="utility-btns">
-                <button id="copyBtn">Copy Output</button>
-                <button onclick="document.getElementById('fileInput').click()">Encode Image File</button>
-                <button onclick="document.getElementById('textInput').value = '';">Clear</button>
-                <input type="file" id="fileInput" accept="image/*" />
-            </div>
+<div class="container">
 
-            <p id="statusMessage" style="margin-top:20px; text-align:center; font-weight:600; color:var(--color-primary);"></p>
-        </section>
+  <!-- TOP AD -->
+  <div class="ad-box">[TOP AD — paste ad code]</div>
 
-        <section class="instructions-section" style="max-width:850px; margin: 40px auto; padding: 20px;">
-            <h2>How it Works</h2>
-            <p>Paste any text into the box and click **Encode** to get the Base64 representation, or paste a Base64 string and click **Decode** to view the original text. You can also upload an image file to instantly get its Base64 Data URL, which is useful for embedding small images directly into HTML/CSS.</p>
-        </section>
-    </main>
+  <h1 style="text-align:center;">Base64 Encoder / Decoder</h1>
+  <p style="text-align:center;color:#666;">Convert text ↔ Base64 — 100% offline</p>
 
-    <footer class="site-footer" style="background:var(--color-dark);color:var(--color-muted);padding:20px 0;text-align:center;margin-top:auto;font-size:.9em;border-top:3px solid var(--color-primary);">
-        <p>&copy; 2024 <strong>ImagePDF.Pro</strong> | Built with client-side technology for maximum privacy.</p>
-    </footer>
+  <div class="box">
 
-    <script>
-        const textInput = document.getElementById('textInput');
-        const encodeBtn = document.getElementById('encodeBtn');
-        const decodeBtn = document.getElementById('decodeBtn');
-        const copyBtn = document.getElementById('copyBtn');
-        const fileInput = document.getElementById('fileInput');
-        const statusMessage = document.getElementById('statusMessage');
+    <label><b>Input</b></label>
+    <textarea id="input" placeholder="Enter text OR Base64..."></textarea>
 
-        encodeBtn.addEventListener('click', () => {
-            try {
-                const encoded = btoa(textInput.value);
-                textInput.value = encoded;
-                statusMessage.textContent = 'Text successfully encoded to Base64.';
-            } catch (e) {
-                statusMessage.textContent = 'Error: Encoding failed. Please check the input text.';
-            }
-        });
+    <button id="encodeBtn">Encode → Base64</button>
+    <button id="decodeBtn" class="btn2">Decode → Text</button>
 
-        decodeBtn.addEventListener('click', () => {
-            try {
-                const decoded = atob(textInput.value);
-                textInput.value = decoded;
-                statusMessage.textContent = 'Base64 successfully decoded to text.';
-            } catch (e) {
-                statusMessage.textContent = 'Error: Decoding failed. Input is not valid Base64.';
-            }
-        });
-        
-        fileInput.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (!file) return;
+    <label><b>Output</b></label>
+    <textarea id="output" readonly></textarea>
 
-            statusMessage.textContent = 'Encoding image...';
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                textInput.value = event.target.result;
-                statusMessage.textContent = `Image file (${file.name}) encoded to Base64 Data URL.`;
-            };
-            reader.onerror = () => {
-                statusMessage.textContent = 'Error reading image file.';
-            };
-            reader.readAsDataURL(file);
-        });
+    <button id="copyBtn">Copy Output</button>
+    <button id="downloadBtn" class="btn2">Download as TXT</button>
 
-        copyBtn.addEventListener('click', () => {
-            textInput.select();
-            document.execCommand('copy');
-            statusMessage.textContent = 'Output copied to clipboard!';
-            setTimeout(() => statusMessage.textContent = '', 3000);
-        });
-    </script>
+  </div>
+
+  <!-- MID AD -->
+  <div class="ad-box">[MID AD — paste ad code]</div>
+
+
+  <div class="info">
+    <h2>🔐 Privacy</h2>
+    <p>✅ 100% offline — input never leaves your browser.</p>
+  </div>
+
+  <div class="info">
+    <h2>❓ FAQ</h2>
+    <p><b>Is Base64 encryption?</b></p>
+    <p>No — it is reversible. Used for encoding binary → text.</p>
+
+    <p><b>Is my data stored?</b></p>
+    <p>No — processed locally only.</p>
+  </div>
+
+  <!-- BOTTOM AD -->
+  <div class="ad-box">[BOTTOM AD — paste ad code]</div>
+</div>
+
+<footer>
+  © 2025 I ❤ ImagePDF.Pro — Client-side Tools
+</footer>
+
+<script>
+const inputEl = document.getElementById("input");
+const outputEl = document.getElementById("output");
+const encodeBtn = document.getElementById("encodeBtn");
+const decodeBtn = document.getElementById("decodeBtn");
+const copyBtn = document.getElementById("copyBtn");
+const downloadBtn = document.getElementById("downloadBtn");
+
+encodeBtn.addEventListener("click",()=>{
+  try{
+    outputEl.value = btoa(inputEl.value);
+  } catch(e){
+    alert("Invalid input to encode!");
+  }
+});
+
+decodeBtn.addEventListener("click",()=>{
+  try{
+    outputEl.value = atob(inputEl.value);
+  } catch(e){
+    alert("Invalid Base64!");
+  }
+});
+
+copyBtn.addEventListener("click",()=>{
+  outputEl.select();
+  document.execCommand("copy");
+  alert("Copied!");
+});
+
+downloadBtn.addEventListener("click",()=>{
+  const blob = new Blob([outputEl.value],{type:"text/plain"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "base64-output.txt";
+  a.click();
+  URL.revokeObjectURL(url);
+});
+</script>
+
 </body>
 </html>
