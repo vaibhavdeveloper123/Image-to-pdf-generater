@@ -1,186 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <!-- ✅ Basic Meta -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>ImagePDF.Pro — Convert, Merge, Split & Compress PDF/Images Online</title>
-  <meta name="description" content="Free JPG to PDF, PDF Merger, PDF Splitter, Image Compressor, Word Counter & QR Generator — 100% secure client-side processing. Your privacy is our branding." />
+  <title>ImagePDF.Pro — Online PDF & Image Tools | Fast & Secure</title>
+  <meta name="description"
+    content="Free PDF & Image tools — JPG to PDF, PDF to Word, PDF Merge, PDF Split, PDF Compressor & more. No upload required. Your Privacy is Our Branding.">
 
   <meta name="keywords"
-    content="jpg to pdf, image to pdf, pdf merger, pdf splitter, image compressor, qr generator, word counter, convert pdf, photo to pdf, online pdf tools" />
+    content="jpg to pdf, pdf to word, pdf compressor, pdf splitter, pdf merger, pdf to jpg, excel to pdf, pdf unlock, png to jpg, qr generator, word counter, online pdf tools" />
 
   <!-- ✅ Canonical -->
   <link rel="canonical" href="https://secure-img-to-pdf.vercel.app/" />
 
   <!-- ✅ OpenGraph -->
   <meta property="og:title" content="ImagePDF — Fast & Secure PDF Tools" />
-  <meta property="og:description" content="Convert JPG to PDF, merge PDF, split PDF, compress images — free & private!" />
+  <meta property="og:description"
+    content="Convert JPG to PDF, PDF to Word, Compress PDF, Split, Merge & Organize files — 100% Private." />
   <meta property="og:type" content="website" />
 
   <!-- ✅ Twitter SEO -->
-  <meta name="twitter:title" content="ImagePDF — Convert JPG to PDF Online" />
-  <meta name="twitter:description" content="Fast, free & private tools to convert and edit PDFs & Images." />
+  <meta name="twitter:title" content="ImagePDF — Convert & Edit PDF Online" />
+  <meta name="twitter:description"
+    content="Fast, free & private tools to convert, merge, compress & secure PDFs & Images." />
 
   <!-- ✅ Style -->
   <style>
     :root {
-      --primary:#0554f2;
-      --primary-hover:#003db8;
-      --dark:#0c0c0c;
-      --text:#2b2b2b;
-      --muted:#777;
-      --bg:#f3f7fc;
-      --white:#fff;
-      --card:#ffffff;
+      --primary: #e44232;
+      --primary-hover: #bb1e14;
+      --dark: #111;
+      --text: #333;
+      --muted: #777;
+      --bg: #fafafa;
+      --white: #fff;
+      --card: #ffffff;
     }
 
-    *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,Segoe UI,Roboto,sans-serif;}
-
-    body{background:var(--bg);color:var(--text);line-height:1.6;}
-
-    /* ✅ Navbar */
-    header{
-      background:var(--white);
-      padding:20px 40px;
-      box-shadow:0 2px 12px rgba(0,0,0,0.08);
-      position:sticky;
-      top:0;
-      z-index:200;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-    }
-    header h1{
-      font-size:2rem;
-      font-weight:800;
-      color:var(--primary);
-      cursor:pointer;
-      text-transform:uppercase;
-      letter-spacing: -1px;
-    }
-    nav a{
-      margin-left:22px;
-      text-decoration:none;
-      color:var(--text);
-      font-weight:600;
-      font-size:1.05rem;
-    }
-    nav a:hover{color:var(--primary);}
-
-    /* ✅ Hero */
-    .hero{
-      max-width:950px;
-      margin:65px auto;
-      text-align:center;
-      padding:0 20px;
-    }
-    .hero h2{
-      font-size:3rem;
-      margin-bottom:12px;
-      font-weight:800;
-      color:var(--dark);
-    }
-    .hero h4{
-      font-size:1.4rem;
-      color:var(--primary);
-      margin-bottom:15px;
-      font-weight:700;
-    }
-    .hero p{
-      font-size:1.25rem;
-      color:var(--muted);
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Inter, Segoe UI, Roboto, sans-serif;
     }
 
-    /* ✅ Tool cards */
-    .tools{
-      max-width:1250px;
-      margin:50px auto;
-      display:flex;
-      flex-wrap:wrap;
-      gap:26px;
-      padding:20px;
-      justify-content:center;
+    body {
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
     }
-    .tool-card{
-      background:var(--card);
-      border-radius:14px;
-      padding:30px;
-      border:1px solid #e5e5e5;
-      box-shadow:0 4px 14px rgba(0,0,0,0.08);
-      width:320px;
-      text-align:center;
-      transition:.25s;
-    }
-    .tool-card:hover{
-      transform:translateY(-8px);
-      box-shadow:0 8px 24px rgba(0,0,0,0.14);
-    }
-    .tool-card h3{
-      font-size:1.45rem;
-      margin-bottom:10px;
-      color:var(--primary);
-      font-weight:700;
-    }
-    .tool-card p{
-      color:var(--muted);
-      margin-bottom:18px;
-      font-size:1rem;
-      line-height:1.4;
-    }
-    .tool-card a{
-      display:inline-block;
-      padding:12px 22px;
-      background:var(--primary);
-      color:#fff;
-      border-radius:8px;
-      text-decoration:none;
-      font-weight:600;
-      font-size:1.05rem;
-      transition:.25s;
-    }
-    .tool-card a:hover{background:var(--primary-hover);}
 
-    /* ✅ Feature Section */
-    .section{
-      max-width:1000px;
-      background:var(--white);
-      margin:45px auto;
-      border-radius:14px;
-      padding:32px;
-      box-shadow:0 4px 12px rgba(0,0,0,0.08);
+    /* ✅ Small Header */
+    header {
+      background: var(--white);
+      padding: 12px 36px;
+      border-bottom: 1px solid #e5e5e5;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 50;
     }
-    .section h2{
-      margin-bottom:12px;
-      color:var(--primary);
-      font-size:1.85rem;
+
+    header h1 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -.6px;
+      cursor: pointer;
     }
-    .section h3{
-      margin-top:16px;
-      color:var(--dark);
-      font-size:1.25rem;
+
+    nav a {
+      margin-left: 18px;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 0.95rem;
     }
-    .section ul{margin-left:18px;margin-top:10px;}
-    .section li{margin-bottom:6px;}
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    /* ✅ Hero Section */
+    .hero {
+      max-width: 860px;
+      margin: 60px auto;
+      text-align: center;
+      padding: 0 16px;
+    }
+
+    .hero h2 {
+      font-size: 2.6rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      color: var(--dark);
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .tagline {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    /* ✅ Search bar */
+    .search-box {
+      max-width: 600px;
+      margin: 0 auto 40px;
+      display: flex;
+      align-items: center;
+      background: #fff;
+      padding: 12px 18px;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+      gap: 8px;
+    }
+
+    .search-box input {
+      border: none;
+      outline: none;
+      font-size: 1rem;
+      flex: 1;
+    }
+
+    /* ✅ Tool Groups */
+    .group {
+      max-width: 1150px;
+      margin: 45px auto;
+      padding: 0 16px;
+    }
+
+    .group h3 {
+      font-size: 1.45rem;
+      margin-bottom: 16px;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 22px;
+    }
+
+    /* ✅ Tool Card */
+    .tool-card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 22px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+      transition: 0.25s;
+      cursor: pointer;
+    }
+
+    .tool-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    }
+
+    .tool-card h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--primary);
+    }
+
+    .tool-card p {
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
 
     /* ✅ Footer */
-    footer{
-      text-align:center;
-      padding:35px;
-      margin-top:60px;
-      background:var(--white);
-      color:var(--muted);
-      font-size:1rem;
-      box-shadow:0 -2px 8px rgba(0,0,0,0.04);
+    footer {
+      text-align: center;
+      padding: 38px;
+      margin-top: 60px;
+      background: var(--white);
+      color: var(--muted);
+      font-size: 1rem;
+      border-top: 1px solid #ddd;
     }
 
-    @media(max-width:768px){
-      .tools{flex-direction:column;align-items:center;}
-      nav a{margin-left:10px;}
-      .hero h2{font-size:2.2rem;}
-      .hero p{font-size:1.1rem;}
-      header h1{font-size:1.6rem;}
+    @media(max-width: 768px) {
+      header h1 {
+        font-size: 1.4rem;
+      }
+
+      .hero h2 {
+        font-size: 2.1rem;
+      }
+
+      .search-box {
+        width: 90%;
+      }
     }
   </style>
 
@@ -191,122 +215,123 @@
     "@type":"WebSite",
     "name":"ImagePDF.Pro",
     "url":"https://secure-img-to-pdf.vercel.app/",
-    "description":"Fast JPG to PDF, PDF Merger, Splitter, Image Compressor & Online PDF Tools — All client-side. Your Privacy Is Our Branding."
+    "description":"Convert PDF, Compress Files, JPG to PDF, PDF to JPG & More — 100% Client-Side. Your Privacy is Our Branding."
   }
   </script>
-
 </head>
 
 <body>
 
-<header>
-  <h1 onclick="location.href='index.html'">IMAGEPDF.PRO</h1>
-  <nav>
-    <a href="jpg-to-pdf.html">JPG → PDF</a>
-    <a href="pdf-merger.html">PDF Merger</a>
-    <a href="pdf-splitter.html">PDF Splitter</a>
-    <a href="image-compressor.html">Compressor</a>
-    <a href="word-counter.html">Word Counter</a>
-    <a href="qr-generator.html">QR</a>
-  </nav>
-</header>
+  <!-- ✅ HEADER -->
+  <header>
+    <h1 onclick="location.href='index.html'">IMAGEPDF.PRO</h1>
+  </header>
 
-<section class="hero">
-  <h4>⚡ Fast • Secure • Free</h4>
-  <h2>Convert & Edit PDF/Images Online</h2>
-  <p>Your Privacy is Our Branding — all processing happens inside your device.</p>
-</section>
+  <!-- ✅ HERO -->
+  <section class="hero">
+    <div class="tagline">Your Privacy is Our Branding</div>
+    <h2>All-In-One PDF & Image Tools</h2>
+    <p>Convert • Merge • Split • Compress • Edit — 100% Secure Local Processing</p>
 
-<section class="tools">
+    <div class="search-box">
+      <input id="searchTools" type="text" placeholder="Search a tool…">
+    </div>
+  </section>
 
-  <div class="tool-card">
-    <h3>🖼 JPG → PDF</h3>
-    <p>Convert images (JPG/PNG/WEBP/HEIC) into PDF instantly.</p>
-    <a href="jpg-to-pdf.html">Open Tool</a>
-  </div>
+  <!-- ✅ GROUP – PDF TOOLS -->
+  <section class="group">
+    <h3>PDF Tools</h3>
+    <div class="tools-grid">
 
-  <div class="tool-card">
-    <h3>🔗 PDF Merger</h3>
-    <p>Merge multiple PDF files together into a single document.</p>
-    <a href="pdf-merger.html">Open Tool</a>
-  </div>
+      <a href="pdf-to-word.html" class="tool-card">
+        <h4>PDF → Word</h4>
+        <p>Convert PDF documents to editable Word.</p>
+      </a>
 
-  <div class="tool-card">
-    <h3>📄 PDF Splitter</h3>
-    <p>Extract & split PDF pages easily into separate files.</p>
-    <a href="pdf-splitter.html">Open Tool</a>
-  </div>
+      <a href="pdf-merger.html" class="tool-card">
+        <h4>PDF Merge</h4>
+        <p>Merge multiple PDFs into one file.</p>
+      </a>
 
-  <div class="tool-card">
-    <h3>🗜 Image Compressor</h3>
-    <p>Compress JPEG/PNG/WebP images without losing quality.</p>
-    <a href="image-compressor.html">Open Tool</a>
-  </div>
+      <a href="pdf-splitter.html" class="tool-card">
+        <h4>PDF Split</h4>
+        <p>Extract + split pages from PDF.</p>
+      </a>
 
-  <div class="tool-card">
-    <h3>📝 Word Counter</h3>
-    <p>Instantly count words, characters, sentences & paragraphs.</p>
-    <a href="word-counter.html">Open Tool</a>
-  </div>
+      <a href="pdf-compressor.html" class="tool-card">
+        <h4>PDF Compressor</h4>
+        <p>Reduce PDF size quickly.</p>
+      </a>
 
-  <div class="tool-card">
-    <h3>🤳 QR Generator</h3>
-    <p>Create custom QR codes from text, URL instantly.</p>
-    <a href="qr-generator.html">Open Tool</a>
-  </div>
+      <a href="pdf-unlock.html" class="tool-card">
+        <h4>PDF Unlock</h4>
+        <p>Unlock protected documents.</p>
+      </a>
 
-</section>
+    </div>
+  </section>
 
+  <!-- ✅ GROUP – IMAGE TOOLS -->
+  <section class="group">
+    <h3>Image Tools</h3>
+    <div class="tools-grid">
 
-<section class="section">
-  <h2>Why Choose ImagePDF.Pro?</h2>
-  <ul>
-    <li>✅ Your Privacy is Our Branding — Client-Side Processing</li>
-    <li>✅ 100% Secure — No uploads, no logs</li>
-    <li>✅ Fast & Free — no limits</li>
-    <li>✅ Best UI Tools</li>
-    <li>✅ No watermarks</li>
-  </ul>
-</section>
+      <a href="jpg-to-pdf.html" class="tool-card">
+        <h4>JPG → PDF</h4>
+        <p>Convert JPG/PNG to PDF.</p>
+      </a>
 
-<section class="section">
-  <h2>How to Use?</h2>
-  <h3>1) JPG → PDF</h3>
-  <ol>
-    <li>Select images</li>
-    <li>Re-order if needed</li>
-    <li>Convert → Download</li>
-  </ol>
+      <a href="pdf-to-jpg.html" class="tool-card">
+        <h4>PDF → JPG</h4>
+        <p>Extract images from PDF.</p>
+      </a>
 
-  <h3>2) PDF Merger</h3>
-  <ol>
-    <li>Select PDFs</li>
-    <li>Arrange</li>
-    <li>Merge → Download</li>
-  </ol>
-</section>
+      <a href="image-compressor.html" class="tool-card">
+        <h4>Image Compressor</h4>
+        <p>Reduce image size safely.</p>
+      </a>
 
-<section class="section">
-  <h2>🔒 Privacy & Security</h2>
-  <p>All processing happens inside your browser. Nothing is uploaded.</p>
-</section>
+      <a href="excel-to-pdf.html" class="tool-card">
+        <h4>Excel → PDF</h4>
+        <p>Convert spreadsheet to PDF.</p>
+      </a>
 
-<section class="section">
-  <h2>FAQ</h2>
-  <h3>Is it free?</h3>
-  <p>Yes — free forever.</p>
-  <h3>Do you store files?</h3>
-  <p>No — we never upload.</p>
-</section>
+      <a href="png-to-jpg.html" class="tool-card">
+        <h4>PNG → JPG</h4>
+        <p>Convert images to JPG format.</p>
+      </a>
 
-<section class="section">
-  <h2>Support</h2>
-  <p>Email: <b>support@imagepdf.pro</b></p>
-</section>
+    </div>
+  </section>
 
-<footer>
-  © 2024 ImagePDF.Pro — Your Privacy Is Our Branding
-</footer>
+  <!-- ✅ GROUP – TEXT TOOLS -->
+  <section class="group">
+    <h3>Text Tools</h3>
+    <div class="tools-grid">
+
+      <a href="word-counter.html" class="tool-card">
+        <h4>Word Counter</h4>
+        <p>Count words, chars & paragraphs.</p>
+      </a>
+
+      <a href="qr-generator.html" class="tool-card">
+        <h4>QR Generator</h4>
+        <p>Create QR instantly.</p>
+      </a>
+
+      <a href="case-converter.html" class="tool-card">
+        <h4>Case Converter</h4>
+        <p>UPPERCASE, lowercase & more.</p>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ✅ FOOTER -->
+  <footer>
+    © 2024 ImagePDF.Pro — Your Privacy is Our Branding
+  </footer>
 
 </body>
+
 </html>
