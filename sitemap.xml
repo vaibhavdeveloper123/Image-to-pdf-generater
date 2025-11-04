@@ -1,25 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+  <!-- MAIN PAGE -->
   <url>
-    <loc>https://imagepdf.pro/</loc>
-    <changefreq>daily</changefreq>
-    <priority>1.00</priority>
+    <loc>https://secure-img-to-pdf.vercel.app/</loc>
+    <priority>1.0</priority>
+    <changefreq>weekly</changefreq>
   </url>
 
-  <!-- Add more URLs below if you make more pages -->
-  <!--
+  <!-- JPG to PDF Converter -->
   <url>
-    <loc>https://imagepdf.pro/jpg-to-pdf</loc>
+    <loc>https://secure-img-to-pdf.vercel.app/jpg-to-pdf</loc>
+    <priority>0.9</priority>
     <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
   </url>
 
+  <!-- PDF Merger -->
   <url>
-    <loc>https://imagepdf.pro/png-to-pdf</loc>
+    <loc>https://secure-img-to-pdf.vercel.app/pdf-merger</loc>
+    <priority>0.9</priority>
     <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
   </url>
-  -->
+
+  <!-- Image Compressor -->
+  <url>
+    <loc>https://secure-img-to-pdf.vercel.app/image-compressor</loc>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- Word Counter -->
+  <url>
+    <loc>https://secure-img-to-pdf.vercel.app/word-counter</loc>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- PDF Splitter -->
+  <url>
+    <loc>https://secure-img-to-pdf.vercel.app/pdf-splitter</loc>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- QR Code Generator -->
+  <url>
+    <loc>https://secure-img-to-pdf.vercel.app/qr-code-generator</loc>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- Case Converter -->
+  <url>
+    <loc>https://secure-img-to-pdf.vercel.app/case-converter</loc>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+  </url>
 
 </urlset>
