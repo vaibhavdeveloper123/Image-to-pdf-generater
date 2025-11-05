@@ -179,6 +179,27 @@ ul li{margin-bottom:6px;line-height:1.4;color:#444;}
   height: auto !important;
   max-width: 100% !important;
 }
+	/* ✅ FULL WIDTH RESPONSIVE ADS */
+.ad-slot {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 18px auto;
+}
+
+.ad-inner {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.ad-inner iframe {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 100% !important;
+  height: auto !important;
+}
 </style>
 </head>
 
@@ -193,7 +214,12 @@ ul li{margin-bottom:6px;line-height:1.4;color:#444;}
 <div class="container">
 
   <!-- TOP AD -->
-  <script type="text/javascript">
+  <!-- ✅ FULL WIDTH RESPONSIVE AD -->
+<div class="ad-slot">
+  <div class="ad-inner">
+
+    <!-- 🔻 PASTE ADSTERRA SCRIPT HERE -->
+    <script type="text/javascript">
 	atOptions = {
 		'key' : 'd71abad2466ac39c8d34cd4e900267b3',
 		'format' : 'iframe',
@@ -203,7 +229,8 @@ ul li{margin-bottom:6px;line-height:1.4;color:#444;}
 	};
 </script>
 <script type="text/javascript" src="//www.highperformanceformat.com/d71abad2466ac39c8d34cd4e900267b3/invoke.js"></script>
-
+  </div>
+</div>
   <!-- INTRO -->
   <section class="intro-card">
     <h1 class="intro-title">Secure, Fast & Free Online Tools</h1>
@@ -417,6 +444,15 @@ ul li{margin-bottom:6px;line-height:1.4;color:#444;}
   </footer>
 
 </div>
-
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  setTimeout(() => {
+    document.querySelectorAll(".ad-slot iframe").forEach(f => {
+      f.style.width = "100%";
+      f.style.maxWidth = "100%";
+    });
+  }, 1500);
+});
+</script>
 </body>
 </html>
