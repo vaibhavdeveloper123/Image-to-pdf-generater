@@ -5,20 +5,21 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 
 <title>Image Resizer — I ❤ ImagePDF.Pro</title>
-<meta name="description" content="Resize images online while keeping high quality. 100% secure & client-side only.">
+<meta name="description" content="Resize images online while keeping high quality. 100% secure & client-side only. No upload — fast & private.">
 
 <link rel="canonical" href="https://YOURDOMAIN/image-resizer.html" />
 
 <meta property="og:title" content="Image Resizer — I ❤ ImagePDF.Pro">
 <meta property="og:description" content="Resize images instantly — fully secure, no upload required.">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="index,follow">
 
 <!-- ✅ JSON-LD -->
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
  "@type": "SoftwareApplication",
- "name": "Image Resizer Tool",
+ "name": "Image Resizer",
  "applicationCategory": "Utility",
  "operatingSystem": "Web",
  "url": "https://YOURDOMAIN/image-resizer.html",
@@ -35,7 +36,7 @@ header{
  display:flex; justify-content:space-between; align-items:center;
  position:sticky; top:0; z-index:99; box-shadow:0 2px 8px rgba(0,0,0,.05)
 }
-.logo{font-size:22px;font-weight:800;color:#d9232e;cursor:pointer}
+.logo{font-size:22px;font-weight:800;color:#007AFF;cursor:pointer}
 
 .container{max-width:900px;margin:20px auto;padding:0 15px}
 
@@ -45,10 +46,10 @@ header{
 }
 
 .file-box{
- border:2px dashed #aaa;border-radius:12px;padding:25px;cursor:pointer;
+ border:2px dashed #007AFF;border-radius:12px;padding:25px;cursor:pointer;
  background:#fafafa;transition:.25s;
 }
-.file-box:hover{border-color:#d9232e}
+.file-box:hover{border-color:#0056d6}
 
 input[type=file]{display:none}
 
@@ -61,7 +62,7 @@ input[type=number]{
 }
 
 button{
- background:#d9232e;color:#fff;border:0;padding:12px 24px;
+ background:#007AFF;color:#fff;border:0;padding:12px 24px;
  border-radius:12px;font-size:17px;font-weight:600;cursor:pointer;margin-top:12px
 }
 
@@ -70,16 +71,22 @@ button{
 }
 .preview-box img{max-width:300px;border-radius:8px;border:1px solid #ccc}
 
-.ad{
- margin:18px 0;border:1px dashed #aaa;padding:14px;border-radius:10px;
- text-align:center;font-size:14px;color:#777
+/* Ad slots */
+.ad-slot{
+ margin:18px 0;
+ text-align:center;
+}
+.ad-inner{
+ width:100%;
+ min-height:90px;
 }
 
+/* info sections */
 .section{
  margin-top:24px;background:#fff;border:1px solid #eee;border-radius:16px;
  padding:22px;box-shadow:0 2px 8px rgba(0,0,0,.05)
 }
-.section h2{color:#d9232e;margin-top:0}
+.section h2{color:#007AFF;margin-top:0}
 
 footer{
  background:#fff;border-top:1px solid #eee;margin-top:40px;
@@ -96,10 +103,13 @@ footer{
 
 <div class="container">
 
- <div class="ad">[ 🔶 TOP AD PLACEMENT ]</div>
+ <!-- ✅ TOP AD -->
+ <div class="ad-slot" data-ad="top">
+   <div class="ad-inner"></div>
+ </div>
 
  <h1>Image Resizer</h1>
- <p class="subtitle">Resize image dimension — 100% offline & secure</p>
+ <p class="subtitle">Resize image dimensions — 100% offline & secure</p>
 
  <div class="card">
 
@@ -119,92 +129,146 @@ footer{
 
  </div>
 
- <div class="ad">[ 🔶 MID AD PLACEMENT ]</div>
+ <!-- ✅ MID AD -->
+ <div class="ad-slot" data-ad="mid">
+   <div class="ad-inner"></div>
+ </div>
 
  <div class="section">
   <h2>🔐 Security</h2>
-  <p>All processing happens inside your browser. Your images never leave your device.</p>
+  <p>All processing happens inside your browser. Nothing is uploaded to any server.</p>
  </div>
 
  <div class="section">
   <h2>📄 Privacy</h2>
-  <p>No data is collected, uploaded or stored.</p>
+  <p>Your images stay on your device. No storage, no tracking.</p>
  </div>
 
  <div class="section">
   <h2>❓ FAQ</h2>
-  <p><b>Does image upload to server?</b><br>No — 100% local.</p>
+  <p><b>Does image upload to server?</b><br>No — everything is local.</p>
   <p><b>Supported formats?</b><br>JPG, PNG, WebP, BMP.</p>
+  <p><b>Is it free?</b><br>Yes — fully free.</p>
  </div>
 
- <div class="ad">[ 🔶 BOTTOM AD PLACEMENT ]</div>
+ <!-- ✅ BOTTOM AD -->
+ <div class="ad-slot" data-ad="bottom">
+   <div class="ad-inner"></div>
+ </div>
 
 </div>
 
 <footer>
- © 2025 I ❤ ImagePDF.Pro — Tools
+ © <span id="year"></span> I ❤ ImagePDF.Pro — Tools
 </footer>
 
-
+<!-- ✅ ✅ ✅ Adsterra Config -->
 <script>
-const fileInput = document.getElementById("fileInput");
-const dropZone = document.getElementById("dropZone");
-const resizeBtn = document.getElementById("resizeBtn");
-const previewBox = document.getElementById("preview");
-let img = new Image(), original = {w:0,h:0,size:0};
+/*
+ ✅ EDIT ONLY IF YOU WANT TO CHANGE ADS 
+ (uses same keys you gave earlier)
+*/
+const ADS = {
+  top:    { key:"d71abad2466ac39c8d34cd4e900267b3", width:728, height:90 },
+  mid:    { key:"3d20b33d71b53fa93676d119ed313762", width:300, height:250 },
+  bottom: { key:"d71abad2466ac39c8d34cd4e900267b3", width:728, height:90 }
+};
+</script>
 
-dropZone.addEventListener("dragover", e=>{e.preventDefault();dropZone.style.borderColor="#d9232e";});
-dropZone.addEventListener("dragleave",()=>dropZone.style.borderColor="#aaa");
-dropZone.addEventListener("drop", e=>{
- e.preventDefault(); dropZone.style.borderColor="#aaa";
+<!-- ✅ Lazy Ad Loader -->
+<script>
+document.addEventListener("DOMContentLoaded",()=>{
+ setTimeout(()=>{
+   document.querySelectorAll(".ad-slot").forEach(slot=>{
+      const t = slot.dataset.ad;
+      const cfg = ADS[t];
+      if(!cfg) return;
+
+      window.atOptions = {
+        key: cfg.key,
+        format: "iframe",
+        height: cfg.height,
+        width: cfg.width,
+        params:{}
+      };
+
+      const s = document.createElement("script");
+      s.src = "//www.highperformanceformat.com/"+cfg.key+"/invoke.js";
+      slot.querySelector(".ad-inner").appendChild(s);
+   });
+ },700);
+});
+</script>
+
+<!-- ✅ Image Resizer Script -->
+<script>
+const fileInput=document.getElementById("fileInput");
+const dropZone=document.getElementById("dropZone");
+const resizeBtn=document.getElementById("resizeBtn");
+const previewBox=document.getElementById("preview");
+
+let img=new Image();
+
+dropZone.addEventListener("dragover",e=>{
+ e.preventDefault();
+ dropZone.style.borderColor="#007AFF";
+});
+dropZone.addEventListener("dragleave",()=>dropZone.style.borderColor="#007AFF");
+dropZone.addEventListener("drop",e=>{
+ e.preventDefault();
  if(e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
 });
-fileInput.addEventListener("change", e=>handleFile(e.target.files[0]));
+
+fileInput.addEventListener("change",e=>handleFile(e.target.files[0]));
 
 function handleFile(file){
- original.size=(file.size/1024).toFixed(1);
- let r=new FileReader();
- r.onload=ev=>{
-   img.src=ev.target.result;
+ const r=new FileReader();
+ r.onload=e=>{
+   img.src=e.target.result;
    img.onload=()=>{
-     original.w=img.width;original.h=img.height;
-     showPreview(ev.target.result,{
-       w:original.w,h:original.h,s:original.size
-     },true);
+     previewOriginal(e.target.result,img.width,img.height,(file.size/1024).toFixed(1));
    }
- };
+ }
  r.readAsDataURL(file);
 }
 
-function showPreview(src,data,isOriginal){
- previewBox.innerHTML=`
-   <h3>${isOriginal?"Original":"Resized"} Image</h3>
+function previewOriginal(src,w,h,s){
+ previewBox.innerHTML = `
+   <h3>Original Image</h3>
    <img src="${src}">
-   <p>${data.w} × ${data.h}px — ${data.s} KB</p>
+   <p>${w} × ${h}px — ${s} KB</p>
  `;
 }
 
 resizeBtn.addEventListener("click",()=>{
  if(!img.src) return alert("Select an image first!");
 
- const w=parseInt(document.getElementById("width").value)||img.width;
- const h=parseInt(document.getElementById("height").value)||img.height;
+ const w = parseInt(document.getElementById("width").value) || img.width;
+ const h = parseInt(document.getElementById("height").value) || img.height;
 
  let canvas=document.createElement("canvas");
- canvas.width=w; canvas.height=h;
+ canvas.width=w;canvas.height=h;
  let ctx=canvas.getContext("2d");
  ctx.drawImage(img,0,0,w,h);
 
  canvas.toBlob(blob=>{
    let url=URL.createObjectURL(blob);
-   showPreview(url,{w,h,s:(blob.size/1024).toFixed(1)});
+   previewBox.innerHTML = `
+     <h3>Resized Image</h3>
+     <img src="${url}">
+     <p>${w} × ${h}px — ${(blob.size/1024).toFixed(1)} KB</p>
+   `;
    let a=document.createElement("a");
-   a.href=url;a.download="resized-image.jpg";
+   a.href=url;
+   a.download="resized.jpg";
    a.textContent="Download Resized Image";
    a.style.marginTop="10px";
    previewBox.appendChild(a);
  },"image/jpeg",0.9);
 });
+
+document.getElementById("year").textContent = new Date().getFullYear();
 </script>
+
 </body>
 </html>
