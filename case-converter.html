@@ -1,130 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Text Case Converter Online | Uppercase, Lowercase, Title Case</title>
-    <meta name="description" content="Convert your text to UPPERCASE, lowercase, Title Case, Sentence Case, and more instantly. Free and client-side processing." />
-    <link rel="canonical" href="https://secure-img-to-pdf.vercel.app/case-converter" />
-    <style>
-        /* (COPY/PASTE YOUR COMPLETE CSS BLOCK HERE) */
-        :root { --color-primary:#007AFF; --color-secondary:#00C4CC; --color-background:#F8F9FA; --color-surface:#FFFFFF; --color-dark:#212529; --color-muted:#6C757D; --color-success:#28A745; --color-error:#DC3545; }
-        *{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
-        body{font-family:Inter, 'Segoe UI', Arial, sans-serif;background:var(--color-background);color:var(--color-dark);line-height:1.6;display:flex;flex-direction:column;min-height:100vh}
-        .site-header{background:var(--color-surface);padding:15px 0;box-shadow:0 2px 4px rgba(0,0,0,.05);position:sticky;top:0;z-index:1000}
-        .header-content{max-width:1200px;margin:0 auto;padding:0 30px;display:flex;justify-content:space-between;align-items:center}
-        .logo{font-size:1.6em;font-weight:800;color:var(--color-primary);cursor:pointer;letter-spacing:-.5px}
-        nav a{color:var(--color-dark);text-decoration:none;margin-left:20px;font-weight:500;transition:color .3s}
-        nav a:hover{color:var(--color-primary)}
-        .content-wrapper{flex-grow:1}
-        .tool-section{max-width:850px;margin:50px auto;padding:30px;width:95%;background:var(--color-surface);border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.1);border:1px solid #EAEAEA}
-        textarea{width:100%;min-height:300px;padding:15px;border:2px solid #ccc;border-radius:8px;font-size:1.1em;resize:vertical;margin-bottom:20px}
-        .case-btns{display:grid;grid-template-columns:repeat(auto-fit, minmax(150px, 1fr));gap:10px}
-        .case-btns button{padding:12px;font-size:1em;font-weight:600;border:none;border-radius:6px;cursor:pointer;background:var(--color-primary);color:white;transition:opacity .3s}
-        .case-btns button:hover{opacity:0.9}
-        #copyBtn, #clearBtn{background:#6c757d;margin-top:20px}
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Text Case Converter Online | Uppercase, Lowercase, Title Case</title>
+<meta name="description" content="Convert your text to UPPERCASE, lowercase, Title Case, Sentence Case, and more instantly. Free and client-side processing." />
+<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/case-converter" />
+
+<!-- ✅ SEO -->
+<meta name="robots" content="index,follow" />
+<meta name="author" content="ImagePDF.Pro" />
+<meta name="theme-color" content="#ffffff"/>
+
+<style>
+:root { --color-primary:#007AFF; --color-secondary:#00C4CC; --color-background:#F8F9FA; --color-surface:#FFFFFF; --color-dark:#212529; --color-muted:#6C757D; }
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
+body{
+ font-family:Inter,'Segoe UI',Arial,sans-serif;
+ background:var(--color-background);
+ color:var(--color-dark);
+ line-height:1.6;
+ display:flex;flex-direction:column;
+ min-height:100vh;
+}
+.site-header{
+ background:var(--color-surface);
+ padding:15px 0;
+ box-shadow:0 2px 4px rgba(0,0,0,.05);
+ position:sticky;top:0;z-index:1000
+}
+.header-content{
+ max-width:1200px;
+ margin:auto;
+ padding:0 30px;
+ display:flex;
+ justify-content:space-between;
+ align-items:center
+}
+.logo{font-size:1.6em;font-weight:800;color:var(--color-primary);cursor:pointer;letter-spacing:-.5px}
+nav a{color:var(--color-dark);text-decoration:none;margin-left:20px;font-weight:500;transition:color .3s}
+nav a:hover{color:var(--color-primary)}
+.content-wrapper{flex-grow:1}
+
+.tool-section{
+ max-width:850px;margin:30px auto;padding:25px;width:95%;
+ background:var(--color-surface);border-radius:12px;
+ box-shadow:0 10px 30px rgba(0,0,0,.1);border:1px solid #EAEAEA
+}
+textarea{
+ width:100%;min-height:260px;padding:15px;
+ border:2px solid #ccc;border-radius:8px;font-size:1.1em;
+ resize:vertical;margin-bottom:20px
+}
+.case-btns{
+ display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px
+}
+.case-btns button{
+ padding:12px;font-size:1em;font-weight:600;border:none;
+ border-radius:6px;cursor:pointer;color:white;transition:opacity .3s
+}
+.case-btns button:hover{opacity:0.9}
+#copyBtn,#clearBtn{background:#6c757d;margin-top:20px}
+
+.instructions-section{
+ max-width:850px;margin:40px auto;padding:20px
+}
+
+footer{
+ background:var(--color-dark);color:var(--color-muted);
+ padding:20px 0;text-align:center;margin-top:auto;
+ font-size:.9em;border-top:3px solid var(--color-primary)
+}
+
+/* ✅ AD SLOT — No CLS */
+.ad-box{
+ margin:16px auto;background:#fff;
+ border:1px dashed #aaa;border-radius:10px;
+ padding:12px;text-align:center;color:#777;
+ display:flex;align-items:center;justify-content:center;
+}
+</style>
 </head>
+
 <body>
-    <div class="trust-bar">🔒 <strong>100% Client-Side Processing.</strong> Text is modified instantly in your browser.</div>
-    <header class="site-header">
-        <div class="header-content">
-            <h2 class="logo" onclick="window.location.href='index.html'">ImagePDF.Pro</h2>
-            <nav>
-                <a href="index.html">Home</a>
-                <a href="jpg-to-pdf.html">JPG to PDF</a>
-                <a href="pdf-merger.html">PDF Merger</a>
-                <a href="image-compressor.html">Compress</a>
-            </nav>
-        </div>
-    </header>
 
-    <main class="content-wrapper">
-        <section class="tool-section">
-            <h1 style="font-size:1.5em;margin-bottom:18px;text-align:center">Text Case Converter</h1>
-            
-            <textarea id="textInput" placeholder="Type or paste your text here to convert its case..."></textarea>
+<div class="trust-bar" style="text-align:center;padding:8px;background:#fff;border-bottom:1px solid #eee;">
+ 🔒 <strong>100% Client-Side Processing.</strong>
+</div>
 
-            <div class="case-btns">
-                <button id="uppercaseBtn" style="background:#DC3545;">Aa → AA (UPPERCASE)</button>
-                <button id="lowercaseBtn" style="background:#00C4CC;">AA → aa (lowercase)</button>
-                <button id="titlecaseBtn" style="background:#FFC107; color:#212529;">aa → Aa (Title Case)</button>
-                <button id="sentencecaseBtn" style="background:#28A745;">aa → A. (Sentence Case)</button>
-            </div>
-            
-            <div class="case-btns">
-                <button id="copyBtn" style="background:#6c757d;">Copy Result</button>
-                <button id="clearBtn" style="background:#212529;">Clear Text</button>
-            </div>
+<header class="site-header">
+ <div class="header-content">
+  <h2 class="logo" onclick="location.href='index.html'">ImagePDF.Pro</h2>
+  <nav>
+   <a href="index.html">Home</a>
+   <a href="jpg-to-pdf.html">JPG to PDF</a>
+   <a href="pdf-merger.html">PDF Merger</a>
+   <a href="image-compressor.html">Compress</a>
+  </nav>
+ </div>
+</header>
 
-            <p id="statusMessage" style="margin-top:20px; text-align:center; font-weight:600; color:var(--color-primary);"></p>
-        </section>
+<main class="content-wrapper">
 
-        <section class="instructions-section" style="max-width:850px; margin: 40px auto; padding: 20px;">
-            <h2>Case Conversion Types</h2>
-            <p><strong>Title Case:</strong> Capitalizes the first letter of every *major* word (e.g., The Quick Brown Fox).<br>
-            <strong>Sentence Case:</strong> Capitalizes the first letter of the first word in a sentence (e.g., The quick brown fox jumps...)</p>
-        </section>
-    </main>
+    <!-- ✅ TOP AD -->
+    <div id="top-ad-slot" class="ad-box" style="min-height:90px;">
+        <noscript>Please enable JavaScript to view this ad.</noscript>
+    </div>
 
-    <footer class="site-footer" style="background:var(--color-dark);color:var(--color-muted);padding:20px 0;text-align:center;margin-top:auto;font-size:.9em;border-top:3px solid var(--color-primary);">
-        <p>&copy; 2024 <strong>ImagePDF.Pro</strong> | Built with client-side technology for maximum privacy.</p>
-    </footer>
-
-    <script>
-        const textInput = document.getElementById('textInput');
-        const statusMessage = document.getElementById('statusMessage');
-
-        function convertCase(converter) {
-            let text = textInput.value;
-            let result = '';
-            
-            if (!text) {
-                statusMessage.textContent = 'Please enter some text first.';
-                return;
-            }
-
-            switch(converter) {
-                case 'uppercase':
-                    result = text.toUpperCase();
-                    break;
-                case 'lowercase':
-                    result = text.toLowerCase();
-                    break;
-                case 'titlecase':
-                    // Title Case: Capitalizes first letter of each word
-                    result = text.toLowerCase().split(' ').map(word => {
-                        return (word.charAt(0) || '').toUpperCase() + word.slice(1);
-                    }).join(' ');
-                    break;
-                case 'sentencecase':
-                    // Sentence Case: Capitalizes first letter of the whole text
-                    result = text.toLowerCase().replace(/(^\s*\w|[.?!]\s*\w)/g, function(c) {
-                        return c.toUpperCase();
-                    });
-                    break;
-            }
-            
-            textInput.value = result;
-            statusMessage.textContent = `Text converted to ${converter.replace('case', ' Case').toUpperCase()}!`;
-        }
-
-        document.getElementById('uppercaseBtn').addEventListener('click', () => convertCase('uppercase'));
-        document.getElementById('lowercaseBtn').addEventListener('click', () => convertCase('lowercase'));
-        document.getElementById('titlecaseBtn').addEventListener('click', () => convertCase('titlecase'));
-        document.getElementById('sentencecaseBtn').addEventListener('click', () => convertCase('sentencecase'));
-
-        document.getElementById('copyBtn').addEventListener('click', () => {
-            textInput.select();
-            document.execCommand('copy');
-            statusMessage.textContent = 'Result copied to clipboard!';
-            setTimeout(() => statusMessage.textContent = '', 3000);
-        });
+    <section class="tool-section">
+        <h1 style="font-size:1.6em;margin-bottom:18px;text-align:center">
+            Text Case Converter
+        </h1>
         
-        document.getElementById('clearBtn').addEventListener('click', () => {
-            textInput.value = '';
-            statusMessage.textContent = 'Text cleared.';
-        });
-    </script>
+        <textarea id="textInput" placeholder="Type or paste your text here..."></textarea>
+
+        <div class="case-btns">
+            <button id="uppercaseBtn" style="background:#DC3545;">Aa → AA (UPPERCASE)</button>
+            <button id="lowercaseBtn" style="background:#00C4CC;">AA → aa (lowercase)</button>
+            <button id="titlecaseBtn" style="background:#FFC107;color:#212529;">aa → Aa (Title Case)</button>
+            <button id="sentencecaseBtn" style="background:#28A745;">aa → A. (Sentence Case)</button>
+        </div>
+
+        <div class="case-btns">
+            <button id="copyBtn">Copy Result</button>
+            <button id="clearBtn" style="background:#212529;">Clear Text</button>
+        </div>
+
+        <p id="statusMessage" style="margin-top:20px;text-align:center;font-weight:600;color:var(--color-primary);"></p>
+    </section>
+
+    <!-- ✅ MID AD -->
+    <div id="mid-ad-slot" class="ad-box" style="min-height:250px;max-width:300px;"></div>
+
+    <section class="instructions-section">
+        <h2>Case Conversion Types</h2>
+        <p><strong>Title Case:</strong> Capitalizes first letter of each word.<br>
+        <strong>Sentence Case:</strong> Capitalizes the first letter of a sentence.</p>
+    </section>
+
+    <!-- ✅ BOTTOM AD -->
+    <div id="bottom-ad-slot" class="ad-box" style="min-height:90px;"></div>
+
+</main>
+
+<footer>
+ © 2025 <strong>ImagePDF.Pro</strong> — Client-side Tools
+</footer>
+
+<!-- ✅ FAQ JSON-LD -->
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"FAQPage",
+"mainEntity":[
+ {
+  "@type":"Question",
+  "name":"Is data secure?",
+  "acceptedAnswer":{"@type":"Answer","text":"Yes, everything runs 100% locally in your browser."}
+ },
+ {
+  "@type":"Question",
+  "name":"What conversions are supported?",
+  "acceptedAnswer":{"@type":"Answer","text":"Uppercase, lowercase, sentence case, title case."}
+ }
+]
+}
+</script>
+
+
+<!-- ✅ DEFER JS -->
+<script defer>
+function loadAd(slotId,key,height,width){
+ let box=document.getElementById(slotId);
+ if(!box) return;
+
+ let o=document.createElement("script");
+ o.innerHTML=`
+   var atOptions={
+     'key':'${key}',
+     'format':'iframe',
+     'height':${height},
+     'width':${width},
+     'params':{}
+   };
+ `;
+ box.appendChild(o);
+
+ let s=document.createElement("script");
+ s.src="//www.topcreativeformat.com/"+key+"/invoke.js";
+ s.async=true;
+ box.appendChild(s);
+}
+
+window.addEventListener("load",()=>{
+ setTimeout(()=>{
+   loadAd("top-ad-slot","d71abad2466ac39c8d34cd4e900267b3",90,728);
+   loadAd("mid-ad-slot","3d20b33d71b53fa93676d119ed313762",250,300);
+   loadAd("bottom-ad-slot","d71abad2466ac39c8d34cd4e900267b3",90,728);
+ },150);
+});
+
+// ✅ Logic
+const ta = document.getElementById('textInput');
+const status = document.getElementById('statusMessage');
+
+function convert(type){
+ let t = ta.value;
+ if(!t){ status.textContent='Enter text first.'; return;}
+ let r='';
+
+ if(type==='uppercase') r=t.toUpperCase();
+ if(type==='lowercase') r=t.toLowerCase();
+ if(type==='titlecase')
+  r=t.toLowerCase().split(' ').map(w=>w.charAt(0).toUpperCase()+w.slice(1)).join(' ');
+ if(type==='sentencecase')
+  r=t.toLowerCase().replace(/(^\s*\w|[.?!]\s*\w)/g, c=>c.toUpperCase());
+
+ ta.value=r;
+ status.textContent='Converted: '+type;
+}
+
+uppercaseBtn.onclick=()=>convert('uppercase');
+lowercaseBtn.onclick=()=>convert('lowercase');
+titlecaseBtn.onclick=()=>convert('titlecase');
+sentencecaseBtn.onclick=()=>convert('sentencecase');
+
+copyBtn.onclick=()=>{
+ ta.select();
+ document.execCommand('copy');
+ status.textContent='Copied!';
+ setTimeout(()=>status.textContent='',2500);
+};
+clearBtn.onclick=()=>{
+ ta.value='';
+ status.textContent='Cleared!';
+};
+</script>
+
 </body>
 </html>
