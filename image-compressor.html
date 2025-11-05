@@ -1,176 +1,310 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Free Image Compressor Online | Reduce JPG, PNG, WebP (Client-side)</title>
+<meta name="description" content="Compress JPG, PNG and WebP images instantly in your browser. 100% client-side — no upload. Fast, private and free." />
+<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/image-compressor.html" />
+<meta name="robots" content="index,follow" />
+<meta property="og:title" content="Free Image Compressor Online — Private & Fast" />
+<meta property="og:description" content="Compress images in the browser. No uploads. Save bandwidth & speed up pages." />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="theme-color" content="#007AFF" />
 
-<title>Free Image Compressor Online | Reduce JPG, PNG Size (Client-Side)</title>
-<meta name="description" content="Compress JPG & PNG images online instantly. Privacy safe — processing is 100% client-side. Fast, secure & free." />
-<meta name="keywords" content="image compressor, jpg compressor, png compressor, reduce image size, client side" />
-<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/image-compressor" />
-<meta name="author" content="I❤ImagePDF.Pro" />
-
+<!-- Minimal CSS (kept inline for fastest first paint) -->
 <style>
-:root {
- --primary:#007AFF;
- --bg:#F8F9FA; --card:#fff; --text:#222; --muted:#666;
+:root{
+  --accent:#007AFF; --bg:#F7F8FA; --card:#FFFFFF; --muted:#6B7280; --text:#111;
 }
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:Inter,Arial;background:var(--bg);color:var(--text);line-height:1.6;}
-.header{background:#fff;padding:15px;box-shadow:0 1px 3px rgba(0,0,0,.1);position:sticky;top:0;z-index:100;}
-.header h1{font-size:1.4rem;font-weight:700;color:var(--primary);cursor:pointer;}
-.container{max-width:900px;margin:auto;padding:20px;}
-.card{background:var(--card);padding:25px;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,.08);}
-.drop{border:2px dashed var(--primary);padding:45px;text-align:center;border-radius:12px;cursor:pointer;}
-.drop:hover{background:#eef5ff;}
-.btn{background:var(--primary);color:#fff;border:none;padding:14px 20px;border-radius:8px;font-weight:600;cursor:pointer;width:100%;font-size:1rem;}
-.row{display:flex;gap:20px;margin-top:25px;}
-.imgBox{flex:1;border:1px solid #ddd;border-radius:8px;padding:10px;text-align:center;}
-.imgBox img{max-width:100%;max-height:200px;margin-top:10px;border-radius:6px;}
-.ad-slot{text-align:center;margin:20px auto;}
-footer{background:#000;color:#777;text-align:center;padding:20px;margin-top:40px;}
-h2{margin-top:30px;margin-bottom:10px;font-size:1.4rem;}
-ol,ul{padding-left:20px;}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+.header{background:var(--card);padding:12px 18px;border-bottom:1px solid #e8e8e8;position:sticky;top:0;z-index:60;display:flex;align-items:center;justify-content:space-between}
+.brand{font-weight:800;color:var(--accent);font-size:18px;cursor:pointer}
+.nav{display:flex;gap:14px}
+.nav a{color:var(--text);text-decoration:none;font-weight:600;font-size:14px}
+.container{max-width:980px;margin:20px auto;padding:16px}
+.card{background:var(--card);border-radius:12px;padding:20px;border:1px solid #eee;box-shadow:0 8px 24px rgba(15,23,42,0.04)}
+.title{text-align:center;font-size:20px;font-weight:800;color:var(--accent);margin-bottom:6px}
+.lead{text-align:center;color:var(--muted);margin-bottom:16px}
+
+/* drop area */
+.drop{border:2px dashed var(--accent);padding:36px;border-radius:10px;text-align:center;background:#fff}
+.drop h2{font-size:18px;margin-bottom:6px}
+.drop p{color:var(--muted);margin-bottom:10px}
+
+/* preview */
+.preview-row{display:flex;gap:16px;margin-top:18px;align-items:flex-start}
+.preview-col{flex:1;border:1px solid #eee;padding:12px;border-radius:8px;text-align:center;background:#fff}
+.preview-col img{max-width:100%;max-height:240px;border-radius:6px;display:block;margin:8px auto}
+
+/* button */
+.btn{display:inline-block;width:100%;padding:12px 14px;border-radius:8px;border:0;background:linear-gradient(90deg,var(--accent),#0056d6);color:#fff;font-weight:700;font-size:15px;cursor:pointer;margin-top:14px}
+
+/* text sections */
+.section{margin-top:20px}
+.section h3{font-size:18px;color:var(--accent);margin-bottom:10px}
+.section p, .section li{color:var(--muted);font-size:15px;line-height:1.5}
+
+/* ad slot */
+.ad-slot{width:100%;max-width:100%;margin:18px 0;display:flex;justify-content:center}
+.ad-inner{width:100%;max-width:100%;overflow:hidden;display:block}
+.ad-inner iframe, .ad-inner > div{width:100%!important;max-width:100%!important;min-width:100%!important;height:auto!important}
+
+/* footer */
+footer{margin-top:28px;background:#0b0b0b;color:#bdbdbd;padding:18px;text-align:center;border-top:3px solid var(--accent);font-size:13px}
+
+@media(max-width:720px){
+  .preview-row{flex-direction:column}
+  .preview-col img{max-height:180px}
+}
 </style>
 </head>
 <body>
 
-<header class="header">
-  <h1 onclick="location.href='index.html'">I❤ImagePDF.Pro</h1>
+<header class="header" role="banner">
+  <div class="brand" onclick="location.href='index.html'">I❤ImagePDF.Pro</div>
+  <nav class="nav" role="navigation" aria-label="Main">
+    <a href="index.html">Home</a>
+    <a href="jpg-to-pdf.html">JPG→PDF</a>
+    <a href="pdf-merger.html">Merge</a>
+    <a href="image-compressor.html">Compress</a>
+  </nav>
 </header>
 
-<div class="container">
+<main class="container" id="main">
 
-<div class="ad-slot" data-ad="top"></div>
+  <!-- TOP AD (will be lazy-loaded) -->
+  <div class="ad-slot" data-ad="top">
+    <div class="ad-inner" aria-hidden="true"></div>
+  </div>
 
-<h1 style="text-align:center;margin:25px 0;">Image Compressor — Reduce Image Size</h1>
+  <article class="card" role="application" aria-labelledby="toolTitle">
+    <h1 id="toolTitle" class="title">Image Compressor — Fast & Private</h1>
+    <p class="lead">Compress JPG, PNG, WebP in your browser. No uploads, files stay on your device.</p>
 
-<div class="card">
-    <div class="drop" onclick="fileInput.click()">
-        <h2>📁 Drag & Drop or Click to Upload</h2>
-        <p style="color:var(--muted)">Supports JPG, PNG, WEBP</p>
+    <div class="drop" id="dropArea" onclick="filePicker.click()" role="button" aria-label="Upload image">
+      <h2>📁 Drag & Drop your image or click to select</h2>
+      <p>Supported: JPG, PNG, WebP — Max size depends on your device</p>
+      <input id="filePicker" type="file" accept="image/*" style="display:none" />
     </div>
 
-    <input type="file" id="fileInput" accept="image/*" style="display:none" />
-
-    <div id="previewBox" style="display:none;">
-        <div class="row">
-            <div class="imgBox">
-                <h3>Original</h3>
-                <p id="origSize"></p>
-                <img id="origImg" />
-            </div>
-            <div class="imgBox">
-                <h3>Compressed</h3>
-                <p id="compSize"></p>
-                <img id="compImg" />
-            </div>
+    <div id="preview" style="display:none;" aria-live="polite">
+      <div class="preview-row">
+        <div class="preview-col" aria-label="Original image preview">
+          <strong>Original</strong>
+          <p id="origInfo" style="color:var(--muted);margin:8px 0">—</p>
+          <img id="origImg" alt="Original image preview" loading="lazy">
         </div>
+        <div class="preview-col" aria-label="Compressed image preview">
+          <strong>Compressed</strong>
+          <p id="compInfo" style="color:var(--muted);margin:8px 0">—</p>
+          <img id="compImg" alt="Compressed image preview" loading="lazy">
+        </div>
+      </div>
 
-        <button class="btn" id="downloadBtn" style="margin-top:25px;">Download Compressed</button>
+      <button id="downloadBtn" class="btn" disabled>Download Compressed Image</button>
     </div>
 
-</div>
+  </article>
 
-<div class="ad-slot" data-ad="mid"></div>
+  <!-- MID AD (lazy loaded) -->
+  <div class="ad-slot" data-ad="mid">
+    <div class="ad-inner" aria-hidden="true"></div>
+  </div>
 
-<h2>Why Use Our Compressor?</h2>
-<ul>
-<li>✅ 100% Client-Side — PRIVACY SAFE</li>
-<li>✅ NO FILE UPLOAD to any server</li>
-<li>✅ Ultra-Fast Compression</li>
-<li>✅ Mobile Friendly</li>
-<li>✅ FREE forever</li>
-</ul>
+  <!-- SEO & Content sections -->
+  <section class="card section" aria-labelledby="whyTitle">
+    <h3 id="whyTitle">Why Choose Our Compressor?</h3>
+    <ul>
+      <li><span style="font-weight:700">Privacy:</span> 100% client-side — no uploads or storage.</li>
+      <li><span style="font-weight:700">Fast:</span> Compression happens instantly in the browser.</li>
+      <li><span style="font-weight:700">Quality:</span> Good balance between size reduction & visual quality.</li>
+      <li><span style="font-weight:700">Free:</span> No sign-up, no limit (device dependent).</li>
+    </ul>
+  </section>
 
-<h2>Security</h2>
-<p>Your images never leave your device. Processing is done locally inside your browser.</p>
+  <section class="card section" aria-labelledby="faqTitle">
+    <h3 id="faqTitle">Frequently Asked Questions</h3>
+    <p><strong>Q:</strong> Are my images uploaded?<br><strong>A:</strong> No — everything is processed locally in your browser.</p>
+    <p><strong>Q:</strong> What formats are supported?<br><strong>A:</strong> JPG, PNG, WebP and other common image files.</p>
+    <p><strong>Q:</strong> Can I use it on mobile?<br><strong>A:</strong> Yes — it’s mobile-friendly.</p>
+  </section>
 
-<h2>FAQs</h2>
-<p><b>1) Are my images safe?</b><br>Yes — processing is local.</p>
-<p><b>2) Does quality reduce?</b><br>Yes, slightly — to reduce size.</p>
+  <!-- BOTTOM AD (lazy) -->
+  <div class="ad-slot" data-ad="bottom">
+    <div class="ad-inner" aria-hidden="true"></div>
+  </div>
 
-<div class="ad-slot" data-ad="bottom"></div>
+</main>
 
-</div>
-
-<footer>
-© 2024 I❤ImagePDF.Pro — Privacy First Tools
+<footer role="contentinfo">
+  © <span id="year"></span> I❤ImagePDF.Pro — Client-side tools for privacy & speed
 </footer>
 
-
-<!-- ✅ ✅ ✅  PASTE AD URLs HERE ONLY -->
+<!-- ===========================
+     ADS CONFIG — edit ONLY here if you want to change keys
+     =========================== -->
 <script>
-const AD_TOP    = "//www.highperformanceformat.com/d71abad2466ac39c8d34cd4e900267b3/invoke.js";
-const AD_MID    = "//www.highperformanceformat.com/3d20b33d71b53fa93676d119ed313762/invoke.js";
-const AD_BOTTOM = "//www.highperformanceformat.com/d71abad2466ac39c8d34cd4e900267b3/invoke.js";
-</script>
-
-<!-- ✅ AUTO LOAD ADS -->
-<script>
-function loadAd(url, el){
- let s=document.createElement("script");
- s.src=url;
- el.appendChild(s);
-}
-document.addEventListener("DOMContentLoaded",()=>{
- setTimeout(()=>{
-  document.querySelectorAll(".ad-slot").forEach(el=>{
-    let t = el.dataset.ad;
-    if(t==="top") loadAd(AD_TOP, el);
-    if(t==="mid") loadAd(AD_MID, el);
-    if(t==="bottom") loadAd(AD_BOTTOM, el);
-  });
- },400);
-});
-</script>
-
-<!-- ✅ Compressor script -->
-<script>
-const fileInput=document.getElementById("fileInput");
-const previewBox=document.getElementById("previewBox");
-const origImg=document.getElementById("origImg");
-const compImg=document.getElementById("compImg");
-const origSize=document.getElementById("origSize");
-const compSize=document.getElementById("compSize");
-const downloadBtn=document.getElementById("downloadBtn");
-let originalFileBlob;
-
-fileInput.onchange = e =>{
- let file=e.target.files[0];
- if(!file) return;
- originalFileBlob=file;
- origImg.src=URL.createObjectURL(file);
- origSize.innerText="Size: "+(file.size/1024).toFixed(1)+" KB";
- compress(file);
+/*
+  ADS configuration.
+  These keys were provided by you earlier.
+  If you want to change ad creative, update key / width / height here.
+*/
+const ADS = {
+  top:    { key: "d71abad2466ac39c8d34cd4e900267b3", width: 728, height: 90 },
+  mid:    { key: "3d20b33d71b53fa93676d119ed313762", width: 300, height: 250 },
+  bottom: { key: "d71abad2466ac39c8d34cd4e900267b3", width: 728, height: 90 }
 };
-function compress(file){
- let reader=new FileReader();
- reader.onload=e=>{
-    let img=new Image();
-    img.onload=()=>{
-        let c=document.createElement("canvas");
-        let ctx=c.getContext("2d");
-        c.width=img.width;
-        c.height=img.height;
-        ctx.drawImage(img,0,0);
-        c.toBlob(blob=>{
-            compImg.src=URL.createObjectURL(blob);
-            compSize.innerText="Size: "+(blob.size/1024).toFixed(1)+" KB";
-            previewBox.style.display="block";
-            downloadBtn.onclick=()=>download(blob);
-        },"image/jpeg",0.6);
+</script>
+
+<!-- ===========================
+     LAZY AD LOADER (uses atOptions + invoke.js)
+     Injects atOptions before loading invoke.js as required by Adsterra
+     =========================== -->
+<script>
+(function(){
+  // Utility to inject ad into a slot element
+  function injectAdIntoSlot(slotEl, cfg){
+    if(!cfg || !slotEl) return;
+    // set global atOptions before loading script
+    window.atOptions = {
+      key: cfg.key,
+      format: "iframe",
+      height: cfg.height,
+      width: cfg.width,
+      params: {}
     };
-    img.src=e.target.result;
- };
- reader.readAsDataURL(file);
-}
-function download(blob){
- let a=document.createElement("a");
- a.href=URL.createObjectURL(blob);
- a.download="compressed.jpg";
- a.click();
-}
+    // create script element for invoke.js
+    var s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.src = "//www.highperformanceformat.com/" + cfg.key + "/invoke.js";
+    s.async = true;
+    slotEl.appendChild(s);
+  }
+
+  // lazy-load ads shortly after DOMContentLoaded
+  document.addEventListener("DOMContentLoaded", function(){
+    // delay to allow main UI to paint
+    setTimeout(function(){
+      document.querySelectorAll('.ad-slot').forEach(function(slot){
+        var type = slot.getAttribute('data-ad');
+        if(!type) return;
+        var cfg = ADS[type];
+        if(!cfg) return;
+        // only inject into empty slots
+        if(slot.querySelector('script')) return;
+        injectAdIntoSlot(slot.querySelector('.ad-inner') || slot, cfg);
+      });
+    }, 700); // 700ms delay — tweak if needed
+  });
+})();
+</script>
+
+<!-- ===========================
+     IMAGE COMPRESSOR SCRIPT (client-side)
+     Lightweight and synchronous only when needed
+     =========================== -->
+<script>
+(function(){
+  // helpers
+  const filePicker = document.getElementById('filePicker');
+  const dropArea = document.getElementById('dropArea');
+  const previewEl = document.getElementById('preview');
+  const origImg = document.getElementById('origImg');
+  const compImg = document.getElementById('compImg');
+  const origInfo = document.getElementById('origInfo');
+  const compInfo = document.getElementById('compInfo');
+  const downloadBtn = document.getElementById('downloadBtn');
+
+  // format bytes
+  function formatBytes(bytes){
+    if(bytes === 0) return '0 Bytes';
+    var k = 1024, dm = 1, sizes = ['Bytes','KB','MB','GB'];
+    var i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+  }
+
+  // compress using canvas (jpeg)
+  function compressFile(file, quality=0.7, callback){
+    var reader = new FileReader();
+    reader.onload = function(ev){
+      var img = new Image();
+      img.onload = function(){
+        // scale if huge — keep same dimensions but you could downscale for extra size reduction
+        var canvas = document.createElement('canvas');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        var ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        canvas.toBlob(function(blob){
+          callback(blob);
+        }, 'image/jpeg', quality);
+      };
+      img.src = ev.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // handle file input
+  filePicker.addEventListener('change', function(e){
+    var f = e.target.files && e.target.files[0];
+    if(!f) return;
+    handleFile(f);
+  });
+
+  // drag & drop
+  ['dragenter','dragover','dragleave','drop'].forEach(fn=>{
+    dropArea.addEventListener(fn, function(e){
+      e.preventDefault(); e.stopPropagation();
+      dropArea.style.background = (fn === 'dragleave' || fn === 'drop') ? '#fff' : '#f0f8ff';
+    });
+  });
+  dropArea.addEventListener('drop', function(e){
+    var f = (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]) || null;
+    if(f) handleFile(f);
+  });
+
+  // main file handler
+  var latestBlob = null;
+  function handleFile(file){
+    // show original
+    origImg.loading = "lazy";
+    origImg.src = URL.createObjectURL(file);
+    origInfo.textContent = 'Name: ' + file.name + ' • ' + formatBytes(file.size);
+    previewEl.style.display = 'block';
+    downloadBtn.disabled = true;
+    // compress (default 0.7 quality)
+    // small optimization: if file is already small, just copy (but we'll compress anyway)
+    compressFile(file, 0.7, function(blob){
+      latestBlob = blob;
+      compImg.loading = "lazy";
+      compImg.src = URL.createObjectURL(blob);
+      compInfo.textContent = 'Size: ' + formatBytes(blob.size) + ' • Format: JPEG';
+      downloadBtn.disabled = false;
+      // revoke original object URLs later if needed
+    });
+  }
+
+  // download
+  downloadBtn.addEventListener('click', function(){
+    if(!latestBlob) return;
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(latestBlob);
+    // try to preserve original extension name
+    var originalName = (origInfo.textContent || 'image').split('Name: ')[1] || 'image';
+    var safeName = (originalName || 'image').replace(/\s+/g,'_').replace(/[^\w\.\-]/g,'');
+    a.download = 'compressed_' + safeName;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  });
+
+  // set current year
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
 </script>
 
 </body>
