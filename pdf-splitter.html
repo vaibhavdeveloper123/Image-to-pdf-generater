@@ -1,226 +1,380 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 
 <title>Split PDF — I ❤ ImagePDF.Pro</title>
 <meta name="description" content="Split pages from a PDF — choose page ranges or individual pages and download instantly. Everything is processed privately inside your browser." />
-
-<link rel="canonical" href="https://YOURDOMAIN.github.io/split-pdf.html" />
-
-<!-- OG / Twitter -->
+<link rel="canonical" href="https://YOURDOMAIN.github.io/pdf-splitter.html" />
+<meta name="robots" content="index,follow" />
 <meta property="og:title" content="Split PDF — I ❤ ImagePDF.Pro" />
 <meta property="og:description" content="Split pages from a PDF securely — works offline, free & fast." />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary_large_image" />
-
-<!-- PDF-lib -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<meta name="theme-color" content="#007AFF" />
 
 <!-- JSON-LD -->
 <script type="application/ld+json">
 {
- "@context": "https://schema.org",
- "@graph": [
-  {
-   "@type": "SoftwareApplication",
-   "name": "Split PDF",
-   "applicationCategory": "Utility",
-   "operatingSystem": "Web",
-   "url": "https://YOURDOMAIN.github.io/split-pdf.html",
-   "description": "Split selected pages from a PDF — secure, free, and offline."
-  },
-  {
-   "@type": "FAQPage",
-   "mainEntity": [
+  "@context": "https://schema.org",
+  "@graph": [
     {
-     "@type": "Question",
-     "name": "Is this tool free?",
-     "acceptedAnswer": {"@type":"Answer","text":"Yes — fully free to use."}
+      "@type": "SoftwareApplication",
+      "name": "PDF Splitter",
+      "applicationCategory": "Utility",
+      "operatingSystem": "Web",
+      "url": "https://YOURDOMAIN.github.io/pdf-splitter.html",
+      "description": "Split selected pages from a PDF — secure, free, and offline."
     },
     {
-     "@type": "Question",
-     "name": "Are my files uploaded?",
-     "acceptedAnswer": {"@type":"Answer","text":"No — processing happens locally in your browser."}
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is this tool free?",
+          "acceptedAnswer": { "@type":"Answer", "text":"Yes — fully free to use." }
+        },
+        {
+          "@type": "Question",
+          "name": "Are my files uploaded?",
+          "acceptedAnswer": { "@type":"Answer", "text":"No — processing happens locally in your browser." }
+        }
+      ]
     }
-   ]
-  }
- ]
+  ]
 }
 </script>
 
+<!-- Inline CSS (minimal & accessible) -->
 <style>
-body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:#f6f8fb;color:#222}
-header{
-  background:#fff;border-bottom:1px solid #eee;padding:12px 20px;
-  display:flex;justify-content:space-between;align-items:center;
-  position:sticky;top:0;z-index:99;box-shadow:0 2px 8px rgba(0,0,0,.06)
+:root{
+  --accent:#007AFF; --bg:#f6f8fb; --card:#fff; --muted:#666; --text:#111; --border:#e6e6e6;
 }
-.logo{font-size:22px;font-weight:800;color:#d9232e;cursor:pointer}
-.container{max-width:980px;margin:20px auto;padding:0 15px}
-.ad-box{margin:16px 0;background:#fff;border:1px dashed #aaa;border-radius:10px;padding:16px;text-align:center;font-size:14px;color:#777}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+.skip-link{position:absolute;left:-999px;top:auto}
+.skip-link:focus{left:12px;top:12px;background:#000;color:#fff;padding:8px;border-radius:6px;z-index:999}
+.header{background:var(--card);padding:12px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:60}
+.brand{font-weight:800;color:var(--accent);font-size:18px;cursor:pointer}
+.nav{display:flex;gap:12px}
+.nav a{color:var(--text);text-decoration:none;padding:6px;border-radius:6px;font-weight:600}
+.nav a:focus{outline:3px solid rgba(0,122,255,0.12)}
+.container{max-width:980px;margin:20px auto;padding:16px}
+.h1{font-size:22px;text-align:center;margin-bottom:6px;font-weight:800}
+.lead{text-align:center;color:var(--muted);margin-bottom:18px}
 
-.upload-area{
-  border:2px dashed #aaa;padding:22px;border-radius:12px;background:#fff;text-align:center;cursor:pointer;
-}
-.upload-area:hover{border-color:#d9232e}
-.upload-area p{margin:8px 0;color:#444}
+/* ad slot */
+.ad-slot{margin:18px 0;text-align:center}
+.ad-inner{width:100%;min-height:90px;}
 
-.controls{
-  margin-top:18px;text-align:center;
+/* upload area */
+.upload{
+  background:var(--card);border:2px dashed var(--border);padding:20px;border-radius:12px;display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;
 }
-button.main{
-  background:#d9232e;color:#fff;border:0;padding:14px 28px;border-radius:10px;cursor:pointer;
-  font-size:20px;font-weight:700;text-align:center;display:inline-block;
-}
-input.range-box{
-  width:100%;padding:10px;border:1px solid #ccc;border-radius:8px;font-size:16px;margin-top:10px;
-}
+.upload:focus{outline:3px solid rgba(0,0,0,0.06)}
+.small{color:var(--muted);font-size:14px}
 
-.info{margin-top:22px;background:#fff;padding:18px;border-radius:12px;border:1px solid #eee;box-shadow:0 2px 8px rgba(0,0,0,.04)}
-.info h2{color:#d9232e;margin-top:0}
+/* controls */
+.controls{margin-top:18px;text-align:center;display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.btn-primary{background:var(--accent);color:#fff;padding:12px 20px;border-radius:10px;border:0;font-weight:800;cursor:pointer}
+.btn-ghost{background:#fff;border:1px solid var(--border);padding:10px 14px;border-radius:8px;cursor:pointer}
 
-footer{background:#fff;border-top:1px solid #eee;margin-top:40px;padding:16px;text-align:center;color:#555}
+/* input */
+.range-box{width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;font-size:15px;margin-top:10px}
+
+/* list */
+.preview-list{margin-top:16px;display:flex;flex-direction:column;gap:10px}
+.item{display:flex;align-items:center;gap:12px;background:var(--card);padding:10px;border-radius:10px;border:1px solid var(--border)}
+.meta{flex:1}
+.meta b{display:block}
+.meta small{color:var(--muted)}
+.actions{display:flex;gap:8px;flex-shrink:0}
+.actions button{padding:6px 10px;border-radius:8px;border:1px solid var(--border);background:#fff;cursor:pointer}
+.actions button:focus{outline:3px solid rgba(0,122,255,0.12)}
+
+/* info */
+.info{margin-top:18px;background:var(--card);padding:16px;border-radius:12px;border:1px solid var(--border)}
+.info h2{color:var(--accent);margin-top:0}
+
+/* footer */
+footer{margin-top:28px;text-align:center;padding:16px;color:var(--muted);background:var(--card);border-top:1px solid var(--border)}
+
+/* responsive */
+@media(max-width:720px){
+  .item{flex-direction:column;align-items:flex-start}
+  .actions{flex-direction:row}
+}
 </style>
 </head>
 
 <body>
+<a href="#main" class="skip-link">Skip to content</a>
 
-<header>
- <div class="logo" onclick="location.href='index.html'">I ❤ ImagePDF.Pro</div>
+<header class="header" role="banner">
+  <div class="brand" onclick="location.href='index.html'">I ❤ ImagePDF.Pro</div>
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <a href="index.html">Home</a>
+    <a href="jpg-to-pdf.html">JPG→PDF</a>
+    <a href="pdf-merger.html">Merge</a>
+    <a href="pdf-splitter.html" aria-current="page">Split</a>
+  </nav>
 </header>
 
-<div class="container">
+<main id="main" class="container" role="main" aria-labelledby="pageTitle">
+  <h1 id="pageTitle" class="h1">Split PDF — Offline & Secure</h1>
+  <p class="lead">Upload a PDF, pick pages or ranges (e.g. <code>1-3,5,7</code>), then split and download. Everything runs locally.</p>
 
-  <!-- ✅ TOP AD -->
-  <div class="ad-box">[TOP AD — paste Ad code here]</div>
-
-  <h1 style="text-align:center;">Split PDF</h1>
-  <p style="text-align:center;color:#666;">Upload → Select page ranges → Split → Download new PDF</p>
-
-  <!-- Upload -->
-  <div class="upload-area" id="dropZone">
-    <strong>Drag & Drop PDF Here</strong>
-    <p>or click to browse</p>
-    <input type="file" id="fileInput" accept="application/pdf" style="display:none" />
+  <!-- TOP AD (lazy) -->
+  <div class="ad-slot" role="region" aria-label="Top advertisement" data-ad-slot="top">
+    <div class="ad-inner" aria-hidden="true"></div>
   </div>
 
-  <div style="text-align:center;margin-top:15px;">
-    <div><b>Total Pages:</b> <span id="pageCount">0</span></div>
+  <!-- Upload area -->
+  <section class="upload" id="dropZone" tabindex="0" role="button" aria-label="Add PDF file (click or drop)">
+    <strong>📁 Click or drop a PDF file here</strong>
+    <p class="small">Supported: PDF. After loading, enter pages (e.g. <em>1-3,5</em>) and click Split.</p>
+    <input id="fileInput" type="file" accept="application/pdf" aria-label="Choose PDF file" style="display:none">
+  </section>
+
+  <div style="text-align:center;margin-top:12px">
+    <strong>Total Pages:</strong> <span id="pageCount">0</span>
   </div>
 
-  <div class="controls">
-    <label>Select pages (ex: <b>1-3,5,7</b>)</label>
-    <input class="range-box" type="text" id="pageInput" placeholder="Enter page numbers here" />
-    <br><br>
-    <button id="splitBtn" class="main">Split PDF</button>
+  <div class="controls" role="region" aria-label="Split controls">
+    <label for="pageInput" style="display:block;width:100%;text-align:center">Select pages (ex: <code>1-3,5,7</code>)</label>
+    <input id="pageInput" class="range-box" type="text" placeholder="Enter pages to extract" aria-label="Pages to extract" />
+    <button id="splitBtn" class="btn-primary" aria-label="Split PDF">Split PDF</button>
+    <button id="clearBtn" class="btn-ghost" aria-label="Clear file">Clear</button>
   </div>
 
-  <!-- ✅ MID AD -->
-  <div class="ad-box">[MID AD — paste Ad code here]</div>
-
-  <!-- Privacy -->
-  <div class="info">
-    <h2>🔐 Privacy & Security</h2>
-    <p>✅ 100% local — files never upload anywhere.</p>
+  <!-- MID AD -->
+  <div class="ad-slot" role="region" aria-label="Middle advertisement" data-ad-slot="mid">
+    <div class="ad-inner" aria-hidden="true"></div>
   </div>
 
-  <div class="info">
-    <h2>✨ Why This Tool?</h2>
-    <p>✅ Fast local processing</p>
-    <p>✅ Select page numbers</p>
-    <p>✅ No installation</p>
-    <p>✅ Safe for private documents</p>
+  <div id="status" aria-live="polite" style="margin-top:12px;color:var(--muted)"></div>
+
+  <div class="info" role="region" aria-labelledby="privacyTitle">
+    <h2 id="privacyTitle">🔐 Privacy & Security</h2>
+    <p>All processing happens in your browser — no file uploads, no server storage. Safe for private documents.</p>
   </div>
 
-  <!-- ✅ BOTTOM AD -->
-  <div class="ad-box">[BOTTOM AD — paste Ad code here]</div>
-
-  <div class="info">
-    <h2>❓ FAQ</h2>
-    <p><b>Is it free?</b> Yes</p>
-    <p><b>Are files uploaded?</b> No — processed locally</p>
+  <div class="info" role="region" aria-labelledby="whyTitle">
+    <h2 id="whyTitle">✨ Why use this tool?</h2>
+    <ul>
+      <li>Fast client-side splitting</li>
+      <li>Enter ranges or individual pages</li>
+      <li>Works on mobile & desktop</li>
+    </ul>
   </div>
 
-</div>
+  <!-- BOTTOM AD -->
+  <div class="ad-slot" role="region" aria-label="Bottom advertisement" data-ad-slot="bottom">
+    <div class="ad-inner" aria-hidden="true"></div>
+  </div>
 
-<footer>
-  © 2025 I ❤ ImagePDF.Pro — Client-side Tools
+  <div class="info" role="region" aria-labelledby="faqTitle">
+    <h2 id="faqTitle">❓ FAQ</h2>
+    <p><strong>Is it free?</strong> — Yes.</p>
+    <p><strong>Are files uploaded?</strong> — No — everything runs locally in your browser.</p>
+  </div>
+</main>
+
+<footer role="contentinfo">
+  © <span id="year"></span> I ❤ ImagePDF.Pro — Client-side Tools
 </footer>
 
-<!-- ✅ WORKING JS -->
+<!-- =========================
+     ADS configuration (edit only if keys change)
+     ========================= -->
 <script>
-const dropZone = document.getElementById("dropZone");
-const fileInput = document.getElementById("fileInput");
-const pageCountEl = document.getElementById("pageCount");
-const splitBtn = document.getElementById("splitBtn");
-const pageInput = document.getElementById("pageInput");
+/* Ad keys provided earlier — change if needed */
+const ADS = {
+  top:    { key: "d71abad2466ac39c8d34cd4e900267b3", width: 728, height: 90 },
+  mid:    { key: "3d20b33d71b53fa93676d119ed313762", width: 300, height: 250 },
+  bottom: { key: "d71abad2466ac39c8d34cd4e900267b3", width: 728, height: 90 }
+};
+</script>
 
-let loadedPDF = null;
-let totalPages = 0;
+<!-- =========================
+     Lazy ad injector (injects atOptions then invoke.js)
+     ========================= -->
+<script>
+(function(){
+  function injectInto(slotEl, cfg){
+    if(!cfg || !slotEl) return;
+    // set atOptions required by Adsterra BEFORE script load
+    window.atOptions = {
+      key: cfg.key,
+      format: "iframe",
+      height: cfg.height,
+      width: cfg.width,
+      params: {}
+    };
+    var s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.src = "//www.highperformanceformat.com/" + cfg.key + "/invoke.js";
+    s.async = true;
+    slotEl.appendChild(s);
+  }
 
-/* Drop + browse */
-dropZone.addEventListener("click",()=>fileInput.click());
-dropZone.addEventListener("dragover",e=>{e.preventDefault();dropZone.style.borderColor="#d9232e"});
-dropZone.addEventListener("dragleave",()=>dropZone.style.borderColor="#aaa");
-dropZone.addEventListener("drop",e=>{
-  e.preventDefault();
-  dropZone.style.borderColor="#aaa";
-  loadFile(e.dataTransfer.files[0]);
-});
-fileInput.addEventListener("change",()=>loadFile(fileInput.files[0]));
+  document.addEventListener('DOMContentLoaded', function(){
+    // delay to allow main UI paint first (improves Core Web Vitals)
+    setTimeout(function(){
+      document.querySelectorAll('.ad-slot').forEach(function(slot){
+        var name = (slot.getAttribute('data-ad-slot') || slot.getAttribute('data-ad') || slot.dataset.adSlot || slot.dataset.ad).toString().trim();
+        // name could be top/mid/bottom
+        var key = (name && ADS[name]) ? name : slot.dataset.adSlot || slot.dataset.ad || slot.getAttribute('data-ad') || slot.getAttribute('data-ad-slot');
+        var cfg = ADS[key];
+        if(!cfg) return;
+        // avoid injecting multiple times
+        if(slot.querySelector('script')) return;
+        injectInto(slot.querySelector('.ad-inner') || slot, cfg);
+      });
+    }, 700); // 700ms
+  });
+})();
+</script>
 
-async function loadFile(file){
-  if(!file || file.type !== "application/pdf") return alert("Upload a valid PDF file!");
+<!-- =========================
+     PDF-splitting logic (client-side)
+     - Dynamically loads pdf-lib only when needed
+     - Accessible messages, validation, keyboard support
+     ========================= -->
+<script>
+(function(){
+  const fileInput = document.getElementById('fileInput');
+  const dropZone = document.getElementById('dropZone');
+  const pageCountEl = document.getElementById('pageCount');
+  const pageInput = document.getElementById('pageInput');
+  const splitBtn = document.getElementById('splitBtn');
+  const clearBtn = document.getElementById('clearBtn');
+  const statusEl = document.getElementById('status');
+  const yearEl = document.getElementById('year');
 
-  const bytes = await file.arrayBuffer();
-  loadedPDF = await PDFLib.PDFDocument.load(bytes);
-  totalPages = loadedPDF.getPageCount();
-  pageCountEl.textContent = totalPages;
-}
+  let loadedPDF = null;
+  let totalPages = 0;
 
-/* Parse page list like: 1-3,5,7 */
-function parsePages(str){
-  let pages = [];
-  str.split(",").forEach(part=>{
-    if(part.includes("-")){
-      const [s,e] = part.split("-").map(n=>parseInt(n,10));
-      for(let i=s;i<=e;i++) pages.push(i);
-    } else {
-      pages.push(parseInt(part,10));
+  yearEl && (yearEl.textContent = new Date().getFullYear());
+
+  // accessibility helper
+  function announce(msg){
+    statusEl.textContent = msg;
+  }
+
+  // keyboard support for drop zone (Enter/Space opens file picker)
+  dropZone.addEventListener('keydown', function(e){
+    if(e.key === 'Enter' || e.key === ' '){
+      e.preventDefault();
+      fileInput.click();
     }
   });
-  return [...new Set(pages)].filter(n=>n>=1 && n<=totalPages);
-}
 
-/* Split */
-splitBtn.addEventListener("click", async ()=>{
-  if(!loadedPDF) return alert("Upload a PDF first!");
+  dropZone.addEventListener('click', ()=>fileInput.click());
+  dropZone.addEventListener('dragover', function(e){ e.preventDefault(); dropZone.style.borderColor = '#007AFF'; });
+  dropZone.addEventListener('dragleave', function(){ dropZone.style.borderColor = ''; });
+  dropZone.addEventListener('drop', function(e){ e.preventDefault(); dropZone.style.borderColor = ''; if(e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]); });
 
-  const p = parsePages(pageInput.value.trim());
-  if(!p.length) return alert("Enter valid pages!");
+  fileInput.addEventListener('change', function(){ if(fileInput.files[0]) handleFile(fileInput.files[0]); });
 
-  const newPDF = await PDFLib.PDFDocument.create();
-  const pages = await newPDF.copyPages(loadedPDF, p.map(n=>n-1));
-  pages.forEach(pg=>newPDF.addPage(pg));
+  // parse page ranges: "1-3,5,7"
+  function parsePages(str){
+    if(!str) return [];
+    const parts = str.split(',').map(s=>s.trim()).filter(Boolean);
+    const pages = [];
+    for(const p of parts){
+      if(p.includes('-')){
+        const [a,b] = p.split('-').map(n=>parseInt(n,10));
+        if(Number.isFinite(a) && Number.isFinite(b) && a<=b){
+          for(let i=a;i<=b;i++) pages.push(i);
+        }
+      } else {
+        const n = parseInt(p,10);
+        if(Number.isFinite(n)) pages.push(n);
+      }
+    }
+    // normalize, unique, valid range
+    return [...new Set(pages)].filter(n => n>=1 && n<=totalPages).sort((a,b)=>a-b);
+  }
 
-  const out = await newPDF.save();
-  download(out, "split.pdf");
-});
+  // dynamic load of pdf-lib when needed
+  function loadPdfLib(){
+    return new Promise((resolve,reject)=>{
+      if(window.PDFLib && window.PDFLib.PDFDocument) return resolve(window.PDFLib);
+      const s = document.createElement('script');
+      s.src = "https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js";
+      s.onload = ()=> resolve(window.PDFLib);
+      s.onerror = ()=> reject(new Error('Failed to load pdf-lib'));
+      document.head.appendChild(s);
+    });
+  }
 
-/* Download helper */
-function download(data,filename){
-  const blob = new Blob([data],{type:"application/pdf"});
-  const url = URL.createObjectURL(blob);
-  const a=document.createElement("a");
-  a.href=url;
-  a.download=filename;
-  a.click();
-  URL.revokeObjectURL(url);
-}
+  async function handleFile(file){
+    if(!file) return;
+    if(file.type !== 'application/pdf'){ alert('Please upload a PDF file'); return; }
+    announce('Loading PDF...');
+    try{
+      const bytes = await file.arrayBuffer();
+      // load pdf-lib lazily to parse page count
+      const PDFLib = await loadPdfLib();
+      const pdfDoc = await PDFLib.PDFDocument.load(bytes);
+      loadedPDF = pdfDoc;
+      totalPages = pdfDoc.getPageCount();
+      pageCountEl.textContent = totalPages;
+      announce('PDF loaded: ' + totalPages + ' page(s). Enter pages to split.');
+    }catch(err){
+      console.error(err);
+      alert('Failed to load PDF. See console for details.');
+      announce('Load failed.');
+    }
+  }
+
+  splitBtn.addEventListener('click', async function(){
+    if(!loadedPDF){ alert('Please upload a PDF first.'); return; }
+    const pages = parsePages(pageInput.value);
+    if(!pages.length){ alert('Enter valid page numbers or ranges (e.g. 1-2,4)'); return; }
+    announce('Preparing split...');
+    splitBtn.disabled = true;
+    splitBtn.textContent = 'Splitting...';
+
+    try{
+      const PDFLib = await loadPdfLib();
+      const { PDFDocument } = PDFLib;
+      const newPdf = await PDFDocument.create();
+      const indices = pages.map(n=>n-1); // zero-based
+      const copied = await newPdf.copyPages(loadedPDF, indices);
+      copied.forEach(p => newPdf.addPage(p));
+      const outBytes = await newPdf.save();
+      // trigger download
+      const blob = new Blob([outBytes], { type: 'application/pdf' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'split.pdf';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      announce('Split complete. Download started.');
+    }catch(err){
+      console.error(err);
+      alert('Split failed. See console.');
+      announce('Split failed.');
+    }finally{
+      splitBtn.disabled = false;
+      splitBtn.textContent = 'Split PDF';
+    }
+  });
+
+  clearBtn.addEventListener('click', function(){
+    loadedPDF = null; totalPages = 0; pageCountEl.textContent = '0'; pageInput.value = ''; fileInput.value = ''; announce('Cleared.');
+  });
+
+})();
 </script>
 
 </body>
 </html>
+```0
