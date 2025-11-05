@@ -1,254 +1,361 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Free Image Compressor Online | Reduce JPG, PNG Size (Client-Side)</title>
-    <meta name="description" content="Compress JPG, PNG, and WebP images instantly in your browser. Adjust quality, preview results, and download small files securely. 100% client-side — no uploads." />
-    <meta name="keywords" content="image compressor, reduce image size, client-side compressor, jpg compressor, png compressor, offline image compression, image optimizer" />
-    <meta name="author" content="ImagePDF.Pro" />
-    <link rel="canonical" href="https://secure-img-to-pdf.vercel.app/image-compressor" />
-    <style>
-        /* (COPY/PASTE YOUR COMPLETE CSS BLOCK FROM YOUR ORIGINAL FILE HERE) */
-        :root { --color-primary:#007AFF; --color-secondary:#00C4CC; --color-background:#F8F9FA; --color-surface:#FFFFFF; --color-dark:#212529; --color-muted:#6C757D; --color-success:#28A745; --color-error:#DC3545; }
-        *{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
-        body{font-family:Inter, 'Segoe UI', Arial, sans-serif;background:var(--color-background);color:var(--color-dark);line-height:1.6;display:flex;flex-direction:column;min-height:100vh}
-        .trust-bar{background:var(--color-success);color:var(--color-surface);padding:8px 0;text-align:center;font-size:.9em;font-weight:600}
-        .site-header{background:var(--color-surface);padding:15px 0;box-shadow:0 2px 4px rgba(0,0,0,.05);position:sticky;top:0;z-index:1000}
-        .header-content{max-width:1200px;margin:0 auto;padding:0 30px;display:flex;justify-content:space-between;align-items:center}
-        .logo{font-size:1.6em;font-weight:800;color:var(--color-primary);cursor:pointer;letter-spacing:-.5px}
-        nav a{color:var(--color-dark);text-decoration:none;margin-left:30px;font-weight:500;transition:color .3s}
-        nav a:hover{color:var(--color-primary)}
-        .content-wrapper{flex-grow:1}
-        .tool-section{max-width:850px;margin:50px auto;padding:30px;width:95%;background:var(--color-surface);border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.1);border:1px solid #EAEAEA}
-        .drop-area{border:2px dashed var(--color-primary);background:#F9FBFF;padding:60px 20px;text-align:center;border-radius:10px;transition:background-color .3s,border-color .3s;cursor:pointer}
-        .drag-text{font-size:2em;font-weight:700;color:var(--color-dark);margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:15px}
-        .file-icon{font-size:2.2em;color:var(--color-primary)}
-        .or-text{margin:15px 0;color:var(--color-muted);font-style:italic}
-        .select-btn{border:none;padding:15px 35px;font-size:1.1em;border-radius:8px;font-weight:600;cursor:pointer;box-shadow:0 4px 6px rgba:0,0,0,.1}
-        .select-btn{background:var(--color-primary);color:var(--color-surface)}
-        .compress-area{margin-top:30px;text-align:center}
-        .compress-btn{background-image:linear-gradient(to right,var(--color-secondary),var(--color-primary));color:var(--color-surface);border:none;padding:20px 30px;font-size:1.4em;font-weight:bold;border-radius:10px;width:100%;cursor:pointer;box-shadow:0 8px 15px rgba(0,122,255,.3);margin-top:20px}
-        .slider-container{margin:20px 0;padding:15px;background:#f0f0f0;border-radius:8px}
-        .image-preview-container{display:flex;justify-content:space-around;gap:20px;margin-top:30px}
-        .image-box{flex:1;text-align:center;padding:10px;border:1px solid #ccc;border-radius:8px}
-        .image-box img{max-width:100%;max-height:200px;border-radius:6px;margin-top:10px}
-        .instructions-section,.faq-section,.supporting-section{max-width:1000px;margin:0 auto;padding:60px 20px}
-        .site-footer{background:var(--color-dark);color:var(--color-muted);padding:20px 0;text-align:center;margin-top:auto;font-size:.9em;border-top:3px solid var(--color-primary)}
-        @media(max-width:768px){.tool-section{margin:30px auto 20px;padding:15px}.drag-text{font-size:1.5em}.image-preview-container{flex-direction:column}.image-box{flex:none;width:100%}}
-    </style>
+<title>Image Compressor Online | Reduce JPG/PNG/WebP Size — Free & Secure</title>
+<meta name="description" content="Compress images (JPG/PNG/WebP) instantly in your browser. 100% secure, no upload. Fast compression, privacy protected, free to use.">
+<meta name="keywords" content="image compression,image compressor,jpg to small,png compressor,reduce size online,image optimizer,client side compressor,webp compressor">
+<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/image-compressor.html">
+
+<!-- ✅ OpenGraph -->
+<meta property="og:title" content="Free Image Compressor Online — Reduce JPG/PNG/WebP Size">
+<meta property="og:description" content="Compress images instantly. Safe, fast & no uploads.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://secure-img-to-pdf.vercel.app/image-compressor.html">
+
+<!-- ✅ Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Image Compressor Online">
+<meta name="twitter:description" content="Compress JPG, PNG, WebP safely — private & instant">
+
+<style>
+
+/* ===== ROOT ===== */
+:root{
+--p:#dc3545;
+--bg:#f7f7f7;
+--dark:#222;
+--text:#555;
+--white:#fff;
+}
+
+/* ===== RESET ===== */
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,Arial,Helvetica}
+
+/* ===== LAYOUT ===== */
+body{background:var(--bg);color:var(--dark);line-height:1.6;display:flex;flex-direction:column;min-height:100vh}
+
+/* ===== HEADER ===== */
+.header{
+background:#fff;
+padding:15px 25px;
+border-bottom:1px solid #ddd;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:100
+}
+.logo{
+font-size:1.5rem;
+font-weight:700;
+color:var(--p);
+cursor:pointer;
+}
+nav a{
+margin-left:20px;
+text-decoration:none;
+color:var(--dark);
+font-weight:500
+}
+nav a:hover{color:var(--p)}
+
+/* ===== TOOL CONTAINER ===== */
+.container{
+max-width:950px;
+margin:auto;
+padding:20px;
+}
+
+/* ===== BOX ===== */
+.card{
+background:#fff;
+padding:25px;
+border-radius:10px;
+border:1px solid #eee;
+box-shadow:0 4px 10px rgba(0,0,0,0.07);
+margin-top:25px;
+}
+
+/* ===== DROP AREA ===== */
+.drop-area{
+border:2px dashed var(--p);
+padding:45px 20px;
+text-align:center;
+border-radius:12px;
+background:#fff7f7;
+cursor:pointer;
+}
+
+.drag-title{
+font-size:1.4rem;
+font-weight:700;
+margin-bottom:8px;
+}
+
+/* ===== BUTTON ===== */
+.btn{
+padding:14px 25px;
+font-size:1rem;
+border-radius:6px;
+border:none;
+cursor:pointer;
+background:var(--p);
+color:#fff;
+font-weight:600;
+width:100%;
+}
+
+/* ===== PREVIEW ===== */
+.preview-row{
+display:flex;
+gap:20px;
+margin-top:25px;
+}
+.preview-box{
+flex:1;
+border:1px solid #ddd;
+padding:12px;
+border-radius:8px;
+text-align:center;
+}
+.preview-box img{
+max-width:100%;
+max-height:200px;
+border-radius:6px;
+}
+
+/* ===== FAQ / SECURITY ===== */
+.section-title{
+font-size:1.4rem;
+font-weight:700;
+margin:20px 0 10px;
+}
+ul li{margin-bottom:8px;color:var(--text)}
+
+/* ===== AD SLOTS ===== */
+.ad-slot{width:100%;max-width:100%;margin:20px auto;display:flex;justify-content:center}
+.ad-inner{width:100%;max-width:100%;overflow:hidden}
+.ad-inner iframe,
+.ad-inner>div{
+width:100%!important;
+max-width:100%!important;
+min-width:100%!important;
+}
+
+/* ===== FOOTER ===== */
+footer{
+margin-top:auto;
+background:#111;
+color:#ccc;
+text-align:center;
+padding:18px;
+font-size:.9rem;
+}
+
+@media(max-width:768px){
+.preview-row{flex-direction:column}
+}
+
+</style>
 </head>
+
 <body>
-    <div class="trust-bar" aria-hidden="false">
-        🔒 <strong>100% Client-Side Processing.</strong> Your files are compressed in-browser only — no upload.
-    </div>
 
-    <header class="site-header" role="banner">
-        <div class="header-content">
-            <h2 class="logo" onclick="window.location.href='index.html'" aria-label="Client PDF Home">ImagePDF.Pro</h2>
-            <nav role="navigation" aria-label="Main navigation">
-    <a href="index.html">Home</a>
-    <a href="jpg-to-pdf.html">JPG to PDF</a>
-    <a href="pdf-merger.html">PDF Merger</a> 
-    <a href="image-compressor.html">Compress</a>
-</nav>
+<header class="header">
+    <h2 class="logo" onclick="location.href='index.html'">I❤ImagePDF.Pro</h2>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="jpg-to-pdf.html">JPG→PDF</a>
+        <a href="pdf-merger.html">Merge PDF</a>
+        <a href="image-compressor.html">Compress</a>
+    </nav>
+</header>
 
-        </div>
-    </header>
 
-    <main class="content-wrapper" id="main">
-        <section class="tool-section" role="application" aria-label="Image Compression Tool">
-            <h1 style="font-size:1.5em;margin-bottom:18px;text-align:center">Image Compressor — Reduce File Size Instantly</h1>
+<div class="container">
 
-            <div style="margin: 20px 0; text-align: center;">
-                <script type="text/javascript">
-                atOptions = {
-                    'key' : 'd71abad2466ac39c8d34cd4e900267b3', // Replace with your Adsterra Code
-                    'format' : 'iframe',
-                    'height' : 90,
-                    'width' : 728,
-                    'params' : {}
-                };
-                </script>
-                <script type="text/javascript" src="//www.highperformanceformat.com/d71abad2466ac39c8d34cd4e900267b3/invoke.js"></script>
-            </div>
-            <div class="drop-area" id="dropArea" onclick="document.getElementById('fileInput').click()" role="button">
-                <h2 class="drag-text">
-                    <span class="file-icon" aria-hidden="true">🖼️</span>
-                    Drag &amp; Drop Your Image Here
-                </h2>
-                <p class="or-text">OR</p>
-                <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" style="display:none" />
-                <button class="select-btn" onclick="event.stopPropagation(); document.getElementById('fileInput').click()">Select Image</button>
-                <p class="file-count" id="fileStatus" style="margin-top:10px;">Supported: JPG, PNG, WebP</p>
-            </div>
+<!-- ✅ TOP AD -->
+<div class="ad-slot">
+  <div class="ad-inner">
+  <script type="text/javascript">
+	atOptions = {
+		'key' : 'd71abad2466ac39c8d34cd4e900267b3',
+		'format' : 'iframe',
+		'height' : 90,
+		'width' : 728,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/d71abad2466ac39c8d34cd4e900267b3/invoke.js"></script>
+  </div>
+</div>
 
-            <div id="compressionControls" style="display:none;" class="slider-container">
-                <label for="qualitySlider" style="display:block; font-weight:600; margin-bottom: 10px;">
-                    Compression Quality: <span id="qualityValue">70</span>%
-                </label>
-                <input type="range" id="qualitySlider" min="10" max="100" value="70" step="5" style="width:100%;" />
-            </div>
+<!-- MAIN TOOL -->
+<div class="card" style="margin-top:15px">
+<h1 style="text-align:center;margin-bottom:15px">Image Compressor — Free Online</h1>
 
-            <div id="previewArea" class="image-preview-container" style="display:none;">
-                <div class="image-box">
-                    <h3>Original Image</h3>
-                    <p id="originalSize">Size: 0 KB</p>
-                    <img id="originalPreview" src="" alt="Original Image Preview" />
-                </div>
-                <div class="image-box">
-                    <h3>Compressed Image</h3>
-                    <p id="compressedSize">Size: 0 KB</p>
-                    <img id="compressedPreview" src="" alt="Compressed Image Preview" />
-                </div>
-            </div>
+<div class="drop-area" onclick="fileInput.click()">
+<p class="drag-title">Drop Image or Click to Select</p>
+<p>Supports JPG, PNG, WebP</p>
+<input type="file" id="fileInput" accept="image/*" style="display:none">
+</div>
 
-            <div class="compress-area">
-                <button class="compress-btn" id="compressBtn" disabled>Compress & Download</button>
-                <p id="statusMessage" style="color:var(--color-primary); margin-top:10px; font-weight:600;"></p>
-            </div>
-        </section>
+<!-- Preview Panel -->
+<div id="previewRow" class="preview-row" style="display:none;">
+<div class="preview-box">
+<h3>Original</h3>
+<p id="origSize">Size: 0 KB</p>
+<img id="origImg">
+</div>
+<div class="preview-box">
+<h3>Compressed</h3>
+<p id="compSize">Size: 0 KB</p>
+<img id="compImg">
+</div>
+</div>
 
-        <div style="margin: 20px auto; text-align: center;">
-            <script type="text/javascript">
-                atOptions = {
-                    'key' : 'c86965263f96cf9e5f0bf8d6fe3ba28c', // Replace with your Adsterra Code
-                    'format' : 'iframe',
-                    'height' : 50,
-                    'width' : 320,
-                    'params' : {}
-                };
-            </script>
-            <script type="text/javascript" src="//www.highperformanceformat.com/c86965263f96cf9e5f0bf8d6fe3ba28c/invoke.js"></script>
-        </div>
-        <section id="seo-content" class="instructions-section">
-            <h2>Why Use a Client-Side Image Compressor?</h2>
-            <p style="color:var(--color-muted);max-width:850px;margin:0 auto 20px">
-                Using an in-browser image compressor offers the best speed and security.
-            </p>
-            <h3>Benefits of Client-Side Compression:</h3>
-            <ul>
-                <li>**Maximum Privacy:** Your images are never uploaded to a server; all processing occurs locally.</li>
-                <li>**Zero Latency:** Compression is instant, limited only by your device's CPU.</li>
-                <li>**SEO Advantage:** Smaller image files help your website load faster, improving your Google ranking.</li>
-                <li>**Cost-Effective:** Saves your bandwidth and server costs.</li>
-            </ul>
-        </section>
+<button id="downloadBtn" class="btn" style="margin-top:18px" disabled>Download</button>
 
-    </main>
+</div>
 
-    <footer class="site-footer" role="contentinfo">
-        <p>&copy; 2024 <strong>ImagePDF.Pro</strong> | Built with client-side technology for maximum privacy.</p>
-    </footer>
 
-    <script>
-        const fileInput = document.getElementById('fileInput');
-        const qualitySlider = document.getElementById('qualitySlider');
-        const qualityValue = document.getElementById('qualityValue');
-        const compressBtn = document.getElementById('compressBtn');
-        const originalPreview = document.getElementById('originalPreview');
-        const compressedPreview = document.getElementById('compressedPreview');
-        const originalSize = document.getElementById('originalSize');
-        const compressedSize = document.getElementById('compressedSize');
-        const previewArea = document.getElementById('previewArea');
-        const compressionControls = document.getElementById('compressionControls');
-        const statusMessage = document.getElementById('statusMessage');
-        const dropArea = document.getElementById('dropArea');
+<!-- ✅ MID AD -->
+<div class="ad-slot">
+  <div class="ad-inner">
+  <script type="text/javascript">
+	atOptions = {
+		'key' : '3d20b33d71b53fa93676d119ed313762',
+		'format' : 'iframe',
+		'height' : 250,
+		'width' : 300,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/3d20b33d71b53fa93676d119ed313762/invoke.js"></script>
+  </div>
+</div>
 
-        let originalFile = null;
 
-        function formatBytes(bytes, decimals = 2) {
-            if (bytes === 0) return '0 Bytes';
-            const k = 1024;
-            const dm = decimals < 0 ? 0 : decimals;
-            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-            const i = Math.floor(Math.log(bytes) / Math.log(k));
-            return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
-        }
+<!-- WHY CHOOSE -->
+<div class="card">
+<h2 class="section-title">Why Use Our Image Compressor?</h2>
+<ul>
+<li>✅ 100% Client-Side — no upload</li>
+<li>✅ Super-fast & secure</li>
+<li>✅ Ideal for web, apps, sharing</li>
+<li>✅ Works offline too</li>
+<li>✅ Keeps good quality</li>
+</ul>
+</div>
 
-        function compressAndPreview() {
-            if (!originalFile) return;
+<!-- SECURITY -->
+<div class="card">
+<h2 class="section-title">Security & Privacy</h2>
+<p>Your files NEVER leave your device — everything happens inside your browser only.</p>
+<ul>
+<li>No storage on server</li>
+<li>No tracking</li>
+<li>No personal data collected</li>
+</ul>
+</div>
 
-            statusMessage.textContent = "Compressing...";
-            const quality = qualitySlider.value / 100;
-            qualityValue.textContent = qualitySlider.value;
-            
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                const img = new Image();
-                img.onload = function() {
-                    const canvas = document.createElement('canvas');
-                    const ctx = canvas.getContext('2d');
-                    
-                    canvas.width = img.width;
-                    canvas.height = img.height;
-                    
-                    ctx.drawImage(img, 0, 0, img.width, img.height);
-                    
-                    canvas.toBlob(function(blob) {
-                        const compressedUrl = URL.createObjectURL(blob);
-                        compressedPreview.src = compressedUrl;
-                        compressedSize.textContent = `Size: ${formatBytes(blob.size)}`;
-                        
-                        statusMessage.textContent = "Ready to download.";
-                        compressBtn.disabled = false;
-                        compressBtn.onclick = () => downloadCompressed(blob);
+<!-- FAQ -->
+<div class="card">
+<h2 class="section-title">FAQ</h2>
+<ul>
+<li>Is it safe? → Yes. Files stay local.</li>
+<li>Max Image Size? → Depends on your device.</li>
+<li>Works on mobile? → Yes.</li>
+<li>Is it free? → Yes, forever.</li>
+</ul>
+</div>
 
-                    }, 'image/jpeg', quality); 
-                };
-                img.src = event.target.result;
-            };
-            reader.readAsDataURL(originalFile);
-        }
+<!-- HOW TO USE -->
+<div class="card">
+<h2 class="section-title">How to Use?</h2>
+<ol>
+<li>Select image or drag-drop</li>
+<li>Wait for compression</li>
+<li>Preview + Download</li>
+</ol>
+</div>
 
-        function downloadCompressed(blob) {
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `compressed_${originalFile.name.replace(/\.[^/.]+$/, "")}.jpeg`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url); 
-            statusMessage.textContent = "Download complete! Select a new image.";
-        }
 
-        fileInput.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (file && file.type.startsWith('image/')) {
-                originalFile = file;
-                const originalUrl = URL.createObjectURL(file);
+<!-- ✅ BOTTOM AD -->
+<div class="ad-slot">
+  <div class="ad-inner">
+<script type="text/javascript">
+	atOptions = {
+		'key' : 'd71abad2466ac39c8d34cd4e900267b3',
+		'format' : 'iframe',
+		'height' : 90,
+		'width' : 728,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/d71abad2466ac39c8d34cd4e900267b3/invoke.js"></script>
+  </div>
+</div>
 
-                originalPreview.src = originalUrl;
-                originalSize.textContent = `Size: ${formatBytes(file.size)}`;
-                previewArea.style.display = 'flex';
-                compressionControls.style.display = 'block';
-                
-                compressAndPreview();
-            } else if (file) {
-                statusMessage.textContent = "Error: Please select an image file (JPG, PNG, WebP).";
-            }
-        });
 
-        qualitySlider.addEventListener('input', compressAndPreview);
+</div><!-- container -->
 
-        // Drag and Drop
-        ['dragenter','dragover','dragleave','drop'].forEach(eventName => {
-            dropArea.addEventListener(eventName, (e) => {
-                e.preventDefault(); e.stopPropagation();
-                if (eventName === 'dragenter' || eventName === 'dragover') dropArea.classList.add('drag-over');
-                else dropArea.classList.remove('drag-over');
-            }, false);
-        });
 
-        dropArea.addEventListener('drop', (e) => {
-            dropArea.classList.remove('drag-over');
-            const dt = e.dataTransfer;
-            fileInput.files = dt.files;
-            fileInput.dispatchEvent(new Event('change')); 
-        }, false);
+<footer>
+© 2025 I❤ImagePDF.Pro — All Rights Reserved
+</footer>
 
-    </script>
+<script>
+const fileInput=document.getElementById("fileInput");
+const origImg=document.getElementById("origImg");
+const compImg=document.getElementById("compImg");
+const origSize=document.getElementById("origSize");
+const compSize=document.getElementById("compSize");
+const previewRow=document.getElementById("previewRow");
+const downloadBtn=document.getElementById("downloadBtn");
+let originalFile, compressedBlob;
+
+fileInput.onchange=e=>{
+const file=e.target.files[0];
+if(!file)return;
+originalFile=file;
+
+origSize.textContent="Size: "+(file.size/1024).toFixed(1)+" KB";
+origImg.src=URL.createObjectURL(file);
+
+const reader=new FileReader();
+reader.onload=function(ev){
+let img=new Image();
+img.onload=function(){
+let canvas=document.createElement("canvas");
+let ctx=canvas.getContext("2d");
+canvas.width=img.width;canvas.height=img.height;
+ctx.drawImage(img,0,0);
+
+canvas.toBlob(b=>{
+compressedBlob=b;
+compImg.src=URL.createObjectURL(b);
+compSize.textContent="Size: "+(b.size/1024).toFixed(1)+" KB";
+previewRow.style.display="flex";
+downloadBtn.disabled=false;
+},'image/jpeg',0.7);
+};
+img.src=ev.target.result;
+};
+reader.readAsDataURL(file);
+};
+
+downloadBtn.onclick=()=>{
+const a=document.createElement("a");
+a.href=URL.createObjectURL(compressedBlob);
+a.download="compressed_"+originalFile.name;
+a.click();
+};
+</script>
+
 </body>
 </html>
