@@ -4,357 +4,173 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>Image Compressor Online | Reduce JPG/PNG/WebP Size — Free & Secure</title>
-<meta name="description" content="Compress images (JPG/PNG/WebP) instantly in your browser. 100% secure, no upload. Fast compression, privacy protected, free to use.">
-<meta name="keywords" content="image compression,image compressor,jpg to small,png compressor,reduce size online,image optimizer,client side compressor,webp compressor">
-<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/image-compressor.html">
-
-<!-- ✅ OpenGraph -->
-<meta property="og:title" content="Free Image Compressor Online — Reduce JPG/PNG/WebP Size">
-<meta property="og:description" content="Compress images instantly. Safe, fast & no uploads.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://secure-img-to-pdf.vercel.app/image-compressor.html">
-
-<!-- ✅ Twitter -->
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Free Image Compressor Online">
-<meta name="twitter:description" content="Compress JPG, PNG, WebP safely — private & instant">
+<title>Free Image Compressor Online | Reduce JPG, PNG Size (Client-Side)</title>
+<meta name="description" content="Compress JPG & PNG images online instantly. Privacy safe — processing is 100% client-side. Fast, secure & free." />
+<meta name="keywords" content="image compressor, jpg compressor, png compressor, reduce image size, client side" />
+<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/image-compressor" />
+<meta name="author" content="I❤ImagePDF.Pro" />
 
 <style>
-
-/* ===== ROOT ===== */
-:root{
---p:#dc3545;
---bg:#f7f7f7;
---dark:#222;
---text:#555;
---white:#fff;
+:root {
+ --primary:#007AFF;
+ --bg:#F8F9FA; --card:#fff; --text:#222; --muted:#666;
 }
-
-/* ===== RESET ===== */
-*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,Arial,Helvetica}
-
-/* ===== LAYOUT ===== */
-body{background:var(--bg);color:var(--dark);line-height:1.6;display:flex;flex-direction:column;min-height:100vh}
-
-/* ===== HEADER ===== */
-.header{
-background:#fff;
-padding:15px 25px;
-border-bottom:1px solid #ddd;
-display:flex;
-justify-content:space-between;
-align-items:center;
-position:sticky;
-top:0;
-z-index:100
-}
-.logo{
-font-size:1.5rem;
-font-weight:700;
-color:var(--p);
-cursor:pointer;
-}
-nav a{
-margin-left:20px;
-text-decoration:none;
-color:var(--dark);
-font-weight:500
-}
-nav a:hover{color:var(--p)}
-
-/* ===== TOOL CONTAINER ===== */
-.container{
-max-width:950px;
-margin:auto;
-padding:20px;
-}
-
-/* ===== BOX ===== */
-.card{
-background:#fff;
-padding:25px;
-border-radius:10px;
-border:1px solid #eee;
-box-shadow:0 4px 10px rgba(0,0,0,0.07);
-margin-top:25px;
-}
-
-/* ===== DROP AREA ===== */
-.drop-area{
-border:2px dashed var(--p);
-padding:45px 20px;
-text-align:center;
-border-radius:12px;
-background:#fff7f7;
-cursor:pointer;
-}
-
-.drag-title{
-font-size:1.4rem;
-font-weight:700;
-margin-bottom:8px;
-}
-
-/* ===== BUTTON ===== */
-.btn{
-padding:14px 25px;
-font-size:1rem;
-border-radius:6px;
-border:none;
-cursor:pointer;
-background:var(--p);
-color:#fff;
-font-weight:600;
-width:100%;
-}
-
-/* ===== PREVIEW ===== */
-.preview-row{
-display:flex;
-gap:20px;
-margin-top:25px;
-}
-.preview-box{
-flex:1;
-border:1px solid #ddd;
-padding:12px;
-border-radius:8px;
-text-align:center;
-}
-.preview-box img{
-max-width:100%;
-max-height:200px;
-border-radius:6px;
-}
-
-/* ===== FAQ / SECURITY ===== */
-.section-title{
-font-size:1.4rem;
-font-weight:700;
-margin:20px 0 10px;
-}
-ul li{margin-bottom:8px;color:var(--text)}
-
-/* ===== AD SLOTS ===== */
-.ad-slot{width:100%;max-width:100%;margin:20px auto;display:flex;justify-content:center}
-.ad-inner{width:100%;max-width:100%;overflow:hidden}
-.ad-inner iframe,
-.ad-inner>div{
-width:100%!important;
-max-width:100%!important;
-min-width:100%!important;
-}
-
-/* ===== FOOTER ===== */
-footer{
-margin-top:auto;
-background:#111;
-color:#ccc;
-text-align:center;
-padding:18px;
-font-size:.9rem;
-}
-
-@media(max-width:768px){
-.preview-row{flex-direction:column}
-}
-
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:Inter,Arial;background:var(--bg);color:var(--text);line-height:1.6;}
+.header{background:#fff;padding:15px;box-shadow:0 1px 3px rgba(0,0,0,.1);position:sticky;top:0;z-index:100;}
+.header h1{font-size:1.4rem;font-weight:700;color:var(--primary);cursor:pointer;}
+.container{max-width:900px;margin:auto;padding:20px;}
+.card{background:var(--card);padding:25px;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,.08);}
+.drop{border:2px dashed var(--primary);padding:45px;text-align:center;border-radius:12px;cursor:pointer;}
+.drop:hover{background:#eef5ff;}
+.btn{background:var(--primary);color:#fff;border:none;padding:14px 20px;border-radius:8px;font-weight:600;cursor:pointer;width:100%;font-size:1rem;}
+.row{display:flex;gap:20px;margin-top:25px;}
+.imgBox{flex:1;border:1px solid #ddd;border-radius:8px;padding:10px;text-align:center;}
+.imgBox img{max-width:100%;max-height:200px;margin-top:10px;border-radius:6px;}
+.ad-slot{text-align:center;margin:20px auto;}
+footer{background:#000;color:#777;text-align:center;padding:20px;margin-top:40px;}
+h2{margin-top:30px;margin-bottom:10px;font-size:1.4rem;}
+ol,ul{padding-left:20px;}
 </style>
 </head>
-
 <body>
 
 <header class="header">
-    <h2 class="logo" onclick="location.href='index.html'">I❤ImagePDF.Pro</h2>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="jpg-to-pdf.html">JPG→PDF</a>
-        <a href="pdf-merger.html">Merge PDF</a>
-        <a href="image-compressor.html">Compress</a>
-    </nav>
+  <h1 onclick="location.href='index.html'">I❤ImagePDF.Pro</h1>
 </header>
-
 
 <div class="container">
 
-<!-- ✅ TOP AD -->
-<div class="ad-slot">
-  <div class="ad-inner">
-  <script type="text/javascript">
-	atOptions = {
-		'key' : 'd71abad2466ac39c8d34cd4e900267b3',
-		'format' : 'iframe',
-		'height' : 90,
-		'width' : 728,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/d71abad2466ac39c8d34cd4e900267b3/invoke.js"></script>
-  </div>
-</div>
+<div class="ad-slot" data-ad="top"></div>
 
-<!-- MAIN TOOL -->
-<div class="card" style="margin-top:15px">
-<h1 style="text-align:center;margin-bottom:15px">Image Compressor — Free Online</h1>
+<h1 style="text-align:center;margin:25px 0;">Image Compressor — Reduce Image Size</h1>
 
-<div class="drop-area" onclick="fileInput.click()">
-<p class="drag-title">Drop Image or Click to Select</p>
-<p>Supports JPG, PNG, WebP</p>
-<input type="file" id="fileInput" accept="image/*" style="display:none">
-</div>
-
-<!-- Preview Panel -->
-<div id="previewRow" class="preview-row" style="display:none;">
-<div class="preview-box">
-<h3>Original</h3>
-<p id="origSize">Size: 0 KB</p>
-<img id="origImg">
-</div>
-<div class="preview-box">
-<h3>Compressed</h3>
-<p id="compSize">Size: 0 KB</p>
-<img id="compImg">
-</div>
-</div>
-
-<button id="downloadBtn" class="btn" style="margin-top:18px" disabled>Download</button>
-
-</div>
-
-
-<!-- ✅ MID AD -->
-<div class="ad-slot">
-  <div class="ad-inner">
-  <script type="text/javascript">
-	atOptions = {
-		'key' : '3d20b33d71b53fa93676d119ed313762',
-		'format' : 'iframe',
-		'height' : 250,
-		'width' : 300,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/3d20b33d71b53fa93676d119ed313762/invoke.js"></script>
-  </div>
-</div>
-
-
-<!-- WHY CHOOSE -->
 <div class="card">
-<h2 class="section-title">Why Use Our Image Compressor?</h2>
+    <div class="drop" onclick="fileInput.click()">
+        <h2>📁 Drag & Drop or Click to Upload</h2>
+        <p style="color:var(--muted)">Supports JPG, PNG, WEBP</p>
+    </div>
+
+    <input type="file" id="fileInput" accept="image/*" style="display:none" />
+
+    <div id="previewBox" style="display:none;">
+        <div class="row">
+            <div class="imgBox">
+                <h3>Original</h3>
+                <p id="origSize"></p>
+                <img id="origImg" />
+            </div>
+            <div class="imgBox">
+                <h3>Compressed</h3>
+                <p id="compSize"></p>
+                <img id="compImg" />
+            </div>
+        </div>
+
+        <button class="btn" id="downloadBtn" style="margin-top:25px;">Download Compressed</button>
+    </div>
+
+</div>
+
+<div class="ad-slot" data-ad="mid"></div>
+
+<h2>Why Use Our Compressor?</h2>
 <ul>
-<li>✅ 100% Client-Side — no upload</li>
-<li>✅ Super-fast & secure</li>
-<li>✅ Ideal for web, apps, sharing</li>
-<li>✅ Works offline too</li>
-<li>✅ Keeps good quality</li>
+<li>✅ 100% Client-Side — PRIVACY SAFE</li>
+<li>✅ NO FILE UPLOAD to any server</li>
+<li>✅ Ultra-Fast Compression</li>
+<li>✅ Mobile Friendly</li>
+<li>✅ FREE forever</li>
 </ul>
+
+<h2>Security</h2>
+<p>Your images never leave your device. Processing is done locally inside your browser.</p>
+
+<h2>FAQs</h2>
+<p><b>1) Are my images safe?</b><br>Yes — processing is local.</p>
+<p><b>2) Does quality reduce?</b><br>Yes, slightly — to reduce size.</p>
+
+<div class="ad-slot" data-ad="bottom"></div>
+
 </div>
-
-<!-- SECURITY -->
-<div class="card">
-<h2 class="section-title">Security & Privacy</h2>
-<p>Your files NEVER leave your device — everything happens inside your browser only.</p>
-<ul>
-<li>No storage on server</li>
-<li>No tracking</li>
-<li>No personal data collected</li>
-</ul>
-</div>
-
-<!-- FAQ -->
-<div class="card">
-<h2 class="section-title">FAQ</h2>
-<ul>
-<li>Is it safe? → Yes. Files stay local.</li>
-<li>Max Image Size? → Depends on your device.</li>
-<li>Works on mobile? → Yes.</li>
-<li>Is it free? → Yes, forever.</li>
-</ul>
-</div>
-
-<!-- HOW TO USE -->
-<div class="card">
-<h2 class="section-title">How to Use?</h2>
-<ol>
-<li>Select image or drag-drop</li>
-<li>Wait for compression</li>
-<li>Preview + Download</li>
-</ol>
-</div>
-
-
-<!-- ✅ BOTTOM AD -->
-<div class="ad-slot">
-  <div class="ad-inner">
-<script type="text/javascript">
-	atOptions = {
-		'key' : 'd71abad2466ac39c8d34cd4e900267b3',
-		'format' : 'iframe',
-		'height' : 90,
-		'width' : 728,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/d71abad2466ac39c8d34cd4e900267b3/invoke.js"></script>
-  </div>
-</div>
-
-
-</div><!-- container -->
-
 
 <footer>
-© 2025 I❤ImagePDF.Pro — All Rights Reserved
+© 2024 I❤ImagePDF.Pro — Privacy First Tools
 </footer>
 
+
+<!-- ✅ ✅ ✅  PASTE AD URLs HERE ONLY -->
+<script>
+const AD_TOP    = "//www.highperformanceformat.com/d71abad2466ac39c8d34cd4e900267b3/invoke.js";
+const AD_MID    = "//www.highperformanceformat.com/3d20b33d71b53fa93676d119ed313762/invoke.js";
+const AD_BOTTOM = "//www.highperformanceformat.com/d71abad2466ac39c8d34cd4e900267b3/invoke.js";
+</script>
+
+<!-- ✅ AUTO LOAD ADS -->
+<script>
+function loadAd(url, el){
+ let s=document.createElement("script");
+ s.src=url;
+ el.appendChild(s);
+}
+document.addEventListener("DOMContentLoaded",()=>{
+ setTimeout(()=>{
+  document.querySelectorAll(".ad-slot").forEach(el=>{
+    let t = el.dataset.ad;
+    if(t==="top") loadAd(AD_TOP, el);
+    if(t==="mid") loadAd(AD_MID, el);
+    if(t==="bottom") loadAd(AD_BOTTOM, el);
+  });
+ },400);
+});
+</script>
+
+<!-- ✅ Compressor script -->
 <script>
 const fileInput=document.getElementById("fileInput");
+const previewBox=document.getElementById("previewBox");
 const origImg=document.getElementById("origImg");
 const compImg=document.getElementById("compImg");
 const origSize=document.getElementById("origSize");
 const compSize=document.getElementById("compSize");
-const previewRow=document.getElementById("previewRow");
 const downloadBtn=document.getElementById("downloadBtn");
-let originalFile, compressedBlob;
+let originalFileBlob;
 
-fileInput.onchange=e=>{
-const file=e.target.files[0];
-if(!file)return;
-originalFile=file;
-
-origSize.textContent="Size: "+(file.size/1024).toFixed(1)+" KB";
-origImg.src=URL.createObjectURL(file);
-
-const reader=new FileReader();
-reader.onload=function(ev){
-let img=new Image();
-img.onload=function(){
-let canvas=document.createElement("canvas");
-let ctx=canvas.getContext("2d");
-canvas.width=img.width;canvas.height=img.height;
-ctx.drawImage(img,0,0);
-
-canvas.toBlob(b=>{
-compressedBlob=b;
-compImg.src=URL.createObjectURL(b);
-compSize.textContent="Size: "+(b.size/1024).toFixed(1)+" KB";
-previewRow.style.display="flex";
-downloadBtn.disabled=false;
-},'image/jpeg',0.7);
+fileInput.onchange = e =>{
+ let file=e.target.files[0];
+ if(!file) return;
+ originalFileBlob=file;
+ origImg.src=URL.createObjectURL(file);
+ origSize.innerText="Size: "+(file.size/1024).toFixed(1)+" KB";
+ compress(file);
 };
-img.src=ev.target.result;
-};
-reader.readAsDataURL(file);
-};
-
-downloadBtn.onclick=()=>{
-const a=document.createElement("a");
-a.href=URL.createObjectURL(compressedBlob);
-a.download="compressed_"+originalFile.name;
-a.click();
-};
+function compress(file){
+ let reader=new FileReader();
+ reader.onload=e=>{
+    let img=new Image();
+    img.onload=()=>{
+        let c=document.createElement("canvas");
+        let ctx=c.getContext("2d");
+        c.width=img.width;
+        c.height=img.height;
+        ctx.drawImage(img,0,0);
+        c.toBlob(blob=>{
+            compImg.src=URL.createObjectURL(blob);
+            compSize.innerText="Size: "+(blob.size/1024).toFixed(1)+" KB";
+            previewBox.style.display="block";
+            downloadBtn.onclick=()=>download(blob);
+        },"image/jpeg",0.6);
+    };
+    img.src=e.target.result;
+ };
+ reader.readAsDataURL(file);
+}
+function download(blob){
+ let a=document.createElement("a");
+ a.href=URL.createObjectURL(blob);
+ a.download="compressed.jpg";
+ a.click();
+}
 </script>
 
 </body>
