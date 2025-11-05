@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -10,17 +9,33 @@
 
 <link rel="canonical" href="https://YOURDOMAIN/base64-encoder-decoder.html" />
 
+<!-- ✅ Preload -->
+<link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+<link rel="dns-prefetch" href="//www.google-analytics.com">
+
+<!-- ✅ SEO Best -->
+<meta name="robots" content="index,follow" />
+<meta name="author" content="ImagePDF.Pro" />
+<meta name="theme-color" content="#ffffff"/>
+
 <style>
-body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:#f6f8fb;color:#222}
+:root{--brand:#d9232e;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+ font-family:Inter,Arial,Helvetica,sans-serif;
+ background:#f6f8fb;color:#222;line-height:1.5;
+}
+
 header{
  background:#fff;border-bottom:1px solid #eee;padding:12px 20px;
  display:flex;justify-content:space-between;align-items:center;
  position:sticky;top:0;z-index:99;box-shadow:0 2px 8px rgba(0,0,0,.06)
 }
-.logo{font-size:22px;font-weight:800;color:#d9232e;cursor:pointer}
+.logo{font-size:22px;font-weight:800;color:var(--brand);cursor:pointer}
+
 .container{max-width:980px;margin:20px auto;padding:0 15px}
 
-/* Min-height helps prevent Cumulative Layout Shift (CLS) */
+/* ✅ Prevent CLS */
 .ad-box{
  margin:16px 0;background:#fff;border:1px dashed #aaa;border-radius:10px;
  padding:16px;text-align:center;font-size:14px;color:#777;
@@ -35,32 +50,26 @@ header{
 textarea{
  width:100%;min-height:140px;padding:12px;border-radius:8px;
  border:1px solid #ccc;font-size:15px;margin-top:12px;
- box-sizing:border-box; 
 }
 
 button{
- background:#d9232e;color:#fff;border:0;padding:12px 22px;border-radius:10px;
+ background:var(--brand);color:#fff;border:0;padding:12px 22px;border-radius:10px;
  cursor:pointer;font-size:16px;font-weight:600;margin-top:12px;
- transition:background .2s; 
+ transition:background .2s;
 }
 button:hover{background:#c01f28}
 .btn2{
- background:#fff;border:1px solid #d9232e;color:#d9232e
+ background:#fff;border:1px solid var(--brand);color:var(--brand)
 }
 .btn2:hover{background:#f0f0f0}
 
-label{
- display:block;
- margin-top:15px;
- text-align:left;
- font-weight:bold;
-}
+label{display:block;margin-top:15px;text-align:left;font-weight:bold;}
 
 .info{
  margin-top:22px;background:#fff;padding:18px;border-radius:12px;
  border:1px solid #eee;box-shadow:0 2px 8px rgba(0 0 0 / 4%);
 }
-.info h2{color:#d9232e;margin-top:0}
+.info h2{color:var(--brand);margin-top:0}
 
 footer{
  background:#fff;border-top:1px solid #eee;margin-top:40px;
@@ -75,8 +84,9 @@ footer{
  <div class="logo" onclick="location.href='index.html'">I ❤ ImagePDF.Pro</div>
 </header>
 
-<div class="container" role="main">
+<main class="container">
 
+  <!-- ✅ TOP AD -->
   <div class="ad-box" id="top-ad-slot" style="min-height: 90px;">
     <noscript>Please enable JavaScript to view this ad.</noscript>
   </div>
@@ -87,156 +97,130 @@ footer{
   <div class="box">
     <h2>Base64 Conversion Tool</h2> 
 
-    <label for="input"><b>Input Text or Base64</b></label>
-    <textarea id="input" placeholder="Enter text OR Base64..." aria-label="Input field for text or base64"></textarea>
+    <label for="input">Input Text or Base64</label>
+    <textarea id="input" placeholder="Enter text OR Base64..." aria-label="Input text or Base64"></textarea>
 
-    <button id="encodeBtn" aria-label="Encode to Base64">Encode → Base64</button>
-    <button id="decodeBtn" class="btn2" aria-label="Decode to Text">Decode → Text</button>
+    <button id="encodeBtn">Encode → Base64</button>
+    <button id="decodeBtn" class="btn2">Decode → Text</button>
 
-    <label for="output"><b>Output Result</b></label>
-    <textarea id="output" readonly aria-label="Output field for results"></textarea>
+    <label for="output">Output Result</label>
+    <textarea id="output" readonly aria-label="Output result"></textarea>
 
-    <button id="copyBtn" aria-label="Copy Output to clipboard">Copy Output</button>
-    <button id="downloadBtn" class="btn2" aria-label="Download Output as TXT file">Download as TXT</button>
-
+    <button id="copyBtn">Copy Output</button>
+    <button id="downloadBtn" class="btn2">Download TXT</button>
   </div>
 
-  <div class="ad-box" id="mid-ad-slot" style="min-height: 250px; max-width: 300px; margin-left: auto; margin-right: auto;">
+  <!-- ✅ MID AD -->
+  <div class="ad-box" id="mid-ad-slot" style="min-height: 250px;max-width:300px;margin:auto;">
     <noscript>Please enable JavaScript to view this ad.</noscript>
   </div>
 
-
-  <div class="info">
+  <section class="info">
     <h2>🔐 Privacy</h2>
     <p>✅ 100% offline — input never leaves your browser.</p>
-  </div>
+  </section>
 
-  <div class="info">
+  <section class="info">
     <h2>❓ FAQ</h2>
-    <p><b>Is Base64 encryption?</b></p>
-    <p>No — it is reversible. Used for encoding binary → text.</p>
+    <p><b>Is Base64 encryption?</b> No — it’s reversible.</p>
+    <p><b>Does this store data?</b> No — everything runs locally.</p>
+  </section>
 
-    <p><b>Is my data stored?</b></p>
-    <p>No — processed locally only.</p>
-  </div>
-
+  <!-- ✅ BOTTOM AD -->
   <div class="ad-box" id="bottom-ad-slot" style="min-height: 90px;">
     <noscript>Please enable JavaScript to view this ad.</noscript>
   </div>
-</div>
+
+</main>
 
 <footer>
-  © 2025 I ❤ ImagePDF.Pro — Client-side Tools
+ © 2025 I ❤ ImagePDF.Pro — Client-side Tools
 </footer>
 
-<script defer>
-// Ad data with your keys and sizes
-const adData = {
-  // 🔑 NOTE: Please replace the 'src' value below with your actual ad network script URL!
-  'top-ad-slot': { key: 'd71abad2466ac39c8d34cd4e900267b3', format: 'iframe', height: 90, width: 728, src: '//your-ad-network-domain/invoke-top.js' },
-  'mid-ad-slot': { key: '3d20b33d71b53fa93676d119ed313762', format: 'iframe', height: 250, width: 300, src: '//your-ad-network-domain/invoke-mid.js' },
-  'bottom-ad-slot': { key: 'd71abad2466ac39c8d34cd4e900267b3', format: 'iframe', height: 90, width: 728, src: '//your-ad-network-domain/invoke-bottom.js' }
-};
+<!-- ✅ JSON-LD FAQ for SEO -->
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"FAQPage",
+"mainEntity":[
+ {
+  "@type":"Question",
+  "name":"Is Base64 encryption?",
+  "acceptedAnswer":{"@type":"Answer","text":"No — it is reversible text encoding."}
+ },
+ {
+  "@type":"Question",
+  "name":"Is my data stored?",
+  "acceptedAnswer":{"@type":"Answer","text":"No — data never leaves your device."}
+ }
+]
+}
+</script>
 
-/**
- * Function to dynamically create and append ad script elements ASYNCHRONOUSLY.
- * This is crucial for preventing ad loading from blocking the main page render.
- * 
- */
-function loadAdDynamically(slotId, data) {
-  const container = document.getElementById(slotId);
-  if (!container) return;
-  
-  // 1. atOptions object script
-  const optionsScript = document.createElement('script');
-  optionsScript.type = 'text/javascript';
-  optionsScript.innerHTML = `
+<!-- ✅ Defer JS -->
+<script defer>
+// ✅ Ad Config
+function loadAd(slotId, key, height, width){
+  const box=document.getElementById(slotId);
+  if(!box) return;
+
+  let o=document.createElement("script");
+  o.innerHTML = `
     var atOptions = {
-      'key' : '${data.key}',
-      'format' : '${data.format}',
-      'height' : ${data.height},
-      'width' : ${data.width},
-      'params' : {}
+      'key':'${key}',
+      'format':'iframe',
+      'height':${height},
+      'width':${width},
+      'params':{}
     };
   `;
-  container.appendChild(optionsScript);
+  box.appendChild(o);
 
-  // 2. Ad Network script
-  const adScript = document.createElement('script');
-  adScript.type = 'text/javascript';
-  adScript.src = data.src;
-  adScript.async = true; // <--- This ensures non-blocking load (Performance focus)
-  container.appendChild(adScript);
+  let s=document.createElement("script");
+  s.src="//www.topcreativeformat.com/"+key+"/invoke.js";
+  s.async=true;
+  box.appendChild(s);
 }
 
-// Event Listener to ensure all HTML is parsed and visible before loading external scripts
-// This greatly improves the First Contentful Paint (FCP) and Time to Interactive (TTI) scores.
-window.addEventListener('load', () => {
-    // Delay loading of ads by 100ms
-    setTimeout(() => {
-        loadAdDynamically('top-ad-slot', adData['top-ad-slot']);
-        loadAdDynamically('mid-ad-slot', adData['mid-ad-slot']);
-        loadAdDynamically('bottom-ad-slot', adData['bottom-ad-slot']);
-    }, 100);
+window.addEventListener("load",()=>{
+  setTimeout(()=>{
+    loadAd("top-ad-slot","d71abad2466ac39c8d34cd4e900267b3",90,728);
+    loadAd("mid-ad-slot","3d20b33d71b53fa93676d119ed313762",250,300);
+    loadAd("bottom-ad-slot","d71abad2466ac39c8d34cd4e900267b3",90,728);
+  },150);
 });
 
-// ------------------------------------
-// Base64 Tool Logic (Optimized for UTF-8 and modern Clipboard API)
-// ------------------------------------
-const inputEl = document.getElementById("input");
-const outputEl = document.getElementById("output");
-const encodeBtn = document.getElementById("encodeBtn");
-const decodeBtn = document.getElementById("decodeBtn");
-const copyBtn = document.getElementById("copyBtn");
-const downloadBtn = document.getElementById("downloadBtn");
+// ✅ Base64 logic
+const $=id=>document.getElementById(id);
+encodeBtn.onclick=()=>{
+ try{
+  const data=new TextEncoder().encode(input.value);
+  output.value=btoa(String.fromCharCode(...data));
+ }catch{alert("Invalid!")}
+}
 
-encodeBtn.addEventListener("click", () => {
-  try {
-    // Correct Base64 encoding for UTF-8 characters (important for non-English text)
-    const utf8Encoded = new TextEncoder().encode(inputEl.value);
-    outputEl.value = btoa(String.fromCharCode(...utf8Encoded));
-  } catch (e) {
-    alert("Error: Could not encode the input!");
-  }
-});
+decodeBtn.onclick=()=>{
+ try{
+  const bin=atob(input.value);
+  const bytes=new Uint8Array([...bin].map(c=>c.charCodeAt(0)));
+  output.value=new TextDecoder().decode(bytes);
+ }catch{alert("Not Base64!")}
+}
 
-decodeBtn.addEventListener("click", () => {
-  try {
-    // Correct Base64 decoding for UTF-8 characters
-    const binaryString = atob(inputEl.value);
-    const len = binaryString.length;
-    const bytes = new Uint8Array(len);
-    for (let i = 0; i < len; i++) {
-      bytes[i] = binaryString.charCodeAt(i);
-    }
-    outputEl.value = new TextDecoder().decode(bytes);
-  } catch (e) {
-    alert("Error: Invalid Base64 format!");
-  }
-});
+copyBtn.onclick=async()=>{
+ try{
+  await navigator.clipboard.writeText(output.value);
+  alert("Copied!");
+ }catch{e}{alert("Failed");}
+}
 
-// Modern Clipboard API for better accessibility and reliability
-copyBtn.addEventListener("click", async () => {
-  try {
-    await navigator.clipboard.writeText(outputEl.value);
-    alert("Copied to clipboard!");
-  } catch (err) {
-    alert("Failed to copy! Trying fallback...");
-    // Fallback for older browsers
-    outputEl.select();
-    document.execCommand("copy"); 
-  }
-});
-
-downloadBtn.addEventListener("click", () => {
-  const blob = new Blob([outputEl.value], {type: "text/plain"});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "base64-output.txt";
-  a.click();
-  URL.revokeObjectURL(url);
-});
+downloadBtn.onclick=()=>{
+ const blob=new Blob([output.value],{type:"text/plain"});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");
+ a.href=url;a.download="base64-output.txt";a.click();
+ URL.revokeObjectURL(url);
+}
 </script>
 
 </body>
