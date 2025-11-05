@@ -1,87 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 
 <title>Compress PDF — I ❤ ImagePDF.Pro</title>
-<meta name="description" content="Compress PDF file size offline — fast, secure & free. 100% client-side PDF compression.">
+<meta name="description" content="Compress PDF offline — Real PDF compression powered by GhostScript via WASM. Fast, private & secure.">
 
-<link rel="canonical" href="https://YOURDOMAIN.github.io/compress-pdf.html" />
+<link rel="canonical" href="https://YOURDOMAIN/compress-pdf.html" />
 
-<!-- OG -->
 <meta property="og:title" content="Compress PDF — I ❤ ImagePDF.Pro">
-<meta property="og:description" content="Compress PDF offline. Fast, secure & fully client-side.">
-<meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary_large_image"/>
+<meta property="og:description" content="Real PDF compression offline. Works locally, no upload.">
+<meta property="og:type" content="website"/>
+<meta name="twitter:card" content="summary_large_image">
 
-<!-- PDF-LIB -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
-
-<!-- JSON-LD SCHEMA -->
+<!-- ✅ JSON-LD -->
 <script type="application/ld+json">
 {
  "@context":"https://schema.org",
- "@graph":[
-  {
-   "@type":"SoftwareApplication",
-   "name":"Compress PDF",
-   "applicationCategory":"Utility",
-   "operatingSystem":"Web",
-   "url":"https://YOURDOMAIN.github.io/compress-pdf.html",
-   "description":"Compress PDF offline — fast & secure."
-  },
-  {
-   "@type":"FAQPage",
-   "mainEntity":[
-    {
-     "@type":"Question",
-     "name":"Is this tool free?",
-     "acceptedAnswer":{"@type":"Answer","text":"Yes, 100% free."}
-    },
-    {
-     "@type":"Question",
-     "name":"Are files uploaded to server?",
-     "acceptedAnswer":{"@type":"Answer","text":"No — compressed locally in your browser."}
-    }
-   ]
-  }
- ]
+ "@type":"SoftwareApplication",
+ "name":"Compress PDF",
+ "url":"https://YOURDOMAIN/compress-pdf.html",
+ "applicationCategory":"Utility",
+ "operatingSystem":"Web",
+ "description":"Compress PDF offline using GhostScript-WASM. Secure & private.",
+ "offers": {"@type":"Offer","price":"0","priceCurrency":"USD"}
 }
 </script>
 
 <style>
-body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:#f6f8fb;color:#222}
+body{margin:0;font-family:Inter,Arial;background:#f6f8fb;color:#111;line-height:1.5}
 header{
- background:#fff;border-bottom:1px solid #eee;padding:12px 20px;display:flex;
- justify-content:space-between;align-items:center;
- position:sticky;top:0;z-index:99;box-shadow:0 2px 8px rgba(0,0,0,.06)
+background:#fff;border-bottom:1px solid #eee;padding:12px 20px;
+display:flex;justify-content:space-between;align-items:center;
+position:sticky;top:0;z-index:99;box-shadow:0 2px 8px rgba(0,0,0,.06)
 }
 .logo{font-size:22px;font-weight:800;color:#d9232e;cursor:pointer}
-.container{max-width:980px;margin:20px auto;padding:0 15px}
+.container{max-width:900px;margin:20px auto;padding:0 15px}
+h1{text-align:center;margin:6px 0}
+.subtitle{text-align:center;color:#666;margin-top:0}
+
 .ad-box{
- margin:16px 0;background:#fff;border:1px dashed #aaa;border-radius:10px;
- padding:16px;text-align:center;font-size:14px;color:#777
+margin:16px 0;background:#fff;border:1px dashed #aaa;border-radius:10px;
+padding:16px;text-align:center;font-size:14px;color:#777;min-height:80px
 }
 .upload-area{
- border:2px dashed #aaa;padding:22px;border-radius:12px;background:#fff;text-align:center;cursor:pointer
+border:2px dashed #aaa;padding:22px;border-radius:12px;background:#fff;text-align:center;cursor:pointer
 }
 .upload-area:hover{border-color:#d9232e}
 .upload-area p{margin:8px 0;color:#444}
 
 button.main{
- background:#d9232e;color:#fff;border:0;padding:14px 28px;border-radius:10px;cursor:pointer;
- font-size:20px;font-weight:700;text-align:center;display:inline-block;margin:18px auto;
+background:#d9232e;color:#fff;border:0;padding:14px 28px;border-radius:10px;
+cursor:pointer;font-size:20px;font-weight:700;display:inline-block;margin:18px auto;
 }
-select{padding:10px;border-radius:8px;border:1px solid #bbb;font-size:15px}
+
+select{
+padding:10px;border-radius:8px;border:1px solid #bbb;font-size:15px;margin-top:8px
+}
+
 .info{
- margin-top:22px;background:#fff;padding:18px;border-radius:12px;border:1px solid #eee;
- box-shadow:0 2px 8px rgba(0,0,0,.04)
+margin-top:22px;background:#fff;padding:18px;border-radius:12px;border:1px solid #eee;
+box-shadow:0 2px 8px rgba(0,0,0,.04)
 }
 .info h2{color:#d9232e;margin-top:0}
+
+#status{text-align:center;color:#d9232e;font-weight:600;margin-top:15px;font-size:16px}
+
 footer{
- background:#fff;border-top:1px solid #eee;margin-top:40px;padding:16px;text-align:center;color:#555
+background:#fff;border-top:1px solid #eee;margin-top:40px;padding:16px;text-align:center;color:#555
 }
 </style>
 </head>
@@ -89,133 +76,165 @@ footer{
 <body>
 
 <header>
- <div class="logo" onclick="location.href='index.html'">I ❤ ImagePDF.Pro</div>
+ <div class="logo" onclick="location.href='index.html'" aria-label="Go Home">
+   I ❤ ImagePDF.Pro
+ </div>
 </header>
 
 <div class="container">
 
-  <!-- TOP AD -->
-  <div class="ad-box">[TOP AD — paste here]</div>
+ <!-- ✅ TOP AD -->
+ <div class="ad-box" id="adTop"></div>
 
-  <h1 style="text-align:center;">Compress PDF</h1>
-  <p style="text-align:center;color:#666;">Reduce PDF size — secure & offline</p>
+ <h1>Compress PDF</h1>
+ <p class="subtitle">Real PDF Compression — Offline</p>
 
-  <!-- Upload -->
-  <div class="upload-area" id="dropZone">
-    <strong>Drag & Drop PDF Here</strong>
-    <p>or click to browse</p>
-    <input type="file" id="fileInput" accept="application/pdf" style="display:none" />
-  </div>
+ <!-- Upload -->
+ <div class="upload-area" id="dropZone" role="button" tabindex="0">
+   <strong>📁 Drag & Drop PDF Here</strong>
+   <p>or click to browse</p>
+   <input type="file" id="fileInput" accept="application/pdf" style="display:none"/>
+ </div>
 
-  <br>
+ <div style="text-align:center;margin-top:15px;">
+   <label for="quality"><b>Compression Level:</b></label><br>
+   <select id="quality">
+     <option value="screen">High — Minimum Size</option>
+     <option value="ebook" selected>Balanced (Recommended)</option>
+     <option value="printer">Medium</option>
+     <option value="prepress">Low — Max Quality</option>
+   </select>
+ </div>
 
-  <div style="text-align:center;">
-    <label><b>Compression Level:</b></label><br>
-    <select id="quality">
-      <option value="0.4">High Compression</option>
-      <option value="0.6" selected>Balanced</option>
-      <option value="0.8">Low Compression</option>
-    </select>
-  </div>
+ <div style="text-align:center;">
+   <button id="compressBtn" class="main">Compress PDF</button>
+ </div>
 
-  <!-- CTA -->
-  <div style="text-align:center;">
-    <button id="compressBtn" class="main">Compress PDF</button>
-  </div>
+ <!-- ✅ MID AD -->
+ <div class="ad-box" id="adMid"></div>
 
-  <!-- MID AD -->
-  <div class="ad-box">[MID AD — paste here]</div>
+ <div id="status"></div>
 
-  <!-- Sections -->
-  <div class="info">
-    <h2>🔐 Privacy & Security</h2>
-    <p>✅ 100% Local Processing — Nothing is uploaded.</p>
-    <p>✅ Safe for confidential use.</p>
-  </div>
+ <div class="info">
+   <h2>🔐 Privacy & Security</h2>
+   <p>✅ 100% Client-side — No upload.</p>
+   <p>✅ Safe for confidential files.</p>
+ </div>
 
-  <div class="info">
-    <h2>✨ Why Use This?</h2>
-    <p>✅ Fast Compression</p>
-    <p>✅ Browser-based</p>
-    <p>✅ Works on mobile</p>
-    <p>✅ No install needed</p>
-  </div>
+ <div class="info">
+   <h2>✨ Why Use This Tool?</h2>
+   <p>✅ Real compression using GhostScript</p>
+   <p>✅ Offline processing</p>
+   <p>✅ Works on mobile + desktop</p>
+   <p>✅ Fast & secure</p>
+ </div>
 
-  <!-- BOTTOM AD -->
-  <div class="ad-box">[BOTTOM AD — paste here]</div>
+ <!-- ✅ BOTTOM AD -->
+ <div class="ad-box" id="adBottom"></div>
 
-  <div class="info">
-    <h2>❓ FAQ</h2>
-    <p><b>Is it free?</b> Yes</p>
-    <p><b>Is it secure?</b> Yes, PDFs never leave device</p>
-  </div>
-
+ <div class="info">
+   <h2>❓ FAQ</h2>
+   <p><b>Is it free?</b> Yes</p>
+   <p><b>Will my PDF upload?</b> No — processed locally</p>
+   <p><b>Best mode?</b> Ebook = balanced</p>
+ </div>
 </div>
 
-<footer>© 2025 I ❤ ImagePDF.Pro — Client-side Tools</footer>
+<footer>© 2025 I ❤ ImagePDF.Pro — Tools</footer>
+
+
+<!-- ✅ Lazy-Load GhostScript -->
+<script>
+let gsReady=false;
+
+async function loadGS(){
+ if(gsReady) return;
+ const s=document.createElement("script");
+ s.src="./gs.js";
+ document.body.appendChild(s);
+ s.onload=()=>{gsReady=true;}
+}
+</script>
+
 
 <script>
-const dropZone = document.getElementById("dropZone");
-const fileInput = document.getElementById("fileInput");
-const compressBtn = document.getElementById("compressBtn");
-const qualitySel = document.getElementById("quality");
+const dz=document.getElementById("dropZone");
+const fi=document.getElementById("fileInput");
+const btn=document.getElementById("compressBtn");
+const quality=document.getElementById("quality");
+const status=document.getElementById("status");
+let inputPDF=null;
 
-let inputPDF = null;
+dz.addEventListener("click",()=>fi.click());
+fi.addEventListener("change",()=>loadPDF(fi.files[0]));
 
-/* Drag + file input */
-dropZone.addEventListener("click",()=>fileInput.click());
-dropZone.addEventListener("dragover",e=>{e.preventDefault();dropZone.style.borderColor="#d9232e"});
-dropZone.addEventListener("dragleave",()=>dropZone.style.borderColor="#aaa");
-dropZone.addEventListener("drop",e=>{
+dz.addEventListener("dragover",e=>{e.preventDefault();});
+dz.addEventListener("drop",e=>{
  e.preventDefault();
  loadPDF(e.dataTransfer.files[0]);
 });
-fileInput.addEventListener("change",()=>loadPDF(fileInput.files[0]));
 
 function loadPDF(file){
  if(!file || file.type!=="application/pdf") return alert("Upload valid PDF!");
- inputPDF = file;
- alert("PDF Loaded: " + file.name);
+ inputPDF=file;
+ status.innerHTML="✅ PDF Loaded: "+file.name;
+ loadGS();
 }
 
-/* Compress Logic */
-compressBtn.addEventListener("click",async ()=>{
- if(!inputPDF) return alert("Select PDF first!");
+btn.addEventListener("click",async ()=>{
+ if(!inputPDF) return alert("Upload a PDF first");
 
- const { PDFDocument } = PDFLib;
- const pdfBytes = await inputPDF.arrayBuffer();
- const pdf = await PDFDocument.load(pdfBytes);
+ status.innerHTML="⏳ Compressing…";
 
- const newPDF = await PDFDocument.create();
- const pages = await newPDF.copyPages(pdf, pdf.getPageIndices());
+ await loadGS();
 
- const quality = parseFloat(qualitySel.value);
+ let reader=new FileReader();
+ reader.readAsArrayBuffer(inputPDF);
 
- for(const p of pages){
-   const { width, height } = p.getSize();
-   const jpgImage = await newPDF.embedJpg(
-       await p.renderToImage({ width: width * quality, height: height * quality })
-   );
-   const page = newPDF.addPage([width, height]);
-   page.drawImage(jpgImage, {
-       x: 0, y: 0, width, height
-   });
- }
+ reader.onload=async function(){
+   const input=new Uint8Array(reader.result);
 
- const output = await newPDF.save();
- download(output, "compressed.pdf");
+   const gs=await GS.init({wasmLocation:"./gs.wasm"});
+
+   const args=[
+     "-sDEVICE=pdfwrite",
+     `-dPDFSETTINGS=/${quality.value}`,
+     "-dCompatibilityLevel=1.4",
+     "-dNOPAUSE","-dQUIET","-dBATCH",
+     "-sOutputFile=out.pdf","input.pdf"
+   ];
+
+   const files={"input.pdf":input};
+   const res=await gs.run(args,files);
+   let out=res.files["out.pdf"];
+   download(out,"compressed.pdf");
+   status.innerHTML="✅ Compression Complete!";
+ };
 });
 
-/* Download */
-function download(data, name){
- const blob = new Blob([data],{type:"application/pdf"});
- const url = URL.createObjectURL(blob);
- const a = document.createElement("a");
- a.href = url;
- a.download = name;
+function download(data,filename){
+ const blob=new Blob([data],{type:"application/pdf"});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");
+ a.href=url;
+ a.download=filename;
  a.click();
  URL.revokeObjectURL(url);
 }
+</script>
+
+
+<!-- ✅ ADS INJECTION -->
+<script>
+function injectAd(el,key,w,h){
+ document.getElementById(el).innerHTML=
+ `<script>atOptions={key:'${key}',format:'iframe',height:${h},width:${w},params:{}}<\/script>
+  <script src="//www.highperformanceformat.com/${key}/invoke.js"><\/script>`;
+}
+
+injectAd("adTop","d71abad2466ac39c8d34cd4e900267b3",728,90);
+injectAd("adMid","3d20b33d71b53fa93676d119ed313762",300,250);
+injectAd("adBottom","d71abad2466ac39c8d34cd4e900267b3",728,90);
 </script>
 
 </body>
