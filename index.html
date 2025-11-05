@@ -1,46 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ImagePDF.Pro — Free PDF, Image & Text Tools</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>❤ ImagePDF.Pro — Secure, Fast & Free PDF & Image Tools</title>
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/favicon.png">
-  <link rel="apple-touch-icon" href="/favicon.png">
-  <meta name="theme-color" content="#ffffff">
+  <!-- ✅ Favicon -->
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
 
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="Free PDF, Image & Text tools — 100% secure, client-side & private. Convert, compress, merge, split & edit PDFs and images instantly with ImagePDF.Pro.">
-  <meta name="keywords" content="PDF tools, image converter, compress PDF, merge PDF, split PDF, JPG to PDF, image resizer, secure PDF, offline PDF, ImagePDF.Pro">
-  <meta name="robots" content="index, follow">
-  <meta name="author" content="ImagePDF.Pro">
+  <!-- ✅ Basic SEO -->
+  <meta name="description" content="Secure & Free online PDF and Image tools — Convert, compress, merge, split & edit files instantly. 100% client-side, no uploads." />
+  <meta name="keywords" content="PDF tools, image to PDF, compress PDF, merge PDF, split PDF, offline tools, base64 converter, QR generator, free PDF tools" />
+  <meta name="author" content="ImagePDF.Pro" />
 
-  <!-- Open Graph (Facebook, LinkedIn) -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="ImagePDF.Pro — Free PDF, Image & Text Tools">
-  <meta property="og:description" content="Secure, fast & free tools for PDF and image editing, fully offline.">
-  <meta property="og:image" content="https://imagepdf.pro/og-image.png">
-  <meta property="og:url" content="https://imagepdf.pro">
-  <meta property="og:site_name" content="ImagePDF.Pro">
+  <!-- ✅ Open Graph (Facebook, WhatsApp, etc.) -->
+  <meta property="og:title" content="❤ ImagePDF.Pro — Secure, Fast & Free PDF & Image Tools" />
+  <meta property="og:description" content="Powerful browser-based tools for PDFs, images, and text. 100% offline, secure & free." />
+  <meta property="og:image" content="/favicon.png" />
+  <meta property="og:url" content="https://imagepdf.pro/" />
+  <meta property="og:type" content="website" />
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="ImagePDF.Pro — Free PDF, Image & Text Tools">
-  <meta name="twitter:description" content="Convert, compress & edit PDFs & images locally. No upload, no tracking.">
-  <meta name="twitter:image" content="https://imagepdf.pro/og-image.png">
+  <!-- ✅ Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="❤ ImagePDF.Pro — Secure, Fast & Free PDF & Image Tools" />
+  <meta name="twitter:description" content="Convert, compress, split, merge, and manage PDFs or images instantly — No uploads, 100% private." />
+  <meta name="twitter:image" content="/favicon.png" />
 
-  <!-- Canonical -->
-  <link rel="canonical" href="https://imagepdf.pro/">
-
-  <!-- Structured Data (JSON-LD) -->
+  <!-- ✅ Structured Data for Google -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "ImagePDF.Pro",
-    "url": "https://imagepdf.pro",
-    "description": "Free and secure PDF, image, and text tools that work 100% client-side.",
+    "url": "https://imagepdf.pro/",
+    "description": "Free and secure PDF, image & text utilities — runs entirely in your browser.",
     "publisher": {
       "@type": "Organization",
       "name": "ImagePDF.Pro",
@@ -48,49 +42,174 @@
         "@type": "ImageObject",
         "url": "https://imagepdf.pro/favicon.png"
       }
-    },
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://imagepdf.pro/search?q={search_term_string}",
-      "query-input": "required name=search_term_string"
     }
   }
   </script>
 
-  <!-- Fonts & Styles -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <!-- ✅ Performance -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="theme-color" content="#ffffff" />
 
-  <!-- Analytics / Ad scripts (unchanged) -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7894902963538131" crossorigin="anonymous"></script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HQ51HQ1RZL"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-HQ51HQ1RZL');
-  </script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fdfdfd;
+      color: #222;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    header {
+      padding: 1rem;
+      background: #fff;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    h1 {
+      color: #e91e63;
+      margin: 0;
+      font-weight: 700;
+    }
+    main {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .tool-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 1rem;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .tool-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+    .tool-icon {
+      font-size: 32px;
+      margin-bottom: 0.5rem;
+    }
+    .tool-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    .tool-desc {
+      font-size: 0.9rem;
+      color: #555;
+    }
+    footer {
+      background: #fff;
+      color: #555;
+      padding: 1rem;
+      font-size: 0.9rem;
+      margin-top: 2rem;
+      box-shadow: 0 -1px 4px rgba(0,0,0,0.1);
+    }
+  </style>
 </head>
-
 <body>
-  <header>
-    <h1>ImagePDF.Pro</h1>
-    <p>Free, secure, and powerful PDF, Image & Text Tools.</p>
-  </header>
 
-  <main>
-    <section class="tools">
-      <a href="/jpg-to-pdf.html">JPG to PDF</a>
-      <a href="/compress-pdf.html">Compress PDF</a>
-      <a href="/merge-pdf.html">Merge PDF</a>
-      <a href="/split-pdf.html">Split PDF</a>
-      <a href="/image-resizer.html">Image Resizer</a>
-      <a href="/text-tools.html">Text Tools</a>
-    </section>
-  </main>
+<header>
+  <h1>❤ ImagePDF.Pro</h1>
+  <p>Secure, Fast & Free Online Tools — 100% Client-side, No Uploads</p>
+</header>
 
-  <footer>
-    <p>© 2025 ImagePDF.Pro — 100% Client-Side & Private Tools</p>
-  </footer>
+<!-- 🔻 Adsterra Script (Top) -->
+<script type="text/javascript">
+  atOptions = {
+    'key' : 'd71abad2466ac39c8d34cd4e900267b3',
+    'format' : 'iframe',
+    'height' : 90,
+    'width' : 728,
+    'params' : {}
+  };
+</script>
+
+<main>
+  <!-- All Tools (same links preserved) -->
+  <a href="/jpg-to-pdf.html" class="tool-card">
+    <div class="tool-icon">🖼️</div>
+    <div class="tool-title">JPG to PDF</div>
+    <div class="tool-desc">Convert images to PDF securely & offline.</div>
+  </a>
+
+  <a href="/image-compressor.html" class="tool-card">
+    <div class="tool-icon">📉</div>
+    <div class="tool-title">Image Compressor</div>
+    <div class="tool-desc">Reduce image size directly in your browser.</div>
+  </a>
+
+  <a href="/image-resizer.html" class="tool-card">
+    <div class="tool-icon">📏</div>
+    <div class="tool-title">Image Resizer</div>
+    <div class="tool-desc">Resize images by px or %.</div>
+  </a>
+
+  <a href="/pdf-merger.html" class="tool-card">
+    <div class="tool-icon">📚</div>
+    <div class="tool-title">Merge PDF</div>
+    <div class="tool-desc">Merge multiple PDFs into one.</div>
+  </a>
+
+  <a href="/pdf-splitter.html" class="tool-card">
+    <div class="tool-icon">✂️</div>
+    <div class="tool-title">Split PDF</div>
+    <div class="tool-desc">Extract & split PDF pages easily.</div>
+  </a>
+
+  <a href="/compress-pdf.html" class="tool-card">
+    <div class="tool-icon">💨</div>
+    <div class="tool-title">Compress PDF</div>
+    <div class="tool-desc">Reduce PDF size quickly & safely.</div>
+  </a>
+
+  <a href="/base64-converter.html" class="tool-card">
+    <div class="tool-icon">🔤</div>
+    <div class="tool-title">Base64 Converter</div>
+    <div class="tool-desc">Encode or decode text offline.</div>
+  </a>
+
+  <a href="/case-converter.html" class="tool-card">
+    <div class="tool-icon">🔠</div>
+    <div class="tool-title">Case Converter</div>
+    <div class="tool-desc">UPPER / lower / Title Case.</div>
+  </a>
+
+  <a href="/qr-code-generator(1).html" class="tool-card">
+    <div class="tool-icon">🔳</div>
+    <div class="tool-title">QR Code Generator</div>
+    <div class="tool-desc">Create QR from text/URL instantly.</div>
+  </a>
+
+  <a href="/word-counter.html" class="tool-card">
+    <div class="tool-icon">📝</div>
+    <div class="tool-title">Word Counter</div>
+    <div class="tool-desc">Count words & characters offline.</div>
+  </a>
+</main>
+
+<!-- 🔻 Adsterra Script (Bottom) -->
+<script type="text/javascript">
+  atOptions = {
+    'key' : '3d20b33d71b53fa93676d119ed313762',
+    'format' : 'iframe',
+    'height' : 250,
+    'width' : 300,
+    'params' : {}
+  };
+</script>
+
+<footer>
+  © 2025 ❤ ImagePDF.Pro — 100% Client-side | Private | Free Forever
+</footer>
+
 </body>
 </html>
