@@ -1,259 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>I ❤ ImagePDF.Pro — Free Online Tools</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <meta name="description" content="Free client-side tools — JPG to PDF, Merge PDF, Split PDF, Compress PDF, QR Generator, Base64, Case Convert, Image Compressor, Resizer, OCR & more." />
+  <title>I ❤ ImagePDF.Pro — Free PDF & Image Tools</title>
+  <meta name="description"
+    content="Free online PDF & image tools like JPG to PDF, Merge PDF, Split PDF, Compress PDF, QR Generator, Base64, Image Resizer & more. 100% Secure & Private." />
+
+  <link rel="canonical" href="https://secure-img-to-pdf.vercel.app/" />
+
+  <!-- ✅ OG / Twitter -->
+  <meta property="og:title" content="Free Online PDF & Image Tools — I ❤ ImagePDF.Pro" />
+  <meta property="og:description"
+    content="Convert, merge, split, compress PDF, edit images, generate QR, encode Base64 & more. Fast, secure & private." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- ✅ SCHEMA -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebSite",
+    "name":"I ❤ ImagePDF.Pro",
+    "url":"https://secure-img-to-pdf.vercel.app/",
+    "description":"Free PDF, Image & Text Tools."
+  }
+  </script>
 
   <style>
-    body {margin:0;font-family:Inter,Arial;background:#f6f8fb;color:#222;}
-    header {
-      background:#fff;
-      border-bottom:1px solid #eee;
-      padding:12px 20px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      position:sticky;
-      top:0;
-      z-index:50;
-      box-shadow:0px 2px 8px rgba(0,0,0,0.06);
-    }
-    .logo {font-weight:800;font-size:22px;color:#d9232e;cursor:pointer;}
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
 
-    .tool-grid {display:flex;flex-direction:column;gap:16px;margin:20px;}
+    body {
+      margin: 0;
+      font-family: "Inter", sans-serif;
+      background: #f6f8fb;
+      color: #222;
+    }
+
+    header {
+      background: white;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+      position: sticky;
+      top: 0;
+      z-index: 99;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+    }
+
+    .logo {
+      cursor: pointer;
+      font-size: 23px;
+      font-weight: 800;
+      color: #d9232e;
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: auto;
+      padding: 12px;
+    }
+
+    .intro-card {
+      margin: 24px 0;
+      padding: 22px;
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid #e8e8e8;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .06);
+      text-align: center;
+    }
+
+    .intro-badges {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .badge {
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .b1 {
+      background: #fff1f0;
+      color: #cf1322;
+    }
+
+    .b2 {
+      background: #e6f7ff;
+      color: #1677ff;
+    }
+
+    .b3 {
+      background: #f6ffed;
+      color: #389e0d;
+    }
+
+    .b4 {
+      background: #f9f0ff;
+      color: #722ed1;
+    }
+
+    .tool-grid {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      margin-top: 20px;
+    }
 
     .tool-card {
-      background:#fff;
-      border-radius:12px;
-      display:flex;
-      gap:14px;
-      padding:16px;
-      border:1px solid #e8e8e8;
-      align-items:center;
-      box-shadow:0 2px 6px rgba(0,0,0,.06);
-      transition:all .15s;
+      background: white;
+      padding: 20px;
+      border-radius: 14px;
+      text-align: center;
+      border: 1px solid #e8e8e8;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+      transition: .2s;
+      cursor: pointer;
     }
+
     .tool-card:hover {
-      transform:translateY(-4px);
-      box-shadow:0 3px 12px rgba(0,0,0,.15);
-    }
-    .icon-box {
-      width:52px;height:52px;border-radius:10px;
-      display:flex;align-items:center;justify-content:center;
-      font-size:24px;font-weight:700;color:#fff;
+      transform: scale(1.02);
     }
 
-    .tool-info h3 {margin:0;font-size:18px;font-weight:700;}
-    .tool-info p {margin:6px 0 10px;color:#555;font-size:14px;}
-    .tool-info a {
-      background:#d9232e;color:#fff;padding:8px 12px;
-      text-decoration:none;border-radius:6px;font-weight:600;font-size:14px;
+    .tool-card span {
+      font-size: 40px;
+      display: block;
+      margin-bottom: 10px;
     }
 
-    .info{margin:24px;padding:20px;background:#fff;border-radius:14px;border:1px solid #e8e8e8;box-shadow:0 2px 8px rgba(0,0,0,.06);}
-    .info h2{margin:0 0 10px;font-size:20px;color:#d9232e;font-weight:800;}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-    footer{
-      background:#fff;border-top:1px solid #eee;padding:18px;
-      text-align:center;margin-top:20px;color:#666;font-size:14px;
+    .ad-slot {
+      background: #fff;
+      border: 1px dashed #aaa;
+      text-align: center;
+      padding: 18px;
+      border-radius: 12px;
+      color: #777;
+      margin: 16px 0;
+      font-size: 14px;
+    }
+
+    footer {
+      background: white;
+      border-top: 1px solid #ddd;
+      margin-top: 45px;
+      text-align: center;
+      padding: 16px;
+      font-size: 15px;
+      color: #444;
     }
   </style>
 </head>
 
 <body>
 
-<header>
-  <div class="logo" onclick="location.href='index.html'">I ❤ ImagePDF.Pro</div>
-</header>
+  <!-- ✅ HEADER -->
+  <header>
+    <div class="logo" onclick="location.href='/'">I ❤ ImagePDF.Pro</div>
+  </header>
 
-<!-- ✅ TOP ADS -->
-<div style="margin:10px;text-align:center;">
-  <!-- Replace YOUR_KEY -->
-  <script type="text/javascript">
-    atOptions = { 'key': 'YOUR_KEY', 'format': 'iframe', 'height': 60, 'width': 468, 'params': {} };
-  </script>
-  <script src="//www.highperformanceformat.com/YOUR_KEY/invoke.js"></script>
-</div>
+  <div class="container">
 
-<main>
-<section class="tool-grid">
+    <!-- ✅ TOP AD -->
+    <div class="ad-slot">[Top AD Slot]</div>
 
-<!---------------- EXISTING TOOLS ------------------>
+    <!-- ✅ Intro Security Header -->
+    <section class="intro-card">
+      <h1 style="font-size:26px;color:#d9232e;font-weight:800;">⚡ Secure, Fast & Free Online Tools</h1>
+      <p style="font-size:15px;color:#555;max-width:700px;margin:auto;">
+        Work with powerful PDF, Image & Text tools — directly inside your browser.
+        100% Client-side means <b>No Upload Required</b> & your files always stay private.
+      </p>
 
-<div class="tool-card">
-  <div class="icon-box" style="background:#ff4d4f;">📄</div>
-  <div class="tool-info">
-    <h3>JPG to PDF</h3><p>Convert images into PDF.</p>
-    <a href="jpg-to-pdf.html">Use Tool</a>
+      <div class="intro-badges">
+        <div class="badge b2">🔒 Private & Secure</div>
+        <div class="badge b1">⚡ Instant Processing</div>
+        <div class="badge b3">✅ No Upload</div>
+        <div class="badge b4">📱 Works Anywhere</div>
+      </div>
+    </section>
+
+    <!-- ✅ Tools Grid -->
+    <section class="tool-grid">
+
+      <a href="/jpg-to-pdf.html">
+        <div class="tool-card">
+          <span>📄➡️🖼️</span>
+          JPG to PDF
+        </div>
+      </a>
+
+      <a href="/merge-pdf.html">
+        <div class="tool-card">
+          <span>➕📄</span>
+          Merge PDF
+        </div>
+      </a>
+
+      <a href="/split-pdf.html">
+        <div class="tool-card">
+          <span>✂️📄</span>
+          Split PDF
+        </div>
+      </a>
+
+      <a href="/compress-pdf.html">
+        <div class="tool-card">
+          <span>📉📄</span>
+          Compress PDF
+        </div>
+      </a>
+
+      <a href="/qr-code-generator.html">
+        <div class="tool-card">
+          <span>🔳</span>
+          QR Generator
+        </div>
+      </a>
+
+      <a href="/base64-encoder-decoder.html">
+        <div class="tool-card">
+          <span>🔠</span>
+          Base64 Encode/Decode
+        </div>
+      </a>
+
+      <a href="/image-resizer.html">
+        <div class="tool-card">
+          <span>📏🖼️</span>
+          Image Resizer
+        </div>
+      </a>
+
+    </section>
+
+    <!-- ✅ MID AD -->
+    <div class="ad-slot">[Mid AD Slot]</div>
+
+    <footer>
+      © 2025 — I ❤ ImagePDF.Pro — 100% Secure Client-side Tools
+    </footer>
+
   </div>
-</div>
-
-<div class="tool-card">
-  <div class="icon-box" style="background:#13c2c2;">📎</div>
-  <div class="tool-info">
-    <h3>Merge PDF</h3><p>Combine multiple PDFs.</p>
-    <a href="pdf-merger.html">Use Tool</a>
-  </div>
-</div>
-
-<div class="tool-card">
-  <div class="icon-box" style="background:#ff7875;">✂️</div>
-  <div class="tool-info">
-    <h3>Split PDF</h3><p>Extract specific pages.</p>
-    <a href="pdf-splitter.html">Use Tool</a>
-  </div>
-</div>
-
-<div class="tool-card">
-  <div class="icon-box" style="background:#52c41a;">🗜️</div>
-  <div class="tool-info">
-    <h3>Compress PDF</h3><p>Reduce PDF size.</p>
-    <a href="compress-pdf.html">Use Tool</a>
-  </div>
-</div>
-
-<div class="tool-card">
-  <div class="icon-box" style="background:#722ed1;">💬</div>
-  <div class="tool-info">
-    <h3>QR Generator</h3><p>Create QR code offline.</p>
-    <a href="qr-generator.html">Use Tool</a>
-  </div>
-</div>
-
-<div class="tool-card">
-  <div class="icon-box" style="background:#722ed1;">#</div>
-  <div class="tool-info">
-    <h3>Base64 Converter</h3><p>Encode / Decode text.</p>
-    <a href="base64-converter.html">Use Tool</a>
-  </div>
-</div>
-
-<div class="tool-card">
-  <div class="icon-box" style="background:#1890ff;">Aa</div>
-  <div class="tool-info">
-    <h3>Case Converter</h3><p>UPPER/lower/title case.</p>
-    <a href="case-converter.html">Use Tool</a>
-  </div>
-</div>
-
-<!-- ✅ MID ADS -->
-<div style="margin:10px;text-align:center;">
-  <!-- Replace KEY -->
-  <script type="text/javascript">
-    atOptions = { 'key':'YOUR_KEY','format':'iframe','height':50,'width':320,'params':{} };
-  </script>
-  <script src="//www.highperformanceformat.com/YOUR_KEY/invoke.js"></script>
-</div>
-
-<!---------------- NEW TOOLS ------------------>
-
-<div class="tool-card">
-  <div class="icon-box" style="background:#faad14;">🖼️</div>
-  <div class="tool-info">
-    <h3>Image Compressor</h3><p>Reduce image size.</p>
-    <a href="tools/image-compressor.html">Use Tool</a>
-  </div>
-</div>
-
-<div class="tool-card">
-  <div class="icon-box" style="background:#722ed1;">📏</div>
-  <div class="tool-info">
-    <h3>Image Resizer</h3><p>Resize images instantly.</p>
-    <a href="tools/image-resizer.html">Use Tool</a>
-  </div>
-</div>
-
-<div class="tool-card">
-  <div class="icon-box" style="background:#13c2c2;">≠</div>
-  <div class="tool-info">
-    <h3>Text Compare</h3><p>Compare text blocks.</p>
-    <a href="tools/text-compare.html">Use Tool</a>
-  </div>
-</div>
-
-<div class="tool-card">
-  <div class="icon-box" style="background:#ff4d4f;">🎨</div>
-  <div class="tool-info">
-    <h3>Color Picker</h3><p>Pick any screen color.</p>
-    <a href="tools/color-picker.html">Use Tool</a>
-  </div>
-</div>
-
-<div class="tool-card">
-  <div class="icon-box" style="background:#1677ff;">🔠</div>
-  <div class="tool-info">
-    <h3>Image to Text (OCR)</h3><p>Extract text using OCR.</p>
-    <a href="tools/image-to-text.html">Use Tool</a>
-  </div>
-</div>
-
-<div class="tool-card">
-  <div class="icon-box" style="background:#fa8c16;">📸</div>
-  <div class="tool-info">
-    <h3>PDF to Image</h3><p>Convert PDF → images.</p>
-    <a href="tools/pdf-to-image.html">Use Tool</a>
-  </div>
-</div>
-
-<div class="tool-card">
-  <div class="icon-box" style="background:#52c41a;">🔐</div>
-  <div class="tool-info">
-    <h3>Password Generator</h3><p>Generate secure passwords.</p>
-    <a href="tools/password-generator.html">Use Tool</a>
-  </div>
-</div>
-
-<div class="tool-card">
-  <div class="icon-box" style="background:#b320ff;">🔏</div>
-  <div class="tool-info">
-    <h3>Text Encrypt / Decrypt</h3><p>Secure text encryption.</p>
-    <a href="tools/text-encrypt.html">Use Tool</a>
-  </div>
-</div>
-
-</section>
-
-<!-- ✅ SECURITY -->
-<section class="info">
-  <h2>🔐 Privacy & Security</h2>
-  <p>✅ 100% Local processing — no upload.</p>
-  <p>✅ Works offline.</p>
-  <p>✅ Safe for private documents.</p>
-</section>
-
-<!-- WHY -->
-<section class="info">
-  <h2>🔥 Why Choose Us</h2>
-  <p>⚡ Fast</p>
-  <p>🎯 Simple UI</p>
-  <p>📱 Mobile friendly</p>
-  <p>🔒 Secure by design</p>
-</section>
-
-<!-- ✅ BOTTOM ADS -->
-<div style="margin:10px;text-align:center;">
-  <script type="text/javascript">
-    atOptions = { 'key':'YOUR_KEY','format':'iframe','height':250,'width':300,'params':{} };
-  </script>
-  <script src="//www.highperformanceformat.com/YOUR_KEY/invoke.js"></script>
-</div>
-
-<!-- FAQ -->
-<section class="info">
-  <h2>❓ FAQ</h2>
-  <p><b>Is it free?</b> Yes.</p>
-  <p><b>Are files uploaded?</b> No.</p>
-  <p><b>Safe for confidential docs?</b> Yes.</p>
-</section>
-
-</main>
-
-<footer>
-  © 2025 I ❤ ImagePDF.Pro — Client-Side Tools
-</footer>
-
 </body>
+
 </html>
