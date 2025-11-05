@@ -10,8 +10,99 @@
 
 <link rel="canonical" href="https://YOURDOMAIN/base64-encoder-decoder.html" />
 
+<meta property="og:title" content="Base64 Encoder & Decoder — I ❤ ImagePDF.Pro" />
+<meta property="og:description" content="Encode or decode Base64 instantly — no upload, secure, & free." />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@graph":[
+   {
+     "@type":"SoftwareApplication",
+     "name":"Base64 Encoder Decoder",
+     "applicationCategory":"Utility",
+     "operatingSystem":"Web",
+     "url":"https://YOURDOMAIN/base64-encoder-decoder.html",
+     "description":"Encode Base64 and decode Base64 text — free, local, secure."
+   },
+   {
+     "@type":"FAQPage",
+     "mainEntity":[
+       {
+         "@type":"Question",
+         "name":"Is Base64 encoding secure?",
+         "acceptedAnswer":{"@type":"Answer","text":"No — Base64 is reversible. It's for data formatting, not security."}
+       },
+       {
+         "@type":"Question",
+         "name":"Does this tool upload data?",
+         "acceptedAnswer":{"@type":"Answer","text":"No — encoding & decoding happen completely in your browser."}
+       }
+     ]
+   }
+ ]
+}
+</script>
+
 <style>
-/* ... (CSS remains the same for now, optimizations will be in Part 2) ... */
+body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:#f6f8fb;color:#222}
+header{
+ background:#fff;border-bottom:1px solid #eee;padding:12px 20px;
+ display:flex;justify-content:space-between;align-items:center;
+ position:sticky;top:0;z-index:99;box-shadow:0 2px 8px rgba(0,0,0,.06)
+}
+.logo{font-size:22px;font-weight:800;color:#d9232e;cursor:pointer}
+.container{max-width:980px;margin:20px auto;padding:0 15px}
+
+.ad-box{
+ margin:16px 0;background:#fff;border:1px dashed #aaa;border-radius:10px;
+ padding:16px;text-align:center;font-size:14px;color:#777;
+ height:90px; /* Set height to reduce layout shift */
+ display:flex;align-items:center;justify-content:center;
+}
+
+.box{
+ background:#fff;border-radius:12px;border:1px solid #eee;
+ padding:22px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.04);
+}
+
+textarea{
+ width:100%;min-height:140px;padding:12px;border-radius:8px;
+ border:1px solid #ccc;font-size:15px;margin-top:12px;
+ box-sizing:border-box; /* Fix for responsive width */
+}
+
+button{
+ background:#d9232e;color:#fff;border:0;padding:12px 22px;border-radius:10px;
+ cursor:pointer;font-size:16px;font-weight:600;margin-top:12px;
+ transition:background .2s; /* Added smooth hover effect */
+}
+button:hover{background:#c01f28} /* Darker hover for visual feedback */
+.btn2{
+ background:#fff;border:1px solid #d9232e;color:#d9232e
+}
+.btn2:hover{background:#f0f0f0} /* Light hover for secondary button */
+
+/* Added style for input labels to separate them clearly */
+label{
+ display:block;
+ margin-top:15px;
+ text-align:left;
+ font-weight:bold;
+}
+
+.info{
+ margin-top:22px;background:#fff;padding:18px;border-radius:12px;
+ border:1px solid #eee;box-shadow:0 2px 8px rgba(0 0 0 / 4%);
+}
+.info h2{color:#d9232e;margin-top:0}
+
+footer{
+ background:#fff;border-top:1px solid #eee;margin-top:40px;
+ padding:16px;text-align:center;color:#555
+}
 </style>
 </head>
 
@@ -21,52 +112,35 @@
  <div class="logo" onclick="location.href='index.html'">I ❤ ImagePDF.Pro</div>
 </header>
 
-<div class="container">
+<div class="container" role="main">
 
-  <div class="ad-box">
-    <script type="text/javascript">
-      atOptions = {
-        'key' : 'd71abad2466ac39c8d34cd4e900267b3',
-        'format' : 'iframe',
-        'height' : 90,
-        'width' : 728,
-        'params' : {}
-      };
-    </script>
-    <script type="text/javascript" src="//www.top-ad-network.com/d71abad2466ac39c8d34cd4e900267b3/invoke.js"></script>
-    </div>
+  <div class="ad-box" id="top-ad">
+    <noscript>Please enable JavaScript to view this ad.</noscript>
+  </div>
 
   <h1 style="text-align:center;">Base64 Encoder / Decoder</h1>
   <p style="text-align:center;color:#666;">Convert text ↔ Base64 — 100% offline</p>
 
   <div class="box">
+    <h2>Base64 Conversion Tool</h2> 
 
-    <label><b>Input</b></label>
-    <textarea id="input" placeholder="Enter text OR Base64..."></textarea>
+    <label for="input"><b>Input Text or Base64</b></label>
+    <textarea id="input" placeholder="Enter text OR Base64..." aria-label="Input field for text or base64"></textarea>
 
-    <button id="encodeBtn">Encode → Base64</button>
-    <button id="decodeBtn" class="btn2">Decode → Text</button>
+    <button id="encodeBtn" aria-label="Encode to Base64">Encode → Base64</button>
+    <button id="decodeBtn" class="btn2" aria-label="Decode to Text">Decode → Text</button>
 
-    <label><b>Output</b></label>
-    <textarea id="output" readonly></textarea>
+    <label for="output"><b>Output Result</b></label>
+    <textarea id="output" readonly aria-label="Output field for results"></textarea>
 
-    <button id="copyBtn">Copy Output</button>
-    <button id="downloadBtn" class="btn2">Download as TXT</button>
+    <button id="copyBtn" aria-label="Copy Output to clipboard">Copy Output</button>
+    <button id="downloadBtn" class="btn2" aria-label="Download Output as TXT file">Download as TXT</button>
 
   </div>
 
-  <div class="ad-box">
-    <script type="text/javascript">
-      atOptions = {
-        'key' : '3d20b33d71b53fa93676d119ed313762',
-        'format' : 'iframe',
-        'height' : 250,
-        'width' : 300,
-        'params' : {}
-      };
-    </script>
-    <script type="text/javascript" src="//www.mid-ad-network.com/3d20b33d71b53fa93676d119ed313762/invoke.js"></script>
-    </div>
+  <div class="ad-box" id="mid-ad">
+    <noscript>Please enable JavaScript to view this ad.</noscript>
+  </div>
 
 
   <div class="info">
@@ -83,26 +157,117 @@
     <p>No — processed locally only.</p>
   </div>
 
-  <div class="ad-box">
-    <script type="text/javascript">
-      atOptions = {
-        'key' : 'd71abad2466ac39c8d34cd4e900267b3',
-        'format' : 'iframe',
-        'height' : 90,
-        'width' : 728,
-        'params' : {}
-      };
-    </script>
-    <script type="text/javascript" src="//www.bottom-ad-network.com/d71abad2466ac39c8d34cd4e900267b3/invoke.js"></script>
-    </div>
+  <div class="ad-box" id="bottom-ad">
+    <noscript>Please enable JavaScript to view this ad.</noscript>
+  </div>
 </div>
 
 <footer>
   © 2025 I ❤ ImagePDF.Pro — Client-side Tools
 </footer>
 
-<script>
-// ... (Your existing JavaScript remains the same for now, optimizations in Part 2) ...
+<script defer>
+// Ad data with your keys and sizes
+const adData = {
+  'top-ad': { key: 'd71abad2466ac39c8d34cd4e900267b3', format: 'iframe', height: 90, width: 728, src: '//www.top-ad-network.com/d71abad2466ac39c8d34cd4e900267b3/invoke.js' },
+  'mid-ad': { key: '3d20b33d71b53fa93676d119ed313762', format: 'iframe', height: 250, width: 300, src: '//www.mid-ad-network.com/3d20b33d71b53fa93676d119ed313762/invoke.js' },
+  'bottom-ad': { key: 'd71abad2466ac39c8d34cd4e900267b3', format: 'iframe', height: 90, width: 728, src: '//www.bottom-ad-network.com/d71abad2466ac39c8d34cd4e900267b3/invoke.js' }
+};
+
+/**
+ * Function to dynamically create and append the ad script elements with async loading.
+ */
+function loadAd(id, data) {
+  const container = document.getElementById(id);
+  if (!container) return;
+  
+  // 1. Script for atOptions object
+  const optionsScript = document.createElement('script');
+  optionsScript.type = 'text/javascript';
+  optionsScript.innerHTML = `
+    var atOptions = {
+      'key' : '${data.key}',
+      'format' : '${data.format}',
+      'height' : ${data.height},
+      'width' : ${data.width},
+      'params' : {}
+    };
+  `;
+  container.appendChild(optionsScript);
+
+  // 2. Script for ad loader
+  const adScript = document.createElement('script');
+  adScript.type = 'text/javascript';
+  adScript.src = data.src;
+  adScript.async = true; 
+  container.appendChild(adScript);
+}
+
+// Load ads after a small delay to prioritize the tool's visibility (FCP/LCP)
+setTimeout(() => {
+  loadAd('top-ad', adData['top-ad']);
+  loadAd('mid-ad', adData['mid-ad']);
+  loadAd('bottom-ad', adData['bottom-ad']);
+}, 100); 
+
+
+// ------------------------------------
+// Base64 Tool Logic (with UTF-8 fix)
+// ------------------------------------
+const inputEl = document.getElementById("input");
+const outputEl = document.getElementById("output");
+const encodeBtn = document.getElementById("encodeBtn");
+const decodeBtn = document.getElementById("decodeBtn");
+const copyBtn = document.getElementById("copyBtn");
+const downloadBtn = document.getElementById("downloadBtn");
+
+encodeBtn.addEventListener("click", () => {
+  try {
+    // Correct Base64 encoding for UTF-8 characters
+    const utf8Encoded = new TextEncoder().encode(inputEl.value);
+    outputEl.value = btoa(String.fromCharCode(...utf8Encoded));
+  } catch (e) {
+    alert("Error: Could not encode the input!");
+  }
+});
+
+decodeBtn.addEventListener("click", () => {
+  try {
+    // Correct Base64 decoding for UTF-8 characters
+    const binaryString = atob(inputEl.value);
+    const len = binaryString.length;
+    const bytes = new Uint8Array(len);
+    for (let i = 0; i < len; i++) {
+      bytes[i] = binaryString.charCodeAt(i);
+    }
+    outputEl.value = new TextDecoder().decode(bytes);
+  } catch (e) {
+    alert("Error: Invalid Base64 format!");
+  }
+});
+
+// Modern Clipboard API
+copyBtn.addEventListener("click", async () => {
+  try {
+    await navigator.clipboard.writeText(outputEl.value);
+    alert("Copied to clipboard!");
+  } catch (err) {
+    alert("Failed to copy! Your browser may not support the modern Clipboard API.");
+    // Fallback
+    outputEl.select();
+    document.execCommand("copy"); 
+  }
+});
+
+downloadBtn.addEventListener("click", () => {
+  const blob = new Blob([outputEl.value], {type: "text/plain"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "base64-output.txt";
+  a.click();
+  URL.revokeObjectURL(url);
+});
 </script>
 
 </body>
