@@ -89,6 +89,26 @@
     .thumb img{width:100%;max-height:220px}
     .actions{flex-direction:row}
   }
+  .ad-slot {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 16px auto;
+}
+
+.ad-inner {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.ad-inner iframe {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 100% !important;
+  height: auto !important;
+}
 </style>
 </head>
 <body>
@@ -100,11 +120,22 @@
 <div class="container">
 
   <!-- TOP AD Placeholder -->
-  <div class="ad-box" id="ad-top">
-    <!-- AD SLOT: Recommended sizes: 728×90 (desktop) / 320×50 (mobile).
-         To use AdSterra: paste your AdSterra zone script here (replace this comment). -->
-    [TOP AD - paste Ad code here]
+  <!-- ✅ Ad placement -->
+<div class="ad-slot">
+  <div class="ad-inner">
+    <!-- 🔻 Your Adsterra script -->
+    <script type="text/javascript">
+	atOptions = {
+		'key' : 'd71abad2466ac39c8d34cd4e900267b3',
+		'format' : 'iframe',
+		'height' : 90,
+		'width' : 728,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/d71abad2466ac39c8d34cd4e900267b3/invoke.js"></script>
   </div>
+</div>
 
   <h1 style="text-align:center">JPG → PDF</h1>
   <p style="text-align:center;color:#555">Drag & drop images, reorder them, then convert to a single PDF — all offline in your browser.</p>
@@ -149,12 +180,22 @@
   <div class="thumb-list" id="thumbList" aria-live="polite"></div>
 
   <!-- MID AD Placeholder -->
-  <div class="ad-box" id="ad-mid">
-    <!-- AD SLOT: Recommended size 300×250.
-         Paste AdSterra (or other ad) code here. -->
-    [MID AD - paste Ad code here]
+  <!-- ✅ Ad placement -->
+<div class="ad-slot">
+  <div class="ad-inner">
+    <!-- 🔻 Your Adsterra script -->
+    <script type="text/javascript">
+	atOptions = {
+		'key' : '3d20b33d71b53fa93676d119ed313762',
+		'format' : 'iframe',
+		'height' : 250,
+		'width' : 300,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/3d20b33d71b53fa93676d119ed313762/invoke.js"></script>
   </div>
-
+</div>
   <!-- Info / privacy -->
   <div class="info" role="region" aria-labelledby="privacyHeading">
     <h2 id="privacyHeading">🔐 Privacy & Security</h2>
@@ -168,11 +209,22 @@
   </div>
 
   <!-- BOTTOM AD Placeholder -->
-  <div class="ad-box" id="ad-bottom">
-    <!-- AD SLOT: Recommended size 300×250 (or 320×50 sticky).
-         Paste AdSterra (or other) code here for best revenue. -->
-    [BOTTOM AD - paste Ad code here]
+  <!-- ✅ Ad placement -->
+<div class="ad-slot">
+  <div class="ad-inner">
+    <!-- 🔻 Your Adsterra script -->
+    <script type="text/javascript">
+	atOptions = {
+		'key' : 'd71abad2466ac39c8d34cd4e900267b3',
+		'format' : 'iframe',
+		'height' : 90,
+		'width' : 728,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/d71abad2466ac39c8d34cd4e900267b3/invoke.js"></script>
   </div>
+</div>
 
   <div class="info" role="region" aria-labelledby="faqHeading">
     <h2 id="faqHeading">❓ FAQs</h2>
@@ -335,6 +387,16 @@ function fileToDataURL(file){
     r.readAsDataURL(file);
   });
 }
+</script>
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  setTimeout(() => {
+    document.querySelectorAll(".ad-inner iframe").forEach(f => {
+      f.style.width = "100%";
+      f.style.maxWidth = "100%";
+    });
+  }, 1200);
+});
 </script>
 </body>
 </html>
