@@ -1,60 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <!-- MAIN PAGE -->
+<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://secure-img-to-pdf.vercel.app/</loc>
-    <priority>1.0</priority>
-    <changefreq>weekly</changefreq>
   </url>
-
-  <!-- JPG to PDF Converter -->
   <url>
-    <loc>https://secure-img-to-pdf.vercel.app/jpg-to-pdf</loc>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
+    <loc>https://secure-img-to-pdf.vercel.app/about.html</loc>
   </url>
-
-  <!-- PDF Merger -->
   <url>
-    <loc>https://secure-img-to-pdf.vercel.app/pdf-merger</loc>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
+    <loc>https://secure-img-to-pdf.vercel.app/privacy.html</loc>
   </url>
-
-  <!-- Image Compressor -->
   <url>
-    <loc>https://secure-img-to-pdf.vercel.app/image-compressor</loc>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
+    <loc>https://secure-img-to-pdf.vercel.app/jpg-to-pdf.html</loc>
   </url>
-
-  <!-- Word Counter -->
   <url>
-    <loc>https://secure-img-to-pdf.vercel.app/word-counter</loc>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
+    <loc>https://secure-img-to-pdf.vercel.app/image-compressor.html</loc>
   </url>
-
-  <!-- PDF Splitter -->
   <url>
-    <loc>https://secure-img-to-pdf.vercel.app/pdf-splitter</loc>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
+    <loc>https://secure-img-to-pdf.vercel.app/image-resizer.html</loc>
   </url>
-
-  <!-- QR Code Generator -->
   <url>
-    <loc>https://secure-img-to-pdf.vercel.app/qr-code-generator</loc>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
+    <loc>https://secure-img-to-pdf.vercel.app/pdf-merger.html</loc>
   </url>
-
-  <!-- Case Converter -->
   <url>
-    <loc>https://secure-img-to-pdf.vercel.app/case-converter</loc>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
+    <loc>https://secure-img-to-pdf.vercel.app/pdf-splitter.html</loc>
   </url>
-
+  <url>
+    <loc>https://secure-img-to-pdf.vercel.app/compress-pdf.html</loc>
+  </url>
+  <url>
+    <loc>https://secure-img-to-pdf.vercel.app/qr-code-generator.html</loc>
+  </url>
+  <url>
+    <loc>https://secure-img-to-pdf.vercel.app/word-counter.html</loc>
+  </url>
 </urlset>
