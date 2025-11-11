@@ -3,38 +3,42 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>eSign PDF – Add Signature Online | ❤️ I❤ImagePDF</title>
-<meta name="description" content="Sign PDF documents online without uploading them. Draw or upload your signature and place it on your PDF instantly. 100% client-side, private, secure, and free.">
-<meta name="keywords" content="esign pdf, sign pdf, pdf signature, draw signature pdf, add signature to pdf, sign document online, free pdf signer, client side pdf sign, pdf signature tool, secure esign pdf, offline pdf signature, browser pdf signer, no upload pdf signer, privacy pdf signing, fast pdf signer, create digital signature, pdf-lib signer, pdf editor, pdf signing software alternative, imagepdf signer, lightweight pdf esign, free secure pdf signer, sign pdf chrome, sign pdf android, pdf signer webapp">
+<title>eSign PDF – Draw or Upload Signature Online | ❤️ I❤ImagePDF</title>
+<meta name="description" content="Add signatures to PDF files in your browser — draw with mouse or touch, or upload a signature image. 100% client-side, secure, private, and free. Works on any device.">
+<meta name="keywords" content="esign pdf, sign pdf, draw signature pdf, upload signature pdf, add signature pdf, free pdf signer, secure pdf signature, offline pdf sign tool, browser pdf signer, client side pdf signer, digital signature, private pdf signing, fast pdf signer, pdf-lib signer, imagepdf esign tool, sign pdf online free, create pdf signature, pdf signature app, add sign to pdf, pdf signature creator, esign documents free, privacy first pdf tools">
 <link rel="canonical" href="https://secure-img-to-pdf.vercel.app/esign-pdf.html">
-<meta property="og:title" content="eSign PDF – Add Signature Online | ❤️ I❤ImagePDF">
-<meta property="og:description" content="Sign PDFs instantly in your browser – private, free, and client-side.">
+
+<meta property="og:title" content="eSign PDF – Draw or Upload Signature | ❤️ I❤ImagePDF">
+<meta property="og:description" content="Sign PDF documents instantly in your browser. Draw or upload your signature – private, free, and secure.">
 <meta property="og:image" content="https://secure-img-to-pdf.vercel.app/favicon.png">
 <meta name="twitter:card" content="summary_large_image">
+
 <script type="application/ld+json">
 {
- "@context":"https://schema.org",
- "@type":"WebPage",
- "name":"eSign PDF",
- "description":"Client-side tool to add signatures to PDF files securely in-browser.",
- "publisher":{"@type":"Organization","name":"I❤ImagePDF"}
+ "@context": "https://schema.org",
+ "@type": "WebPage",
+ "name": "eSign PDF",
+ "description": "Sign PDF documents in-browser using a drawn or uploaded signature. 100% client-side and private.",
+ "publisher": {"@type":"Organization","name":"I❤ImagePDF"}
 }
 </script>
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 :root{--accent:#d9232e;--bg:#f6f8fb;}
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:"Inter",sans-serif;background:var(--bg);color:#222;line-height:1.5;}
 header{background:#fff;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 8px rgba(0,0,0,.05);position:sticky;top:0;z-index:10;}
-.logo{font-size:22px;font-weight:800;cursor:pointer;color:#000;}
+.logo{font-size:22px;font-weight:800;color:#000;cursor:pointer;}
 .logo span{color:var(--accent);}
 .container{max-width:960px;margin:auto;padding:18px;}
-h1{color:var(--accent);font-size:26px;margin-bottom:10px;text-align:center;}
+h1{color:var(--accent);font-size:26px;text-align:center;margin-bottom:8px;}
 p.intro{text-align:center;color:#555;max-width:720px;margin:0 auto 20px;}
 .tool-box{background:#fff;border:1px solid #eee;border-radius:14px;padding:20px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.05);}
-canvas#sigPad{border:1px solid #ccc;border-radius:6px;margin-top:10px;touch-action:none;}
-button{margin-top:12px;background:var(--accent);border:none;color:#fff;padding:10px 20px;border-radius:8px;font-weight:600;cursor:pointer;}
-button:hover{opacity:0.9;}
+canvas{border:1px solid #ccc;border-radius:6px;margin-top:10px;touch-action:none;}
+button{margin-top:10px;background:var(--accent);border:none;color:#fff;padding:10px 22px;border-radius:8px;font-weight:600;cursor:pointer;transition:0.2s;}
+button:hover{opacity:.9;}
+input[type=file],select{margin-top:8px;}
 .section{background:#fff;padding:20px;border-radius:14px;border:1px solid #eee;margin-top:20px;box-shadow:0 2px 8px rgba(0,0,0,.05);}
 .section h2{color:var(--accent);font-size:22px;margin-bottom:10px;}
 ul{padding-left:20px;}
@@ -42,98 +46,113 @@ ul li{margin-bottom:6px;color:#444;}
 footer{margin-top:30px;background:#fff;text-align:center;padding:18px;font-size:14px;color:#555;}
 a{color:#1677ff;text-decoration:none;}
 a:hover{text-decoration:underline;}
-img.preview{max-width:480px;width:100%;display:block;margin:10px auto;border-radius:8px;border:1px solid #eee;}
 </style>
 </head>
+
 <body>
 <header>
-  <div class="logo" onclick="location.href='/'">❤️ I❤ImagePDF</div>
+  <div class="logo" onclick="location.href='/'" role="button" aria-label="Go to homepage">❤️ I❤ImagePDF</div>
 </header>
 
 <div class="container">
   <h1>eSign PDF ✍️</h1>
-  <p class="intro">Add your signature to any PDF securely in-browser. Draw or upload your signature – no server, no tracking.</p>
+  <p class="intro">Sign your PDF documents directly in your browser — draw with mouse or touch, or upload a signature image. 100% private and secure.</p>
 
-  <div class="tool-box">
-    <h2>Upload PDF to Sign</h2>
-    <input type="file" id="pdfInput" accept="application/pdf">
-    <h3 style="margin-top:15px;">Draw Your Signature Below</h3>
-    <canvas id="sigPad" width="300" height="120"></canvas><br>
+  <div class="tool-box" role="region" aria-label="PDF signing tool">
+    <h2>Upload Your PDF</h2>
+    <input type="file" id="pdfInput" accept="application/pdf" aria-label="Upload PDF file"><br>
+    <label for="sigPos" style="display:block;margin-top:10px;">Signature Position:</label>
+    <select id="sigPos">
+      <option value="bottom">Bottom</option>
+      <option value="middle">Middle</option>
+      <option value="top">Top</option>
+    </select>
+
+    <h3 style="margin-top:15px;">Draw Your Signature</h3>
+    <canvas id="sigPad" width="320" height="140" aria-label="Signature drawing area"></canvas><br>
     <button id="clearSig">Clear Signature</button>
-    <button id="signPdfBtn">Sign PDF & Download</button>
-    <div id="output"></div>
+
+    <p style="margin-top:12px;">or upload signature image (PNG/JPG):</p>
+    <input type="file" id="sigUpload" accept="image/png,image/jpeg" aria-label="Upload signature image">
+
+    <button id="signPdfBtn" aria-label="Sign and download PDF">Sign PDF & Download</button>
+    <div id="output" style="margin-top:10px;"></div>
   </div>
 
-  <!-- === Ad placement suggestion === -->
-  <!-- <div class="ad-slot">Place your Adsterra script here</div> -->
+  <!-- <div class="ad-slot">Place Adsterra banner here</div> -->
 
   <div class="section">
     <h2>How It Works ⚙️</h2>
     <ul>
-      <li>Select your PDF file.</li>
-      <li>Draw your signature in the box above.</li>
-      <li>The app adds your signature to the first page of the PDF locally.</li>
-      <li>Click “Download” to save your signed PDF – completely offline.</li>
+      <li>Select a PDF from your device.</li>
+      <li>Draw or upload your signature in the box above.</li>
+      <li>Choose where it should appear (top, middle, or bottom of the first page).</li>
+      <li>Click “Sign PDF & Download” to instantly save your signed file — no upload required.</li>
     </ul>
   </div>
 
   <div class="section">
-    <h2>Why Choose I❤ImagePDF for eSign?</h2>
+    <h2>Why Choose I❤ImagePDF?</h2>
     <ul>
-      <li>100 % client-side processing – no uploads or cloud storage.</li>
-      <li>Fast PDF rendering and signature placement.</li>
-      <li>Compatible with Windows, macOS, Android and iOS.</li>
-      <li>Free forever – privacy-first philosophy.</li>
+      <li>🔒 100% client-side — your files never leave your device.</li>
+      <li>⚡ Fast and lightweight for instant signing.</li>
+      <li>📱 Works smoothly on all modern browsers and devices.</li>
+      <li>💰 Completely free, no sign-up or installation needed.</li>
+      <li>🌐 Integrated with the full suite of I❤ImagePDF tools for PDFs & images.</li>
     </ul>
   </div>
 
   <div class="section">
     <h2>FAQs ❓</h2>
-    <p><strong>Do I need to upload my PDF?</strong><br>No, signing is done locally in your browser for maximum privacy.</p>
-    <p><strong>Can I move the signature position?</strong><br>This demo places it at the bottom of the first page; you can adjust coordinates in code later.</p>
-    <p><strong>Is this tool free?</strong><br>Yes, all I❤ImagePDF tools are free to use with no registration.</p>
+    <p><strong>Are my PDFs uploaded?</strong><br>No. All processing and signing happen locally in your browser for full privacy.</p>
+    <p><strong>Can I move or resize the signature?</strong><br>This demo lets you choose top/middle/bottom. Advanced placement is possible with minor code edits.</p>
+    <p><strong>Is it free?</strong><br>Yes! All I❤ImagePDF tools are 100% free, private, and secure.</p>
   </div>
 
   <footer>
-    © 2025 ❤️ I❤ImagePDF – Client-Side & Secure |
+    © 2025 ❤️ I❤ImagePDF — Client-Side & Secure |
     <a href="/about.html">About</a> | <a href="/privacy.html">Privacy Policy</a>
   </footer>
 </div>
 
-<!-- === JavaScript: Draw + Sign PDF === -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js" defer></script>
 <script>
-const sigPad = document.getElementById("sigPad");
-const ctx = sigPad.getContext("2d");
-let drawing = false;
-sigPad.addEventListener("mousedown", ()=>drawing=true);
-sigPad.addEventListener("mouseup", ()=>drawing=false);
-sigPad.addEventListener("mouseleave", ()=>drawing=false);
-sigPad.addEventListener("mousemove", draw);
-function draw(e){
- if(!drawing) return;
- ctx.lineWidth=2; ctx.lineCap="round"; ctx.strokeStyle="#000";
- ctx.lineTo(e.offsetX, e.offsetY);
- ctx.stroke(); ctx.beginPath(); ctx.moveTo(e.offsetX, e.offsetY);
-}
-document.getElementById("clearSig").onclick=()=>{ctx.clearRect(0,0,sigPad.width,sigPad.height);ctx.beginPath();};
+const sigPad=document.getElementById("sigPad"),ctx=sigPad.getContext("2d");
+let drawing=false,lastX=0,lastY=0,uploadedSig=null;
+
+function startDraw(e){drawing=true;const r=sigPad.getBoundingClientRect();lastX=e.clientX-r.left;lastY=e.clientY-r.top;}
+function moveDraw(e){if(!drawing)return;const r=sigPad.getBoundingClientRect();const x=e.clientX-r.left,y=e.clientY-r.top;
+ctx.lineWidth=2;ctx.lineCap="round";ctx.strokeStyle="#000";ctx.beginPath();ctx.moveTo(lastX,lastY);ctx.lineTo(x,y);ctx.stroke();
+lastX=x;lastY=y;}
+["mousedown","touchstart"].forEach(ev=>sigPad.addEventListener(ev,e=>{const t=e.touches?e.touches[0]:e;startDraw(t);}));
+["mousemove","touchmove"].forEach(ev=>sigPad.addEventListener(ev,e=>{const t=e.touches?e.touches[0]:e;moveDraw(t);e.preventDefault();}));
+["mouseup","mouseleave","touchend"].forEach(ev=>sigPad.addEventListener(ev,()=>drawing=false));
+document.getElementById("clearSig").onclick=()=>{ctx.clearRect(0,0,sigPad.width,sigPad.height);ctx.beginPath();uploadedSig=null;};
+
+document.getElementById("sigUpload").addEventListener("change",e=>{
+ const f=e.target.files[0];if(!f)return;
+ const r=new FileReader();
+ r.onload=ev=>uploadedSig=ev.target.result;
+ r.readAsDataURL(f);
+});
 
 document.getElementById("signPdfBtn").onclick=async()=>{
  const file=document.getElementById("pdfInput").files[0];
- if(!file){alert("Select a PDF first!");return;}
- const sigData=sigPad.toDataURL("image/png");
- const arrayBuffer=await file.arrayBuffer();
- const pdfDoc=await PDFLib.PDFDocument.load(arrayBuffer);
+ if(!file){alert("Please select a PDF file first.");return;}
+ const sigData=uploadedSig?uploadedSig:sigPad.toDataURL("image/png");
+ const pos=document.getElementById("sigPos").value;
+ const arrBuf=await file.arrayBuffer();
+ const pdfDoc=await PDFLib.PDFDocument.load(arrBuf,{ignoreEncryption:true});
  const page=pdfDoc.getPages()[0];
- const pngImage=await pdfDoc.embedPng(sigData);
+ const img=await pdfDoc.embedPng(sigData);
  const {width,height}=page.getSize();
- page.drawImage(pngImage,{x:width/2-75,y:50,width:150,height:60});
- const pdfBytes=await pdfDoc.save();
- const blob=new Blob([pdfBytes],{type:"application/pdf"});
+ let y=50;if(pos==="middle")y=height/2;if(pos==="top")y=height-120;
+ page.drawImage(img,{x:width/2-75,y,width:150,height:60});
+ const bytes=await pdfDoc.save({useObjectStreams:false});
+ const blob=new Blob([bytes],{type:"application/pdf"});
  const url=URL.createObjectURL(blob);
- const a=document.createElement("a");
- a.href=url; a.download="signed.pdf";
- a.click(); URL.revokeObjectURL(url);
+ const a=document.createElement("a");a.href=url;a.download="signed.pdf";a.click();
+ URL.revokeObjectURL(url);
 };
 </script>
 </body>
