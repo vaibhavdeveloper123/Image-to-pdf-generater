@@ -3,12 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AI Background Remover – Free Online Background Eraser | ❤️ I❤ImagePDF</title>
-<meta name="description" content="Remove or change image backgrounds instantly in your browser using AI-powered client-side technology. Choose transparent, white, black, or custom background colors. 100% secure, fast, and free.">
-<meta name="keywords" content="background remover, ai background remover, remove image background, background eraser, transparent background, free photo editor, change background color, no upload background remover, secure image tool, privacy photo editor, browser photo remover, jpg to png, transparent png maker, background changer, white background remover, color background tool, offline image background tool, fast image processing, privacy safe tool, online image editor, instant photo background removal, image background replace, background remover website, imagepdf background remover, background editing tool, ai remove background, picture background eraser, free transparent image maker, lightweight photo editor, best free background remover, online transparent image creator, background cutout tool, jpg background eraser, png background change, secure browser image tool, background remove app alternative, instant image bg remove, photo bg eraser online, transparent background converter, privacy-first ai background remover, no watermark background remover, remove bg free online, best browser photo editor, remove white background, change picture background, transparent photo maker, smart image background cleaner, image editing online tool, simple background remove tool">
+<title>Background Remover – Free Online Image Background Eraser | ❤️ I❤ImagePDF</title>
+<meta name="description" content="Remove or replace image backgrounds instantly in your browser. Choose transparent, white, black or custom background colors. 100% client-side, private, secure and free.">
+<meta name="keywords" content="background remover, remove image background, photo background eraser, transparent background, background changer, client side background remover, ai background remover, privacy safe image tool, offline image background remover, fast image background removal, free background remover online, browser image tool, remove bg free, no upload background remover, background replace tool, transparent png creator, online photo editor, secure image editing tool, ai background removal, background color change, instant photo background removal, privacy image tool, imagepdf background remover, background editing app, background cutout, picture background eraser, photo background removal website, background changer online, local background remover, no watermark remover, jpg png background remover, browser photo tool, free image editor, secure background eraser, transparent image creator, remove bg from photo, ai image background cleaner, image background tool, best free background remover, fast browser tool, change photo background color, client side ai remover, safe photo background tool, privacy-first background remover, image transparency creator">
 <link rel="canonical" href="https://secure-img-to-pdf.vercel.app/background-remover.html">
-<meta property="og:title" content="AI Background Remover – ❤️ I❤ImagePDF">
-<meta property="og:description" content="Erase or change image backgrounds directly in your browser. Choose custom colors – 100% private & client-side.">
+
+<meta property="og:title" content="Background Remover – ❤️ I❤ImagePDF">
+<meta property="og:description" content="Erase or change image backgrounds directly in your browser. Choose custom colors – 100% private and client-side.">
 <meta property="og:image" content="https://secure-img-to-pdf.vercel.app/favicon.png">
 <meta name="twitter:card" content="summary_large_image">
 
@@ -17,7 +18,7 @@
  "@context":"https://schema.org",
  "@type":"WebPage",
  "name":"Background Remover",
- "description":"Client-side AI background remover for images with color customization and instant preview.",
+ "description":"Free client-side tool to remove image backgrounds and apply custom background colors instantly.",
  "publisher":{"@type":"Organization","name":"I❤ImagePDF"}
 }
 </script>
@@ -28,7 +29,7 @@
   --accent:#d9232e;
   --bg:#f6f8fb;
   --card-bg:#fff;
-  --radius:14px;
+  --radius:16px;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:"Inter",sans-serif;background:var(--bg);color:#222;line-height:1.6;}
@@ -41,11 +42,15 @@ h1{color:var(--accent);font-size:28px;text-align:center;margin-bottom:10px;}
 p.intro{text-align:center;color:#555;max-width:720px;margin:0 auto 20px;}
 .tool-card{background:var(--card-bg);border:1px solid #eee;border-radius:var(--radius);
 box-shadow:0 2px 8px rgba(0,0,0,.05);padding:25px;text-align:center;}
-.preview-area{margin-top:15px;display:flex;flex-direction:column;align-items:center;}
+.drop-zone{border:2px dashed #ccc;border-radius:var(--radius);padding:40px 20px;cursor:pointer;
+transition:0.3s;background:#fafafa;}
+.drop-zone.dragover{border-color:var(--accent);background:#fff0f0;}
+.drop-zone p{color:#555;font-size:16px;}
+.preview-area{margin-top:20px;}
 .preview-area img{max-width:100%;border-radius:10px;border:1px solid #ddd;transition:.3s;}
-.controls{margin-top:15px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
-select,input[type=color]{padding:8px;border:1px solid #ccc;border-radius:6px;cursor:pointer;}
-button{background:var(--accent);color:#fff;border:none;padding:10px 20px;border-radius:8px;font-weight:600;
+.controls{margin-top:20px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+select,input[type=color]{padding:8px 10px;border:1px solid #ccc;border-radius:6px;cursor:pointer;}
+button{background:var(--accent);color:#fff;border:none;padding:12px 24px;border-radius:8px;font-weight:600;
 cursor:pointer;transition:.3s;}
 button:hover{opacity:.9;}
 .section{background:var(--card-bg);padding:20px;border-radius:var(--radius);border:1px solid #eee;
@@ -65,12 +70,14 @@ a:hover{text-decoration:underline;}
 </header>
 
 <div class="container">
-  <h1>AI Background Remover 🧠</h1>
-  <p class="intro">Remove or replace image backgrounds directly in your browser. Choose transparent, white, black or custom colours — 100% private and free.</p>
+  <h1>Background Remover 🧠</h1>
+  <p class="intro">Remove or replace image backgrounds in your browser. Choose transparent, white, black or any custom color — fast, secure, and 100% private.</p>
 
   <div class="tool-card">
-    <h2>Upload Your Image</h2>
-    <input type="file" id="imgInput" accept="image/*"><br>
+    <div class="drop-zone" id="dropZone">
+      <p><strong>📁 Drag & Drop image here</strong><br>or click to choose (JPG, PNG)</p>
+      <input type="file" id="imgInput" accept="image/*" style="display:none;">
+    </div>
 
     <div class="controls">
       <label>Background:</label>
@@ -82,10 +89,11 @@ a:hover{text-decoration:underline;}
       </select>
       <input type="color" id="customColor" value="#00ffcc" style="display:none;">
       <button id="removeBgBtn">Remove Background</button>
+      <button id="clearBtn" style="background:#666;">Clear</button>
     </div>
 
     <div class="preview-area" id="previewArea">
-      <p style="color:#777;">🖼️ Upload an image to start background removal</p>
+      <p style="color:#777;">🖼️ Upload an image to preview and edit background</p>
     </div>
   </div>
 
@@ -94,29 +102,29 @@ a:hover{text-decoration:underline;}
   <div class="section">
     <h2>How It Works ⚙️</h2>
     <ul>
-      <li>Upload any JPG or PNG image from your device.</li>
-      <li>Choose a background — transparent, white, black, or your own color.</li>
-      <li>Our smart algorithm detects uniform and light backgrounds automatically.</li>
-      <li>Preview and download instantly — all within your browser.</li>
+      <li>Upload or drag & drop any image (JPG or PNG).</li>
+      <li>Choose a new background color (transparent, white, black, or custom).</li>
+      <li>Our smart client-side algorithm removes the original background instantly.</li>
+      <li>Preview and download the new image — all done locally, no uploads.</li>
     </ul>
   </div>
 
   <div class="section">
     <h2>Why Choose I❤ImagePDF?</h2>
     <ul>
-      <li>🔒 100% private — images never leave your device.</li>
-      <li>⚡ Fast — works instantly, no upload delays.</li>
-      <li>🎨 Custom background colors supported.</li>
-      <li>📱 Works on any mobile or desktop browser.</li>
-      <li>💰 Free forever — no signups or watermarks.</li>
+      <li>🔒 100% private — processing happens inside your browser.</li>
+      <li>⚡ Fast & lightweight — optimized for performance.</li>
+      <li>🎨 Full background color control with live preview.</li>
+      <li>📱 Works perfectly on phones, tablets, and desktops.</li>
+      <li>💰 Totally free — no watermarks or hidden limits.</li>
     </ul>
   </div>
 
   <div class="section">
     <h2>FAQs ❓</h2>
-    <p><strong>Does this use AI?</strong><br>Yes, a lightweight local algorithm detects contrast between subject and background.</p>
-    <p><strong>Is my image uploaded anywhere?</strong><br>No. Everything happens inside your browser securely.</p>
-    <p><strong>Can I replace the background with a solid color?</strong><br>Yes, select white, black, transparent or any custom color.</p>
+    <p><strong>Do I need to upload my image?</strong><br>No. All processing happens on your device for total privacy.</p>
+    <p><strong>Can I use it on mobile?</strong><br>Yes, it’s fully responsive and touch-friendly.</p>
+    <p><strong>Can I pick a custom color background?</strong><br>Yes, use the color picker to set any background you like.</p>
   </div>
 
   <footer>
@@ -126,68 +134,79 @@ a:hover{text-decoration:underline;}
 </div>
 
 <script>
+const dropZone=document.getElementById('dropZone');
 const input=document.getElementById('imgInput');
 const preview=document.getElementById('previewArea');
 const removeBtn=document.getElementById('removeBgBtn');
+const clearBtn=document.getElementById('clearBtn');
 const colorSelect=document.getElementById('bgOption');
 const customColor=document.getElementById('customColor');
-
 let loadedImg=null;
-colorSelect.addEventListener('change',()=>{customColor.style.display=colorSelect.value==='custom'?'inline-block':'none';});
 
-input.addEventListener('change',()=>{
- const file=input.files[0];
- if(!file)return;
- const reader=new FileReader();
- reader.onload=e=>{
-   loadedImg=new Image();
-   loadedImg.src=e.target.result;
-   loadedImg.onload=()=>{
-     preview.innerHTML='';
-     const imgElem=document.createElement('img');
-     imgElem.src=loadedImg.src;
-     preview.appendChild(imgElem);
-   };
- };
- reader.readAsDataURL(file);
+colorSelect.addEventListener('change',()=>{customColor.style.display=colorSelect.value==='custom'?'inline-block':'none';});
+dropZone.addEventListener('click',()=>input.click());
+dropZone.addEventListener('dragover',e=>{e.preventDefault();dropZone.classList.add('dragover');});
+dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('dragover'));
+dropZone.addEventListener('drop',e=>{
+  e.preventDefault();dropZone.classList.remove('dragover');
+  const file=e.dataTransfer.files[0];
+  if(file)loadImage(file);
 });
+input.addEventListener('change',()=>{const f=input.files[0];if(f)loadImage(f);});
+
+clearBtn.onclick=()=>{preview.innerHTML='<p style="color:#777;">🖼️ Upload an image to preview and edit background</p>';loadedImg=null;};
+
+function loadImage(file){
+  const reader=new FileReader();
+  reader.onload=e=>{
+    loadedImg=new Image();
+    loadedImg.src=e.target.result;
+    loadedImg.onload=()=>{
+      preview.innerHTML='';
+      const img=document.createElement('img');
+      img.src=loadedImg.src;
+      preview.appendChild(img);
+    };
+  };
+  reader.readAsDataURL(file);
+}
 
 removeBtn.onclick=()=>{
- if(!loadedImg){alert('Please upload an image first.');return;}
- const canvas=document.createElement('canvas');
- const ctx=canvas.getContext('2d',{willReadFrequently:true});
- canvas.width=loadedImg.width;
- canvas.height=loadedImg.height;
- ctx.drawImage(loadedImg,0,0);
- const data=ctx.getImageData(0,0,canvas.width,canvas.height);
- const d=data.data;
- const bg=colorSelect.value==='custom'?customColor.value:colorSelect.value;
- const rgb=bg==='transparent'?null:hexToRgb(bg);
- const [r0,g0,b0]=sampleCorner(d,canvas.width,canvas.height);
- for(let i=0;i<d.length;i+=4){
-   const dr=Math.abs(d[i]-r0),dg=Math.abs(d[i+1]-g0),db=Math.abs(d[i+2]-b0);
-   if((dr+dg+db)<85){
-     if(bg==='transparent')d[i+3]=0;
-     else{d[i]=rgb.r;d[i+1]=rgb.g;d[i+2]=rgb.b;}
-   }
- }
- ctx.putImageData(data,0,0);
- const url=canvas.toDataURL('image/png');
- preview.innerHTML=`<img src="${url}" style="max-width:100%;border-radius:10px;border:1px solid #ddd;">
- <br><a href="${url}" download="background-removed.png">⬇️ Download Image</a>`;
+  if(!loadedImg){alert('Please upload an image first.');return;}
+  const canvas=document.createElement('canvas');
+  const ctx=canvas.getContext('2d',{willReadFrequently:true});
+  canvas.width=loadedImg.width;
+  canvas.height=loadedImg.height;
+  ctx.drawImage(loadedImg,0,0);
+  const data=ctx.getImageData(0,0,canvas.width,canvas.height);
+  const d=data.data;
+  const bg=colorSelect.value==='custom'?customColor.value:colorSelect.value;
+  const rgb=bg==='transparent'?null:hexToRgb(bg);
+  const [r0,g0,b0]=sampleCorners(d,canvas.width,canvas.height);
+  for(let i=0;i<d.length;i+=4){
+    const dr=Math.abs(d[i]-r0),dg=Math.abs(d[i+1]-g0),db=Math.abs(d[i+2]-b0);
+    if((dr+dg+db)<85){
+      if(bg==='transparent')d[i+3]=0;
+      else{d[i]=rgb.r;d[i+1]=rgb.g;d[i+2]=rgb.b;}
+    }
+  }
+  ctx.putImageData(data,0,0);
+  const url=canvas.toDataURL('image/png');
+  preview.innerHTML=`<img src="${url}" style="max-width:100%;border-radius:10px;border:1px solid #ddd;">
+  <br><a href="${url}" download="background-removed.png">⬇️ Download Image</a>`;
 };
 
 function hexToRgb(hex){
- hex=hex.replace('#','');
- if(hex.length===3)hex=hex.split('').map(c=>c+c).join('');
- const num=parseInt(hex,16);
- return{r:(num>>16)&255,g:(num>>8)&255,b:num&255};
+  hex=hex.replace('#','');
+  if(hex.length===3)hex=hex.split('').map(c=>c+c).join('');
+  const num=parseInt(hex,16);
+  return{r:(num>>16)&255,g:(num>>8)&255,b:num&255};
 }
-function sampleCorner(d,w,h){
- const s=8;let r=0,g=0,b=0,c=0;
- for(let y=0;y<s;y++)for(let x=0;x<s;x++){const i=(y*w+x)*4;r+=d[i];g+=d[i+1];b+=d[i+2];c++;}
- for(let y=h-s;y<h;y++)for(let x=w-s;x<w;x++){const i=(y*w+x)*4;r+=d[i];g+=d[i+1];b+=d[i+2];c++;}
- return[r/c,g/c,b/c];
+function sampleCorners(d,w,h){
+  const s=10;let r=0,g=0,b=0,c=0;
+  for(let y=0;y<s;y++)for(let x=0;x<s;x++){const i=(y*w+x)*4;r+=d[i];g+=d[i+1];b+=d[i+2];c++;}
+  for(let y=h-s;y<h;y++)for(let x=w-s;x<w;x++){const i=(y*w+x)*4;r+=d[i];g+=d[i+1];b+=d[i+2];c++;}
+  return[r/c,g/c,b/c];
 }
 </script>
 </body>
