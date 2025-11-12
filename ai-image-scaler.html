@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Image Scaler – Free Online Image Upscaler | ❤️ I❤ImagePDF</title>
+<meta name="description" content="Upscale and enhance images directly in your browser with AI Image Scaler. Increase resolution up to 4× without losing quality. 100% client-side, private, secure, and free.">
+<meta name="keywords" content="ai image scaler, image upscaler, photo enlarger, enhance image resolution, upscale image online, free ai upscaler, browser image scaler, offline image enhancer, privacy safe upscaler, imagepdf ai scaler, picture resizer, hd image upscaler, best image upscaler, upscale photo quality, ai upscale jpg, ai upscale png, image enlargement tool, secure photo upscaler, client side ai tool, image quality booster, online ai enhancer, high resolution photo upscaler, ai image tool free, instant image enhancer, upsize photo, upscale low resolution image, upscale photo without losing quality, enlarge image free, improve photo resolution, hd ai scaler, web image resizer, ai based image scaler, privacy photo enhancer, fast ai upscaler, upscale pictures in browser, ai upscale tool no watermark, enhance image detail online, upscale old photos, pixel repair ai tool, free browser photo tool, increase image resolution, upscaler for photos, ai resizer image tool, client side ai enhancement, imagepdf scaler, upscale png jpg, ai image enlarger, smart image upscaling, lightweight ai upscaler, hd image optimizer, privacy first ai tool, best browser image enhancer, image upscaler 2025">
+<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/ai-image-scaler.html">
+<meta property="og:title" content="AI Image Scaler – ❤️ I❤ImagePDF">
+<meta property="og:description" content="Upscale and enhance images with AI Image Scaler directly in your browser. 100% private, client-side, and free.">
+<meta property="og:image" content="https://secure-img-to-pdf.vercel.app/favicon.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"WebPage",
+ "name":"AI Image Scaler",
+ "description":"AI-powered image upscaling tool that enhances resolution directly in your browser. 100% private and free.",
+ "publisher":{"@type":"Organization","name":"I❤ImagePDF"}
+}
+</script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+:root{--accent:#d9232e;--bg:#f6f8fb;--card-bg:#fff;--radius:16px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:"Inter",sans-serif;background:var(--bg);color:#222;line-height:1.6;}
+header{background:#fff;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;
+box-shadow:0 2px 8px rgba(0,0,0,.05);position:sticky;top:0;z-index:100;}
+.logo{font-size:22px;font-weight:800;color:#000;cursor:pointer;}
+.logo span{color:var(--accent);}
+.container{max-width:1000px;margin:auto;padding:22px;}
+h1{color:var(--accent);font-size:28px;text-align:center;margin-bottom:10px;}
+p.intro{text-align:center;color:#555;max-width:720px;margin:0 auto 20px;}
+.tool-card{background:var(--card-bg);border:1px solid #eee;border-radius:var(--radius);
+box-shadow:0 2px 8px rgba(0,0,0,.05);padding:25px;text-align:center;}
+.drop-zone{border:2px dashed #ccc;border-radius:var(--radius);padding:40px 20px;cursor:pointer;
+transition:0.3s;background:#fafafa;}
+.drop-zone.dragover{border-color:var(--accent);background:#fff0f0;}
+.drop-zone p{color:#555;font-size:16px;}
+.preview-area{margin-top:20px;}
+.preview-area img{max-width:100%;border-radius:10px;border:1px solid #ddd;transition:.3s;}
+.controls{margin-top:20px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+select,input[type=number]{padding:8px 10px;border:1px solid #ccc;border-radius:6px;cursor:pointer;}
+button{background:var(--accent);color:#fff;border:none;padding:12px 24px;border-radius:8px;font-weight:600;
+cursor:pointer;transition:.3s;}
+button:hover{opacity:.9;}
+.section{background:var(--card-bg);padding:20px;border-radius:var(--radius);border:1px solid #eee;
+margin-top:25px;box-shadow:0 2px 8px rgba(0,0,0,.05);}
+.section h2{color:var(--accent);font-size:22px;margin-bottom:10px;}
+ul{padding-left:20px;}
+ul li{margin-bottom:6px;}
+footer{margin-top:30px;background:#fff;text-align:center;padding:18px;font-size:14px;color:#555;}
+a{color:#1677ff;text-decoration:none;}
+a:hover{text-decoration:underline;}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="logo" onclick="location.href='/'">❤️ I❤ImagePDF</div>
+</header>
+
+<div class="container">
+  <h1>AI Image Scaler 🔍</h1>
+  <p class="intro">Enhance and upscale your images up to 4× resolution directly in your browser. 100% client-side and private.</p>
+
+  <div class="tool-card">
+    <div class="drop-zone" id="dropZone">
+      <p><strong>📁 Drag & Drop image here</strong><br>or click to browse (JPG, PNG)</p>
+      <input type="file" id="imgInput" accept="image/*" style="display:none;">
+    </div>
+
+    <div class="controls">
+      <label>Upscale:</label>
+      <select id="scaleFactor">
+        <option value="2">2×</option>
+        <option value="3">3×</option>
+        <option value="4">4×</option>
+        <option value="custom">Custom</option>
+      </select>
+      <input type="number" id="customScale" min="1" max="10" step="0.1" value="2" style="width:80px;display:none;">
+      <button id="scaleBtn">Upscale Image</button>
+      <button id="clearBtn" style="background:#666;">Clear</button>
+    </div>
+
+    <div class="preview-area" id="previewArea">
+      <p style="color:#777;">🖼️ Upload an image to preview and upscale</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>How It Works ⚙️</h2>
+    <ul>
+      <li>Upload or drag & drop any image (JPG/PNG).</li>
+      <li>Select how much you want to upscale (2×, 3×, 4×, or custom).</li>
+      <li>The browser resizes the image using high-quality bicubic resampling.</li>
+      <li>Preview and download instantly — all processing stays local.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Why Choose I❤ImagePDF?</h2>
+    <ul>
+      <li>🔒 100% client-side — images never leave your device.</li>
+      <li>⚡ Fast & lightweight — upscale instantly.</li>
+      <li>🧠 Smart bicubic algorithm for smooth edges.</li>
+      <li>📱 Works on all devices and browsers.</li>
+      <li>💰 Free forever — no watermark or signup.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>FAQs ❓</h2>
+    <p><strong>Does it use AI?</strong><br>This version uses a high-quality algorithm directly in your browser for privacy and speed.</p>
+    <p><strong>Is my image uploaded anywhere?</strong><br>No, everything runs locally for complete privacy.</p>
+    <p><strong>Can I upscale more than 4×?</strong><br>Yes, use the “Custom” option to set any scale up to 10×.</p>
+  </div>
+
+  <footer>
+    © 2025 ❤️ I❤ImagePDF — Client-Side & Secure |
+    <a href="/about.html">About</a> | <a href="/privacy.html">Privacy Policy</a>
+  </footer>
+</div>
+
+<script>
+const dropZone=document.getElementById('dropZone');
+const input=document.getElementById('imgInput');
+const preview=document.getElementById('previewArea');
+const scaleBtn=document.getElementById('scaleBtn');
+const clearBtn=document.getElementById('clearBtn');
+const scaleSelect=document.getElementById('scaleFactor');
+const customScale=document.getElementById('customScale');
+let loadedImg=null;
+
+scaleSelect.addEventListener('change',()=>{customScale.style.display=scaleSelect.value==='custom'?'inline-block':'none';});
+dropZone.addEventListener('click',()=>input.click());
+dropZone.addEventListener('dragover',e=>{e.preventDefault();dropZone.classList.add('dragover');});
+dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('dragover'));
+dropZone.addEventListener('drop',e=>{
+  e.preventDefault();dropZone.classList.remove('dragover');
+  const file=e.dataTransfer.files[0];if(file)loadImage(file);
+});
+input.addEventListener('change',()=>{const f=input.files[0];if(f)loadImage(f);});
+clearBtn.onclick=()=>{preview.innerHTML='<p style="color:#777;">🖼️ Upload an image to preview and upscale</p>';loadedImg=null;};
+
+function loadImage(file){
+  const reader=new FileReader();
+  reader.onload=e=>{
+    loadedImg=new Image();
+    loadedImg.src=e.target.result;
+    loadedImg.onload=()=>{
+      preview.innerHTML='';
+      const img=document.createElement('img');
+      img.src=loadedImg.src;
+      preview.appendChild(img);
+    };
+  };
+  reader.readAsDataURL(file);
+}
+
+scaleBtn.onclick=()=>{
+  if(!loadedImg){alert('Please upload an image first.');return;}
+  let scale=parseFloat(scaleSelect.value);
+  if(scaleSelect.value==='custom')scale=parseFloat(customScale.value)||2;
+  const canvas=document.createElement('canvas');
+  const ctx=canvas.getContext('2d');
+  canvas.width=loadedImg.width*scale;
+  canvas.height=loadedImg.height*scale;
+  ctx.imageSmoothingEnabled=true;
+  ctx.imageSmoothingQuality='high';
+  ctx.drawImage(loadedImg,0,0,canvas.width,canvas.height);
+  const url=canvas.toDataURL('image/png');
+  preview.innerHTML=`<img src="${url}" style="max-width:100%;border-radius:10px;border:1px solid #ddd;">
+  <br><a href="${url}" download="ai-scaled.png">⬇️ Download Image</a>`;
+};
+</script>
+</body>
+</html>
