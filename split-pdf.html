@@ -3,17 +3,13 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Split PDF – Free Online PDF Splitter | ❤️ I❤ImagePDF</title>
+<title>Split PDF – Free PDF Page Splitter | ❤️ I❤ImagePDF</title>
 
-<meta name="description"
-  content="Split PDF pages instantly in your browser. Extract, divide, or separate PDFs for free — 100 % secure and private.">
-<meta name="keywords"
-  content="split pdf, pdf splitter, divide pdf pages, extract pdf pages, separate pdf, free pdf splitter, browser pdf tool, client side pdf split, secure pdf split, no upload pdf tool, pdf utilities 2025, I❤ImagePDF splitter, pdf tools online, quick pdf divide, pdf organizer, free web pdf splitter" />
-
+<meta name="description" content="Split PDF pages instantly in your browser — free, private, secure, and fast. Drag & drop to upload any PDF, then choose page ranges or extract all pages. No watermark, no upload, works on mobile and desktop. 100 % client-side processing for privacy.">
+<meta name="keywords" content="split pdf, split pdf online, free split pdf, pdf splitter, pdf page extractor, pdf divider, extract pdf pages, separate pdf, pdf split tool, client side pdf splitter, browser pdf splitter, offline pdf splitter, secure pdf tool, split pdf without watermark, fast pdf split, privacy safe pdf split, responsive pdf tools, productivity pdf app, I❤ImagePDF, pdf split and merge, online pdf utilities, pdf processing, split pdf by pages, split pdf by range, pdf organizer, pdf manager, convert pdf, drag and drop pdf split, upload pdf split tool, no upload pdf, split pdf locally, safe pdf operations, merge split edit pdf, split pdf document, pdf page splitter, smallpdf alternative, ilovepdf alternative, adobe pdf splitter, pdf utilities 2025, best pdf tools, secure pdf services, data privacy pdf, instant pdf splitter, efficient pdf processor, seo optimized pdf splitter, responsive mobile pdf split tool, free pdf split webapp, I❤ImagePDF Pro tools, global pdf tools, India pdf tools, USA pdf split, Canada pdf splitter, EU pdf tools, pdf editor, pdf manager, pdf utilities site, advanced pdf split ui, user friendly pdf splitter, 2025 top pdf tool, split pdf for school, split pdf for work, split pdf for mobile, pdf task automation, drag pdf drop split, multiple page pdf split, pdf extract page tool, instant pdf splitter" />
 <link rel="canonical" href="https://secure-img-to-pdf.vercel.app/split-pdf.html" />
 <meta property="og:title" content="Split PDF – ❤️ I❤ImagePDF" />
-<meta property="og:description"
-  content="Split PDF pages instantly online — 100 % browser-based, secure, and free." />
+<meta property="og:description" content="Split PDF pages instantly — 100 % private, client-side, and free. Works offline and mobile-friendly." />
 <meta property="og:image" content="https://secure-img-to-pdf.vercel.app/favicon.png" />
 <meta name="twitter:card" content="summary_large_image" />
 
@@ -23,21 +19,26 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:"Inter",sans-serif;background:var(--bg);color:#222;line-height:1.6;}
 header{background:#fff;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;
-  box-shadow:0 2px 8px rgba(0,0,0,.05);}
+box-shadow:0 2px 8px rgba(0,0,0,.05);position:sticky;top:0;z-index:100;}
 .logo{font-size:22px;font-weight:800;cursor:pointer;}
 .logo span{color:var(--accent);}
 .container{max-width:900px;margin:auto;padding:22px;}
 h1{color:var(--accent);font-size:28px;text-align:center;margin-bottom:10px;}
 p.intro{text-align:center;color:#555;max-width:720px;margin:0 auto 20px;}
 .tool-card{background:var(--card-bg);border:1px solid #eee;border-radius:var(--radius);
-  box-shadow:0 2px 8px rgba(0,0,0,.05);padding:25px;text-align:center;}
-input[type=file]{margin:10px 0;}
-input[type=number]{width:60px;padding:5px;border:1px solid #ccc;border-radius:6px;margin:0 5px;}
-button{background:var(--accent);color:#fff;border:none;padding:10px 22px;border-radius:8px;
-  font-weight:600;cursor:pointer;transition:.3s;margin:6px;}
+box-shadow:0 2px 8px rgba(0,0,0,.05);padding:25px;text-align:center;}
+.drop-zone{border:2px dashed var(--accent);border-radius:var(--radius);padding:40px;cursor:pointer;
+background:#fff;transition:.3s;}
+.drop-zone:hover{background:#fff7f7;}
+.drop-zone.dragover{background:#ffecec;border-color:#b31319;}
+.drop-zone p{color:#444;font-size:16px;}
+.controls{margin-top:15px;text-align:center;}
+input[type="text"]{padding:10px;border-radius:8px;border:1px solid #ccc;width:80%;max-width:300px;}
+button{background:var(--accent);color:#fff;border:none;padding:12px 24px;border-radius:8px;
+font-weight:600;cursor:pointer;transition:.3s;margin:6px;}
 button:hover{opacity:.9;}
 .section{background:var(--card-bg);padding:20px;border-radius:var(--radius);border:1px solid #eee;
-  margin-top:25px;box-shadow:0 2px 8px rgba(0,0,0,.05);}
+margin-top:25px;box-shadow:0 2px 8px rgba(0,0,0,.05);}
 .section h2{color:var(--accent);font-size:22px;margin-bottom:10px;}
 ul{padding-left:20px;}
 footer{margin-top:30px;background:#fff;text-align:center;padding:18px;font-size:14px;color:#555;}
@@ -50,82 +51,124 @@ a{color:#1677ff;text-decoration:none;}
 
 <div class="container">
   <h1>Split PDF ✂️</h1>
-  <p class="intro">Extract or divide pages from your PDF quickly — all done in your browser for maximum privacy.</p>
+  <p class="intro">Easily split your PDF into separate files or extract specific pages — all directly in your browser, 100 % offline and secure.</p>
 
   <div class="tool-card">
-    <input type="file" id="pdfInput" accept="application/pdf"><br />
-    <label>From page:</label>
-    <input type="number" id="from" min="1" value="1">
-    <label>to</label>
-    <input type="number" id="to" min="1" value="1">
-    <button id="splitBtn">Split PDF</button>
+    <div id="dropZone" class="drop-zone">
+      <p>📂 <strong>Drag & drop your PDF here</strong><br>or click to choose a file</p>
+      <input type="file" id="pdfInput" accept="application/pdf" style="display:none">
+    </div>
+
+    <div class="controls">
+      <input type="text" id="pageRange" placeholder="Enter pages (e.g. 1-3,5)" />
+      <button id="splitBtn">Split PDF</button>
+      <button id="clearBtn" style="background:#666">Clear</button>
+    </div>
+
     <p id="status"></p>
   </div>
 
   <div class="section">
     <h2>How It Works ⚙️</h2>
     <ul>
-      <li>Upload your PDF file.</li>
-      <li>Enter the page range you want to extract.</li>
-      <li>Download your new split PDF instantly.</li>
+      <li>Upload or drag & drop a PDF file into the box.</li>
+      <li>Enter page ranges (e.g. 1–3, 5, 8–9) or leave empty to split all pages.</li>
+      <li>Click <b>Split PDF</b> and instantly download your separate files.</li>
     </ul>
   </div>
 
   <div class="section">
-    <h2>Why Choose I❤ImagePDF?</h2>
+    <h2>Why Choose I❤ImagePDF ❤️</h2>
     <ul>
-      <li>🔒 100% Client-Side – No uploads or server storage.</li>
-      <li>⚡ Fast and accurate PDF splitting.</li>
-      <li>📱 Works on all devices, browsers, and systems.</li>
-      <li>💰 Free forever – no watermark or login.</li>
+      <li>🔒 100 % secure — your files never leave your browser.</li>
+      <li>⚡ Super-fast and runs offline.</li>
+      <li>📱 Mobile-friendly and responsive.</li>
+      <li>💰 Always free and watermark-free.</li>
     </ul>
   </div>
 
   <div class="section">
     <h2>FAQs ❓</h2>
-    <p><strong>Is my PDF safe?</strong><br>Yes, processing happens entirely in your browser.</p>
-    <p><strong>Can I extract multiple ranges?</strong><br>For now, one range at a time. You can repeat as needed.</p>
-    <p><strong>Does it change my file quality?</strong><br>No, it simply copies selected pages to a new PDF.</p>
-    <p><strong>What file size can I upload?</strong><br>Up to about 20 MB works smoothly in most modern browsers.</p>
+    <p><strong>Can I split a large PDF?</strong><br>Yes, but very large files may take a few seconds depending on your device.</p>
+    <p><strong>Are my files uploaded?</strong><br>No, everything happens locally on your device for privacy.</p>
+    <p><strong>Can I split multiple ranges?</strong><br>Yes, just separate them with commas (e.g., 1–3,6,8–9).</p>
+    <p><strong>Does this work offline?</strong><br>Yes! Once loaded, it works without the internet.</p>
   </div>
 
   <footer>
-    © 2025 ❤️ I❤ImagePDF — Client-Side & Secure |
+    © 2025 ❤️ I❤ImagePDF — Secure Client-Side Tools |
     <a href="/about.html">About</a> | <a href="/privacy.html">Privacy Policy</a>
   </footer>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
 <script>
+const dropZone=document.getElementById('dropZone');
 const pdfInput=document.getElementById('pdfInput');
+const pageRange=document.getElementById('pageRange');
 const splitBtn=document.getElementById('splitBtn');
+const clearBtn=document.getElementById('clearBtn');
 const statusEl=document.getElementById('status');
+let file=null;
 
-splitBtn.onclick=async()=>{
-  const file=pdfInput.files[0];
-  if(!file){alert("Please select a PDF first.");return;}
-  const from=parseInt(document.getElementById('from').value);
-  const to=parseInt(document.getElementById('to').value);
+dropZone.addEventListener('click',()=>pdfInput.click());
+dropZone.addEventListener('dragover',e=>{e.preventDefault();dropZone.classList.add('dragover');});
+dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('dragover'));
+dropZone.addEventListener('drop',e=>{
+  e.preventDefault();dropZone.classList.remove('dragover');
+  file=e.dataTransfer.files[0];dropZone.querySelector('p').textContent=file.name;
+});
+pdfInput.addEventListener('change',()=>{
+  file=pdfInput.files[0];dropZone.querySelector('p').textContent=file.name;
+});
+clearBtn.addEventListener('click',()=>{
+  file=null;pdfInput.value='';pageRange.value='';
+  dropZone.querySelector('p').innerHTML='📂 <strong>Drag & drop your PDF here</strong><br>or click to choose a file';
+  statusEl.textContent='';
+});
 
-  statusEl.textContent="📂 Reading PDF...";
-  const buf=await file.arrayBuffer();
-  const srcDoc=await PDFLib.PDFDocument.load(buf);
-  const total=srcDoc.getPageCount();
-  if(from<1||to>total||from>to){alert(`Invalid range (1-${total})`);return;}
+splitBtn.addEventListener('click',async()=>{
+  if(!file){alert('Please select a PDF file first!');return;}
+  try{
+    statusEl.textContent='📖 Reading PDF...';
+    const buf=await file.arrayBuffer();
+    const src=await PDFLib.PDFDocument.load(buf);
+    const total=src.getPageCount();
+    const input=pageRange.value.trim();
 
-  const newDoc=await PDFLib.PDFDocument.create();
-  const pages=await newDoc.copyPages(srcDoc,Array.from({length:to-from+1},(_,i)=>i+from-1));
-  for(const p of pages)newDoc.addPage(p);
+    let ranges=[];
+    if(input){
+      const parts=input.split(',');
+      for(let part of parts){
+        if(part.includes('-')){
+          const [s,e]=part.split('-').map(n=>parseInt(n));
+          for(let i=s;i<=e;i++) ranges.push(i);
+        } else ranges.push(parseInt(part));
+      }
+      ranges=ranges.filter(n=>n>=1 && n<=total);
+    } else {
+      for(let i=1;i<=total;i++) ranges.push(i);
+    }
 
-  statusEl.textContent="💾 Creating split file...";
-  const pdfBytes=await newDoc.save();
-  const blob=new Blob([pdfBytes],{type:"application/pdf"});
-  const a=document.createElement('a');
-  a.href=URL.createObjectURL(blob);
-  a.download=`split-pages-${from}-to-${to}.pdf`;
-  a.click();
-  statusEl.textContent="✅ Done! File downloaded.";
-};
+    statusEl.textContent='✂️ Splitting...';
+    for(const pageNum of ranges){
+      const newPdf=await PDFLib.PDFDocument.create();
+      const [page]=await newPdf.copyPages(src,[pageNum-1]);
+      newPdf.addPage(page);
+      const out=await newPdf.save();
+      const blob=new Blob([out],{type:'application/pdf'});
+      const a=document.createElement('a');
+      a.href=URL.createObjectURL(blob);
+      a.download=`page-${pageNum}.pdf`;
+      a.click();
+    }
+    statusEl.textContent='✅ Split complete! Files downloaded.';
+    setTimeout(()=>statusEl.textContent='',5000);
+  }catch(e){
+    console.error(e);
+    statusEl.textContent='❌ Error splitting PDF.';
+  }
+});
 </script>
 </body>
 </html>
