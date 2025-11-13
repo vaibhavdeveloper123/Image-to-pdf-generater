@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Image to Text (OCR) – Extract Text from Photos | ❤️ I❤ImagePDF</title>
+
+<meta name="description" content="Extract text from any image instantly using offline OCR. 100% client-side, private, and free — Image to Text converter by I❤ImagePDF.">
+<meta name="keywords" content="image to text, ocr, extract text from image, photo to text, convert image to text, offline ocr, client side ocr, free ocr tool, I❤ImagePDF ocr, image text extractor, ocr converter, no upload ocr, privacy ocr tool, text reader from image, photo text scanner, best ocr 2025, secure image text extractor, jpg to text, png to text, webp to text, image text reader, text recognition tool, browser ocr, instant text extraction, image analyzer, text grabber, image ocr india, I love image pdf, seo optimized ocr, document ocr free, online image reader, ocr free 2025, secure ocr site, mobile ocr tool, fast ocr app, privacy based image tool, pdf ocr, extract words image, ai ocr tool, offline ocr 2025, global image to text, best image ocr, no watermark ocr, 100 client side ocr, convert image words, text extraction browser, image to text converter, secure ocr reader, web ocr engine, safe ocr software, lightweight ocr online, free ocr converter, text scanner offline, privacy ocr system, I❤ImagePDF online ocr">
+<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/image-to-text.html">
+<meta property="og:title" content="Image to Text (OCR) – Extract Text from Photos | ❤️ I❤ImagePDF">
+<meta property="og:description" content="Extract readable text from images instantly — 100% offline, secure, and free.">
+<meta property="og:image" content="https://secure-img-to-pdf.vercel.app/favicon.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+:root{--accent:#d9232e;--bg:#f6f8fb;--card:#fff;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:"Inter",sans-serif;background:var(--bg);color:#222;line-height:1.6;}
+header{background:#fff;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;
+box-shadow:0 2px 8px rgba(0,0,0,.05);position:sticky;top:0;z-index:100;}
+.logo{font-size:22px;font-weight:800;cursor:pointer;}
+.logo span{color:var(--accent);}
+.container{max-width:900px;margin:auto;padding:22px;}
+h1{color:var(--accent);font-size:28px;text-align:center;margin-bottom:10px;}
+p.intro{text-align:center;color:#555;max-width:720px;margin:0 auto 20px;}
+.tool-card{background:var(--card);border:1px solid #eee;border-radius:16px;
+box-shadow:0 2px 8px rgba(0,0,0,.05);padding:25px;text-align:center;}
+.drop-zone{border:2px dashed var(--accent);border-radius:16px;padding:40px;cursor:pointer;
+background:#fff;transition:.3s;}
+.drop-zone:hover{background:#fff7f7;}
+.drop-zone.dragover{background:#ffecec;border-color:#b31319;}
+.drop-zone p{color:#444;font-size:16px;}
+textarea{width:100%;height:260px;padding:12px;border-radius:12px;border:1px solid #ccc;
+font-size:15px;resize:vertical;margin-top:15px;font-family:"Inter",sans-serif;}
+button{background:var(--accent);color:#fff;border:none;padding:12px 24px;border-radius:8px;
+font-weight:600;cursor:pointer;transition:.3s;margin:6px;}
+button:hover{opacity:.9;}
+.section{background:var(--card);padding:20px;border-radius:16px;border:1px solid #eee;
+margin-top:25px;box-shadow:0 2px 8px rgba(0,0,0,.05);}
+.section h2{color:var(--accent);font-size:22px;margin-bottom:10px;}
+ul{padding-left:20px;}
+footer{margin-top:30px;background:#fff;text-align:center;padding:18px;font-size:14px;color:#555;}
+a{color:#1677ff;text-decoration:none;}
+a:hover{text-decoration:underline;}
+#preview{max-width:100%;margin-top:15px;border-radius:10px;}
+</style>
+</head>
+
+<body>
+<header><div class="logo" onclick="location.href='/'">❤️ I❤ImagePDF</div></header>
+
+<div class="container">
+  <h1>Image to Text (OCR) 🔍</h1>
+  <p class="intro">Extract text from images instantly with 100% privacy — all processed locally in your browser using advanced offline OCR technology.</p>
+
+  <div class="tool-card">
+    <div id="dropZone" class="drop-zone">
+      <p>📂 <strong>Drag & drop your image here</strong><br>or click to choose</p>
+      <input type="file" id="imageInput" accept="image/*" style="display:none">
+    </div>
+    <img id="preview" style="display:none;">
+    <button id="extractBtn">Extract Text</button>
+    <textarea id="outputText" placeholder="🧠 Extracted text will appear here..." readonly></textarea>
+    <button id="copyBtn">Copy Text</button>
+    <p id="status"></p>
+  </div>
+
+  <div class="section">
+    <h2>How It Works ⚙️</h2>
+    <ul>
+      <li>Upload or drag any image into the box.</li>
+      <li>Click “Extract Text” — processing happens in your browser.</li>
+      <li>Copy or edit the extracted text instantly.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Why Choose I❤ImagePDF ❤️</h2>
+    <ul>
+      <li>🧠 100% client-side OCR — no uploads, full privacy.</li>
+      <li>⚡ Fast recognition using WebAssembly OCR engine.</li>
+      <li>📱 Works on all devices (mobile & desktop).</li>
+      <li>💰 Free, secure, and watermark-free.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>FAQs ❓</h2>
+    <p><strong>Is the OCR offline?</strong><br>Yes, all recognition is done locally in your browser using Tesseract.js (WebAssembly).</p>
+    <p><strong>Can I upload scanned documents?</strong><br>Yes! Works with scanned PDFs converted to images or photos of text.</p>
+    <p><strong>Does it support other languages?</strong><br>Currently English; more languages will be added soon.</p>
+  </div>
+
+  <footer>
+    © 2025 ❤️ I❤ImagePDF — 100% Client-Side & Secure |
+    <a href="/about.html">About</a> | <a href="/privacy.html">Privacy Policy</a>
+  </footer>
+</div>
+
+<!-- Tesseract.js OCR Library -->
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+<script>
+const dropZone=document.getElementById('dropZone');
+const imageInput=document.getElementById('imageInput');
+const preview=document.getElementById('preview');
+const extractBtn=document.getElementById('extractBtn');
+const outputText=document.getElementById('outputText');
+const copyBtn=document.getElementById('copyBtn');
+const statusEl=document.getElementById('status');
+let imgFile=null;
+
+dropZone.addEventListener('click',()=>imageInput.click());
+dropZone.addEventListener('dragover',e=>{e.preventDefault();dropZone.classList.add('dragover');});
+dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('dragover'));
+dropZone.addEventListener('drop',e=>{
+  e.preventDefault();dropZone.classList.remove('dragover');
+  const file=e.dataTransfer.files[0];if(file)loadImage(file);
+});
+imageInput.addEventListener('change',()=>{if(imageInput.files[0])loadImage(imageInput.files[0]);});
+
+function loadImage(file){
+  const reader=new FileReader();
+  reader.onload=e=>{
+    preview.src=e.target.result;
+    preview.style.display='block';
+    imgFile=file;
+  };
+  reader.readAsDataURL(file);
+}
+
+extractBtn.addEventListener('click',()=>{
+  if(!imgFile){alert("Please upload an image first.");return;}
+  statusEl.textContent='🔍 Extracting text... please wait.';
+  Tesseract.recognize(preview.src,'eng',{logger:m=>console.log(m)}).then(({data:{text}})=>{
+    outputText.value=text.trim()||"No readable text found.";
+    statusEl.textContent='✅ Text extracted successfully!';
+  }).catch(err=>{
+    console.error(err);
+    statusEl.textContent='❌ Error processing image.';
+  });
+});
+
+copyBtn.addEventListener('click',()=>{
+  outputText.select();
+  document.execCommand('copy');
+  copyBtn.textContent='✅ Copied!';
+  setTimeout(()=>copyBtn.textContent='Copy Text',1500);
+});
+</script>
+</body>
+</html>
