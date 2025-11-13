@@ -1,154 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>PDF to JPG Converter – Free, Secure & Offline | ❤️ I❤ImagePDF</title>
-<meta name="description" content="Convert PDF to JPG images instantly in your browser. 100% client-side, secure, fast and free. Extract and download every page of a PDF as a high-quality image. Works on all devices, no upload required." />
-<meta name="keywords" content="pdf to jpg, convert pdf to jpg, extract pdf pages, pdf to image, pdf converter offline, pdf to jpeg, free pdf to jpg converter, browser pdf to image, no upload pdf converter, secure pdf image extractor, pdf pages to pictures, client side pdf converter, pdf image maker, fast pdf to jpg, privacy pdf converter, convert pdf locally, make jpg from pdf, export pdf as images, pdf to png converter, offline pdf tool, 100 percent client side pdf converter, no login pdf to image, online pdf utility, free pdf image creator, pdf picture converter, safe pdf tool, instant pdf converter, lightweight pdf converter" />
-<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/pdf-to-jpg.html" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PDF to JPG – Convert PDF Pages to Images | ❤️ I❤ImagePDF</title>
 
-<meta property="og:title" content="PDF to JPG Converter – ❤️ I❤ImagePDF" />
-<meta property="og:description" content="Convert PDF pages into downloadable JPG images instantly. 100% private and client-side." />
-<meta property="og:image" content="https://secure-img-to-pdf.vercel.app/favicon.png" />
-<meta name="twitter:card" content="summary_large_image" />
+<meta name="description" content="Convert PDF pages to JPG instantly in your browser — free, secure, and offline. Drag & drop or click to upload a PDF and download high-quality JPG images for each page. 100% client-side and private.">
+<meta name="keywords" content="pdf to jpg, convert pdf to image, pdf to jpeg, extract pdf pages as images, pdf to png, pdf converter, pdf image tool, free pdf converter, pdf to jpg offline, pdf to jpg online, pdf to jpg converter free, pdf page to image, convert pdf for free, pdf image extractor, client side pdf converter, browser pdf to jpg, no upload pdf converter, privacy safe pdf tool, I❤ImagePDF, responsive pdf tools, pdf conversion 2025, best pdf to jpg converter, pdf utilities, pdf tools vercel, convert pdf offline, pdf image export, pdf page export, pdf to jpg secure, pdf to jpg ios, pdf to jpg android, pdf to jpg desktop, smallpdf alternative, ilovepdf alternative, online pdf tool, pdf converter seo, pdf image generation, extract pdf images, productivity pdf tool, compress pdf, merge pdf, split pdf, convert pdf to images, convert pdf to photos, pdf convert quickly, free pdf tools, pdf toolkit 2025, privacy based pdf converter, pdf editor, pdf processor, convert pdf pages offline, pdf to jpg converter browser, best pdf utilities, pdf manager, pdf image converter, high quality pdf conversion, pdf converter website, global pdf tools, india pdf to jpg, usa pdf to jpg, canada pdf tools, eu pdf converter, pdf toolkit vercel, seo optimized pdf converter, instant pdf to image, pdf visual converter, pdf image quality, pdf viewer converter, pdf convert webapp, high speed pdf to jpg, free online pdf image extractor, pdf convert privacy safe, 2025 pdf toolkit pro, pdf converter unlimited free, mobile pdf converter, pdf converter app, secure pdf to jpg tool, pdf convert client side, offline pdf image converter, pdf convert easy, pdf converter modern, no upload secure pdf tool" />
 
-<script type="application/ld+json">
-{
- "@context": "https://schema.org",
- "@type": "WebPage",
- "name": "PDF to JPG Converter",
- "description": "Client-side PDF to JPG converter. Convert PDF pages to images securely and privately in your browser.",
- "publisher": {"@type": "Organization","name": "I❤ImagePDF"}
-}
-</script>
+<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/pdf-to-jpg.html">
+<meta property="og:title" content="PDF to JPG – ❤️ I❤ImagePDF">
+<meta property="og:description" content="Convert PDF to high-quality JPG images — fast, secure, and offline. 100% client-side.">
+<meta property="og:image" content="https://secure-img-to-pdf.vercel.app/favicon.png">
+<meta name="twitter:card" content="summary_large_image">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
-:root{--accent:#d9232e;--bg:#f6f8fb;}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:"Inter",sans-serif;background:var(--bg);color:#222;line-height:1.5;}
-header{background:#fff;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;
-box-shadow:0 2px 8px rgba(0,0,0,.05);position:sticky;top:0;z-index:10;}
-.logo{font-size:22px;font-weight:800;color:#000;cursor:pointer;}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+:root{--accent:#d9232e;--bg:#f6f8fb;--card-bg:#fff;--radius:16px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:"Inter",sans-serif;background:var(--bg);color:#222;line-height:1.6;}
+header{background:#fff;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;
+box-shadow:0 2px 8px rgba(0,0,0,.05);position:sticky;top:0;z-index:100;}
+.logo{font-size:22px;font-weight:800;cursor:pointer;}
 .logo span{color:var(--accent);}
-.container{max-width:960px;margin:auto;padding:18px;}
-h1{color:var(--accent);font-size:26px;margin-bottom:10px;text-align:center;}
-p.intro{color:#555;text-align:center;max-width:720px;margin:0 auto 20px;}
-.tool-box{background:#fff;border:1px solid #eee;border-radius:14px;padding:20px;text-align:center;
-box-shadow:0 2px 8px rgba(0,0,0,.05);}
-input[type=file]{margin-top:10px;}
-button{margin-top:15px;background:var(--accent);border:none;color:#fff;padding:10px 22px;
-border-radius:8px;font-weight:600;cursor:pointer;}
-button:hover{opacity:0.9;}
-img.page-image{width:100%;max-width:480px;margin:12px auto;display:block;border-radius:8px;border:1px solid #eee;}
-.section{background:#fff;padding:20px;border-radius:14px;border:1px solid #eee;margin-top:20px;
-box-shadow:0 2px 8px rgba(0,0,0,.05);}
+.container{max-width:900px;margin:auto;padding:22px;}
+h1{color:var(--accent);font-size:28px;text-align:center;margin-bottom:10px;}
+p.intro{text-align:center;color:#555;max-width:720px;margin:0 auto 20px;}
+.tool-card{background:var(--card-bg);border:1px solid #eee;border-radius:var(--radius);
+box-shadow:0 2px 8px rgba(0,0,0,.05);padding:25px;text-align:center;}
+.drop-zone{border:2px dashed var(--accent);border-radius:var(--radius);padding:40px;cursor:pointer;
+background:#fff;transition:.3s;}
+.drop-zone:hover{background:#fff7f7;}
+.drop-zone.dragover{background:#ffecec;border-color:#b31319;}
+.drop-zone p{color:#444;font-size:16px;}
+.preview{margin-top:15px;text-align:left;}
+button{background:var(--accent);color:#fff;border:none;padding:12px 24px;border-radius:8px;
+font-weight:600;cursor:pointer;transition:.3s;margin:6px;}
+button:hover{opacity:.9;}
+.section{background:var(--card-bg);padding:20px;border-radius:var(--radius);border:1px solid #eee;
+margin-top:25px;box-shadow:0 2px 8px rgba(0,0,0,.05);}
 .section h2{color:var(--accent);font-size:22px;margin-bottom:10px;}
 ul{padding-left:20px;}
-ul li{margin-bottom:6px;color:#444;}
 footer{margin-top:30px;background:#fff;text-align:center;padding:18px;font-size:14px;color:#555;}
 a{color:#1677ff;text-decoration:none;}
-a:hover{text-decoration:underline;}
 </style>
 </head>
 
 <body>
-<header>
- <div class="logo" onclick="location.href='/'">❤️ I❤ImagePDF</div>
-</header>
+<header><div class="logo" onclick="location.href='/'">❤️ I❤ImagePDF</div></header>
 
 <div class="container">
- <h1>PDF to JPG Converter 🔄</h1>
- <p class="intro">Turn your PDF pages into downloadable JPG images directly in your browser — secure, fast, and completely offline.</p>
+  <h1>PDF to JPG 🖼️</h1>
+  <p class="intro">Convert your PDF pages into high-quality JPG images directly in your browser — fast, private, and free forever.</p>
 
- <!-- ======== Tool Area ======== -->
- <div class="tool-box">
-  <h2>Select a PDF to Convert</h2>
-  <input type="file" id="pdfFile" accept="application/pdf" />
-  <button id="convertBtn">Convert to JPG</button>
-  <div id="output"></div>
- </div>
+  <div class="tool-card">
+    <div id="dropZone" class="drop-zone">
+      <p>📂 <strong>Drag & drop your PDF here</strong><br>or click to choose a file</p>
+      <input type="file" id="pdfInput" accept="application/pdf" style="display:none">
+    </div>
 
- <!-- ==== Place Adsterra banner here ==== -->
- <!-- <div class="ad-slot">Paste your Adsterra banner script here</div> -->
+    <button id="convertBtn">Convert PDF to JPG</button>
+    <button id="clearBtn" style="background:#666">Clear</button>
+    <p id="status"></p>
+    <div id="preview" class="preview"></div>
+  </div>
 
- <!-- ======== How It Works ======== -->
- <div class="section">
-  <h2>How It Works ⚙️</h2>
-  <ul>
-   <li>Choose any PDF file from your device.</li>
-   <li>Each page is rendered in your browser using WebAssembly.</li>
-   <li>When conversion finishes, you can view and download every page as JPG images.</li>
-  </ul>
- </div>
+  <div class="section">
+    <h2>How It Works ⚙️</h2>
+    <ul>
+      <li>Upload or drag & drop your PDF file.</li>
+      <li>Each page will be rendered and converted to a high-quality JPG image.</li>
+      <li>Download all JPGs individually or as a ZIP file.</li>
+    </ul>
+  </div>
 
- <!-- ======== Why Choose Us ======== -->
- <div class="section">
-  <h2>Why Choose I❤ImagePDF?</h2>
-  <ul>
-   <li>100% client-side — no file uploads or server processing.</li>
-   <li>Supports heavy multi-page PDFs with high resolution output.</li>
-   <li>Completely free and private; works on all devices.</li>
-   <li>Built for creators, students, and professionals who value privacy.</li>
-  </ul>
- </div>
+  <div class="section">
+    <h2>Why Choose I❤ImagePDF ❤️</h2>
+    <ul>
+      <li>🔒 100 % secure and client-side — nothing uploaded.</li>
+      <li>⚡ Super-fast rendering and conversion.</li>
+      <li>📱 Mobile-friendly responsive interface.</li>
+      <li>💰 Completely free and unlimited use.</li>
+    </ul>
+  </div>
 
- <!-- ======== FAQs ======== -->
- <div class="section">
-  <h2>FAQs ❓</h2>
-  <p><strong>Are my files uploaded?</strong><br>No. All processing happens locally in your browser.</p>
-  <p><strong>Does it work on mobile?</strong><br>Yes, the converter runs smoothly on Android and iOS browsers.</p>
-  <p><strong>Can I convert large PDFs?</strong><br>Yes, it supports multi-page PDFs, limited only by your device memory.</p>
-  <p><strong>Is this tool free?</strong><br>Absolutely! All I❤ImagePDF tools are 100% free and secure.</p>
- </div>
+  <div class="section">
+    <h2>FAQs ❓</h2>
+    <p><strong>Is my PDF uploaded?</strong><br>No. Everything runs locally in your browser for total privacy.</p>
+    <p><strong>Can I download all pages together?</strong><br>Yes, you can download each page individually or compress into a ZIP file.</p>
+    <p><strong>What about image quality?</strong><br>You get full-resolution images matching your PDF’s content.</p>
+    <p><strong>Does it work offline?</strong><br>Yes — once loaded, it works without the internet.</p>
+  </div>
 
- <footer>
-  © 2025 ❤️ I❤ImagePDF — 100% Client-side & Secure |
-  <a href="/about.html">About</a> | <a href="/privacy.html">Privacy Policy</a>
- </footer>
+  <footer>
+    © 2025 ❤️ I❤ImagePDF — Secure Client-Side Tools | 
+    <a href="/about.html">About</a> | <a href="/privacy.html">Privacy Policy</a>
+  </footer>
 </div>
 
-<!-- ======== JavaScript: PDF→JPG Conversion ======== -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script>
-const input = document.getElementById('pdfFile');
-const convertBtn = document.getElementById('convertBtn');
-const output = document.getElementById('output');
+const dropZone=document.getElementById('dropZone');
+const pdfInput=document.getElementById('pdfInput');
+const convertBtn=document.getElementById('convertBtn');
+const clearBtn=document.getElementById('clearBtn');
+const statusEl=document.getElementById('status');
+const preview=document.getElementById('preview');
+let file=null;
 
-convertBtn.addEventListener('click', async () => {
-  const file = input.files[0];
-  if (!file) return alert('Please choose a PDF file first.');
-  output.innerHTML = "<p>Processing… please wait ⏳</p>";
+dropZone.addEventListener('click',()=>pdfInput.click());
+dropZone.addEventListener('dragover',e=>{e.preventDefault();dropZone.classList.add('dragover');});
+dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('dragover'));
+dropZone.addEventListener('drop',e=>{
+  e.preventDefault();dropZone.classList.remove('dragover');
+  file=e.dataTransfer.files[0];
+  dropZone.querySelector('p').textContent=file.name;
+});
+pdfInput.addEventListener('change',()=>{
+  file=pdfInput.files[0];
+  dropZone.querySelector('p').textContent=file.name;
+});
+clearBtn.onclick=()=>{file=null;pdfInput.value='';preview.innerHTML='';statusEl.textContent='';
+  dropZone.querySelector('p').innerHTML='📂 <strong>Drag & drop your PDF here</strong><br>or click to choose a file';
+};
 
-  const fileReader = new FileReader();
-  fileReader.onload = async function() {
-    const typedarray = new Uint8Array(this.result);
-    const pdf = await pdfjsLib.getDocument(typedarray).promise;
-    output.innerHTML = '';
-    for (let i = 1; i <= pdf.numPages; i++) {
-      const page = await pdf.getPage(i);
-      const viewport = page.getViewport({ scale: 2 });
-      const canvas = document.createElement('canvas');
-      const context = canvas.getContext('2d');
-      canvas.height = viewport.height;
-      canvas.width = viewport.width;
-      await page.render({ canvasContext: context, viewport: viewport }).promise;
-      const imgURL = canvas.toDataURL('image/jpeg');
-      const img = document.createElement('img');
-      img.src = imgURL;
-      img.className = 'page-image';
-      const link = document.createElement('a');
-      link.href = imgURL;
-      link.download = `page-${i}.jpg`;
-      link.textContent = `Download Page ${i}`;
-      link.style.display = 'block';
-      link.style.marginBottom = '12px';
-      output.appendChild(img);
-      output.appendChild(link);
-    }
-  };
-  fileReader.readAsArrayBuffer(file);
+convertBtn.addEventListener('click',async()=>{
+  if(!file){alert('Please select a PDF first.');return;}
+  statusEl.textContent='📄 Reading PDF...';
+  const arrayBuffer=await file.arrayBuffer();
+  const pdf=await pdfjsLib.getDocument({data:arrayBuffer}).promise;
+  const zip=new JSZip();
+  preview.innerHTML='';statusEl.textContent='🖼️ Converting...';
+
+  for(let i=1;i<=pdf.numPages;i++){
+    const page=await pdf.getPage(i);
+    const viewport=page.getViewport({scale:2});
+    const canvas=document.createElement('canvas');
+    const ctx=canvas.getContext('2d');
+    canvas.width=viewport.width;
+    canvas.height=viewport.height;
+    await page.render({canvasContext:ctx,viewport}).promise;
+    const dataURL=canvas.toDataURL('image/jpeg',0.9);
+    const a=document.createElement('a');
+    a.href=dataURL;a.download=`page-${i}.jpg`;a.textContent=`Download page ${i}`;
+    preview.appendChild(a);
+    preview.appendChild(document.createElement('br'));
+    zip.file(`page-${i}.jpg`,dataURL.split(',')[1],{base64:true});
+  }
+
+  const zipBlob=await zip.generateAsync({type:'blob'});
+  const zipLink=document.createElement('a');
+  zipLink.href=URL.createObjectURL(zipBlob);
+  zipLink.download='pdf-pages.zip';
+  zipLink.textContent='📦 Download All as ZIP';
+  preview.appendChild(zipLink);
+  statusEl.textContent='✅ Conversion complete!';
 });
 </script>
 </body>
