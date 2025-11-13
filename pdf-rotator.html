@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PDF Rotator – Rotate PDF Pages Online | ❤️ I❤ImagePDF</title>
+
+<meta name="description" content="Rotate PDF pages online instantly — 90°, 180°, or 270° rotation, 100% offline and private. Free PDF Rotator by I❤ImagePDF.">
+<meta name="keywords" content="pdf rotator, rotate pdf, rotate pdf pages, pdf rotation tool, rotate pdf offline, pdf rotate 90, rotate pdf 180, pdf rotate 270, pdf-lib rotate, pdf rotate client side, rotate pdf free, pdf editor, pdf viewer rotate, secure pdf rotation, online pdf rotator, pdf rotate app, rotate pages pdf browser, rotate and download pdf, pdf rotation without upload, rotate pdf tool 2025, privacy safe pdf rotator, rotate pdf mac, pdf rotate windows, pdf rotate india, usa pdf rotation, I❤ImagePDF, ilovepdf rotate, smallpdf rotate alternative, pdf utilities 2025, free pdf tools, rotate pdf on mobile, pdf rotation software, pdf rotation secure, browser rotate pdf, offline pdf editor, rotate pdf fast, pdf page manipulation, instant pdf rotate, pdf orientation fix, rotate documents pdf, rotate secure, free rotate pdf, rotate pdf pro, I love image pdf rotate, web based pdf rotator, seo optimized pdf rotate, high speed pdf tool, all browser pdf rotation, online pdf manager, safe pdf editor, top pdf tools 2025, global pdf rotate tool, privacy first pdf app">
+<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/pdf-rotator.html">
+<meta property="og:title" content="PDF Rotator – Rotate PDF Pages Online | ❤️ I❤ImagePDF">
+<meta property="og:description" content="Rotate your PDF pages securely in your browser — 90°, 180°, or 270°. 100% private and free.">
+<meta property="og:image" content="https://secure-img-to-pdf.vercel.app/favicon.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+:root{--accent:#d9232e;--bg:#f6f8fb;--card:#fff;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:"Inter",sans-serif;background:var(--bg);color:#222;line-height:1.6;}
+header{background:#fff;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;
+box-shadow:0 2px 8px rgba(0,0,0,.05);position:sticky;top:0;z-index:100;}
+.logo{font-size:22px;font-weight:800;cursor:pointer;}
+.logo span{color:var(--accent);}
+.container{max-width:900px;margin:auto;padding:22px;}
+h1{color:var(--accent);font-size:28px;text-align:center;margin-bottom:10px;}
+p.intro{text-align:center;color:#555;max-width:720px;margin:0 auto 20px;}
+.tool-card{background:var(--card);border:1px solid #eee;border-radius:16px;
+box-shadow:0 2px 8px rgba(0,0,0,.05);padding:25px;text-align:center;}
+.drop-zone{border:2px dashed var(--accent);border-radius:16px;padding:40px;cursor:pointer;
+background:#fff;transition:.3s;}
+.drop-zone:hover{background:#fff7f7;}
+.drop-zone.dragover{background:#ffecec;border-color:#b31319;}
+.drop-zone p{color:#444;font-size:16px;}
+select,button{font-family:inherit;}
+select{padding:10px 12px;margin:10px;border:1px solid #ccc;border-radius:8px;}
+button{background:var(--accent);color:#fff;border:none;padding:12px 24px;border-radius:8px;
+font-weight:600;cursor:pointer;transition:.3s;margin:6px;}
+button:hover{opacity:.9;}
+.section{background:var(--card);padding:20px;border-radius:16px;border:1px solid #eee;
+margin-top:25px;box-shadow:0 2px 8px rgba(0,0,0,.05);}
+.section h2{color:var(--accent);font-size:22px;margin-bottom:10px;}
+ul{padding-left:20px;}
+footer{margin-top:30px;background:#fff;text-align:center;padding:18px;font-size:14px;color:#555;}
+a{color:#1677ff;text-decoration:none;}
+a:hover{text-decoration:underline;}
+</style>
+</head>
+
+<body>
+<header><div class="logo" onclick="location.href='/'">❤️ I❤ImagePDF</div></header>
+
+<div class="container">
+  <h1>PDF Rotator 🔄</h1>
+  <p class="intro">Rotate your PDF pages instantly — 90°, 180°, or 270°. 100% offline, private, and free.</p>
+
+  <div class="tool-card">
+    <div id="dropZone" class="drop-zone">
+      <p>📂 <strong>Drag & drop your PDF here</strong><br>or click to choose</p>
+      <input type="file" id="pdfInput" accept="application/pdf" style="display:none">
+    </div>
+
+    <div>
+      <label for="rotationSelect">Rotate by:</label>
+      <select id="rotationSelect">
+        <option value="90">90° Clockwise</option>
+        <option value="180">180°</option>
+        <option value="270">270°</option>
+      </select>
+    </div>
+
+    <button id="rotateBtn">Rotate PDF</button>
+    <p id="status"></p>
+  </div>
+
+  <div class="section">
+    <h2>How It Works ⚙️</h2>
+    <ul>
+      <li>Upload or drag your PDF file.</li>
+      <li>Select the rotation angle (90°, 180°, or 270°).</li>
+      <li>Click “Rotate PDF” to process it locally.</li>
+      <li>Download your rotated PDF instantly — secure & offline.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Why Choose I❤ImagePDF ❤️</h2>
+    <ul>
+      <li>🔒 100% client-side — privacy guaranteed.</li>
+      <li>⚡ Fast rotation — processed directly in your browser.</li>
+      <li>📱 Works perfectly on mobile & desktop.</li>
+      <li>💰 Free forever — no watermark or signup required.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>FAQs ❓</h2>
+    <p><strong>Are my PDFs uploaded?</strong><br>No, the rotation happens entirely in your browser.</p>
+    <p><strong>Can I rotate specific pages?</strong><br>Currently rotates all pages; selective rotation coming soon.</p>
+    <p><strong>Does it work offline?</strong><br>Yes, after the first load, it works even without internet.</p>
+    <p><strong>Will it reduce PDF quality?</strong><br>No, original quality is preserved.</p>
+  </div>
+
+  <footer>
+    © 2025 ❤️ I❤ImagePDF — 100% Client-Side & Secure |
+    <a href="/about.html">About</a> | <a href="/privacy.html">Privacy Policy</a>
+  </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script>
+const dropZone=document.getElementById('dropZone');
+const pdfInput=document.getElementById('pdfInput');
+const rotateBtn=document.getElementById('rotateBtn');
+const rotationSelect=document.getElementById('rotationSelect');
+const statusEl=document.getElementById('status');
+let pdfFile=null;
+
+dropZone.addEventListener('click',()=>pdfInput.click());
+dropZone.addEventListener('dragover',e=>{e.preventDefault();dropZone.classList.add('dragover');});
+dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('dragover'));
+dropZone.addEventListener('drop',e=>{
+  e.preventDefault();dropZone.classList.remove('dragover');
+  pdfFile=e.dataTransfer.files[0];
+  dropZone.querySelector('p').textContent=pdfFile.name;
+});
+pdfInput.addEventListener('change',()=>{pdfFile=pdfInput.files[0];dropZone.querySelector('p').textContent=pdfFile.name;});
+
+rotateBtn.addEventListener('click',async()=>{
+  if(!pdfFile){alert('Please upload a PDF first.');return;}
+  statusEl.textContent='⏳ Rotating PDF...';
+  const rotation=parseInt(rotationSelect.value);
+  const pdfBytes=await pdfFile.arrayBuffer();
+  const pdfDoc=await PDFLib.PDFDocument.load(pdfBytes);
+  const pages=pdfDoc.getPages();
+  pages.forEach(p=>p.setRotation(p.getRotation().rotate(rotation)));
+  const newPdf=await pdfDoc.save();
+  const blob=new Blob([newPdf],{type:'application/pdf'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='rotated.pdf';
+  a.click();
+  statusEl.textContent='✅ PDF Rotated & Downloaded!';
+  setTimeout(()=>statusEl.textContent='',4000);
+});
+</script>
+</body>
+</html>
