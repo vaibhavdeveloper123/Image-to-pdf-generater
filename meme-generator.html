@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Meme Generator – Create Funny Memes Instantly | ❤️ I❤ImagePDF</title>
+
+<meta name="description" content="Create hilarious memes instantly in your browser — add your text with or without images, all offline, secure, and free. Generate and download funny memes now with I❤ImagePDF Meme Generator.">
+<meta name="keywords" content="meme generator, meme maker, funny meme creator, create memes online, meme text only, text meme maker, photo meme editor, meme without image, generate memes, meme maker 2025, meme generator india, meme generator free, I❤ImagePDF meme maker, privacy meme generator, secure meme tool, meme studio web, meme editor online, make meme text, meme with custom background, AI meme generator, client side meme tool, meme generator offline, no upload meme tool, meme without watermark, funny memes tool, browser meme generator, image caption tool, online meme editor, meme creator 100 client side, meme builder 2025, top meme website, free meme app, meme generator site, safe meme tool, I love image pdf meme generator, meme text generator, meme caption generator, generate memes text image, instant meme maker, global meme site, meme builder secure, creative meme generator, meme maker ai, meme tool, text meme, meme converter, trending meme tool, viral meme generator, meme maker browser, photo meme text tool, meme editor pro, meme with emoji, meme generator 2025, meme website secure, privacy safe meme maker, I❤ImagePDF meme studio">
+<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/meme-generator.html">
+<meta property="og:title" content="Meme Generator – Create Funny Memes Instantly | ❤️ I❤ImagePDF">
+<meta property="og:description" content="Create memes instantly with or without images — secure, offline, and 100% free.">
+<meta property="og:image" content="https://secure-img-to-pdf.vercel.app/favicon.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+:root{--accent:#d9232e;--bg:#f6f8fb;--card:#fff;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:"Inter",sans-serif;background:var(--bg);color:#222;line-height:1.6;}
+header{background:#fff;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;
+box-shadow:0 2px 8px rgba(0,0,0,.05);position:sticky;top:0;z-index:100;}
+.logo{font-size:22px;font-weight:800;cursor:pointer;}
+.logo span{color:var(--accent);}
+.container{max-width:900px;margin:auto;padding:22px;}
+h1{color:var(--accent);font-size:28px;text-align:center;margin-bottom:10px;}
+p.intro{text-align:center;color:#555;max-width:720px;margin:0 auto 20px;}
+.tool-card{background:var(--card);border:1px solid #eee;border-radius:16px;
+box-shadow:0 2px 8px rgba(0,0,0,.05);padding:25px;text-align:center;}
+.drop-zone{border:2px dashed var(--accent);border-radius:16px;padding:40px;cursor:pointer;
+background:#fff;transition:.3s;}
+.drop-zone:hover{background:#fff7f7;}
+.drop-zone.dragover{background:#ffecec;border-color:#b31319;}
+.drop-zone p{color:#444;font-size:16px;}
+#previewCanvas{width:100%;max-width:500px;border:1px solid #ccc;border-radius:12px;margin:15px auto;display:block;}
+input,button{font-family:inherit;}
+input[type="text"]{padding:10px 12px;width:90%;max-width:400px;margin:8px auto;border:1px solid #ccc;border-radius:8px;}
+button{background:var(--accent);color:#fff;border:none;padding:12px 24px;border-radius:8px;
+font-weight:600;cursor:pointer;transition:.3s;margin:6px;}
+button:hover{opacity:.9;}
+.section{background:var(--card);padding:20px;border-radius:16px;border:1px solid #eee;
+margin-top:25px;box-shadow:0 2px 8px rgba(0,0,0,.05);}
+.section h2{color:var(--accent);font-size:22px;margin-bottom:10px;}
+ul{padding-left:20px;}
+footer{margin-top:30px;background:#fff;text-align:center;padding:18px;font-size:14px;color:#555;}
+a{color:#1677ff;text-decoration:none;}
+a:hover{text-decoration:underline;}
+</style>
+</head>
+
+<body>
+<header><div class="logo" onclick="location.href='/'">❤️ I❤ImagePDF</div></header>
+
+<div class="container">
+  <h1>Meme Generator 😂</h1>
+  <p class="intro">Create your memes instantly — upload an image or just add funny text! 100% client-side, private, and free.</p>
+
+  <div class="tool-card">
+    <div id="dropZone" class="drop-zone">
+      <p>📸 <strong>Drag & drop an image here</strong> or click to choose<br>OR create a <strong>Text-only Meme</strong></p>
+      <input type="file" id="imgInput" accept="image/*" style="display:none">
+    </div>
+
+    <canvas id="previewCanvas" width="500" height="500"></canvas>
+
+    <div>
+      <input type="text" id="topText" placeholder="Top text (optional)">
+      <input type="text" id="bottomText" placeholder="Bottom text (optional)">
+    </div>
+
+    <button id="generateBtn">Generate Meme</button>
+    <button id="downloadBtn">Download Meme</button>
+    <p id="status"></p>
+  </div>
+
+  <div class="section">
+    <h2>How It Works ⚙️</h2>
+    <ul>
+      <li>Upload an image or leave it blank for text-only memes.</li>
+      <li>Add top and bottom text.</li>
+      <li>Click “Generate Meme” to preview instantly.</li>
+      <li>Download your meme — all processed in your browser!</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Why Choose I❤ImagePDF ❤️</h2>
+    <ul>
+      <li>100% client-side — your images never leave your device.</li>
+      <li>Works offline after loading once.</li>
+      <li>Fast, private & watermark-free.</li>
+      <li>Completely free — no signup needed.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>FAQs ❓</h2>
+    <p><strong>Can I make a meme without an image?</strong><br>Yes! Just leave the image empty and type your text.</p>
+    <p><strong>Is it safe?</strong><br>All processing happens locally in your browser — no uploads, 100% private.</p>
+    <p><strong>Does it work on mobile?</strong><br>Yes, it’s mobile-friendly and works in all browsers.</p>
+  </div>
+
+  <footer>
+    © 2025 ❤️ I❤ImagePDF — 100% Client-Side & Secure |
+    <a href="/about.html">About</a> | <a href="/privacy.html">Privacy Policy</a>
+  </footer>
+</div>
+
+<script>
+const dropZone=document.getElementById('dropZone');
+const imgInput=document.getElementById('imgInput');
+const canvas=document.getElementById('previewCanvas');
+const ctx=canvas.getContext('2d');
+const generateBtn=document.getElementById('generateBtn');
+const downloadBtn=document.getElementById('downloadBtn');
+const topText=document.getElementById('topText');
+const bottomText=document.getElementById('bottomText');
+let img=null;
+
+// handle upload
+dropZone.addEventListener('click',()=>imgInput.click());
+dropZone.addEventListener('dragover',e=>{e.preventDefault();dropZone.classList.add('dragover');});
+dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('dragover'));
+dropZone.addEventListener('drop',e=>{
+  e.preventDefault();dropZone.classList.remove('dragover');
+  const file=e.dataTransfer.files[0];loadImage(file);
+});
+imgInput.addEventListener('change',()=>loadImage(imgInput.files[0]));
+
+function loadImage(file){
+  const reader=new FileReader();
+  reader.onload=()=>{img=new Image();img.onload=()=>drawMeme();img.src=reader.result;};
+  reader.readAsDataURL(file);
+}
+
+function drawMeme(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  if(img){
+    const ratio=Math.min(canvas.width/img.width,canvas.height/img.height);
+    const w=img.width*ratio,h=img.height*ratio;
+    const x=(canvas.width-w)/2,y=(canvas.height-h)/2;
+    ctx.drawImage(img,x,y,w,h);
+  } else {
+    // create gradient background for text-only memes
+    const gradient=ctx.createLinearGradient(0,0,canvas.width,canvas.height);
+    gradient.addColorStop(0,"#fff0f0");
+    gradient.addColorStop(1,"#ffecec");
+    ctx.fillStyle=gradient;
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+  }
+
+  // Draw text
+  ctx.font="bold 36px Impact, Arial Black, sans-serif";
+  ctx.textAlign="center";ctx.fillStyle="white";ctx.strokeStyle="black";ctx.lineWidth=3;
+  if(topText.value) drawText(topText.value.toUpperCase(),canvas.width/2,50);
+  if(bottomText.value) drawText(bottomText.value.toUpperCase(),canvas.width/2,canvas.height-20);
+}
+function drawText(text,x,y){ctx.strokeText(text,x,y);ctx.fillText(text,x,y);}
+
+generateBtn.onclick=drawMeme;
+
+downloadBtn.onclick=()=>{
+  const link=document.createElement('a');
+  link.download='meme.png';
+  link.href=canvas.toDataURL();
+  link.click();
+};
+</script>
+</body>
+</html>
