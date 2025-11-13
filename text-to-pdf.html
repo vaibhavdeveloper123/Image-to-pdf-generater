@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Text to PDF – Convert Text Files into PDF Instantly | ❤️ I❤ImagePDF</title>
+
+<meta name="description" content="Convert your text to PDF instantly and securely — type or paste your text and download as a high-quality PDF. 100% offline, free, and private with I❤ImagePDF.">
+<meta name="keywords" content="text to pdf, convert text to pdf, create pdf from text, generate pdf online, make pdf document, write pdf file, offline text pdf converter, free text to pdf, I❤ImagePDF, client side pdf tool, secure pdf converter, txt to pdf, text writer pdf, document generator, html text to pdf, pdf creation tool, privacy safe pdf maker, instant pdf creator, pdf text editor, pdf writer 2025, global pdf utility, pdf builder, online pdf writer, privacy text to pdf, pdf converter offline, best pdf tool 2025, browser pdf generator, seo optimized pdf creator, pdf generator india, pdf creator usa, write to pdf, text save pdf, text pdf generator free, no upload pdf tool, 100 client side pdf creator, create professional pdf, text note to pdf, word to pdf, text document converter, make custom pdf, privacy pdf creator, instant pdf download, free pdf generation, text file to pdf, create pdf instantly, safe pdf tool, mobile pdf creator, I love image pdf, secure text to pdf, convert content to pdf, online pdf utilities 2025, handwritten text to pdf, create formatted pdf, generate pdf easily, offline pdf text tool, instant pdf document, secure file converter, fast pdf generator, 2025 text pdf converter">
+<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/text-to-pdf.html">
+<meta property="og:title" content="Text to PDF – Convert Text into PDF Instantly | ❤️ I❤ImagePDF">
+<meta property="og:description" content="Create a PDF from text instantly — 100% offline, private, and free. No uploads required.">
+<meta property="og:image" content="https://secure-img-to-pdf.vercel.app/favicon.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+:root{--accent:#d9232e;--bg:#f6f8fb;--card:#fff;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:"Inter",sans-serif;background:var(--bg);color:#222;line-height:1.6;}
+header{background:#fff;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;
+box-shadow:0 2px 8px rgba(0,0,0,.05);position:sticky;top:0;z-index:100;}
+.logo{font-size:22px;font-weight:800;cursor:pointer;}
+.logo span{color:var(--accent);}
+.container{max-width:900px;margin:auto;padding:22px;}
+h1{color:var(--accent);font-size:28px;text-align:center;margin-bottom:10px;}
+p.intro{text-align:center;color:#555;max-width:720px;margin:0 auto 20px;}
+.tool-card{background:var(--card);border:1px solid #eee;border-radius:16px;
+box-shadow:0 2px 8px rgba(0,0,0,.05);padding:25px;text-align:center;}
+textarea{width:100%;height:300px;padding:12px;border-radius:12px;border:1px solid #ccc;font-size:15px;resize:vertical;margin-bottom:15px;font-family:"Inter",sans-serif;}
+button{background:var(--accent);color:#fff;border:none;padding:12px 24px;border-radius:8px;
+font-weight:600;cursor:pointer;transition:.3s;}
+button:hover{opacity:.9;}
+.section{background:var(--card);padding:20px;border-radius:16px;border:1px solid #eee;
+margin-top:25px;box-shadow:0 2px 8px rgba(0,0,0,.05);}
+.section h2{color:var(--accent);font-size:22px;margin-bottom:10px;}
+ul{padding-left:20px;}
+footer{margin-top:30px;background:#fff;text-align:center;padding:18px;font-size:14px;color:#555;}
+a{color:#1677ff;text-decoration:none;}
+a:hover{text-decoration:underline;}
+</style>
+</head>
+
+<body>
+<header><div class="logo" onclick="location.href='/'">❤️ I❤ImagePDF</div></header>
+
+<div class="container">
+  <h1>Text to PDF 📝</h1>
+  <p class="intro">Type or paste your text below and instantly generate a secure, downloadable PDF — all processed offline in your browser.</p>
+
+  <div class="tool-card">
+    <textarea id="textInput" placeholder="✍️ Type or paste your text here..."></textarea>
+    <button id="generateBtn">Generate PDF</button>
+    <p id="status"></p>
+  </div>
+
+  <div class="section">
+    <h2>How It Works ⚙️</h2>
+    <ul>
+      <li>Type or paste your text into the box above.</li>
+      <li>Click “Generate PDF” — processing happens in your browser.</li>
+      <li>Download your formatted PDF instantly.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Why Choose I❤ImagePDF ❤️</h2>
+    <ul>
+      <li>🧾 100% client-side — your text never leaves your device.</li>
+      <li>⚡ Lightning-fast PDF creation with no upload delay.</li>
+      <li>📱 Works on any device — mobile, tablet, or desktop.</li>
+      <li>💰 Completely free & privacy-first, no watermark or signup.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>FAQs ❓</h2>
+    <p><strong>Is my text uploaded to a server?</strong><br>No, everything runs locally — 100% secure and private.</p>
+    <p><strong>Can I use this for notes or documents?</strong><br>Yes! You can generate reports, essays, notes, or official PDFs instantly.</p>
+    <p><strong>Does it support large text files?</strong><br>Yes, it can handle large blocks of text easily in-browser.</p>
+  </div>
+
+  <footer>
+    © 2025 ❤️ I❤ImagePDF — 100% Client-Side & Secure |
+    <a href="/about.html">About</a> | <a href="/privacy.html">Privacy Policy</a>
+  </footer>
+</div>
+
+<!-- jsPDF for client-side PDF creation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+const { jsPDF } = window.jspdf;
+const generateBtn=document.getElementById('generateBtn');
+const textInput=document.getElementById('textInput');
+const statusEl=document.getElementById('status');
+
+generateBtn.addEventListener('click',()=>{
+  const text=textInput.value.trim();
+  if(!text){alert('Please enter some text first!');return;}
+  statusEl.textContent='🧾 Generating your PDF...';
+
+  const doc=new jsPDF({unit:'pt',format:'a4'});
+  const margin=40;
+  const lineHeight=16;
+  const maxWidth=500;
+  const lines=doc.splitTextToSize(text,maxWidth);
+  doc.setFont('helvetica','normal');
+  doc.setFontSize(12);
+  doc.text(lines,margin,margin+10);
+  doc.save('text-to-pdf.pdf');
+
+  statusEl.textContent='✅ PDF created successfully!';
+  setTimeout(()=>statusEl.textContent='',4000);
+});
+</script>
+</body>
+</html>
