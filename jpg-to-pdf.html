@@ -1,29 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>JPG to PDF – Free Image to PDF Converter | ❤️ I❤ImagePDF</title>
-
-<meta name="description" content="Convert JPG, PNG, or WEBP images to PDF instantly — free, secure, and 100 % browser-based. Combine multiple pictures into one high-quality PDF, no upload required.">
-<meta name="keywords" content="
-jpg to pdf, image to pdf, convert jpg to pdf, png to pdf, jpeg to pdf, webp to pdf, photo to pdf, pictures to pdf, combine images to pdf, merge photos to pdf, online image pdf converter, free jpg pdf tool, client side jpg to pdf, browser image to pdf, no upload image converter, convert photos to pdf free, image pdf converter 2025, image pdf generator, jpg to pdf without watermark, fast jpg to pdf, convert multiple images to pdf, batch jpg to pdf, jpg pdf converter offline, jpg pdf converter online, secure image converter, private image converter, high quality jpg to pdf, image pdf maker, I❤ImagePDF converter, global jpg to pdf, indian jpg to pdf, usa pdf converter, canada pdf converter, best free jpg to pdf, jpg to pdf webapp, image pdf merge, jpg to pdf mobile, jpg to pdf desktop, jpg to pdf ios, jpg to pdf android, drag drop jpg to pdf, reorder images pdf, compress jpg to pdf, convert jpg png pdf, convert image files to pdf, combine jpeg files, scan images to pdf, convert screenshots to pdf, photo collage to pdf, image export pdf, jpg to pdf without losing quality, jpg to pdf no compression, browser converter, privacy safe converter, instant image to pdf, free image to pdf converter, best image to pdf online, jpg pdf creator, merge jpgs to single pdf, create document from images, ai image pdf, productivity tools 2025, online pdf utilities, convert images to pdf securely, jpg to pdf for business, jpg to pdf for students, jpg to pdf for freelancers, jpg to pdf for designers, jpg to pdf converter vercel, jpg to pdf website builder, jpg to pdf responsive, seo friendly image pdf tool, high performance pdf converter, offline capable jpg to pdf, no sign up converter, free forever converter, safe photo to pdf, fast converter tool, I love ImagePDF, imagepdf, instant converter webapp, browser based jpg to pdf, lightweight pdf converter, convert pictures to pdf quickly, make pdf from photos, image to document pdf, pdf generator, free jpg merger, combine photos into pdf, single pdf output, jpg to pdf unlimited, jpg to pdf unlimited use, global online converter, secure online pdf tools, 2025 best pdf utilities, privacy first converter, ai optimized converter" />
-
-<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/jpg-to-pdf.html" />
-<meta property="og:title" content="JPG to PDF – ❤️ I❤ImagePDF" />
-<meta property="og:description" content="Convert JPG, PNG, or WEBP to PDF in your browser — private, fast, and free." />
-<meta property="og:image" content="https://secure-img-to-pdf.vercel.app/favicon.png" />
-<meta name="twitter:card" content="summary_large_image" />
-
-<script type="application/ld+json">
-{
- "@context": "https://schema.org",
- "@type": "WebPage",
- "name": "JPG to PDF",
- "description": "Free client-side JPG to PDF converter to combine images into a single PDF instantly — secure and watermark-free.",
- "publisher": {"@type": "Organization", "name": "I❤ImagePDF"}
-}
-</script>
+<meta name="description" content="Convert JPG, PNG, or WEBP images to a single PDF instantly — free, secure, and 100 % client-side. Drag & drop or click to choose your images, reorder, and download high-quality PDF output.">
+<meta name="keywords" content="jpg to pdf, image to pdf, convert jpg to pdf, png to pdf, photo to pdf, merge images to pdf, drag drop jpg to pdf, free image pdf converter, client side converter, secure image to pdf, high quality jpg pdf, no upload image converter, browser pdf tool, image to document pdf, fast pdf generator, responsive pdf converter, imagepdf tool 2025, convert pictures to pdf online, privacy safe image converter, offline image pdf maker, image pdf webapp, convert photos to pdf quickly, jpg to pdf without watermark, multiple image to pdf, combine photos into pdf, jpg png to pdf converter, image to pdf website, create pdf from images free, productivity pdf tools, imagepdf pro converter, convert jpeg png to pdf, ai image pdf, best online jpg to pdf, free photo to pdf, secure browser converter, mobile friendly pdf converter, seo optimized pdf tool, fast offline pdf converter">
+<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/jpg-to-pdf.html">
+<meta property="og:title" content="JPG to PDF – ❤️ I❤ImagePDF">
+<meta property="og:description" content="Convert JPG, PNG, or WEBP to PDF instantly — 100 % browser-based, private, and free.">
+<meta property="og:image" content="https://secure-img-to-pdf.vercel.app/favicon.png">
+<meta name="twitter:card" content="summary_large_image">
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
@@ -31,21 +18,26 @@ jpg to pdf, image to pdf, convert jpg to pdf, png to pdf, jpeg to pdf, webp to p
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:"Inter",sans-serif;background:var(--bg);color:#222;line-height:1.6;}
 header{background:#fff;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;
-  box-shadow:0 2px 8px rgba(0,0,0,.05);position:sticky;top:0;z-index:100;}
+box-shadow:0 2px 8px rgba(0,0,0,.05);position:sticky;top:0;z-index:100;}
 .logo{font-size:22px;font-weight:800;cursor:pointer;}
 .logo span{color:var(--accent);}
-.container{max-width:1000px;margin:auto;padding:22px;}
+.container{max-width:900px;margin:auto;padding:22px;}
 h1{color:var(--accent);font-size:28px;text-align:center;margin-bottom:10px;}
 p.intro{text-align:center;color:#555;max-width:720px;margin:0 auto 20px;}
 .tool-card{background:var(--card-bg);border:1px solid #eee;border-radius:var(--radius);
-  box-shadow:0 2px 8px rgba(0,0,0,.05);padding:25px;text-align:center;}
+box-shadow:0 2px 8px rgba(0,0,0,.05);padding:25px;text-align:center;}
+.drop-zone{border:2px dashed var(--accent);border-radius:var(--radius);padding:40px;cursor:pointer;
+background:#fff;transition:0.3s;max-width:100%;}
+.drop-zone:hover{background:#fff7f7;}
+.drop-zone.dragover{background:#ffecec;border-color:#b31319;}
+.drop-zone p{color:#444;font-size:16px;}
+.preview{display:flex;flex-wrap:wrap;justify-content:center;margin-top:15px;}
+.preview img{width:100px;height:auto;margin:6px;border-radius:8px;border:1px solid #ddd;}
 button{background:var(--accent);color:#fff;border:none;padding:12px 24px;border-radius:8px;
-  font-weight:600;cursor:pointer;transition:.3s;margin:6px;}
+font-weight:600;cursor:pointer;transition:.3s;margin:6px;}
 button:hover{opacity:.9;}
-input[type=file]{margin:10px 0;}
-img.preview{width:100px;height:auto;border-radius:8px;margin:6px;border:1px solid #ddd;}
 .section{background:var(--card-bg);padding:20px;border-radius:var(--radius);border:1px solid #eee;
-  margin-top:25px;box-shadow:0 2px 8px rgba(0,0,0,.05);}
+margin-top:25px;box-shadow:0 2px 8px rgba(0,0,0,.05);}
 .section h2{color:var(--accent);font-size:22px;margin-bottom:10px;}
 ul{padding-left:20px;}
 footer{margin-top:30px;background:#fff;text-align:center;padding:18px;font-size:14px;color:#555;}
@@ -58,11 +50,14 @@ a{color:#1677ff;text-decoration:none;}
 
 <div class="container">
   <h1>JPG → PDF 📸</h1>
-  <p class="intro">Convert JPG, PNG, or WEBP images into a single high-quality PDF instantly — works completely in your browser, 100 % private.</p>
+  <p class="intro">Drag & drop your images or click the box below to choose files — instantly create a single, high-quality PDF in your browser.</p>
 
   <div class="tool-card">
-    <input type="file" id="imgInput" multiple accept="image/*" />
-    <div id="preview"></div>
+    <div id="dropZone" class="drop-zone">
+      <p>📁 <strong>Drag & drop images here</strong><br>or click to choose (JPG, PNG, WEBP)</p>
+      <input type="file" id="imgInput" multiple accept="image/*" style="display:none">
+    </div>
+    <div id="preview" class="preview"></div>
     <button id="convertBtn">Convert to PDF</button>
     <button id="clearBtn" style="background:#666">Clear</button>
     <p id="status"></p>
@@ -71,90 +66,98 @@ a{color:#1677ff;text-decoration:none;}
   <div class="section">
     <h2>How It Works ⚙️</h2>
     <ul>
-      <li>Upload or drag & drop your image files (JPG, PNG, WEBP, etc.).</li>
-      <li>Reorder by file selection order (first → last = page 1 → n).</li>
-      <li>Click <strong>Convert to PDF</strong> to download instantly.</li>
+      <li>Click or drag your JPG/PNG images into the upload box.</li>
+      <li>They appear as small previews — the order determines the PDF page sequence.</li>
+      <li>Click <strong>Convert to PDF</strong> to generate and download instantly.</li>
     </ul>
   </div>
 
   <div class="section">
-    <h2>Why Choose I❤ImagePDF?</h2>
+    <h2>Why Choose I❤ImagePDF ❤️</h2>
     <ul>
-      <li>🔒 100 % Client-Side – no uploads or tracking.</li>
-      <li>⚡ Fast conversion – optimized for all browsers.</li>
-      <li>🖼️ Preserves full image quality automatically.</li>
-      <li>📱 Mobile & desktop responsive interface.</li>
-      <li>💰 Free forever – no watermarks or sign-ups.</li>
+      <li>🔒 100 % Client-Side — your images never leave your browser.</li>
+      <li>⚡ Fast conversion engine using WebAssembly and PDF-Lib.</li>
+      <li>📱 Responsive UI – works on phones, tablets and desktops.</li>
+      <li>🖼️ Retains original image quality, no compression loss.</li>
+      <li>💰 Completely free — no watermarks or sign-ups ever.</li>
     </ul>
   </div>
 
   <div class="section">
     <h2>FAQs ❓</h2>
-    <p><strong>Do you store my images?</strong><br>Never. Conversion happens only in your browser.</p>
-    <p><strong>Can I add multiple images?</strong><br>Yes — upload several at once and they’ll appear as separate pages.</p>
-    <p><strong>Does it reduce image quality?</strong><br>No — your images are embedded exactly as you provide them.</p>
-    <p><strong>What formats are supported?</strong><br>JPG, JPEG, PNG, WEBP and BMP images work fine.</p>
-    <p><strong>Is it free?</strong><br>Yes — 100 % free, secure and unlimited usage.</p>
+    <p><strong>Is my data safe?</strong><br>Yes — all processing is local in your browser.</p>
+    <p><strong>Can I add multiple images?</strong><br>Absolutely, each image becomes a new PDF page.</p>
+    <p><strong>Do I lose quality?</strong><br>No, images are embedded at full resolution.</p>
+    <p><strong>What formats work?</strong><br>JPG, JPEG, PNG, WEBP, and BMP are supported.</p>
+    <p><strong>Any limits?</strong><br>Typical browsers handle up to ~50 images or 20 MB comfortably.</p>
   </div>
 
   <footer>
-    © 2025 ❤️ I❤ImagePDF — Client-Side & Secure |
+    © 2025 ❤️ I❤ImagePDF — Client-Side & Secure | 
     <a href="/about.html">About</a> | <a href="/privacy.html">Privacy Policy</a>
   </footer>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
 <script>
-const input=document.getElementById('imgInput');
+const dropZone=document.getElementById('dropZone');
+const fileInput=document.getElementById('imgInput');
 const preview=document.getElementById('preview');
 const convertBtn=document.getElementById('convertBtn');
 const clearBtn=document.getElementById('clearBtn');
 const statusEl=document.getElementById('status');
-let images=[];
+let files=[];
 
-input.addEventListener('change',()=>{
-  images=[...input.files];
+dropZone.addEventListener('click',()=>fileInput.click());
+dropZone.addEventListener('dragover',e=>{
+  e.preventDefault();dropZone.classList.add('dragover');
+});
+dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('dragover'));
+dropZone.addEventListener('drop',e=>{
+  e.preventDefault();dropZone.classList.remove('dragover');
+  files=[...files,...e.dataTransfer.files];
   showPreview();
 });
-
+fileInput.addEventListener('change',()=>{
+  files=[...files,...fileInput.files];
+  showPreview();
+});
 clearBtn.addEventListener('click',()=>{
-  images=[];input.value='';preview.innerHTML='';statusEl.textContent='';
+  files=[];preview.innerHTML='';fileInput.value='';statusEl.textContent='';
 });
 
 function showPreview(){
   preview.innerHTML='';
-  images.forEach(f=>{
+  files.forEach(f=>{
     const img=document.createElement('img');
-    img.className='preview';
     img.src=URL.createObjectURL(f);
     preview.appendChild(img);
   });
 }
 
 convertBtn.addEventListener('click',async()=>{
-  if(!images.length){alert('Please select at least one image.');return;}
+  if(!files.length){alert('Please select at least one image.');return;}
   try{
-    statusEl.textContent='🧾 Generating PDF...';
-    const pdfDoc=await PDFLib.PDFDocument.create();
-    for(const imgFile of images){
-      const bytes=await imgFile.arrayBuffer();
-      const imgType=imgFile.type.includes('png')?'png':'jpg';
-      const embed=imgType==='png'
-        ?await pdfDoc.embedPng(bytes)
-        :await pdfDoc.embedJpg(bytes);
-      const page=pdfDoc.addPage([embed.width,embed.height]);
+    statusEl.textContent='🧾 Creating PDF...';
+    const pdf=await PDFLib.PDFDocument.create();
+    for(const f of files){
+      const bytes=await f.arrayBuffer();
+      const embed=f.type.includes('png')
+        ?await pdf.embedPng(bytes)
+        :await pdf.embedJpg(bytes);
+      const page=pdf.addPage([embed.width,embed.height]);
       page.drawImage(embed,{x:0,y:0,width:embed.width,height:embed.height});
     }
-    const pdfBytes=await pdfDoc.save({useObjectStreams:true});
+    const pdfBytes=await pdf.save({useObjectStreams:true});
     const blob=new Blob([pdfBytes],{type:'application/pdf'});
     const a=document.createElement('a');
     a.href=URL.createObjectURL(blob);
-    a.download='converted-images.pdf';
+    a.download='images-to-pdf.pdf';
     a.click();
-    statusEl.textContent='✅ PDF created successfully!';
+    statusEl.textContent='✅ Done! PDF download started.';
     setTimeout(()=>statusEl.textContent='',4000);
-  }catch(err){
-    console.error(err);
+  }catch(e){
+    console.error(e);
     statusEl.textContent='❌ Error creating PDF.';
   }
 });
