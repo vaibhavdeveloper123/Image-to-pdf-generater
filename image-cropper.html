@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Image Cropper – Crop Photos Online Instantly | ❤️ I❤ImagePDF</title>
+
+<meta name="description" content="Crop images instantly and securely in your browser. Upload, select crop area, and download your cropped photo — 100% offline, private, and free with I❤ImagePDF.">
+<meta name="keywords" content="image cropper, crop image, crop photo, online crop tool, free image cropper, client side cropper, offline crop image, resize and crop photo, image editor, I❤ImagePDF crop tool, photo cropping, image editing 2025, browser image crop, safe photo cropper, privacy crop app, no upload cropper, crop picture instantly, jpg cropper, png cropper, web based cropper, fast image cropping, image crop online free, crop image tool, image cropper india, cropper usa, I love image pdf cropper, crop images 2025, best image cropper, seo optimized cropper, image editor tool, privacy photo editor, image crop and download, instant photo crop, free cropper, cropping app browser, image cropper mobile, image cropper desktop, responsive image cropper, high quality crop tool, online image cropper secure, crop photo browser, crop pictures privacy, crop images easy, fast crop tool, safe cropper, I❤ImagePDF online tools">
+<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/image-cropper.html" />
+<meta property="og:title" content="Image Cropper – Crop Photos Online Instantly | ❤️ I❤ImagePDF" />
+<meta property="og:description" content="Crop images easily and privately in your browser — 100% client-side, secure, and free." />
+<meta property="og:image" content="https://secure-img-to-pdf.vercel.app/favicon.png" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+:root{--accent:#d9232e;--bg:#f6f8fb;--card:#fff;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:"Inter",sans-serif;background:var(--bg);color:#222;line-height:1.6;}
+header{background:#fff;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;
+box-shadow:0 2px 8px rgba(0,0,0,.05);position:sticky;top:0;z-index:100;}
+.logo{font-size:22px;font-weight:800;cursor:pointer;}
+.logo span{color:var(--accent);}
+.container{max-width:900px;margin:auto;padding:22px;}
+h1{color:var(--accent);font-size:28px;text-align:center;margin-bottom:10px;}
+p.intro{text-align:center;color:#555;max-width:720px;margin:0 auto 20px;}
+.tool-card{background:var(--card);border:1px solid #eee;border-radius:16px;
+box-shadow:0 2px 8px rgba(0,0,0,.05);padding:25px;text-align:center;}
+.drop-zone{border:2px dashed var(--accent);border-radius:16px;padding:40px;cursor:pointer;
+background:#fff;transition:.3s;}
+.drop-zone:hover{background:#fff7f7;}
+.drop-zone.dragover{background:#ffecec;border-color:#b31319;}
+.drop-zone p{color:#444;font-size:16px;}
+canvas{max-width:100%;border-radius:12px;border:1px solid #ddd;margin-top:15px;}
+button{background:var(--accent);color:#fff;border:none;padding:12px 24px;border-radius:8px;
+font-weight:600;cursor:pointer;transition:.3s;margin:6px;}
+button:hover{opacity:.9;}
+.section{background:var(--card);padding:20px;border-radius:16px;border:1px solid #eee;
+margin-top:25px;box-shadow:0 2px 8px rgba(0,0,0,.05);}
+.section h2{color:var(--accent);font-size:22px;margin-bottom:10px;}
+ul{padding-left:20px;}
+footer{margin-top:30px;background:#fff;text-align:center;padding:18px;font-size:14px;color:#555;}
+a{color:#1677ff;text-decoration:none;}
+a:hover{text-decoration:underline;}
+#cropArea{display:none;position:relative;margin-top:15px;}
+#cropCanvas{cursor:crosshair;}
+</style>
+</head>
+
+<body>
+<header><div class="logo" onclick="location.href='/'">❤️ I❤ImagePDF</div></header>
+
+<div class="container">
+  <h1>Image Cropper ✂️</h1>
+  <p class="intro">Easily crop your photos in seconds — 100% offline and privacy safe. Upload, select the crop area, and download your new image instantly.</p>
+
+  <div class="tool-card">
+    <div id="dropZone" class="drop-zone">
+      <p>📂 <strong>Drag & drop your image here</strong><br>or click to choose</p>
+      <input type="file" id="imageInput" accept="image/*" style="display:none">
+    </div>
+
+    <div id="cropArea">
+      <canvas id="cropCanvas"></canvas><br>
+      <button id="downloadBtn">Download Cropped Image</button>
+    </div>
+
+    <p id="status"></p>
+  </div>
+
+  <div class="section">
+    <h2>How It Works ⚙️</h2>
+    <ul>
+      <li>Upload or drag an image into the box above.</li>
+      <li>Click and drag on the image to select the crop area.</li>
+      <li>Click “Download Cropped Image” to save it instantly.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Why Choose I❤ImagePDF ❤️</h2>
+    <ul>
+      <li>🖼️ 100% client-side — your images stay on your device.</li>
+      <li>⚡ Super fast, no uploads or lag.</li>
+      <li>📱 Works perfectly on mobile & desktop.</li>
+      <li>💰 Free forever — no watermark or sign-up.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>FAQs ❓</h2>
+    <p><strong>Is this tool secure?</strong><br>Yes, it runs completely in your browser — your photos never leave your device.</p>
+    <p><strong>Can I crop multiple images?</strong><br>Yes, upload another image after downloading the previous crop.</p>
+    <p><strong>Does it reduce image quality?</strong><br>No, your cropped image keeps the same quality as the original.</p>
+  </div>
+
+  <footer>
+    © 2025 ❤️ I❤ImagePDF — 100% Client-Side & Secure |
+    <a href="/about.html">About</a> | <a href="/privacy.html">Privacy Policy</a>
+  </footer>
+</div>
+
+<script>
+const dropZone=document.getElementById('dropZone');
+const imageInput=document.getElementById('imageInput');
+const cropCanvas=document.getElementById('cropCanvas');
+const ctx=cropCanvas.getContext('2d');
+const cropArea=document.getElementById('cropArea');
+const downloadBtn=document.getElementById('downloadBtn');
+let img=null,isDragging=false,startX=0,startY=0,endX=0,endY=0;
+
+dropZone.addEventListener('click',()=>imageInput.click());
+dropZone.addEventListener('dragover',e=>{e.preventDefault();dropZone.classList.add('dragover');});
+dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('dragover'));
+dropZone.addEventListener('drop',e=>{
+  e.preventDefault();dropZone.classList.remove('dragover');
+  const file=e.dataTransfer.files[0];if(file)loadImage(file);
+});
+imageInput.addEventListener('change',()=>{if(imageInput.files[0])loadImage(imageInput.files[0]);});
+
+function loadImage(file){
+  const reader=new FileReader();
+  reader.onload=e=>{
+    img=new Image();
+    img.onload=()=>{
+      cropCanvas.width=img.width>800?800:img.width;
+      const ratio=cropCanvas.width/img.width;
+      cropCanvas.height=img.height*ratio;
+      ctx.drawImage(img,0,0,cropCanvas.width,cropCanvas.height);
+      cropArea.style.display='block';
+    };
+    img.src=e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+cropCanvas.addEventListener('mousedown',e=>{isDragging=true;[startX,startY]=[e.offsetX,e.offsetY];});
+cropCanvas.addEventListener('mouseup',e=>{isDragging=false;[endX,endY]=[e.offsetX,e.offsetY];drawCropRect();});
+cropCanvas.addEventListener('mousemove',e=>{if(isDragging){[endX,endY]=[e.offsetX,e.offsetY];drawCropRect();}});
+
+function drawCropRect(){
+  ctx.drawImage(img,0,0,cropCanvas.width,cropCanvas.height);
+  ctx.strokeStyle="#d9232e";
+  ctx.lineWidth=2;
+  ctx.strokeRect(startX,startY,endX-startX,endY-startY);
+}
+
+downloadBtn.addEventListener('click',()=>{
+  if(!img)return alert("Upload an image first");
+  const [x,y,w,h]=[startX,startY,endX-startX,endY-startY];
+  if(w<=0||h<=0)return alert("Select a crop area first");
+  const output=document.createElement('canvas');
+  const scale=img.width/cropCanvas.width;
+  output.width=w*scale;output.height=h*scale;
+  const octx=output.getContext('2d');
+  octx.drawImage(img,x*scale,y*scale,w*scale,h*scale,0,0,w*scale,h*scale);
+  const a=document.createElement('a');
+  a.href=output.toDataURL('image/png');
+  a.download='cropped-image.png';
+  a.click();
+});
+</script>
+</body>
+</html>
