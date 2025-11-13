@@ -1,189 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>QR Code Generator – Free Online QR Maker | ❤️ I❤ImagePDF</title>
+<meta name="description" content="Create QR codes instantly in your browser. Enter any text, link, or contact info and generate a downloadable QR image — 100% free and private.">
+<meta name="keywords" content="qr code generator, qr maker, free qr generator, qr code online, text to qr, link qr generator, website qr, qr code image download, qr creator, qr generator tool, qr code custom color, offline qr code, privacy qr code generator, best qr code generator, qr code maker for website, qr code generator without login, qr generator with color, qr image creator, instant qr code, create qr online, qr code png generator, qr code maker for business, browser qr generator, qr code without server, ai qr generator, free qr code builder, qr code for url, qr code for whatsapp, qr code with logo, mobile qr code generator, simple qr maker, qr code generator 2025, qr code encoder, qr maker website, generate qr easily, qr code text, qr code for wifi, qr code marketing, quick qr generator, free qr tool, qr image download, qr code offline, privacy safe qr code tool, qr creator app online, qr generator no signup, i love image pdf qr generator, instant qr code app, generate qr code instantly">
+<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/qr-code-generator.html">
+<meta property="og:title" content="QR Code Generator – ❤️ I❤ImagePDF">
+<meta property="og:description" content="Create and download QR codes instantly — all private and free.">
+<meta property="og:image" content="https://secure-img-to-pdf.vercel.app/favicon.png">
+<meta name="twitter:card" content="summary_large_image">
 
-<title>QR Code Generator — I ❤ ImagePDF.Pro</title>
-<meta name="description" content="Generate QR codes instantly for text, URLs, contacts and more — fast, private and free.">
-
-<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/qr-code-generator">
-<!-- OG -->
-<meta property="og:title" content="QR Code Generator — I ❤ ImagePDF.Pro" />
-<meta property="og:description" content="Create QR codes instantly and download as PNG — 100% client-side." />
-<meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary_large_image" />
-
-<!-- QR JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
-<!-- JSON-LD -->
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
- "@graph":[
-   {
-     "@type":"SoftwareApplication",
-     "name":"QR Code Generator",
-     "applicationCategory":"Utility",
-     "operatingSystem":"Web",
-     "url":"https://YOURDOMAIN.github.io/qr-code-generator.html",
-     "description":"Create and download QR codes online."
-   },
-   {
-     "@type":"FAQPage",
-     "mainEntity":[
-       {
-         "@type":"Question",
-         "name":"Is this QR generator free?",
-         "acceptedAnswer":{"@type":"Answer","text":"Yes — completely free."}
-       },
-       {
-         "@type":"Question",
-         "name":"Is data uploaded?",
-         "acceptedAnswer":{"@type":"Answer","text":"No — all QR generation happens locally in your browser."}
-       }
-     ]
-   }
- ]
+ "@type": "WebPage",
+ "name": "QR Code Generator",
+ "description": "Create QR codes instantly from any text or link. Works fully offline and privacy safe.",
+ "publisher": {"@type": "Organization", "name": "I❤ImagePDF"}
 }
 </script>
 
 <style>
-body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:#f6f8fb;color:#222}
-header{
- background:#fff;border-bottom:1px solid #eee;padding:12px 20px;
- display:flex;justify-content:space-between;align-items:center;
- position:sticky;top:0;z-index:99;box-shadow:0 2px 8px rgba(0,0,0,.06)
-}
-.logo{font-size:22px;font-weight:800;color:#d9232e;cursor:pointer}
-.container{max-width:980px;margin:20px auto;padding:0 15px}
-
-.ad-box{margin:16px 0;background:#fff;border:1px dashed #aaa;border-radius:10px;
- padding:16px;text-align:center;font-size:14px;color:#777}
-
-.box{
- background:#fff;border-radius:12px;border:1px solid #eee;
- padding:22px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.04)
-}
-
-input{
- width:100%;padding:12px;border-radius:8px;border:1px solid #ccc;
- font-size:16px;margin-top:12px
-}
-
-button{
- background:#d9232e;color:#fff;border:0;padding:14px 25px;border-radius:10px;
- cursor:pointer;font-size:18px;font-weight:600;margin-top:15px
-}
-
-.qr-wrap{margin-top:20px;text-align:center}
-
-.download-btn{
- background:#fff;border:1px solid #d9232e;color:#d9232e;padding:10px 20px;
- border-radius:8px;cursor:pointer;font-size:15px;font-weight:600;margin-top:10px
-}
-
-.info{
- margin-top:22px;background:#fff;padding:18px;border-radius:12px;
- border:1px solid #eee;box-shadow:0 2px 8px rgba(0,0,0,.04)
-}
-.info h2{color:#d9232e;margin-top:0}
-
-footer{background:#fff;border-top:1px solid #eee;margin-top:40px;
- padding:16px;text-align:center;color:#555}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+:root{--accent:#d9232e;--bg:#f6f8fb;--card-bg:#fff;--radius:16px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:"Inter",sans-serif;background:var(--bg);color:#222;line-height:1.6;}
+header{background:#fff;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;
+box-shadow:0 2px 8px rgba(0,0,0,.05);position:sticky;top:0;z-index:100;}
+.logo{font-size:22px;font-weight:800;color:#000;cursor:pointer;}
+.logo span{color:var(--accent);}
+.container{max-width:1000px;margin:auto;padding:22px;}
+h1{color:var(--accent);font-size:28px;text-align:center;margin-bottom:10px;}
+p.intro{text-align:center;color:#555;max-width:720px;margin:0 auto 20px;}
+.tool-card{background:var(--card-bg);border:1px solid #eee;border-radius:var(--radius);
+box-shadow:0 2px 8px rgba(0,0,0,.05);padding:25px;text-align:center;}
+input,select{padding:10px;border:1px solid #ccc;border-radius:8px;width:100%;max-width:400px;margin:8px 0;}
+button{background:var(--accent);color:#fff;border:none;padding:12px 24px;border-radius:8px;font-weight:600;
+cursor:pointer;transition:.3s;margin-top:10px;}
+button:hover{opacity:.9;}
+canvas{margin-top:20px;}
+.section{background:var(--card-bg);padding:20px;border-radius:var(--radius);border:1px solid #eee;
+margin-top:25px;box-shadow:0 2px 8px rgba(0,0,0,.05);}
+.section h2{color:var(--accent);font-size:22px;margin-bottom:10px;}
+ul{padding-left:20px;}
+ul li{margin-bottom:6px;}
+footer{margin-top:30px;background:#fff;text-align:center;padding:18px;font-size:14px;color:#555;}
+a{color:#1677ff;text-decoration:none;}
+a:hover{text-decoration:underline;}
+.options{display:flex;flex-wrap:wrap;justify-content:center;gap:15px;margin-top:10px;}
 </style>
 </head>
 
 <body>
-
 <header>
- <div class="logo" onclick="location.href='index.html'">I ❤ ImagePDF.Pro</div>
+  <div class="logo" onclick="location.href='/'">❤️ I❤ImagePDF</div>
 </header>
 
 <div class="container">
+  <h1>QR Code Generator 🔳</h1>
+  <p class="intro">Create free QR codes instantly for links, text, or contacts — fully private and downloadable.</p>
 
-  <!-- ✅ TOP AD -->
-  <div class="ad-box">[TOP AD — paste Ad code]</div>
+  <div class="tool-card">
+    <input type="text" id="qrText" placeholder="Enter text or URL here..." />
+    <div class="options">
+      <div>
+        <label>Size (px):</label>
+        <select id="qrSize">
+          <option>150</option><option selected>200</option><option>250</option><option>300</option><option>400</option>
+        </select>
+      </div>
+      <div>
+        <label>Color:</label>
+        <input type="color" id="qrColor" value="#000000">
+      </div>
+      <div>
+        <label>Background:</label>
+        <input type="color" id="qrBg" value="#ffffff">
+      </div>
+    </div>
 
-  <h1 style="text-align:center;">QR Code Generator</h1>
-  <p style="text-align:center;color:#666;">Enter text → Generate → Download PNG</p>
-
-  <div class="box">
-    <input id="qrText" placeholder="Enter text or URL...">
-    <button id="makeQR">Generate QR</button>
-
-    <div class="qr-wrap" id="qrDisplay"></div>
-    <button id="downloadQR" class="download-btn" style="display:none;">Download PNG</button>
+    <button id="generateBtn">Generate QR</button>
+    <canvas id="qrCanvas"></canvas><br>
+    <button id="downloadBtn">Download QR</button>
   </div>
 
-  <!-- ✅ MID AD -->
-  <div class="ad-box">[MID AD — paste Ad code]</div>
-
-  <div class="info">
-    <h2>🔐 Privacy & Security</h2>
-    <p>Since this tool runs entirely offline, no data is uploaded.</p>
+  <div class="section">
+    <h2>How It Works ⚙️</h2>
+    <ul>
+      <li>Enter any text, link, or data in the input box.</li>
+      <li>Choose size and color options.</li>
+      <li>Click “Generate” to create your QR instantly.</li>
+      <li>Click “Download” to save as PNG image.</li>
+    </ul>
   </div>
 
-  <div class="info">
-    <h2>✨ Why This Tool?</h2>
-    <p>✅ No upload — offline</p>
-    <p>✅ Fast & free</p>
-    <p>✅ Download in PNG</p>
-    <p>✅ Works on mobile</p>
+  <div class="section">
+    <h2>Why Choose I❤ImagePDF?</h2>
+    <ul>
+      <li>🔒 100% Client-side — Data never leaves your device.</li>
+      <li>⚡ Instant generation — No loading or upload delays.</li>
+      <li>🎨 Fully customizable — Color, size, and background.</li>
+      <li>📱 Works on mobile and desktop seamlessly.</li>
+      <li>💰 Totally free — No signup, no watermark.</li>
+    </ul>
   </div>
 
-  <!-- ✅ BOTTOM AD -->
-  <div class="ad-box">[BOTTOM AD — paste Ad code]</div>
-
-  <div class="info">
-    <h2>❓ FAQ</h2>
-    <p><b>Is this free?</b> Yes</p>
-    <p><b>Is anything uploaded?</b> No — 100% local</p>
+  <div class="section">
+    <h2>FAQs ❓</h2>
+    <p><strong>Does it store or send my data?</strong><br>No. Everything runs locally in your browser.</p>
+    <p><strong>Can I use it offline?</strong><br>Yes, once loaded, it works without internet.</p>
+    <p><strong>What can I encode?</strong><br>Any text, link, contact info, or WiFi credentials.</p>
   </div>
 
+  <footer>
+    © 2025 ❤️ I❤ImagePDF — Client-Side & Secure |
+    <a href="/about.html">About</a> | <a href="/privacy.html">Privacy Policy</a>
+  </footer>
 </div>
 
-<footer>© 2025 I ❤ ImagePDF.Pro — Client-side Tools</footer>
+<!-- Adsterra placement (keep your existing ad script here if needed) -->
+<!-- <script type="text/javascript"> ... your ad code ... </script> -->
 
-
-<!-- ✅ JS -->
+<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
 <script>
-let qr;
+const qrText=document.getElementById('qrText');
+const qrSize=document.getElementById('qrSize');
+const qrColor=document.getElementById('qrColor');
+const qrBg=document.getElementById('qrBg');
+const qrCanvas=document.getElementById('qrCanvas');
+const generateBtn=document.getElementById('generateBtn');
+const downloadBtn=document.getElementById('downloadBtn');
 
-document.getElementById("makeQR").addEventListener("click", function () {
-  const txt = document.getElementById("qrText").value.trim();
-  if (!txt) return alert("Enter some text!");
-
-  const disp = document.getElementById("qrDisplay");
-  disp.innerHTML = "";
-
-  qr = new QRCode(disp, {
-    text: txt,
-    width: 260,
-    height: 260,
-    colorDark: "#000000",
-    colorLight: "#ffffff",
-    correctLevel: QRCode.CorrectLevel.H
+generateBtn.addEventListener('click',()=>{
+  const text=qrText.value.trim();
+  if(!text){alert('Please enter text or URL.');return;}
+  QRCode.toCanvas(qrCanvas,text,{
+    width:parseInt(qrSize.value),
+    color:{dark:qrColor.value,light:qrBg.value}
+  },err=>{
+    if(err)console.error(err);
   });
-
-  setTimeout(()=>{
-    document.getElementById("downloadQR").style.display = "inline-block";
-  }, 400);
 });
 
-document.getElementById("downloadQR").addEventListener("click", function(){
-  const canvas = document.querySelector("#qrDisplay canvas");
-  if(!canvas) return alert("Generate QR first!");
-
-  const url = canvas.toDataURL("image/png");
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "qr-code.png";
+downloadBtn.addEventListener('click',()=>{
+  const url=qrCanvas.toDataURL("image/png");
+  const a=document.createElement('a');
+  a.href=url;a.download='qr-code.png';
   a.click();
 });
 </script>
-
 </body>
 </html>
