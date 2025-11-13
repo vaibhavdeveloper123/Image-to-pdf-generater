@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Photo Enhancer – Free AI Image Quality Booster | ❤️ I❤ImagePDF</title>
+<meta name="description" content="Enhance your photos instantly using AI-powered photo enhancer. Adjust brightness, contrast, and sharpness — all in your browser, 100% private and free.">
+<meta name="keywords" content="photo enhancer, image enhancer, enhance photo quality, ai photo enhancer, picture sharpener, online photo editor, enhance image resolution, image clarity booster, brightness contrast editor, offline photo enhancer, browser image enhancer, privacy safe photo tool, image sharpness enhancer, enhance old photos, free photo enhancer online, ai image quality improver, hd photo enhancer, enhance blurry image, image restoration tool, improve photo quality, ai-based photo enhancer, enhance pictures online, ai clarity tool, photo optimizer, sharpen photo, improve low light image, remove blur from photo, free ai photo editor, enhance photo detail, fix grainy photo, enhance portrait photo, ai filter enhancer, increase image contrast, improve dull photos, privacy image enhancement tool, offline image clarity, ai photo enhancement website, browser based image enhancer, high quality photo enhancement, enhance photo instantly, ai image fixer, photo enhancer for mobile, best free photo enhancer, hd image restorer, client side photo enhancer, safe image enhancement, instant photo clarity, ai detail enhancer, ai enhance picture, brightness control tool, contrast adjustment online, photo detail booster, imagepdf photo enhancer, upscale and enhance photo, privacy based ai photo enhancer, best photo quality booster, natural image enhancer, browser ai enhancer">
+<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/photo-enhancer.html">
+<meta property="og:title" content="Photo Enhancer – ❤️ I❤ImagePDF">
+<meta property="og:description" content="Enhance photo quality instantly with AI Photo Enhancer. Private, browser-based, and free.">
+<meta property="og:image" content="https://secure-img-to-pdf.vercel.app/favicon.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"WebPage",
+ "name":"Photo Enhancer",
+ "description":"Free AI-based photo enhancer to adjust brightness, contrast, and sharpness instantly in your browser.",
+ "publisher":{"@type":"Organization","name":"I❤ImagePDF"}
+}
+</script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+:root{--accent:#d9232e;--bg:#f6f8fb;--card-bg:#fff;--radius:16px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:"Inter",sans-serif;background:var(--bg);color:#222;line-height:1.6;}
+header{background:#fff;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;
+box-shadow:0 2px 8px rgba(0,0,0,.05);position:sticky;top:0;z-index:100;}
+.logo{font-size:22px;font-weight:800;color:#000;cursor:pointer;}
+.logo span{color:var(--accent);}
+.container{max-width:1000px;margin:auto;padding:22px;}
+h1{color:var(--accent);font-size:28px;text-align:center;margin-bottom:10px;}
+p.intro{text-align:center;color:#555;max-width:720px;margin:0 auto 20px;}
+.tool-card{background:var(--card-bg);border:1px solid #eee;border-radius:var(--radius);
+box-shadow:0 2px 8px rgba(0,0,0,.05);padding:25px;text-align:center;}
+.drop-zone{border:2px dashed #ccc;border-radius:var(--radius);padding:40px 20px;cursor:pointer;
+transition:0.3s;background:#fafafa;}
+.drop-zone.dragover{border-color:var(--accent);background:#fff0f0;}
+.drop-zone p{color:#555;font-size:16px;}
+.preview-area{margin-top:20px;}
+.preview-area img{max-width:100%;border-radius:10px;border:1px solid #ddd;transition:.3s;}
+.controls{margin-top:20px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+input[type=range]{width:140px;}
+button{background:var(--accent);color:#fff;border:none;padding:12px 24px;border-radius:8px;font-weight:600;
+cursor:pointer;transition:.3s;}
+button:hover{opacity:.9;}
+.section{background:var(--card-bg);padding:20px;border-radius:var(--radius);border:1px solid #eee;
+margin-top:25px;box-shadow:0 2px 8px rgba(0,0,0,.05);}
+.section h2{color:var(--accent);font-size:22px;margin-bottom:10px;}
+ul{padding-left:20px;}
+ul li{margin-bottom:6px;}
+footer{margin-top:30px;background:#fff;text-align:center;padding:18px;font-size:14px;color:#555;}
+a{color:#1677ff;text-decoration:none;}
+a:hover{text-decoration:underline;}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="logo" onclick="location.href='/'">❤️ I❤ImagePDF</div>
+</header>
+
+<div class="container">
+  <h1>AI Photo Enhancer ✨</h1>
+  <p class="intro">Enhance photo clarity, brightness, and contrast instantly using your browser — 100% secure and free.</p>
+
+  <div class="tool-card">
+    <div class="drop-zone" id="dropZone">
+      <p><strong>📁 Drag & Drop image here</strong><br>or click to browse (JPG, PNG)</p>
+      <input type="file" id="imgInput" accept="image/*" style="display:none;">
+    </div>
+
+    <div class="controls">
+      <label>Brightness</label><input type="range" id="brightness" min="0" max="200" value="100">
+      <label>Contrast</label><input type="range" id="contrast" min="0" max="200" value="100">
+      <label>Sharpness</label><input type="range" id="sharpness" min="0" max="5" value="1" step="0.1">
+      <button id="applyBtn">Enhance</button>
+      <button id="downloadBtn">Download</button>
+      <button id="clearBtn" style="background:#666;">Clear</button>
+    </div>
+
+    <div class="preview-area" id="previewArea">
+      <p style="color:#777;">🖼️ Upload an image to preview and enhance</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>How It Works ⚙️</h2>
+    <ul>
+      <li>Upload your image by dragging or selecting it.</li>
+      <li>Adjust brightness, contrast, and sharpness as needed.</li>
+      <li>Preview changes live before downloading the enhanced image.</li>
+      <li>Everything happens in your browser — fully private and offline.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Why Choose I❤ImagePDF?</h2>
+    <ul>
+      <li>🔒 100% Client-Side — No uploads, full privacy.</li>
+      <li>⚡ Fast & lightweight — Runs instantly in your browser.</li>
+      <li>🎨 Natural color preservation with realistic AI enhancement.</li>
+      <li>📱 Works on phones, tablets, and desktops.</li>
+      <li>💰 Totally free — No watermark, no signup.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>FAQs ❓</h2>
+    <p><strong>Do you upload my photo to any server?</strong><br>No. Everything runs inside your browser.</p>
+    <p><strong>Does it really use AI?</strong><br>This client-side enhancer uses smart filters and algorithms for instant clarity without cloud processing.</p>
+    <p><strong>Can I enhance multiple photos?</strong><br>Yes, you can upload and enhance one by one directly from your device.</p>
+  </div>
+
+  <footer>
+    © 2025 ❤️ I❤ImagePDF — Client-Side & Secure |
+    <a href="/about.html">About</a> | <a href="/privacy.html">Privacy Policy</a>
+  </footer>
+</div>
+
+<script>
+const dropZone=document.getElementById('dropZone');
+const input=document.getElementById('imgInput');
+const preview=document.getElementById('previewArea');
+const brightness=document.getElementById('brightness');
+const contrast=document.getElementById('contrast');
+const sharpness=document.getElementById('sharpness');
+const applyBtn=document.getElementById('applyBtn');
+const clearBtn=document.getElementById('clearBtn');
+const downloadBtn=document.getElementById('downloadBtn');
+let loadedImg=null;
+
+dropZone.addEventListener('click',()=>input.click());
+dropZone.addEventListener('dragover',e=>{e.preventDefault();dropZone.classList.add('dragover');});
+dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('dragover'));
+dropZone.addEventListener('drop',e=>{
+ e.preventDefault();dropZone.classList.remove('dragover');
+ const file=e.dataTransfer.files[0];if(file)loadImage(file);
+});
+input.addEventListener('change',()=>{const f=input.files[0];if(f)loadImage(f);});
+clearBtn.onclick=()=>{preview.innerHTML='<p style="color:#777;">🖼️ Upload an image to preview and enhance</p>';loadedImg=null;};
+
+function loadImage(file){
+ const reader=new FileReader();
+ reader.onload=e=>{
+  loadedImg=new Image();
+  loadedImg.src=e.target.result;
+  loadedImg.onload=()=>{
+   preview.innerHTML='';
+   const img=document.createElement('img');
+   img.id='enhanceImg';
+   img.src=loadedImg.src;
+   preview.appendChild(img);
+  };
+ };
+ reader.readAsDataURL(file);
+}
+
+applyBtn.onclick=()=>{
+ if(!loadedImg){alert('Please upload an image first.');return;}
+ const canvas=document.createElement('canvas');
+ const ctx=canvas.getContext('2d');
+ canvas.width=loadedImg.width;
+ canvas.height=loadedImg.height;
+ ctx.filter=`brightness(${brightness.value}%) contrast(${contrast.value}%)`;
+ ctx.drawImage(loadedImg,0,0);
+ // simple sharpness effect
+ if(parseFloat(sharpness.value)>1){
+  const data=ctx.getImageData(0,0,canvas.width,canvas.height);
+  const weights=[0,-1,0,-1,5,-1,0,-1,0];
+  const w=canvas.width,h=canvas.height,newData=ctx.createImageData(w,h);
+  for(let y=1;y<h-1;y++)for(let x=1;x<w-1;x++){
+   let r=0,g=0,b=0,i=(y*w+x)*4,k=0;
+   for(let j=-1;j<=1;j++)for(let i2=-1;i2<=1;i2++){
+     const p=((y+j)*w+(x+i2))*4;
+     r+=data.data[p]*weights[k];g+=data.data[p+1]*weights[k];b+=data.data[p+2]*weights[k];k++;
+   }
+   newData.data[i]=r;newData.data[i+1]=g;newData.data[i+2]=b;newData.data[i+3]=255;
+  }
+  ctx.putImageData(newData,0,0);
+ }
+ const url=canvas.toDataURL('image/png');
+ document.getElementById('enhanceImg').src=url;
+};
+
+downloadBtn.onclick=()=>{
+ const img=document.getElementById('enhanceImg');
+ if(!img){alert('No enhanced image to download.');return;}
+ const a=document.createElement('a');
+ a.href=img.src;
+ a.download='enhanced-photo.png';
+ a.click();
+};
+</script>
+</body>
+</html>
