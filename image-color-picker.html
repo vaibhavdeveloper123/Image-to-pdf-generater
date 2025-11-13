@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Image Color Picker – Extract Colors from Photos | ❤️ I❤ImagePDF</title>
+
+<meta name="description" content="Pick colors from any image instantly. Upload or drop a photo and click anywhere to get HEX, RGB, and HSL values — 100% offline, private, and free with I❤ImagePDF.">
+<meta name="keywords" content="image color picker, color extractor, pick color from image, eyedropper online, photo color picker, color detector, color code finder, client side color picker, extract hex code, rgb picker, offline color picker, image palette generator, I❤ImagePDF color tool, no upload color picker, color identifier, photo color detector, color grabber, color finder, pick color pixel, free image color tool, safe color extractor, image color picker india, global color picker, I love image pdf color picker, seo optimized color picker, palette creator, web design tools, privacy color picker, hex code generator, color tool browser, 2025 image color extractor, image color scanner, color picker responsive, best image color picker, safe photo picker, eyedropper tool browser, html color extractor, color palette builder, web color tool, image color reader, free offline color picker, color code copy, image analyzer, instant color finder, online color utility, image utilities 2025, fast color extractor, privacy safe color grabber, advanced image color picker, professional ui color picker, I❤ImagePDF online color tools">
+<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/image-color-picker.html" />
+<meta property="og:title" content="Image Color Picker – Extract Colors from Photos | ❤️ I❤ImagePDF" />
+<meta property="og:description" content="Pick colors from images instantly in your browser. 100% private and free color picker tool by I❤ImagePDF." />
+<meta property="og:image" content="https://secure-img-to-pdf.vercel.app/favicon.png" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+:root{--accent:#d9232e;--bg:#f6f8fb;--card:#fff;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:"Inter",sans-serif;background:var(--bg);color:#222;line-height:1.6;}
+header{background:#fff;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;
+box-shadow:0 2px 8px rgba(0,0,0,.05);position:sticky;top:0;z-index:100;}
+.logo{font-size:22px;font-weight:800;cursor:pointer;}
+.logo span{color:var(--accent);}
+.container{max-width:900px;margin:auto;padding:22px;}
+h1{color:var(--accent);font-size:28px;text-align:center;margin-bottom:10px;}
+p.intro{text-align:center;color:#555;max-width:720px;margin:0 auto 20px;}
+.tool-card{background:var(--card);border:1px solid #eee;border-radius:16px;
+box-shadow:0 2px 8px rgba(0,0,0,.05);padding:25px;text-align:center;}
+.drop-zone{border:2px dashed var(--accent);border-radius:16px;padding:40px;cursor:pointer;
+background:#fff;transition:.3s;}
+.drop-zone:hover{background:#fff7f7;}
+.drop-zone.dragover{background:#ffecec;border-color:#b31319;}
+.drop-zone p{color:#444;font-size:16px;}
+canvas{max-width:100%;border-radius:12px;border:1px solid #ddd;margin-top:15px;}
+.color-box{margin-top:15px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;}
+.color-display{width:80px;height:80px;border-radius:50%;border:2px solid #222;}
+.color-code{font-size:16px;font-weight:600;color:#333;cursor:pointer;}
+button{background:var(--accent);color:#fff;border:none;padding:12px 24px;border-radius:8px;
+font-weight:600;cursor:pointer;transition:.3s;margin:6px;}
+button:hover{opacity:.9;}
+.section{background:var(--card);padding:20px;border-radius:16px;border:1px solid #eee;
+margin-top:25px;box-shadow:0 2px 8px rgba(0,0,0,.05);}
+.section h2{color:var(--accent);font-size:22px;margin-bottom:10px;}
+ul{padding-left:20px;}
+footer{margin-top:30px;background:#fff;text-align:center;padding:18px;font-size:14px;color:#555;}
+a{color:#1677ff;text-decoration:none;}
+a:hover{text-decoration:underline;}
+</style>
+</head>
+
+<body>
+<header><div class="logo" onclick="location.href='/'">❤️ I❤ImagePDF</div></header>
+
+<div class="container">
+  <h1>Image Color Picker 🎨</h1>
+  <p class="intro">Upload or drag an image, then click anywhere to find its exact color code — HEX, RGB, and HSL — all in your browser, 100% private.</p>
+
+  <div class="tool-card">
+    <div id="dropZone" class="drop-zone">
+      <p>📂 <strong>Drag & drop your image here</strong><br>or click to choose</p>
+      <input type="file" id="imageInput" accept="image/*" style="display:none">
+    </div>
+
+    <canvas id="colorCanvas"></canvas>
+    <div class="color-box" id="colorBox" style="display:none;">
+      <div class="color-display" id="colorDisplay"></div>
+      <div class="color-code" id="hexCode"></div>
+      <div class="color-code" id="rgbCode"></div>
+      <div class="color-code" id="hslCode"></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>How It Works ⚙️</h2>
+    <ul>
+      <li>Upload or drag any image.</li>
+      <li>Click on any point to get its color instantly.</li>
+      <li>Copy HEX, RGB, or HSL code by clicking the text.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Why Choose I❤ImagePDF ❤️</h2>
+    <ul>
+      <li>🎨 100% client-side — your images never leave your device.</li>
+      <li>⚡ Real-time color detection with instant copy.</li>
+      <li>📱 Works on mobile and desktop.</li>
+      <li>💰 Free, private, and watermark-free.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>FAQs ❓</h2>
+    <p><strong>Is my image uploaded?</strong><br>No, all color detection happens locally in your browser.</p>
+    <p><strong>Can I copy the color codes?</strong><br>Yes, click on any code to copy it instantly.</p>
+    <p><strong>Does it support all image formats?</strong><br>Yes, PNG, JPG, and WEBP are fully supported.</p>
+  </div>
+
+  <footer>
+    © 2025 ❤️ I❤ImagePDF — 100% Client-Side & Secure |
+    <a href="/about.html">About</a> | <a href="/privacy.html">Privacy Policy</a>
+  </footer>
+</div>
+
+<script>
+const dropZone=document.getElementById('dropZone');
+const imageInput=document.getElementById('imageInput');
+const canvas=document.getElementById('colorCanvas');
+const ctx=canvas.getContext('2d');
+const colorBox=document.getElementById('colorBox');
+const colorDisplay=document.getElementById('colorDisplay');
+const hexCode=document.getElementById('hexCode');
+const rgbCode=document.getElementById('rgbCode');
+const hslCode=document.getElementById('hslCode');
+let img=null;
+
+dropZone.addEventListener('click',()=>imageInput.click());
+dropZone.addEventListener('dragover',e=>{e.preventDefault();dropZone.classList.add('dragover');});
+dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('dragover'));
+dropZone.addEventListener('drop',e=>{
+  e.preventDefault();dropZone.classList.remove('dragover');
+  const file=e.dataTransfer.files[0];if(file)loadImage(file);
+});
+imageInput.addEventListener('change',()=>{if(imageInput.files[0])loadImage(imageInput.files[0]);});
+
+function loadImage(file){
+  const reader=new FileReader();
+  reader.onload=e=>{
+    img=new Image();
+    img.onload=()=>{
+      canvas.width=img.width>800?800:img.width;
+      const ratio=canvas.width/img.width;
+      canvas.height=img.height*ratio;
+      ctx.drawImage(img,0,0,canvas.width,canvas.height);
+    };
+    img.src=e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+canvas.addEventListener('click',e=>{
+  if(!img)return;
+  const rect=canvas.getBoundingClientRect();
+  const x=Math.floor(e.clientX-rect.left);
+  const y=Math.floor(e.clientY-rect.top);
+  const pixel=ctx.getImageData(x,y,1,1).data;
+  const [r,g,b]=pixel;
+  const hex=rgbToHex(r,g,b);
+  const hsl=rgbToHsl(r,g,b);
+  colorDisplay.style.backgroundColor=hex;
+  hexCode.textContent=`HEX: ${hex}`;
+  rgbCode.textContent=`RGB: (${r},${g},${b})`;
+  hslCode.textContent=`HSL: ${hsl}`;
+  colorBox.style.display='flex';
+});
+
+[hexCode,rgbCode,hslCode].forEach(el=>{
+  el.addEventListener('click',()=>{
+    navigator.clipboard.writeText(el.textContent.split(': ')[1]);
+    el.textContent+= ' ✅ Copied!';
+    setTimeout(()=>el.textContent=el.textContent.replace(' ✅ Copied!',''),1500);
+  });
+});
+
+function rgbToHex(r,g,b){
+  return "#"+[r,g,b].map(x=>x.toString(16).padStart(2,'0')).join('');
+}
+function rgbToHsl(r,g,b){
+  r/=255;g/=255;b/=255;
+  const max=Math.max(r,g,b),min=Math.min(r,g,b);
+  let h,s,l=(max+min)/2;
+  if(max===min){h=s=0;}else{
+    const d=max-min;
+    s=l>0.5?d/(2-max-min):d/(max+min);
+    switch(max){
+      case r:h=(g-b)/d+(g<b?6:0);break;
+      case g:h=(b-r)/d+2;break;
+      case b:h=(r-g)/d+4;break;
+    }
+    h/=6;
+  }
+  return `${Math.round(h*360)}, ${Math.round(s*100)}%, ${Math.round(l*100)}%`;
+}
+</script>
+</body>
+</html>
