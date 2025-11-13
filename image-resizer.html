@@ -1,321 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Image Resizer – Free Online Photo Resizing Tool | ❤️ I❤ImagePDF</title>
 
-<title>Image Resizer — I ❤ ImagePDF.Pro</title>
-<meta name="description" content="Resize images online while keeping high quality. 100% secure & client-side only. No upload — fast & private.">
+<meta name="description" content="Resize images online instantly with our free Image Resizer tool. Adjust width and height, maintain aspect ratio, and download resized JPG or PNG images — fast, private, and 100% browser-based.">
 
-<link rel="canonical" href="https://YOURDOMAIN/image-resizer.html" />
+<meta name="keywords" content="image resizer, photo resizer, resize image online, resize photo, resize jpg, resize png, resize image without losing quality, online image resizer, browser image resize, instant photo resizer, privacy image tool, adjust image size, change image dimension, image editor, free image resizer, resize image by width, resize image by height, maintain aspect ratio resizer, hd image resizer, compress and resize, resize for web, resize for instagram, resize for facebook, resize for twitter, resize for linkedin, resize for youtube, resize image for printing, photo resizing website, best image resizer, client side image tool, offline photo resizer, free photo editor online, simple image resizer, easy photo size changer, image shrinker, enlarge image, shrink image, change photo size, webp resizer, image resizer 2025, privacy based resizer, fast photo resizer, high quality resize, hd image resizer tool, ai resize image, resize without quality loss, ai photo scaling, online image size converter, picture dimension editor, crop and resize image, smart image resizer, instant download resizer, secure photo editor, photo dimension editor, image aspect ratio calculator, change resolution image, free resize utility, mobile photo resizer, desktop image resizer, responsive image resizer, image tools suite, i love imagepdf resizer, imagepdf resizer, best online resizer, global image resize tool, free image resize website, browser-based resizer, ai powered image resize, instant resizing webapp, web friendly image resizing, optimize images for web, speed up website with image resizer, fast resize converter, resize and save image, convert and resize photo, lightweight image editor, high performance resizer, offline resize, all format image resizer, jpg png webp resize, resize image no upload, secure browser resizer, no watermark image resizer, resize without signup, resize without ads, free image resizer online, instant photo resizing, productivity tool for designers, creative resizer online, image resizing software alternative, web photo tool, online graphic utility, resize utility website, photo editor online free, privacy first resizing tool, nextgen resizer, best ai photo resize, instant resize download, free resizing tool, hd photo scaling, smart photo resizing, browser based editing, seo optimized image resizer, mobile friendly image resizer, india online photo resizer, usa image resize tool, canada online resizer, top 2025 resizing website, convert and resize toolset, secure free image resize, quick resizer utility, I❤ImagePDF resize tool">
 
-<meta name="robots" content="index,follow">
-<meta property="og:title" content="Image Resizer — I ❤ ImagePDF.Pro">
-<meta property="og:description" content="Resize images instantly — fully secure, no upload required.">
+<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/image-resizer.html">
+<meta property="og:title" content="Image Resizer – ❤️ I❤ImagePDF">
+<meta property="og:description" content="Resize JPG, PNG, and WEBP images instantly in your browser — free, fast, and secure.">
+<meta property="og:image" content="https://secure-img-to-pdf.vercel.app/favicon.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#007AFF" />
 
-<!-- ✅ JSON-LD -->
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
- "@type": "SoftwareApplication",
+ "@type": "WebPage",
  "name": "Image Resizer",
- "applicationCategory": "Utility",
- "operatingSystem": "Web",
- "url": "https://YOURDOMAIN/image-resizer.html",
- "description": "Resize images online while keeping high quality. 100% secure, client-side only."
+ "description": "Free client-side Image Resizer tool to adjust width, height, and maintain aspect ratio online — private, fast, and secure.",
+ "publisher": {"@type": "Organization", "name": "I❤ImagePDF"}
 }
 </script>
 
 <style>
-:root{
- --accent:#007AFF;
- --bg:#f6f8fb;
- --text:#111;
- --muted:#666;
- --card:#fff;
- --border:#e5e7eb;
-}
-
-*{box-sizing:border-box}
-body{
- margin:0;font-family:Inter,Arial;background:var(--bg);color:var(--text);
-}
-
-.skip-link {
- position:absolute;left:-999px;top:auto;
-}
-.skip-link:focus {
- left:10px;top:10px;background:#000;color:#fff;padding:8px;z-index:999;
-}
-
-header{
- background:var(--card);border-bottom:1px solid var(--border);padding:12px 20px;
- display:flex;justify-content:space-between;align-items:center;
- position:sticky;top:0;z-index:99;
-}
-.logo{
- font-size:22px;font-weight:800;color:var(--accent);cursor:pointer;
-}
-nav a{
- text-decoration:none;color:var(--text);padding:6px 10px;font-weight:600;
-}
-nav a:focus{outline:3px solid var(--accent)}
-
-.container{
- max-width:900px;margin:20px auto;padding:0 15px;
-}
-
-.card{
- background:var(--card);border-radius:18px;padding:24px;
- border:1px solid var(--border);box-shadow:0 2px 12px rgba(0,0,0,.08);
- text-align:center;
-}
-
-.file-box{
- border:2px dashed var(--accent);border-radius:12px;padding:25px;
- background:#fafafa;cursor:pointer;transition:.25s;
-}
-.file-box:hover,.file-box:focus-visible{border-color:#0056d6;outline:none}
-
-h1{text-align:center;margin-bottom:6px}
-.subtitle{text-align:center;color:var(--muted);margin-top:0}
-
-input[type=number]{
- padding:10px;border-radius:10px;border:1px solid #bbb;
- width:140px;font-size:15px;margin:10px;
-}
-input[type=number]:focus{outline:2px solid var(--accent)}
-
-button{
- background:var(--accent);color:#fff;border:0;padding:12px 24px;
- border-radius:12px;font-size:17px;font-weight:600;cursor:pointer;
- margin-top:12px;
-}
-button:focus{outline:3px solid #004799}
-
-.preview-box{
- margin-top:22px;display:flex;flex-direction:column;align-items:center;gap:14px;
-}
-.preview-box img{
- max-width:300px;border-radius:8px;border:1px solid #ccc;
-}
-
-.ad-slot{
- margin:22px 0;text-align:center;
-}
-.ad-inner{
- width:100%;min-height:90px;
-}
-
-.section{
- margin-top:24px;background:var(--card);
- border:1px solid var(--border);border-radius:16px;
- padding:22px;box-shadow:0 2px 8px rgba(0,0,0,.05)
-}
-.section h2{color:var(--accent);margin-top:0}
-
-footer{
- background:var(--card);border-top:1px solid var(--border);
- margin-top:40px;padding:16px;text-align:center;color:var(--muted)
-}
-
-@media(max-width:720px){
- .preview-box img{max-width:85%}
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+:root{--accent:#d9232e;--bg:#f6f8fb;--card-bg:#fff;--radius:16px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:"Inter",sans-serif;background:var(--bg);color:#222;line-height:1.6;}
+header{background:#fff;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;
+box-shadow:0 2px 8px rgba(0,0,0,.05);position:sticky;top:0;z-index:100;}
+.logo{font-size:22px;font-weight:800;color:#000;cursor:pointer;}
+.logo span{color:var(--accent);}
+.container{max-width:1000px;margin:auto;padding:22px;}
+h1{color:var(--accent);font-size:28px;text-align:center;margin-bottom:10px;}
+p.intro{text-align:center;color:#555;max-width:720px;margin:0 auto 20px;}
+.tool-card{background:var(--card-bg);border:1px solid #eee;border-radius:var(--radius);
+box-shadow:0 2px 8px rgba(0,0,0,.05);padding:25px;text-align:center;}
+.drop-zone{border:2px dashed #ccc;border-radius:var(--radius);padding:40px 20px;cursor:pointer;
+transition:0.3s;background:#fafafa;}
+.drop-zone.dragover{border-color:var(--accent);background:#fff0f0;}
+.drop-zone p{color:#555;font-size:16px;}
+.preview-area img{max-width:100%;border-radius:10px;margin-top:15px;}
+input[type=number]{width:90px;padding:6px;border:1px solid #ccc;border-radius:8px;text-align:center;}
+.controls{margin-top:20px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+button{background:var(--accent);color:#fff;border:none;padding:12px 24px;border-radius:8px;font-weight:600;
+cursor:pointer;transition:.3s;}
+button:hover{opacity:.9;}
+.section{background:var(--card-bg);padding:20px;border-radius:var(--radius);border:1px solid #eee;
+margin-top:25px;box-shadow:0 2px 8px rgba(0,0,0,.05);}
+.section h2{color:var(--accent);font-size:22px;margin-bottom:10px;}
+ul{padding-left:20px;}
+ul li{margin-bottom:6px;}
+footer{margin-top:30px;background:#fff;text-align:center;padding:18px;font-size:14px;color:#555;}
+a{color:#1677ff;text-decoration:none;}
+a:hover{text-decoration:underline;}
+label{font-weight:600;}
 </style>
 </head>
 
 <body>
-
-<a href="#mainContent" class="skip-link">Skip to content</a>
-
-<header role="banner">
- <div class="logo" onclick="location.href='index.html'">I ❤ ImagePDF.Pro</div>
- <nav aria-label="Primary">
-   <a href="index.html">Home</a>
-   <a href="jpg-to-pdf.html">JPG→PDF</a>
-   <a href="pdf-merger.html">Merge</a>
-   <a href="image-resizer.html" aria-current="page">Resize</a>
- </nav>
+<header>
+  <div class="logo" onclick="location.href='/'">❤️ I❤ImagePDF</div>
 </header>
 
-<main class="container" id="mainContent" role="main">
+<div class="container">
+  <h1>Image Resizer 📏</h1>
+  <p class="intro">Resize JPG, PNG, or WEBP images instantly — no upload required, 100% secure, and free forever.</p>
 
- <!-- ✅ TOP AD -->
- <div class="ad-slot" data-ad="top">
-   <div class="ad-inner"></div>
- </div>
+  <div class="tool-card">
+    <div class="drop-zone" id="dropZone">
+      <p><strong>📁 Drag & Drop or Click to Upload an Image</strong></p>
+      <input type="file" id="imgInput" accept="image/*" style="display:none;">
+    </div>
 
- <h1>Image Resizer</h1>
- <p class="subtitle">Resize image — secure & 100% offline</p>
+    <div class="controls">
+      <label>Width (px):</label><input type="number" id="width" value="800">
+      <label>Height (px):</label><input type="number" id="height" value="600">
+      <label><input type="checkbox" id="lockRatio" checked> Maintain Aspect Ratio</label>
+      <button id="resizeBtn">Resize</button>
+      <button id="downloadBtn" style="background:#666;">Download</button>
+    </div>
 
- <section class="card" role="application" aria-label="Image Resizer Tool">
+    <div class="preview-area" id="previewArea">
+      <p style="color:#777;">🖼️ Upload an image to preview and resize</p>
+    </div>
+  </div>
 
-   <label for="fileInput" class="file-box" id="dropZone" tabindex="0" role="button" aria-label="Upload image">
-     <b>📁 Click / Drop image here</b>
-   </label>
-   <input type="file" id="fileInput" accept="image/*" aria-label="Choose image file">
+  <div class="section">
+    <h2>How It Works ⚙️</h2>
+    <ul>
+      <li>Upload an image by clicking or dragging it into the box.</li>
+      <li>Set your preferred width and height.</li>
+      <li>Optionally keep the aspect ratio locked.</li>
+      <li>Preview and download your resized image instantly.</li>
+    </ul>
+  </div>
 
-   <div>
-     <label for="width">Width</label><br>
-     <input type="number" id="width" placeholder="Width (px)" aria-label="Image width">
-     <label for="height">Height</label><br>
-     <input type="number" id="height" placeholder="Height (px)" aria-label="Image height">
-   </div>
+  <div class="section">
+    <h2>Why Choose I❤ImagePDF?</h2>
+    <ul>
+      <li>🔒 100% Client-side – No uploads, total privacy.</li>
+      <li>⚡ Lightning fast – Resizes in milliseconds.</li>
+      <li>📸 Supports JPG, PNG, and WEBP formats.</li>
+      <li>💻 Works on any device – Desktop or mobile.</li>
+      <li>💰 Free forever – No watermark, no limits.</li>
+    </ul>
+  </div>
 
-   <button id="resizeBtn" aria-label="Resize image">Resize Image</button>
+  <div class="section">
+    <h2>FAQs ❓</h2>
+    <p><strong>Does this upload my image online?</strong><br>No, everything happens in your browser.</p>
+    <p><strong>Can I resize large images?</strong><br>Yes, modern browsers can handle high-resolution files easily.</p>
+    <p><strong>Will it reduce quality?</strong><br>No, resizing is handled with high-quality scaling for clear results.</p>
+  </div>
 
-   <div id="preview" class="preview-box" aria-live="polite"></div>
+  <footer>
+    © 2025 ❤️ I❤ImagePDF — Client-Side & Secure |
+    <a href="/about.html">About</a> | <a href="/privacy.html">Privacy Policy</a>
+  </footer>
+</div>
 
- </section>
-
- <!-- ✅ MID AD -->
- <div class="ad-slot" data-ad="mid">
-   <div class="ad-inner"></div>
- </div>
-
- <!-- ✅ Security -->
- <section class="section">
-  <h2>🔐 Security</h2>
-  <p>All processing happens locally inside your browser. Nothing is uploaded to a server.</p>
- </section>
-
- <section class="section">
-  <h2>📄 Privacy</h2>
-  <p>Your images never leave your system — No storage, No tracking.</p>
- </section>
-
- <section class="section">
-  <h2>❓ FAQ</h2>
-  <p><b>Does image upload to server?</b><br>No — everything is local.</p>
-  <p><b>Supported formats?</b><br>JPG, PNG, WebP, BMP.</p>
-  <p><b>Is it free?</b><br>Yes — forever.</p>
- </section>
-
- <!-- ✅ BOTTOM AD -->
- <div class="ad-slot" data-ad="bottom">
-   <div class="ad-inner"></div>
- </div>
-
-</main>
-
-<footer role="contentinfo">
- © <span id="year"></span> I ❤ ImagePDF.Pro  
-</footer>
-
-
-<!-- ✅ Adsterra keys -->
 <script>
-const ADS = {
-  top:    { key:"d71abad2466ac39c8d34cd4e900267b3", width:728, height:90 },
-  mid:    { key:"3d20b33d71b53fa93676d119ed313762", width:300, height:250 },
-  bottom: { key:"d71abad2466ac39c8d34cd4e900267b3", width:728, height:90 }
+const dropZone=document.getElementById('dropZone');
+const imgInput=document.getElementById('imgInput');
+const previewArea=document.getElementById('previewArea');
+const widthInput=document.getElementById('width');
+const heightInput=document.getElementById('height');
+const lockRatio=document.getElementById('lockRatio');
+const resizeBtn=document.getElementById('resizeBtn');
+const downloadBtn=document.getElementById('downloadBtn');
+let img=null,originalWidth=0,originalHeight=0;
+
+dropZone.addEventListener('click',()=>imgInput.click());
+dropZone.addEventListener('dragover',e=>{e.preventDefault();dropZone.classList.add('dragover');});
+dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('dragover'));
+dropZone.addEventListener('drop',e=>{
+ e.preventDefault();dropZone.classList.remove('dragover');
+ const file=e.dataTransfer.files[0];if(file)loadImage(file);
+});
+imgInput.addEventListener('change',()=>{const f=imgInput.files[0];if(f)loadImage(f);});
+
+function loadImage(file){
+ const reader=new FileReader();
+ reader.onload=e=>{
+  img=new Image();
+  img.src=e.target.result;
+  img.onload=()=>{
+   originalWidth=img.width;
+   originalHeight=img.height;
+   widthInput.value=img.width;
+   heightInput.value=img.height;
+   previewArea.innerHTML='';
+   previewArea.appendChild(img);
+  };
+ };
+ reader.readAsDataURL(file);
+}
+
+widthInput.addEventListener('input',()=>{
+ if(lockRatio.checked && img){
+  heightInput.value=Math.round(originalHeight*(widthInput.value/originalWidth));
+ }
+});
+heightInput.addEventListener('input',()=>{
+ if(lockRatio.checked && img){
+  widthInput.value=Math.round(originalWidth*(heightInput.value/originalHeight));
+ }
+});
+
+resizeBtn.onclick=()=>{
+ if(!img){alert('Please upload an image first.');return;}
+ const canvas=document.createElement('canvas');
+ const ctx=canvas.getContext('2d');
+ canvas.width=parseInt(widthInput.value);
+ canvas.height=parseInt(heightInput.value);
+ ctx.drawImage(img,0,0,canvas.width,canvas.height);
+ img.src=canvas.toDataURL('image/png');
+};
+
+downloadBtn.onclick=()=>{
+ if(!img){alert('No image to download.');return;}
+ const a=document.createElement('a');
+ a.href=img.src;a.download='resized-image.png';
+ a.click();
 };
 </script>
-
-<!-- ✅ Lazy Ad Loader -->
-<script>
-document.addEventListener("DOMContentLoaded",()=>{
- setTimeout(()=>{
-   document.querySelectorAll(".ad-slot").forEach(slot=>{
-      const name = slot.dataset.ad;
-      const cfg = ADS[name];
-      if(!cfg) return;
-
-      window.atOptions = {
-        key: cfg.key,
-        format: "iframe",
-        height: cfg.height,
-        width: cfg.width,
-        params:{}
-      };
-
-      const s = document.createElement("script");
-      s.src = "//www.highperformanceformat.com/"+cfg.key+"/invoke.js";
-      s.async = true;
-      slot.querySelector(".ad-inner").appendChild(s);
-   });
- },700);
-});
-</script>
-
-<!-- ✅ Image Resizer Script -->
-<script>
-const fileInput = document.getElementById("fileInput");
-const dropZone = document.getElementById("dropZone");
-const resizeBtn = document.getElementById("resizeBtn");
-const previewBox = document.getElementById("preview");
-let img = new Image();
-
-dropZone.addEventListener("keydown",e=>{
- if(e.key==="Enter"||e.key===" "){
-   e.preventDefault();
-   fileInput.click();
- }
-});
-
-dropZone.addEventListener("dragover",e=>{
- e.preventDefault();dropZone.style.borderColor="#0056d6";
-});
-dropZone.addEventListener("dragleave",()=>dropZone.style.borderColor="#007AFF");
-dropZone.addEventListener("drop",e=>{
- e.preventDefault();
- dropZone.style.borderColor="#007AFF";
- if(e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
-});
-
-fileInput.addEventListener("change",e=>handleFile(e.target.files[0]));
-
-function handleFile(file){
- const r=new FileReader();
- r.onload=e=>{
-   img.src=e.target.result;
-   img.onload=()=>{
-     previewOriginal(e.target.result,img.width,img.height,(file.size/1024).toFixed(1));
-   }
- }
- r.readAsDataURL(file);
-}
-
-function previewOriginal(src,w,h,s){
- previewBox.innerHTML = `
-   <h3>Original Image</h3>
-   <img src="${src}" alt="original image">
-   <p>${w} × ${h}px — ${s} KB</p>
- `;
-}
-
-resizeBtn.addEventListener("click",()=>{
- if(!img.src) return alert("Select an image first!");
-
- const w = parseInt(document.getElementById("width").value) || img.width;
- const h = parseInt(document.getElementById("height").value) || img.height;
-
- let canvas=document.createElement("canvas");
- canvas.width=w;canvas.height=h;
- let ctx=canvas.getContext("2d");
- ctx.drawImage(img,0,0,w,h);
-
- canvas.toBlob(blob=>{
-   let url=URL.createObjectURL(blob);
-   previewBox.innerHTML = `
-     <h3>Resized Image</h3>
-     <img src="${url}" alt="resized image">
-     <p>${w} × ${h}px — ${(blob.size/1024).toFixed(1)} KB</p>
-   `;
-   let a=document.createElement("a");
-   a.href=url;
-   a.download="resized.jpg";
-   a.textContent="Download Resized Image";
-   a.className="btn";
-   previewBox.appendChild(a);
- },"image/jpeg",0.9);
-});
-
-document.getElementById("year").textContent = new Date().getFullYear();
-</script>
-
 </body>
 </html>
