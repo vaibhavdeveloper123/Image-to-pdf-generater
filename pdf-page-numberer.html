@@ -1,411 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>📑 Add Page Numbers to PDF — I❤ImagePDF (Free & Client-Side)</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF Page Numberer | Add Page Numbers Online Free</title>
+<meta name="description" content="Add page numbers to your PDF files securely in your browser. 100% free, offline, no upload required. Fast, private & client-side.">
 
-<!-- SEO -->
-<meta name="description" content="Add clean page numbers to any PDF instantly — 100% client-side, private and free. Bottom-center page numbering. No uploads, works offline in browser." />
-<meta name="keywords" content="add page numbers pdf, pdf page numberer, number pdf pages, add page numbers online, client-side pdf tools, offline pdf tools, free pdf utilities, secure pdf tools, pdf-lib number pages, page numbers bottom center, add page numbers to pdf offline, pdf tools I love imagepdf, pdf editor client-side, pdf utilities" />
-<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/pdf-page-numberer.html" />
-
-<!-- OpenGraph -->
-<meta property="og:title" content="Add Page Numbers to PDF — I❤ImagePDF" />
-<meta property="og:description" content="Add page numbers to any PDF instantly and privately. 100% client-side — no uploads." />
-<meta property="og:image" content="https://secure-img-to-pdf.vercel.app/favicon.png" />
-<meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary_large_image" />
-
-<!-- JSON-LD -->
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"WebPage",
-  "name":"PDF Page Numberer",
-  "url":"https://secure-img-to-pdf.vercel.app/pdf-page-numberer.html",
-  "description":"Add page numbers to PDF files instantly with client-side processing. Bottom-center numbering by default."
-}
-</script>
-
-<!-- CSS: matches your site's look (big hero, rounded white cards, dashed file box) -->
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
-
-:root{
-  --accent:#d9232e;
-  --bg:#f6f8fb;
-  --card:#fff;
-  --muted:#666;
-}
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
-  background:var(--bg);
-  color:#222;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f7f7f7;
+  color: #333;
 }
 
-/* header */
-.header{
-  background:#fff;
-  border-bottom:1px solid #eee;
-  padding:14px 18px;
-  display:flex;
-  align-items:center;
-  gap:12px;
+/* HEADER */
+header {
+  background: #fff;
+  padding: 20px;
+  text-align: center;
+  font-size: 26px;
+  font-weight: bold;
+  border-bottom: 1px solid #e5e5e5;
 }
-.logo{
-  font-weight:800;
-  font-size:20px;
-  cursor:pointer;
-}
-.logo .heart{color:var(--accent); margin-right:8px;}
+header span { color: red; }
 
-/* container */
-.container{
-  max-width:860px;
-  margin:18px auto;
-  padding:0 16px 48px;
+/* Main Container */
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-/* hero / intro card */
-.hero{
-  background:var(--card);
-  border-radius:14px;
-  padding:28px;
-  text-align:center;
-  border:1px solid #eee;
-  box-shadow:0 2px 10px rgba(0,0,0,0.04);
-}
-.hero h1{
-  margin:0 0 12px;
-  color:var(--accent);
-  font-size:32px;
-  line-height:1.05;
-  font-weight:800;
-}
-.hero p{
-  margin:0 auto;
-  color:var(--muted);
-  max-width:700px;
-  font-size:16px;
+h1 {
+  text-align: center;
+  margin-bottom: 15px;
 }
 
-/* card */
-.card{
-  background:var(--card);
-  margin-top:20px;
-  border-radius:14px;
-  padding:22px;
-  border:1px solid #eee;
-  box-shadow:0 2px 10px rgba(0,0,0,0.04);
+input[type="file"] {
+  display: block;
+  margin: 20px auto;
 }
 
-/* drop area */
-.dropbox{
-  border:3px dashed #d9534f44;
-  border-radius:12px;
-  padding:28px;
-  text-align:center;
-  min-height:150px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  gap:12px;
-  background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.2));
+.button {
+  background: red;
+  color: white;
+  padding: 12px 25px;
+  display: block;
+  margin: 25px auto;
+  font-size: 18px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
 }
-.dropbox.dragover{
-  border-color:var(--accent);
-  box-shadow:0 6px 18px rgba(217,35,46,0.07);
-}
-.dropbox .big{
-  font-weight:700;
-  font-size:20px;
-}
-.dropbox .muted{
-  color:var(--muted);
-  font-size:14px;
+.button:hover { background: #cc0000; }
+
+#status {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 17px;
+  font-weight: bold;
 }
 
-/* buttons */
-.actions{
-  display:flex;
-  gap:12px;
-  margin-top:14px;
-  justify-content:center;
-  flex-wrap:wrap;
+/* FOOTER */
+footer {
+  text-align: center;
+  margin: 40px 0 20px;
+  color: #777;
+  font-size: 15px;
 }
-.btn{
-  padding:12px 18px;
-  border-radius:10px;
-  border:none;
-  font-weight:700;
-  cursor:pointer;
-  font-size:15px;
-}
-.btn-primary{
-  background:var(--accent);
-  color:#fff;
-  box-shadow:0 6px 18px rgba(217,35,46,0.12);
-}
-.btn-ghost{
-  background:#f0f0f0;
-  color:#333;
-}
-
-/* small status */
-#status{
-  text-align:center;
-  margin-top:12px;
-  color:green;
-  font-weight:600;
-}
-
-/* options */
-.options{
-  display:flex;
-  gap:12px;
-  margin-top:16px;
-  align-items:center;
-  justify-content:center;
-}
-.select{
-  padding:10px 12px;
-  border-radius:10px;
-  border:1px solid #eee;
-  background:#fff;
-}
-
-/* info blocks */
-.info-grid{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:14px;
-  margin-top:20px;
-}
-.info-card{
-  background:#fff;
-  padding:16px;
-  border-radius:12px;
-  border:1px solid #eee;
-  font-size:15px;
-}
-.info-card h3{margin:0 0 8px 0;color:var(--accent);font-size:18px}
-
-/* footer */
-.footer{
-  text-align:center;
-  margin:28px auto 60px;
-  color:#666;
-  font-size:14px;
-}
-
-/* responsive */
-@media(min-width:760px){
-  .info-grid{grid-template-columns:repeat(3,1fr)}
-  .dropbox{min-height:180px}
-}
+footer a { color: red; text-decoration: none; }
 </style>
 
-<!-- pdf-lib -->
 <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
 
 </head>
 <body>
 
-<!-- header -->
-<header class="header" role="banner">
-  <div style="display:flex;align-items:center;gap:10px;">
-    <div class="logo" onclick="location.href='/'"><span class="heart">❤️</span> I❤ImagePDF</div>
-  </div>
-</header>
+<header>❤️ I❤ImagePDF</header>
 
-<!-- container -->
-<main class="container" role="main">
+<div class="container">
+  <h1>PDF Page Numberer</h1>
+  <p style="text-align:center;">Add page numbers to your PDF pages securely — processing happens entirely in your browser.</p>
 
-  <!-- hero -->
-  <section class="hero" aria-labelledby="hero-title">
-    <h1 id="hero-title">📑 Add Page Numbers to PDF</h1>
-    <p>Add clean, professional page numbers to your PDFs instantly — fully client-side and private. This tool adds bottom-center page numbers (simple mode) and downloads a numbered PDF.</p>
-  </section>
+  <input type="file" id="pdfFile" accept="application/pdf">
 
-  <!-- uploader card -->
-  <section class="card" aria-labelledby="uploader-title">
-    <h2 id="uploader-title" style="margin:0 0 12px;font-size:18px;">🔢 Drag & drop your PDF here</h2>
+  <button class="button" onclick="addPageNumbers()">Add Page Numbers</button>
 
-    <div id="dropbox" class="dropbox" tabindex="0">
-      <div class="big">📁 Drag & drop your PDF here</div>
-      <div class="muted">or click to choose a file</div>
-      <input id="fileInput" type="file" accept="application/pdf" style="display:none" />
-    </div>
+  <div id="status"></div>
+</div>
 
-    <div class="options" aria-hidden="false">
-      <!-- Simple mode only: bottom-center fixed (info displayed) -->
-      <div class="select">Mode: <strong>Simple — Bottom Center</strong></div>
-    </div>
+<footer>
+  © 2025 ❤️ I❤ImagePDF — 100% Client-Side & Secure |
+  <a href="about.html">About</a> |
+  <a href="privacy.html">Privacy Policy</a>
+</footer>
 
-    <div class="actions" role="region" aria-label="actions">
-      <button id="convertBtn" class="btn btn-primary">Add Page Numbers</button>
-      <button id="clearBtn" class="btn btn-ghost">Clear</button>
-    </div>
-
-    <div id="status" aria-live="polite"></div>
-  </section>
-
-  <!-- info blocks like your site -->
-  <section class="info-grid" aria-label="details">
-    <div class="info-card">
-      <h3>How it works ⚙️</h3>
-      <ul style="margin:8px 0 0 18px;padding:0;">
-        <li>Upload or drag & drop your PDF file.</li>
-        <li>Tool adds page numbers bottom-center to every page.</li>
-        <li>Numbered PDF is downloaded to your device — no upload.</li>
-      </ul>
-    </div>
-    <div class="info-card">
-      <h3>Why Choose I❤ImagePDF ❤️</h3>
-      <ul style="margin:8px 0 0 18px;padding:0;">
-        <li>🔒 100% secure and client-side — nothing uploaded.</li>
-        <li>⚡ Super-fast, works entirely in your browser.</li>
-        <li>📱 Mobile-friendly responsive interface.</li>
-      </ul>
-    </div>
-    <div class="info-card">
-      <h3>Frequently Asked Questions ❓</h3>
-      <p style="margin:8px 0 0 0;"><strong>Are my files uploaded?</strong><br>No — all processing happens locally on your device.</p>
-    </div>
-  </section>
-
-  <div class="card" style="margin-top:18px;">
-    <h3 style="margin:0 0 8px 0;color:var(--accent)">Ready to add page numbers?</h3>
-    <p style="margin:0;color:var(--muted)">Click <strong>"Add Page Numbers"</strong> after selecting your PDF. The result downloads automatically.</p>
-  </div>
-
-  <div style="height:16px"></div>
-
-  <div class="footer">© 2025 ❤️ I❤ImagePDF — 100% Client-Side & Secure | <a href="/about.html">About</a> | <a href="/privacy.html">Privacy Policy</a></div>
-
-</main>
-
-<!-- JS: drag/drop + pdf-lib processing -->
 <script>
-(function(){
-  const dropbox = document.getElementById('dropbox');
-  const fileInput = document.getElementById('fileInput');
-  const convertBtn = document.getElementById('convertBtn');
-  const clearBtn = document.getElementById('clearBtn');
-  const statusEl = document.getElementById('status');
-
-  let pdfFile = null;
-
-  // Click to open file dialog
-  dropbox.addEventListener('click', ()=> fileInput.click());
-  dropbox.addEventListener('keypress', (e)=> { if(e.key === 'Enter') fileInput.click(); });
-
-  // File input change
-  fileInput.addEventListener('change', (e)=>{
-    if(e.target.files && e.target.files[0]) {
-      handleFile(e.target.files[0]);
-    }
-  });
-
-  // Drag & drop
-  ['dragenter','dragover'].forEach(evt=>{
-    dropbox.addEventListener(evt, (e)=>{
-      e.preventDefault(); e.stopPropagation();
-      dropbox.classList.add('dragover');
-    }, false);
-  });
-  ['dragleave','drop'].forEach(evt=>{
-    dropbox.addEventListener(evt, (e)=>{
-      e.preventDefault(); e.stopPropagation();
-      dropbox.classList.remove('dragover');
-    }, false);
-  });
-
-  dropbox.addEventListener('drop', (e)=>{
-    const dt = e.dataTransfer;
-    if(!dt) return;
-    const files = dt.files;
-    if(files && files[0]) handleFile(files[0]);
-  });
-
-  clearBtn.addEventListener('click', ()=>{
-    pdfFile = null;
-    statusEl.textContent = '';
-    fileInput.value = '';
-    dropbox.querySelector('.big').textContent = '📁 Drag & drop your PDF here';
-  });
-
-  convertBtn.addEventListener('click', async ()=>{
-    if(!pdfFile) { alert('Please select a PDF file first.'); return; }
-    try {
-      statusEl.style.color = 'green';
-      statusEl.textContent = 'Processing — adding page numbers...';
-      await addPageNumbersAndDownload(pdfFile);
-      statusEl.textContent = '✔ Page numbers added — download should start.';
-    } catch (err) {
-      console.error(err);
-      statusEl.style.color = 'crimson';
-      statusEl.textContent = 'Error: Could not process PDF. Try a different file.';
-    }
-  });
-
-  function handleFile(file){
-    if(!file.type || !file.type.includes('pdf')) {
-      alert('Please upload a PDF file.');
-      return;
-    }
-    pdfFile = file;
-    dropbox.querySelector('.big').textContent = '✅ ' + file.name;
-    statusEl.textContent = '';
+async function addPageNumbers() {
+  const fileInput = document.getElementById("pdfFile");
+  if (!fileInput.files.length) {
+    alert("Please select a PDF file.");
+    return;
   }
 
-  async function addPageNumbersAndDownload(file){
-    const arrayBuffer = await file.arrayBuffer();
-    const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
-    const pages = pdfDoc.getPages();
-    const font = await pdfDoc.embedFont(PDFLib.StandardFonts.Helvetica);
-    const fontSize = 12; // fixed for simple mode
-    const textColor = PDFLib.rgb(0,0,0); // black
+  document.getElementById("status").innerText = "Processing PDF… Please wait.";
 
-    pages.forEach((page, idx) => {
-      const { width, height } = page.getSize();
-      const text = String(idx + 1); // bottom-center numbering
-      const textWidth = font.widthOfTextAtSize(text, fontSize);
-      const x = (width - textWidth) / 2; // center horizontally
-      const y = 20; // 20 points from bottom
-      page.drawText(text, { x, y, size: fontSize, font, color: textColor });
+  const file = fileInput.files[0];
+  const arrayBuffer = await file.arrayBuffer();
+
+  const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
+  const pages = pdfDoc.getPages();
+  const font = await pdfDoc.embedFont(PDFLib.StandardFonts.Helvetica);
+
+  pages.forEach((page, index) => {
+    const { width, height } = page.getSize();
+    page.drawText(String(index + 1), {
+      x: width / 2 - 5,
+      y: 20,
+      size: 14,
+      font: font,
+      color: PDFLib.rgb(0, 0, 0)
     });
+  });
 
-    const pdfBytes = await pdfDoc.save();
-    const blob = new Blob([pdfBytes], { type: 'application/pdf' });
-    const url = URL.createObjectURL(blob);
+  const newPdfBytes = await pdfDoc.save();
 
-    // trigger download
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = generateDownloadName(file.name || 'numbered.pdf');
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    URL.revokeObjectURL(url);
-  }
+  const blob = new Blob([newPdfBytes], { type: "application/pdf" });
+  const url = URL.createObjectURL(blob);
 
-  function generateDownloadName(originalName) {
-    // Keep original name and append "-numbered"
-    if(!originalName) return 'numbered.pdf';
-    const dot = originalName.lastIndexOf('.');
-    if(dot === -1) return originalName + '-numbered.pdf';
-    const base = originalName.substring(0, dot);
-    const ext = originalName.substring(dot);
-    return base + '-numbered' + ext;
-  }
-})();
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "numbered.pdf";
+  a.click();
+
+  document.getElementById("status").innerText = "Page numbers added successfully!";
+}
 </script>
 
 </body>
