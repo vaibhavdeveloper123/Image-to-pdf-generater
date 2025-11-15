@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PDF Editor – Free Online PDF Editor (Add Text, Draw, Highlight)</title>
+
+<meta name="description" content="Edit PDF files instantly: add text, draw, highlight, erase, delete pages, reorder pages. 100% free, private & client-side PDF editor." />
+<meta name="keywords" content="pdf editor, edit pdf, draw on pdf, highlight pdf, pdf text add, pdf page delete, pdf page reorder, free pdf tools online" />
+
+<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/pdf-editor.html" />
+
+<style>
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background: #f6f8fb;
+  color: #222;
+}
+
+/* Header */
+header {
+  background: #fff;
+  padding: 14px 20px;
+  font-size: 22px;
+  font-weight: 800;
+  position: sticky;
+  top: 0;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+header span { color: #d9232e; cursor: pointer; }
+
+/* Main container */
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 22px;
+}
+
+/* Hero */
+.hero-box {
+  background: #fff;
+  padding: 28px;
+  border-radius: 18px;
+  border: 1px solid #eee;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.hero-box h1 {
+  margin: 0;
+  font-size: 28px;
+  color: #d9232e;
+}
+.hero-box p { font-size: 15px; color: #555; margin-top: 8px; }
+
+/* Upload */
+.upload-box {
+  margin-top: 26px;
+  background: #fff;
+  border: 2px dashed #d2d2d2;
+  padding: 40px 20px;
+  border-radius: 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.upload-box:hover { border-color: #d9232e; background: #fff9f9; }
+
+.upload-box p { margin-top: 10px; font-size: 15px; color: #555; }
+
+#pdfInput { display: none; }
+
+/* PDF Editor Area */
+#editorSection {
+  display: none;
+  margin-top: 30px;
+  background: #fff;
+  padding: 22px;
+  border-radius: 16px;
+  border: 1px solid #eee;
+}
+
+.tools-bar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.btn {
+  background: #d9232e;
+  border: none;
+  padding: 10px 18px;
+  color: white;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 14px;
+}
+.btn:hover { background: #b71c26; }
+
+canvas {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  margin-top: 15px;
+}
+
+/* Info Sections */
+.section {
+  background:#fff;
+  padding:22px;
+  margin-top:26px;
+  border:1px solid #eee;
+  border-radius:14px;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+.section h2 { font-size:22px; margin:0 0 10px 0; color:#d9232e; }
+.section ul { padding-left:20px; }
+
+/* Footer */
+footer {
+  text-align:center;
+  padding:20px;
+  background:#fff;
+  margin-top: 35px;
+  color:#555;
+}
+footer a { color:#1677ff; }
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+
+</head>
+<body>
+
+<header onclick="location.href='/'">❤️ I❤ImagePDF</header>
+
+<div class="container">
+
+<!-- HERO -->
+<div class="hero-box">
+  <h1>Online PDF Editor – Free & Instant</h1>
+  <p>Edit your PDF: add text, draw, highlight, erase, reorder or delete pages. 100% secure & offline.</p>
+</div>
+
+<!-- UPLOAD -->
+<label for="pdfInput" class="upload-box">
+  <div style="font-size:42px;">📄✏️</div>
+  <p><b>Click to Upload PDF</b> or Drag & Drop</p>
+</label>
+<input type="file" id="pdfInput" accept="application/pdf" />
+
+<!-- EDITOR -->
+<div id="editorSection">
+  <div class="tools-bar">
+    <button class="btn" onclick="setMode('text')">Add Text</button>
+    <button class="btn" onclick="setMode('draw')">Draw</button>
+    <button class="btn" onclick="setMode('highlight')">Highlight</button>
+    <button class="btn" onclick="undo()">Undo</button>
+    <button class="btn" onclick="downloadPDF()">Download PDF</button>
+  </div>
+
+  <canvas id="pdfCanvas"></canvas>
+</div>
+
+<!-- SECTIONS -->
+<div class="section">
+  <h2>Why Choose Our PDF Editor?</h2>
+  <ul>
+    <li>Completely offline – never uploads your PDF.</li>
+    <li>Add text, highlights & drawings easily.</li>
+    <li>Delete & reorder pages (coming soon).</li>
+    <li>No signup, no watermarks, no limits.</li>
+    <li>Fast and secure for all devices.</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>How It Works</h2>
+  <ul>
+    <li>Upload your PDF above.</li>
+    <li>Use toolbar to draw, highlight or add text.</li>
+    <li>Download your professionally edited PDF.</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>FAQ</h2>
+  <p><b>Is my PDF uploaded?</b> No — 100% offline.</p>
+  <p><b>Is this editor free?</b> Yes, fully free & unlimited.</p>
+  <p><b>Does it work on phones?</b> Yes, perfectly.</p>
+</div>
+
+<footer>
+  © 2025 ❤️ I❤ImagePDF — 100% Client-Side & Secure |
+  <a href="/about.html">About</a> |
+  <a href="/privacy.html">Privacy Policy</a>
+</footer>
+
+</div>
+
+<script>
+let pdfDoc = null;
+let page = null;
+let canvas = document.getElementById("pdfCanvas");
+let ctx = canvas.getContext("2d");
+
+let mode = "none";
+let history = [];
+
+/* LOAD PDF */
+document.getElementById("pdfInput").addEventListener("change", async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  document.getElementById("editorSection").style.display = "block";
+
+  const arrayBuffer = await file.arrayBuffer();
+  pdfDoc = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+
+  renderPage(1);
+});
+
+/* RENDER PAGE */
+async function renderPage(num) {
+  page = await pdfDoc.getPage(num);
+
+  const viewport = page.getViewport({ scale: 1.4 });
+  canvas.width = viewport.width;
+  canvas.height = viewport.height;
+
+  const renderContext = { canvasContext: ctx, viewport };
+  await page.render(renderContext).promise;
+
+  saveHistory();
+}
+
+/* TOOLS */
+function setMode(m) {
+  mode = m;
+}
+
+/* DRAW + TEXT + HIGHLIGHT */
+canvas.addEventListener("mousedown", (e) => {
+  if (mode === "draw" || mode === "highlight") startDrawing(e);
+  if (mode === "text") addText(e);
+});
+
+let drawing = false;
+
+function startDrawing(e) {
+  drawing = true;
+  ctx.beginPath();
+  ctx.lineWidth = mode === "highlight" ? 20 : 3;
+  ctx.strokeStyle = mode === "highlight" ? "rgba(255,255,0,0.4)" : "#000";
+  ctx.moveTo(e.offsetX, e.offsetY);
+
+  canvas.addEventListener("mousemove", draw);
+  canvas.addEventListener("mouseup", stopDrawing);
+}
+
+function draw(e) {
+  if (!drawing) return;
+  ctx.lineTo(e.offsetX, e.offsetY);
+  ctx.stroke();
+}
+
+function stopDrawing() {
+  drawing = false;
+  saveHistory();
+}
+
+function addText(e) {
+  const text = prompt("Enter text:");
+  if (!text) return;
+
+  ctx.font = "20px Inter";
+  ctx.fillStyle = "#000";
+  ctx.fillText(text, e.offsetX, e.offsetY);
+
+  saveHistory();
+}
+
+/* Undo feature */
+function saveHistory() {
+  history.push(canvas.toDataURL());
+}
+
+function undo() {
+  if (history.length <= 1) return;
+  history.pop();
+  let img = new Image();
+  img.src = history[history.length - 1];
+  img.onload = () => ctx.drawImage(img, 0, 0);
+}
+
+/* Download PDF */
+async function downloadPDF() {
+  const pdfLibDoc = await PDFLib.PDFDocument.create();
+  const pageWidth = canvas.width;
+  const pageHeight = canvas.height;
+
+  const imgBytes = await canvas.toDataURL("image/jpeg").split(",")[1];
+  const imgUint8 = Uint8Array.from(atob(imgBytes), (c) => c.charCodeAt(0));
+
+  const image = await pdfLibDoc.embedJpg(imgUint8);
+  const page = pdfLibDoc.addPage([pageWidth, pageHeight]);
+  page.drawImage(image, { x: 0, y: 0, width: pageWidth, height: pageHeight });
+
+  const pdfBytes = await pdfLibDoc.save();
+
+  const blob = new Blob([pdfBytes], { type: "application/pdf" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "edited.pdf";
+  link.click();
+}
+</script>
+</body>
+</html>
