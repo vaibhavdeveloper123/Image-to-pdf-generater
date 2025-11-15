@@ -1,300 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>I❤ImagePDF — Free PDF & Image Tools (100% Client-Side)</title>
 
-<title>I❤ImagePDF – Free & Secure Online PDF, Image & Finance Tools</title>
+<!-- 🔥 Strong SEO -->
+<meta name="description" content="Free PDF & Image Tools — JPG to PDF, Merge PDF, Split PDF, Compress PDF, Background Remover, Image Resizer, Finance Calculators & more. 100% client-side, secure, no upload." />
+<meta name="keywords" content="pdf tools,image tools,online pdf converter,jpg to pdf,merge pdf,split pdf,compress pdf,background remover,image compressor,finance calculators,free tools,client side tools,privacy tools,ocr,image to text,pdf unlocker,pdf protector,pdf watermark remover,pdf rotator,ai upscale,photo enhancer,qr generator,word counter,image cropper,image resizer,heic to jpg,base64 converter,case converter,secure pdf tools,no upload tools,offline pdf tools,instant converter,fast pdf tools,mobile pdf tools" />
 
-<meta name="description" content="I❤ImagePDF offers fast, private, client-side PDF, Image & Finance tools — JPG to PDF, Merge PDF, Background Remover, AI Upscale, EMI Calculator, GST Calculator & more. 100% secure, runs in your browser." />
+<meta property="og:title" content="I❤ImagePDF — Free PDF & Image Tools" />
+<meta property="og:description" content="45+ free PDF, Image, Finance & Utility tools. No upload, 100% client-side, private & secure." />
+<meta property="og:type" content="website" />
 
-<meta name="keywords" content="pdf tools,image tools,finance tools,utilities,jpg to pdf,merge pdf,split pdf,pdf unlock,pdf lock,compress pdf,pdf to jpg,esign pdf,image compressor,background remover,ai upscaler,photo enhancer,qr code generator,word counter,image to text,emi calculator,gst calculator,age calculator,loan calculator" />
-
-<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/" />
-<link rel="icon" href="/favicon.png" />
-
-<meta property="og:title" content="I❤ImagePDF – 50+ Free PDF, Image & Finance Tools" />
-<meta property="og:description" content="Fast, secure, client-side tools — PDF, Image Editing, Finance calculators, Utilities & more." />
-<meta property="og:image" content="https://secure-img-to-pdf.vercel.app/favicon.png" />
-
-<meta name="twitter:card" content="summary_large_image" />
-
+<!-- JSON-LD Schema -->
 <script type="application/ld+json">
 {
- "@context":"https://schema.org",
- "@type":"WebSite",
- "name":"I❤ImagePDF",
- "url":"https://secure-img-to-pdf.vercel.app/",
- "description":"Client-side PDF, Image & Finance tools — free, secure & fast.",
- "publisher":{"@type":"Organization","name":"I❤ImagePDF"}
+ "@context": "https://schema.org",
+ "@type": "WebSite",
+ "name": "I❤ImagePDF",
+ "url": "https://secure-img-to-pdf.vercel.app",
+ "description": "50+ client-side PDF, Image, Finance & Utility tools.",
+ "publisher": { "@type": "Organization", "name": "I❤ImagePDF" }
 }
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
-
-:root{--accent:#d9232e;--bg:#f6f8fb;--card:#fff;}
-*{box-sizing:border-box}
-
-body{
- margin:0;
- font-family:"Inter",sans-serif;
- background:var(--bg);
- color:#222;
+body {
+    font-family: Arial, sans-serif;
+    background: #ffffff;
+    margin: 0;
+    padding: 0;
+    color: #222;
 }
-
-/* HEADER */
-header{
- background:#fff;
- padding:12px 18px;
- display:flex;
- align-items:center;
- justify-content:space-between;
- box-shadow:0 2px 8px rgba(0,0,0,.05);
- position:sticky;
- top:0;
- z-index:10;
+header {
+    text-align: center;
+    padding: 25px 10px;
+    background: #fff;
+    border-bottom: 1px solid #eee;
 }
-.logo{
- font-size:22px;
- font-weight:800;
- color:#000;
- cursor:pointer;
+h1 {
+    font-size: 32px;
+    margin: 0;
 }
-.logo span{color:var(--accent);}
-
-.container{
- max-width:1080px;
- margin:auto;
- padding:16px;
+.container {
+    width: 95%;
+    max-width: 1100px;
+    margin: auto;
 }
-
-.intro{
- text-align:center;
- background:#fff;
- padding:28px;
- border-radius:16px;
- border:1px solid #eee;
- box-shadow:0 2px 8px rgba(0,0,0,.05);
+.section-title {
+    font-size: 24px;
+    margin-top: 40px;
 }
-.intro h1{
- color:var(--accent);
- font-size:28px;
- margin:0;
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 14px;
 }
-.intro p{
- color:#555;
- max-width:740px;
- margin:10px auto;
- font-size:15px;
+.tool-box {
+    padding: 14px;
+    background: #fafafa;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid #eee;
+    font-size: 16px;
 }
-
-/* TOOL GRID */
-.tools{
- margin-top:24px;
- display:grid;
- grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
- gap:14px;
+.tool-box:hover {
+    background: #f0f0f0;
+    cursor: pointer;
 }
-.tool-card{
- background:#fff;
- padding:16px;
- border-radius:14px;
- border:1px solid #eee;
- display:flex;
- align-items:center;
- gap:12px;
- text-decoration:none;
- color:#000;
- box-shadow:0 2px 8px rgba(0,0,0,.05);
- transition:transform .2s;
+footer {
+    text-align: center;
+    margin: 30px 0;
+    padding: 20px;
+    border-top: 1px solid #eee;
 }
-.tool-card:hover{transform:scale(1.02);}
-.tool-icon{
- width:58px;
- height:58px;
- border-radius:10px;
- display:flex;
- align-items:center;
- justify-content:center;
- font-size:28px;
+a {
+    text-decoration: none;
+    color: inherit;
 }
-.tool-info{flex:1;}
-.tool-title{font-weight:700;margin:0;font-size:17px;}
-.tool-desc{font-size:14px;color:#555;margin-top:4px;}
-
-/* SECTIONS */
-.section{
- background:#fff;
- padding:22px;
- border-radius:14px;
- border:1px solid #eee;
- margin-top:24px;
- box-shadow:0 2px 8px rgba(0,0,0,.05);
-}
-.section h2{
- color:var(--accent);
- font-size:22px;
- margin:0 0 12px 0;
-}
-ul{padding-left:20px;margin:0;}
-ul li{margin-bottom:6px;color:#444;line-height:1.5;}
-
-footer{
- margin-top:30px;
- background:#fff;
- text-align:center;
- padding:18px;
- font-size:14px;
- color:#555;
-}
-a{color:#1677ff;text-decoration:none;}
-a:hover{text-decoration:underline;}
 </style>
-</head>
 
+</head>
 <body>
 
 <header>
- <div class="logo" onclick="location.href='/'">❤️ I❤ImagePDF</div>
+    <h1>❤️ I❤ImagePDF</h1>
+    <p>All-in-One PDF, Image, Finance & Utility Tools — 100% Client-Side, Free & Secure ⚡</p>
 </header>
 
 <div class="container">
 
-<!-- INTRO -->
-<section class="intro">
- <h1>All-in-One PDF, Image & Finance Tools — Free, Secure & Instant ⚡</h1>
- <p>Client-side conversion, compression, editing, finance calculators — everything runs in your browser. No uploads. No tracking. 100% private. 🔒</p>
-</section>
+<!-- ⭐ PDF TOOLS -->
+<h2 class="section-title">📄 PDF Tools</h2>
+<div class="tools-grid">
 
-<!-- TOOLS GRID -->
-<div class="tools">
+<a href="jpg-to-pdf.html"><div class="tool-box">📄 JPG to PDF</div></a>
+<a href="merge-pdf.html"><div class="tool-box">📚 Merge PDF</div></a>
+<a href="split-pdf.html"><div class="tool-box">✂️ Split PDF</div></a>
+<a href="compress-pdf.html"><div class="tool-box">💾 Compress PDF</div></a>
+<a href="pdf-to-jpg.html"><div class="tool-box">🖼️ PDF to JPG</div></a>
+<a href="esign-pdf.html"><div class="tool-box">🖋️ eSign PDF</div></a>
+<a href="pdf-unlocker.html"><div class="tool-box">🔓 PDF Unlocker</div></a>
+<a href="pdf-protector.html"><div class="tool-box">🔐 PDF Protector</div></a>
+<a href="pdf-watermark-remover.html"><div class="tool-box">💧 Watermark Remover</div></a>
+<a href="pdf-rotator.html"><div class="tool-box">🔄 PDF Rotator</div></a>
 
-<!-- ========================= PDF TOOLS ========================= -->
+<!-- 10 NEW PDF TOOLS -->
+<a href="#"><div class="tool-box">📑 PDF Page Numberer</div></a>
+<a href="#"><div class="tool-box">📝 PDF Editor (Client-side)</div></a>
+<a href="#"><div class="tool-box">🔍 PDF Metadata Viewer</div></a>
+<a href="#"><div class="tool-box">📥 Extract PDF Images</div></a>
+<a href="#"><div class="tool-box">✏️ Fill PDF Forms</div></a>
+<a href="#"><div class="tool-box">📌 PDF Bookmark Manager</div></a>
+<a href="#"><div class="tool-box">🧾 PDF OCR Extract</div></a>
+<a href="#"><div class="tool-box">📤 PDF Shrinker Ultra</div></a>
+<a href="#"><div class="tool-box">📚 Combine Images to PDF</div></a>
+<a href="#"><div class="tool-box">🔁 PDF Reorder Pages</div></a>
 
-<a href="/jpg-to-pdf.html" class="tool-card"><div class="tool-icon">📄</div><div class="tool-info"><p class="tool-title">JPG to PDF</p><p class="tool-desc">Convert images to PDF instantly.</p></div></a>
-
-<a href="/merge-pdf.html" class="tool-card"><div class="tool-icon">📚</div><div class="tool-info"><p class="tool-title">Merge PDF</p><p class="tool-desc">Combine multiple PDFs.</p></div></a>
-
-<a href="/split-pdf.html" class="tool-card"><div class="tool-icon">✂️</div><div class="tool-info"><p class="tool-title">Split PDF</p><p class="tool-desc">Extract PDF pages.</p></div></a>
-
-<a href="/compress-pdf.html" class="tool-card"><div class="tool-icon">💾</div><div class="tool-info"><p class="tool-title">Compress PDF</p><p class="tool-desc">Reduce PDF size.</p></div></a>
-
-<a href="/pdf-to-jpg.html" class="tool-card"><div class="tool-icon">🖼️</div><div class="tool-info"><p class="tool-title">PDF to JPG</p><p class="tool-desc">Convert PDF pages to images.</p></div></a>
-
-<a href="/pdf-rotator.html" class="tool-card"><div class="tool-icon">🔄</div><div class="tool-info"><p class="tool-title">PDF Rotator</p><p class="tool-desc">Rotate PDF pages instantly.</p></div></a>
-
-<a href="/pdf-watermark-remover.html" class="tool-card"><div class="tool-icon">💧</div><div class="tool-info"><p class="tool-title">Watermark Remover</p><p class="tool-desc">Remove PDF watermarks.</p></div></a>
-
-<a href="/pdf-unlocker.html" class="tool-card"><div class="tool-icon">🔓</div><div class="tool-info"><p class="tool-title">PDF Unlocker</p><p class="tool-desc">Unlock secured PDFs.</p></div></a>
-
-<a href="/pdf-protector.html" class="tool-card"><div class="tool-icon">🔐</div><div class="tool-info"><p class="tool-title">PDF Protector</p><p class="tool-desc">Password-protect PDFs.</p></div></a>
-
-<a href="/esign-pdf.html" class="tool-card"><div class="tool-icon">🖋️</div><div class="tool-info"><p class="tool-title">eSign PDF</p><p class="tool-desc">Sign PDFs in-browser.</p></div></a>
-
-
-
-<!-- ========================= IMAGE TOOLS ========================= -->
-
-<a href="/image-compressor.html" class="tool-card"><div class="tool-icon">🗜️</div><div class="tool-info"><p class="tool-title">Image Compressor</p><p class="tool-desc">Reduce image file size.</p></div></a>
-
-<a href="/image-resizer.html" class="tool-card"><div class="tool-icon">📏</div><div class="tool-info"><p class="tool-title">Image Resizer</p><p class="tool-desc">Resize images easily.</p></div></a>
-
-<a href="/image-color-picker.html" class="tool-card"><div class="tool-icon">🎨</div><div class="tool-info"><p class="tool-title">Color Picker</p><p class="tool-desc">Pick any color from image.</p></div></a>
-
-<a href="/image-cropper.html" class="tool-card"><div class="tool-icon">✂️</div><div class="tool-info"><p class="tool-title">Image Cropper</p><p class="tool-desc">Crop images freely.</p></div></a>
-
-<a href="/background-remover.html" class="tool-card"><div class="tool-icon">🧹</div><div class="tool-info"><p class="tool-title">Background Remover</p><p class="tool-desc">Remove BG offline.</p></div></a>
-
-<a href="/photo-enhancer.html" class="tool-card"><div class="tool-icon">✨</div><div class="tool-info"><p class="tool-title">Photo Enhancer</p><p class="tool-desc">Enhance quality automatically.</p></div></a>
-
-<a href="/ai-image-scaler.html" class="tool-card"><div class="tool-icon">🪄</div><div class="tool-info"><p class="tool-title">AI Upscaler</p><p class="tool-desc">Upscale photos using AI.</p></div></a>
-
-<a href="/image-to-text.html" class="tool-card"><div class="tool-icon">🔍</div><div class="tool-info"><p class="tool-title">Image to Text (OCR)</p><p class="tool-desc">Extract text from images.</p></div></a>
-
-
-
-<!-- ========================= FINANCE TOOLS (EMOJI ONLY) ========================= -->
-
-<a href="/emi-calculator.html" class="tool-card"><div class="tool-icon">💰</div><div class="tool-info"><p class="tool-title">EMI Calculator</p><p class="tool-desc">Loan EMI breakdown.</p></div></a>
-
-<a href="/gst-calculator.html" class="tool-card"><div class="tool-icon">📊</div><div class="tool-info"><p class="tool-title">GST Calculator</p><p class="tool-desc">GST + reverse calc.</p></div></a>
-
-<a href="/age-calculator.html" class="tool-card"><div class="tool-icon">🎂</div><div class="tool-info"><p class="tool-title">Age Calculator</p><p class="tool-desc">Find exact age.</p></div></a>
-
-<a href="/sip-calculator.html" class="tool-card"><div class="tool-icon">📈</div><div class="tool-info"><p class="tool-title">SIP Calculator</p><p class="tool-desc">Investment growth chart.</p></div></a>
-
-<a href="/currency-converter.html" class="tool-card"><div class="tool-icon">💱</div><div class="tool-info"><p class="tool-title">Currency Converter</p><p class="tool-desc">Convert real-time FX.</p></div></a>
-
-
-
-<!-- ========================= UTILITY TOOLS ========================= -->
-
-<a href="/qr-code-generator.html" class="tool-card"><div class="tool-icon">🔳</div><div class="tool-info"><p class="tool-title">QR Code Generator</p><p class="tool-desc">Create QR codes instantly.</p></div></a>
-
-<a href="/word-counter.html" class="tool-card"><div class="tool-icon">📝</div><div class="tool-info"><p class="tool-title">Word Counter</p><p class="tool-desc">Count words & chars.</p></div></a>
-
-<a href="/base64-converter.html" class="tool-card"><div class="tool-icon">🔤</div><div class="tool-info"><p class="tool-title">Base64 Converter</p><p class="tool-desc">Encode / decode Base64.</p></div></a>
-
-<a href="/case-converter.html" class="tool-card"><div class="tool-icon">🔠</div><div class="tool-info"><p class="tool-title">Case Converter</p><p class="tool-desc">Uppercase, lowercase.</p></div></a>
-
-<a href="/meme-generator.html" class="tool-card"><div class="tool-icon">😂</div><div class="tool-info"><p class="tool-title">Meme Generator</p><p class="tool-desc">Create memes fast.</p></div></a>
-
-
-</div><!-- tools end -->
-
-
-
-<!-- ========================= WHY CHOOSE US ========================= -->
-<div class="section">
- <h2>Why Choose I❤ImagePDF?</h2>
- <ul>
-  <li>100% client-side — your files never leave your device.</li>
-  <li>Ultra-fast, lightweight & privacy-friendly.</li>
-  <li>No login required, unlimited free usage.</li>
-  <li>Supports all popular file formats.</li>
-  <li>Mobile-friendly for Android & iOS.</li>
- </ul>
 </div>
 
+<!-- ⭐ IMAGE TOOLS -->
+<h2 class="section-title">🖼️ Image Tools</h2>
+<div class="tools-grid">
 
+<a href="image-compressor.html"><div class="tool-box">🗜️ Image Compressor</div></a>
+<a href="image-resizer.html"><div class="tool-box">📏 Image Resizer</div></a>
+<a href="background-remover.html"><div class="tool-box">🧹 Background Remover</div></a>
+<a href="ai-image-scaler.html"><div class="tool-box">🪄 AI Upscaler</div></a>
+<a href="photo-enhancer.html"><div class="tool-box">✨ Photo Enhancer</div></a>
+<a href="image-cropper.html"><div class="tool-box">✂️ Image Cropper</div></a>
+<a href="color-picker.html"><div class="tool-box">🎨 Color Picker</div></a>
+<a href="image-to-text.html"><div class="tool-box">🔤 Image to Text (OCR)</div></a>
+<a href="heic-to-jpg.html"><div class="tool-box">📷 HEIC to JPG</div></a>
+<a href="meme-generator.html"><div class="tool-box">🤣 Meme Generator</div></a>
 
-<!-- ========================= SECURITY SECTION ========================= -->
-<div class="section">
- <h2>Your Security Matters 🔒</h2>
- <ul>
-  <li>Processing happens inside your browser only.</li>
-  <li>No server uploads — no monitoring, no storage.</li>
-  <li>Your files stay 100% on your device.</li>
-  <li>Open-source components ensure transparency.</li>
- </ul>
 </div>
 
+<!-- ⭐ FINANCE TOOLS (Emoji Icons) -->
+<h2 class="section-title">💰 Finance Tools</h2>
+<div class="tools-grid">
 
+<a href="#"><div class="tool-box">💵 SIP Calculator</div></a>
+<a href="#"><div class="tool-box">📉 Loan EMI Calculator</div></a>
+<a href="#"><div class="tool-box">📈 Compound Interest</div></a>
+<a href="#"><div class="tool-box">💳 Credit Card Payoff</div></a>
+<a href="#"><div class="tool-box">🏦 Fixed Deposit</div></a>
+<a href="#"><div class="tool-box">📊 Investment Return</div></a>
+<a href="#"><div class="tool-box">💱 Currency Converter</div></a>
+<a href="#"><div class="tool-box">📉 Inflation Calculator</div></a>
+<a href="#"><div class="tool-box">📆 Retirement Planner</div></a>
+<a href="#"><div class="tool-box">💼 Business Profit Calc</div></a>
 
-<!-- ========================= FAQ SECTION ========================= -->
-<div class="section">
- <h2>Frequently Asked Questions ❓</h2>
+<a href="#"><div class="tool-box">📉 Break-even Calc</div></a>
+<a href="#"><div class="tool-box">📘 Tax Estimator</div></a>
+<a href="#"><div class="tool-box">💲 VAT/GST Calculator</div></a>
+<a href="#"><div class="tool-box">📈 ROI Calculator</div></a>
+<a href="#"><div class="tool-box">💱 Gold Price Converter</div></a>
 
- <p><strong>Are my files uploaded?</strong><br>
- No — everything is processed offline on your device.</p>
+<!-- More (Total 25) -->
+<a href="#"><div class="tool-box">💹 Stock Profit Calc</div></a>
+<a href="#"><div class="tool-box">💵 Savings Planner</div></a>
+<a href="#"><div class="tool-box">📉 Debt Calculator</div></a>
+<a href="#"><div class="tool-box">📊 Portfolio Tracker</div></a>
+<a href="#"><div class="tool-box">📉 CAGR Calculator</div></a>
 
- <p><strong>Do I need to install anything?</strong><br>
- No signup, no installation required.</p>
-
- <p><strong>Is the service free?</strong><br>
- Yes! All tools are 100% free forever.</p>
-
- <p><strong>Which browsers are supported?</strong><br>
- Chrome, Edge, Firefox, Safari — all modern browsers.</p>
 </div>
 
+<!-- ⭐ UTILITY TOOLS -->
+<h2 class="section-title">🛠️ Utility Tools</h2>
+<div class="tools-grid">
 
+<a href="qr-code-generator.html"><div class="tool-box">🔳 QR Generator</div></a>
+<a href="word-counter.html"><div class="tool-box">📝 Word Counter</div></a>
+<a href="base64-converter.html"><div class="tool-box">🔤 Base64 Converter</div></a>
+<a href="case-converter.html"><div class="tool-box">🔠 Case Converter</div></a>
+<a href="#"><div class="tool-box">📁 ZIP Extractor (Offline)</div></a>
+<a href="#"><div class="tool-box">🧮 JSON Formatter</div></a>
+<a href="#"><div class="tool-box">📦 File Renamer</div></a>
+<a href="#"><div class="tool-box">🖥️ Screen Recorder</div></a>
+<a href="#"><div class="tool-box">⏱️ Stopwatch</div></a>
+<a href="#"><div class="tool-box">📌 Clipboard Manager</div></a>
+
+</div>
+
+<!-- ⭐ WHY CHOOSE US -->
+<h2 class="section-title">Why Choose I❤ImagePDF?</h2>
+<p>
+- 100% client-side — your files never leave your device.<br>
+- Ultra-fast, lightweight & privacy-first.<br>
+- Completely free with no login required.<br>
+- Supports all major file types (PDF, JPG, PNG, WEBP).<br>
+- Mobile-friendly interface for Android & iOS.<br>
+</p>
+
+<!-- ⭐ Security Section -->
+<h2 class="section-title">Security 🔒</h2>
+<p>
+- All tools run 100% locally in your browser.<br>
+- No uploads, no tracking, no analytics.<br>
+- Your files never leave your device.<br>
+- Works offline after first load.<br>
+</p>
+
+<!-- ⭐ FAQ -->
+<h2 class="section-title">Frequently Asked Questions ❓</h2>
+<p>
+<b>Are my files uploaded?</b> No. Everything stays on your device.<br><br>
+<b>Is it free?</b> Yes, forever.<br><br>
+<b>Do I need to sign up?</b> No account required.<br><br>
+<b>Which browsers are supported?</b> Chrome, Edge, Safari, Firefox, Brave.<br>
+</p>
 
 <footer>
- © 2025 ❤️ I❤ImagePDF — 100% Client-Side & Secure |
- <a href="/about.html">About</a> |
- <a href="/privacy.html">Privacy Policy</a>
+    © 2025 ❤️ I❤ImagePDF — 100% Client-Side & Secure |
+    <a href="about.html">About</a> | 
+    <a href="privacy.html">Privacy</a>
 </footer>
 
 </div>
