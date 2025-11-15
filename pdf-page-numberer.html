@@ -1,231 +1,266 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Add Page Numbers to PDF – Free Online Page Numberer</title>
 
-<title>PDF Page Numberer – Add Page Numbers Online Free | I❤ImagePDF</title>
+<meta name="description" content="Add professional page numbers to your PDF instantly. 100% client-side, secure, no upload, free, fast. Supports all PDFs." />
+<meta name="keywords" content="pdf page numberer, add page numbers, number pdf pages, free pdf tools, client side pdf editor, pdf numbering tool" />
 
-<meta name="description" content="Add page numbers to your PDF instantly, securely & free. 100% client-side processing, no upload required. Perfect for documents, reports & assignments." />
-<meta name="keywords" content="add page numbers pdf, pdf page numberer, number pdf pages, online pdf tools, client-side pdf editor, free pdf tools" />
-
-<link rel="canonical" href="https://yoursite.com/pdf-page-numberer.html" />
-
-<meta property="og:title" content="PDF Page Numberer – Add Page Numbers Online Free" />
-<meta property="og:description" content="Fast, private PDF page numbering tool—your files never leave your device. Free & secure." />
-<meta property="og:image" content="https://yoursite.com/preview.png" />
-<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/pdf-page-numberer.html" />
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
-
-:root{
- --accent:#d9232e;
- --bg:#f6f8fb;
- --card:#fff;
- --shadow:0 2px 8px rgba(0,0,0,.06);
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background: #f6f8fb;
+  color: #222;
 }
 
-*{box-sizing:border-box;}
-body{
- margin:0;
- font-family:"Inter",sans-serif;
- background:var(--bg);
- color:#222;
+/* HEADER */
+header {
+  background: #fff;
+  padding: 14px 20px;
+  font-size: 22px;
+  font-weight: 800;
+  position: sticky;
+  top: 0;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+header span { color: #d9232e; cursor: pointer; }
+
+/* CONTAINER */
+.container {
+  max-width: 820px;
+  margin: auto;
+  padding: 22px;
 }
 
-header{
- background:#fff;
- padding:15px 20px;
- display:flex;
- justify-content:space-between;
- align-items:center;
- box-shadow:var(--shadow);
- position:sticky;
- top:0;
- z-index:10;
+/* Intro */
+.hero-box {
+  background: #fff;
+  padding: 28px;
+  border-radius: 18px;
+  text-align: center;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
 
-.logo{font-size:22px;font-weight:800;cursor:pointer;}
-.logo span{color:var(--accent);}
-
-.container{
- max-width:900px;
- margin:auto;
- padding:18px;
+.hero-box h1 {
+  margin: 0;
+  font-size: 28px;
+  color: #d9232e;
 }
 
-.tool-box{
- background:#fff;
- padding:26px;
- border-radius:16px;
- box-shadow:var(--shadow);
- border:1px solid #eee;
+.hero-box p {
+  color: #555;
+  margin-top: 8px;
+  font-size: 15px;
 }
 
-.tool-title{
- font-size:28px;
- font-weight:800;
- color:var(--accent);
- text-align:center;
- margin:0 0 10px;
+/* Upload box */
+.upload-box {
+  margin-top: 26px;
+  background: #fff;
+  border: 2px dashed #d2d2d2;
+  border-radius: 14px;
+  padding: 40px 20px;
+  text-align: center;
+  transition: 0.2s;
+  cursor: pointer;
+}
+.upload-box:hover {
+  border-color: #d9232e;
+  background: #fffaf9;
 }
 
-.tool-desc{
- text-align:center;
- color:#555;
- font-size:15px;
- max-width:700px;
- margin:5px auto 20px;
+.upload-box p {
+  margin-top: 10px;
+  font-size: 15px;
+  color: #666;
 }
 
-.upload-area{
- background:#fafafa;
- border:2px dashed #ddd;
- padding:40px;
- border-radius:16px;
- text-align:center;
- cursor:pointer;
- transition:.2s;
+#fileInput { display: none; }
+
+/* PROCESS BOX */
+.process-box {
+  display: none;
+  background: #fff;
+  padding: 22px;
+  border-radius: 14px;
+  border: 1px solid #eee;
+  margin-top: 26px;
+  text-align: center;
 }
 
-.upload-area:hover{
- border-color:var(--accent);
- background:#fff;
+/* Button */
+.btn {
+  background: #d9232e;
+  color: white;
+  border: none;
+  padding: 12px 26px;
+  border-radius: 10px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.btn:hover { background: #b71c26; }
+
+/* Sections (SEO) */
+.section {
+  background: #fff;
+  margin-top: 26px;
+  border: 1px solid #eee;
+  padding: 22px;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
-button{
- background:var(--accent);
- color:#fff;
- border:none;
- border-radius:10px;
- padding:12px 22px;
- font-size:15px;
- cursor:pointer;
- transition:.2s;
+.section h2 {
+  margin: 0 0 12px 0;
+  color: #d9232e;
+  font-size: 22px;
 }
 
-button:hover{opacity:.85;}
+ul { padding-left: 20px; }
+ul li { margin-bottom: 6px; color: #444; }
 
-.section{
- background:#fff;
- border:1px solid #eee;
- border-radius:16px;
- padding:22px;
- margin-top:24px;
- box-shadow:var(--shadow);
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #fff;
+  margin-top: 30px;
+  font-size: 14px;
+  color: #555;
 }
-
-.section h2{
- color:var(--accent);
- margin:0 0 10px;
- font-size:22px;
-}
-
-ul{margin:0;padding-left:20px;}
-ul li{
- margin-bottom:8px;
- color:#444;
- line-height:1.55;
-}
-footer{
- margin-top:30px;
- padding:20px;
- background:#fff;
- text-align:center;
- color:#555;
- font-size:14px;
- border-top:1px solid #eee;
-}
+footer a { color: #1677ff; }
 </style>
-</head>
 
+<!-- PDF LIB + PDFJS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+
+</head>
 <body>
-<header>
- <div class="logo" onclick="location.href='/'">❤️ I❤ImagePDF</div>
-</header>
+
+<header onclick="location.href='/'">❤️ I❤ImagePDF</header>
 
 <div class="container">
 
- <div class="tool-box">
-  
-  <h1 class="tool-title">PDF Page Numberer</h1>
-  <p class="tool-desc">
-   Add page numbers to your PDF quickly & securely — processing happens directly in your browser.
-   No uploads. No tracking. 100% privacy guaranteed.
-  </p>
+<!-- INTRO -->
+<div class="hero-box">
+  <h1>Add Page Numbers to PDF – Free & Instant</h1>
+  <p>Number pages in your PDF professionally. 100% secure & offline — your files never leave your device.</p>
+</div>
 
-  <label class="upload-area">
-   <input type="file" id="pdfInput" accept="application/pdf" style="display:none;">
-   <p style="font-size:50px;margin:0;">📄</p>
-   <p style="font-size:16px;color:#555;margin:10px 0;">Click to choose a PDF or drag & drop</p>
-  </label>
+<!-- UPLOAD BOX -->
+<label class="upload-box" for="fileInput">
+  <div style="font-size:40px;">📄➕🔢</div>
+  <p><b>Click or Drag & Drop</b> to upload a PDF</p>
+  <p style="font-size:13px;">Supports: All PDF files · No upload · Full privacy</p>
+</label>
+<input type="file" id="fileInput" accept="application/pdf" />
 
-  <div style="text-align:center;margin-top:20px;">
-   <button onclick="numberPDF()">Add Page Numbers</button>
-  </div>
+<!-- PROCESS BOX -->
+<div class="process-box" id="processBox">
+  <h3 id="fileName"></h3>
+  <p>Pages detected: <span id="pageCount"></span></p>
+  <button class="btn" onclick="addNumbers()">Add Page Numbers</button>
+</div>
 
- </div>
+<!-- OUTPUT DOWNLOAD -->
+<div class="process-box" id="downloadBox" style="display:none;">
+  <h3>✔ Page numbers added successfully!</h3>
+  <a id="downloadLink">
+    <button class="btn">Download PDF</button>
+  </a>
+</div>
 
- <!-- How it Works -->
- <div class="section">
-  <h2>How It Works ⚙️</h2>
-  <ul>
-   <li>Select your PDF file (drag & drop supported).</li>
-   <li>Choose page number style (coming soon: position, format, margins).</li>
-   <li>Processing happens instantly inside your browser — nothing is uploaded.</li>
-   <li>Download your numbered PDF file securely.</li>
-  </ul>
- </div>
-
- <!-- Why Choose Us -->
- <div class="section">
+<!-- Why Choose -->
+<div class="section">
   <h2>Why Choose Our PDF Page Numberer?</h2>
   <ul>
-   <li>100% client-side — full privacy, no file ever leaves your device.</li>
-   <li>Instant processing thanks to browser-based PDF engines.</li>
-   <li>Simple, beautiful interface designed for productivity.</li>
-   <li>Completely free & unlimited use — no login required.</li>
-   <li>Perfect for office work, students, legal documents & reports.</li>
+    <li>100% browser-based — files never leave your device.</li>
+    <li>No signup, no watermark, no limits.</li>
+    <li>Professional page placement & perfect alignment.</li>
+    <li>Fast processing using advanced PDF engines.</li>
+    <li>Works on mobile, tablet, laptop — all browsers supported.</li>
   </ul>
- </div>
+</div>
 
- <!-- Security -->
- <div class="section">
-  <h2>Security & Privacy 🔒</h2>
+<!-- How It Works -->
+<div class="section">
+  <h2>How It Works</h2>
   <ul>
-   <li>Your files are processed locally — nothing is sent to our servers.</li>
-   <li>No tracking, no analytics, no hidden storage.</li>
-   <li>Once you refresh the page, your file disappears permanently.</li>
-   <li>Ideal for confidential documents (business, legal, personal).</li>
+    <li>Upload or drag & drop your PDF.</li>
+    <li>Tool reads all pages securely inside your browser.</li>
+    <li>System adds clean page numbers at perfect bottom-center.</li>
+    <li>Download the new updated PDF instantly.</li>
   </ul>
- </div>
+</div>
 
- <!-- FAQs -->
- <div class="section">
-  <h2>Frequently Asked Questions ❓</h2>
-  <p><strong>Is my PDF uploaded online?</strong><br>No — everything happens offline inside your device.</p>
+<!-- FAQ -->
+<div class="section">
+  <h2>Frequently Asked Questions</h2>
+  <p><b>Are my files uploaded?</b><br>Never. Everything is processed offline in your browser.</p>
+  <p><b>Is this free?</b><br>Yes — completely free with no limits.</p>
+  <p><b>Can I use it on mobile?</b><br>Yes, fully optimized for Android & iOS.</p>
+  <p><b>Does it reduce quality?</b><br>No, your PDF quality remains exactly the same.</p>
+</div>
 
-  <p><strong>Does this tool cost anything?</strong><br>No, it’s 100% free and will always remain free.</p>
-
-  <p><strong>Will the quality of my PDF stay the same?</strong><br>Yes, page numbering does not reduce PDF quality.</p>
-
-  <p><strong>Which devices are supported?</strong><br>All modern browsers including Chrome, Safari, Firefox, Edge.</p>
- </div>
-
- <footer>
+<footer>
   © 2025 ❤️ I❤ImagePDF — 100% Client-Side & Secure |
-  <a href="/">Home</a> |
+  <a href="/about.html">About</a> |
   <a href="/privacy.html">Privacy</a>
- </footer>
+</footer>
 
 </div>
 
-
 <script>
-// Placeholder – real processing to be added if needed
-function numberPDF(){
- alert("PDF page numbering coming fully functional in next update!");
+let pdfBytes, pdfDoc, totalPages;
+
+// LOAD FILE
+document.getElementById("fileInput").addEventListener("change", async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  document.getElementById("processBox").style.display = "block";
+  document.getElementById("fileName").innerText = file.name;
+
+  pdfBytes = await file.arrayBuffer();
+  pdfDoc = await PDFLib.PDFDocument.load(pdfBytes);
+
+  totalPages = pdfDoc.getPageCount();
+  document.getElementById("pageCount").innerText = totalPages;
+});
+
+// ADD PAGE NUMBERS
+async function addNumbers() {
+  const pages = pdfDoc.getPages();
+
+  pages.forEach((page, i) => {
+    const { width, height } = page.getSize();
+    const text = `${i + 1}`;
+
+    page.drawText(text, {
+      x: width / 2 - 6,
+      y: 20,
+      size: 14,
+      color: PDFLib.rgb(0.2, 0.2, 0.2),
+    });
+  });
+
+  const newPdf = await pdfDoc.save();
+  const blob = new Blob([newPdf], { type: "application/pdf" });
+
+  const url = URL.createObjectURL(blob);
+  const link = document.getElementById("downloadLink");
+  link.href = url;
+  link.download = "numbered.pdf";
+
+  document.getElementById("downloadBox").style.display = "block";
 }
 </script>
 
