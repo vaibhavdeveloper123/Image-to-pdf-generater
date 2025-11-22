@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>FD Calculator – Fixed Deposit Maturity Calculator | I❤ImagePDF</title>
+
+<meta name="description" content="Free FD Calculator — calculate fixed deposit maturity, interest earned, and total investment value with monthly, quarterly, half-yearly, or yearly compounding. 100% private and client-side.">
+<meta name="keywords" content="fd calculator, fixed deposit calculator, maturity calculator, bank fd, compound interest calculator, deposit calculator, offline fd calculator, india fd calculator">
+
+<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/fd-calculator.html">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root { --accent:#d9232e; --bg:#f6f8fb; }
+
+body{
+  margin:0;
+  background:var(--bg);
+  font-family:"Inter",sans-serif;
+  color:#222;
+}
+
+header{
+  background:#fff;
+  padding:15px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+.logo{font-size:22px;font-weight:800;cursor:pointer;}
+.logo span{color:var(--accent);}
+
+.container{max-width:900px;margin:auto;padding:20px;}
+
+.box{
+  background:#fff;
+  padding:25px;
+  border-radius:16px;
+  border:1px solid #eee;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+
+input, select {
+  width:100%;
+  padding:14px;
+  margin:10px 0;
+  border-radius:10px;
+  border:1px solid #ccc;
+  font-size:15px;
+}
+
+button{
+  width:100%;
+  padding:14px;
+  margin-top:10px;
+  border-radius:10px;
+  border:0;
+  cursor:pointer;
+  font-size:15px;
+  font-weight:600;
+  background:var(--accent);
+  color:#fff;
+}
+
+.result-box{
+  background:#fff;
+  padding:20px;
+  margin-top:20px;
+  border-radius:14px;
+  border:1px solid #ddd;
+  text-align:center;
+  font-size:18px;
+}
+
+.section{
+  background:#fff;
+  padding:22px;
+  border-radius:14px;
+  margin-top:28px;
+  border:1px solid #eee;
+}
+.section h2{color:var(--accent);}
+
+footer{
+  text-align:center;
+  background:#fff;
+  padding:20px;
+  margin-top:35px;
+  color:#555;
+}
+footer a{color:#1677ff;text-decoration:none;}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo" onclick="location.href='/'">❤️ I❤ImagePDF</div>
+</header>
+
+<div class="container">
+
+<h1 style="text-align:center;color:#d9232e;">Fixed Deposit (FD) Calculator 🏦</h1>
+<p style="text-align:center;color:#555;">Calculate FD maturity & interest instantly — 100% offline & secure</p>
+
+<div class="box">
+
+<label>Deposit Amount (₹)</label>
+<input type="number" id="amount" placeholder="e.g., 100000">
+
+<label>Annual Interest Rate (%)</label>
+<input type="number" id="rate" placeholder="e.g., 7.5">
+
+<label>Time Duration (Years)</label>
+<input type="number" id="years" placeholder="e.g., 5">
+
+<label>Compounding Frequency</label>
+<select id="frequency">
+  <option value="1">Yearly (1×)</option>
+  <option value="2">Half-Yearly (2×)</option>
+  <option value="4" selected>Quarterly (4×)</option>
+  <option value="12">Monthly (12×)</option>
+</select>
+
+<button onclick="calculateFD()">Calculate</button>
+
+<div id="result" class="result-box" style="display:none;"></div>
+
+</div>
+
+
+<!-- WHY CHOOSE -->
+<div class="section">
+<h2>Why Choose This FD Calculator?</h2>
+<ul>
+  <li>100% client-side — your money data never leaves your device.</li>
+  <li>Accurate FD maturity & interest calculation.</li>
+  <li>Supports Quarterly (Indian standard) & multiple compounding modes.</li>
+  <li>No ads inside tool, no login required.</li>
+  <li>Mobile-friendly & super fast.</li>
+</ul>
+</div>
+
+<!-- SECURITY -->
+<div class="section">
+<h2>Your Security 🔐</h2>
+<p>This FD calculator runs fully offline in your browser. Nothing is stored or uploaded, ensuring total privacy.</p>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="section">
+<h2>How It Works ⚙️</h2>
+<ol>
+  <li>Enter FD amount, rate & duration.</li>
+  <li>Select compounding frequency.</li>
+  <li>Calculator computes maturity using compound interest formula.</li>
+  <li>Shows principal, interest & final payout instantly.</li>
+</ol>
+</div>
+
+<!-- FAQ -->
+<div class="section">
+<h2>FAQs ❓</h2>
+
+<p><strong>Which compounding is best?</strong><br>Quarterly compounding (4×) — used by Indian banks.</p>
+
+<p><strong>Does this tool work offline?</strong><br>Yes, completely client-side.</p>
+
+<p><strong>Is the calculation accurate?</strong><br>Yes, uses the standard FD formula.</p>
+
+<p><strong>Does it store any data?</strong><br>No, refresh = everything clears.</p>
+
+</div>
+
+<footer>
+© 2025 ❤️ I❤ImagePDF — 100% Client-Side & Secure |
+<a href="/about.html">About</a> | <a href="/privacy.html">Privacy Policy</a>
+</footer>
+
+</div>
+
+<script>
+function calculateFD() {
+  let P = parseFloat(document.getElementById("amount").value);
+  let R = parseFloat(document.getElementById("rate").value);
+  let T = parseFloat(document.getElementById("years").value);
+  let n = parseFloat(document.getElementById("frequency").value);
+
+  if (!P || !R || !T) {
+    alert("Please fill all fields!");
+    return;
+  }
+
+  let maturity = P * Math.pow((1 + (R/100) / n), n * T);
+  let interest = maturity - P;
+
+  document.getElementById("result").style.display = "block";
+  document.getElementById("result").innerHTML = `
+    <strong>Maturity Amount:</strong> ₹${maturity.toFixed(2).toLocaleString()} <br><br>
+    <strong>Total Interest Earned:</strong> ₹${interest.toFixed(2).toLocaleString()} <br><br>
+    <strong>Principal Amount:</strong> ₹${P.toLocaleString()}
+  `;
+}
+</script>
+
+</body>
+</html>
