@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Loan EMI Calculator – Monthly Installment Calculator | I❤ImagePDF</title>
+
+<meta name="description" content="Free Loan EMI Calculator — calculate monthly EMI, total interest, and total payable amount instantly. 100% client-side, secure, and fast.">
+<meta name="keywords" content="loan emi calculator, emi calculator, home loan emi, car loan emi, personal loan calculator, loan interest calculator, emi finder, online emi tool, calculate emi offline, loan repayment calculator">
+
+<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/loan-emi-calculator.html">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root { --accent:#d9232e; --bg:#f6f8fb; }
+
+body {
+  margin:0;
+  background:var(--bg);
+  font-family:"Inter", sans-serif;
+}
+
+header {
+  background:#fff;
+  padding:15px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+
+.logo {
+  font-size:22px;
+  font-weight:800;
+  cursor:pointer;
+}
+.logo span { color:var(--accent); }
+
+.container {
+  max-width:900px;
+  margin:auto;
+  padding:20px;
+}
+
+.box {
+  background:#fff;
+  padding:25px;
+  border-radius:16px;
+  border:1px solid #eee;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+
+input {
+  width:100%;
+  padding:14px;
+  margin:10px 0;
+  border-radius:10px;
+  border:1px solid #ccc;
+  font-size:15px;
+}
+
+button {
+  padding:14px 20px;
+  border-radius:10px;
+  border:0;
+  cursor:pointer;
+  font-size:15px;
+  font-weight:600;
+  margin-top:10px;
+  background:#d9232e;
+  color:#fff;
+  width:100%;
+}
+
+.result-box {
+  background:#fff;
+  padding:20px;
+  margin-top:20px;
+  border-radius:14px;
+  border:1px solid #ddd;
+  text-align:center;
+  font-size:18px;
+}
+
+.section {
+  background:#fff;
+  padding:22px;
+  border-radius:14px;
+  margin-top:28px;
+  border:1px solid #eee;
+}
+.section h2 { color:var(--accent); }
+
+footer {
+  text-align:center;
+  padding:20px;
+  margin-top:35px;
+  background:#fff;
+  color:#555;
+}
+footer a { color:#1677ff; text-decoration:none; }
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo" onclick="location.href='/'">❤️ I❤ImagePDF</div>
+</header>
+
+<div class="container">
+
+<h1 style="text-align:center;color:#d9232e;">Loan EMI Calculator 💰</h1>
+<p style="text-align:center;color:#555;">Calculate monthly EMI, interest & total payment — 100% offline</p>
+
+<div class="box">
+
+<label>Loan Amount (₹)</label>
+<input type="number" id="loanAmount" placeholder="e.g., 500000">
+
+<label>Annual Interest Rate (%)</label>
+<input type="number" id="interestRate" placeholder="e.g., 10.5">
+
+<label>Loan Tenure (Years)</label>
+<input type="number" id="loanYears" placeholder="e.g., 5">
+
+<button onclick="calculateEMI()">Calculate EMI</button>
+
+<div id="result" class="result-box" style="display:none;"></div>
+
+</div>
+
+
+<!-- WHY CHOOSE -->
+<div class="section">
+<h2>Why Choose This EMI Calculator?</h2>
+<ul>
+  <li>100% client-side — your financial details stay private.</li>
+  <li>Instant EMI + interest + total cost breakdown.</li>
+  <li>Works for home loan, car loan, personal loan & more.</li>
+  <li>Fast, mobile-friendly & accurate.</li>
+  <li>No login, no ads inside the calculator, no tracking.</li>
+</ul>
+</div>
+
+<!-- SECURITY -->
+<div class="section">
+<h2>Your Security 🔐</h2>
+<p>This EMI calculator runs entirely inside your browser. Nothing is uploaded or stored. All your loan details stay on your device only.</p>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="section">
+<h2>How It Works ⚙️</h2>
+<ol>
+  <li>Enter loan amount.</li>
+  <li>Enter interest rate (annual).</li>
+  <li>Enter loan tenure in years.</li>
+  <li>Click calculate — see EMI & interest breakdown instantly.</li>
+</ol>
+</div>
+
+<!-- FAQs -->
+<div class="section">
+<h2>FAQs ❓</h2>
+
+<p><strong>Which loans does it support?</strong><br>Home loan, car loan, bike loan, personal loan — all types.</p>
+
+<p><strong>Is EMI calculation accurate?</strong><br>Yes, follows the standard reducing balance EMI formula.</p>
+
+<p><strong>Does it save my data?</strong><br>No, everything gets cleared on page reload.</p>
+
+<p><strong>Can this run on mobile?</strong><br>Yes, fully responsive & supports all devices.</p>
+</div>
+
+<footer>
+© 2025 ❤️ I❤ImagePDF — 100% Client-Side & Secure |
+<a href="/about.html">About</a> | <a href="/privacy.html">Privacy Policy</a>
+</footer>
+
+</div>
+
+<script>
+function calculateEMI() {
+  let P = parseFloat(document.getElementById("loanAmount").value);
+  let R = parseFloat(document.getElementById("interestRate").value);
+  let N = parseFloat(document.getElementById("loanYears").value);
+
+  if (!P || !R || !N) {
+    alert("Please enter all fields!");
+    return;
+  }
+
+  let monthlyRate = R / 12 / 100;
+  let months = N * 12;
+
+  let emi = (P * monthlyRate * Math.pow(1 + monthlyRate, months)) /
+            (Math.pow(1 + monthlyRate, months) - 1);
+
+  let totalPayment = emi * months;
+  let totalInterest = totalPayment - P;
+
+  document.getElementById("result").style.display = "block";
+  document.getElementById("result").innerHTML = `
+    <strong>Monthly EMI:</strong> ₹${emi.toFixed(0).toLocaleString()} <br><br>
+    <strong>Total Interest:</strong> ₹${totalInterest.toFixed(0).toLocaleString()} <br><br>
+    <strong>Total Payment:</strong> ₹${totalPayment.toFixed(0).toLocaleString()}
+  `;
+}
+</script>
+
+</body>
+</html>
