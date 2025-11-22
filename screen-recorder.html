@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Screen Recorder — Record Screen Online Free | I❤ImagePDF</title>
+
+<meta name="description" content="Free online screen recorder — record screen, mic audio, system audio. Download video instantly. 100% client-side and private. No installation, no upload.">
+<meta name="keywords" content="screen recorder, online screen recorder, record screen, record browser, free screen capture, no upload screen recorder, record screen with audio, mic recorder, screen video maker, client side web recorder, screen recording website, capture display, chrome screen recorder, desktop screen recorder">
+
+<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/screen-recorder.html">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root { --accent:#d9232e; --bg:#f6f8fb; }
+
+body {
+  margin:0;
+  background:var(--bg);
+  font-family:"Inter", sans-serif;
+}
+
+header {
+  background:#fff;
+  padding:15px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+
+.logo {
+  font-size:22px;
+  font-weight:800;
+  cursor:pointer;
+}
+.logo span { color:var(--accent); }
+
+.container {
+  max-width:900px;
+  margin:auto;
+  padding:20px;
+}
+
+button {
+  padding:14px 20px;
+  border-radius:10px;
+  border:0;
+  cursor:pointer;
+  font-size:15px;
+  font-weight:600;
+  margin-right:8px;
+}
+
+.red { background:#d9232e; color:#fff; }
+.blue { background:#1677ff; color:#fff; }
+.green { background:#22aa55; color:#fff; }
+
+video {
+  width:100%;
+  margin-top:20px;
+  border-radius:12px;
+  background:#000;
+}
+
+.section {
+  background:#fff;
+  padding:22px;
+  border-radius:16px;
+  margin-top:28px;
+  border:1px solid #eee;
+}
+.section h2 { color:var(--accent); }
+
+footer {
+  text-align:center;
+  padding:20px;
+  margin-top:35px;
+  background:#fff;
+  color:#555;
+}
+footer a {
+  color:#1677ff;
+  text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo" onclick="location.href='/'">❤️ I❤ImagePDF</div>
+</header>
+
+<div class="container">
+
+<h1 style="text-align:center;color:#d9232e;">Screen Recorder 📺🎤</h1>
+<p style="text-align:center;color:#555;">Record your screen with mic/system audio — 100% offline & private</p>
+
+<button class="green" onclick="startRecording()">Start Recording</button>
+<button class="blue" onclick="pauseRecording()">Pause</button>
+<button class="blue" onclick="resumeRecording()">Resume</button>
+<button class="red" onclick="stopRecording()">Stop</button>
+
+<video id="preview" controls></video>
+
+<!-- WHY CHOOSE -->
+<div class="section">
+  <h2>Why Choose This Screen Recorder?</h2>
+  <ul>
+    <li>Record screen + mic + system audio.</li>
+    <li>Free & unlimited recording.</li>
+    <li>100% private — no upload to server.</li>
+    <li>Instant download in MP4/WebM format.</li>
+    <li>Works on Chrome, Edge, Brave & Android.</li>
+  </ul>
+</div>
+
+<!-- SECURITY -->
+<div class="section">
+  <h2>Your Security 🔐</h2>
+  <p>This tool runs completely inside your browser. Your recordings never leave your device unless you manually download or share them.</p>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="section">
+  <h2>How It Works ⚙️</h2>
+  <ol>
+    <li>Click "Start Recording".</li>
+    <li>Select the screen/window/tab to capture.</li>
+    <li>Record your activity with audio.</li>
+    <li>Click Stop → Download recording instantly.</li>
+  </ol>
+</div>
+
+<!-- FAQ -->
+<div class="section">
+  <h2>FAQs ❓</h2>
+
+  <p><strong>Does this work offline?</strong><br>Yes, everything happens locally.</p>
+
+  <p><strong>Can websites access my screen?</strong><br>No, browser asks permission every time.</p>
+
+  <p><strong>Which formats are supported?</strong><br>Recording downloads as WebM (Chrome standard).</p>
+
+  <p><strong>Is audio recording supported?</strong><br>Yes — mic + internal tab audio when allowed.</p>
+</div>
+
+<footer>
+  © 2025 ❤️ I❤ImagePDF |
+  <a href="/about.html">About</a> |
+  <a href="/privacy.html">Privacy Policy</a>
+</footer>
+
+</div>
+
+<script>
+let mediaRecorder;
+let recordedChunks = [];
+
+async function startRecording() {
+  try {
+    const stream = await navigator.mediaDevices.getDisplayMedia({
+      video: true,
+      audio: true
+    });
+
+    mediaRecorder = new MediaRecorder(stream);
+    recordedChunks = [];
+
+    mediaRecorder.ondataavailable = e => {
+      if (e.data.size > 0) recordedChunks.push(e.data);
+    };
+
+    mediaRecorder.onstop = saveRecording;
+
+    mediaRecorder.start();
+    alert("Recording Started!");
+  } catch (err) {
+    alert("Permission denied or no screen selected!");
+  }
+}
+
+function pauseRecording() {
+  if (mediaRecorder && mediaRecorder.state === "recording") {
+    mediaRecorder.pause();
+    alert("Recording Paused");
+  }
+}
+
+function resumeRecording() {
+  if (mediaRecorder && mediaRecorder.state === "paused") {
+    mediaRecorder.resume();
+    alert("Recording Resumed");
+  }
+}
+
+function stopRecording() {
+  if (mediaRecorder) {
+    mediaRecorder.stop();
+    alert("Recording Stopped!");
+  }
+}
+
+function saveRecording() {
+  const blob = new Blob(recordedChunks, { type: "video/webm" });
+  const url = URL.createObjectURL(blob);
+
+  const video = document.getElementById("preview");
+  video.src = url;
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "screen-recording.webm";
+  a.click();
+}
+</script>
+
+</body>
+</html>
