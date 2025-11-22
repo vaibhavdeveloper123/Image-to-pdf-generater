@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+
+<title>Fill PDF Forms Online — Free & Secure | I❤ImagePDF</title>
+
+<meta name="description" content="Fill PDF forms easily—text fields, checkboxes, dropdowns & signatures. 100% client-side, secure, fast & free. Download your filled PDF instantly. Works on all devices.">
+<meta name="keywords" content="fill pdf form, pdf form filler, sign pdf, online form filler, editable pdf, fill acroform pdf, pdf text fields, pdf checkbox, pdf dropdown, pdf signature, client side pdf filler, no upload pdf, secure pdf tools, free pdf utilities, pdf editor, pdf js form filler, pdf field editor, pdf data writer, form fill tool, ilovepdf form filler alternative, smallpdf form filler alternative">
+
+<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/fill-pdf-form.html"/>
+
+<meta property="og:title" content="Fill PDF Forms Online — Free & Secure"/>
+<meta property="og:description" content="Fill any PDF form securely in your browser — no upload, full privacy."/>
+<meta property="og:image" content="https://secure-img-to-pdf.vercel.app/favicon.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+:root{--accent:#d9232e;--bg:#f6f8fb;--card:#fff;}
+
+body{margin:0;font-family:"Inter",sans-serif;background:var(--bg);color:#222;}
+
+header{
+  background:#fff;padding:15px 22px;
+  display:flex;align-items:center;justify-content:space-between;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);position:sticky;top:0;z-index:10;
+}
+.logo{font-size:22px;font-weight:800;cursor:pointer;}
+.logo span{color:var(--accent);}
+
+.container{max-width:980px;margin:auto;padding:18px;}
+
+.upload-box{
+  background:#fff;padding:40px;border-radius:16px;
+  border:2px dashed #bbb;text-align:center;cursor:pointer;
+  transition:.2s;box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+.upload-box:hover{border-color:var(--accent);transform:scale(1.01);}
+
+.form-fields{
+  margin-top:25px;background:#fff;padding:22px;
+  border-radius:16px;border:1px solid #eee;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+.form-fields label{font-weight:600;margin-top:10px;display:block;}
+.form-fields input,.form-fields select{
+  width:100%;padding:10px;margin-top:6px;margin-bottom:12px;
+  border-radius:8px;border:1px solid #ddd;font-size:15px;
+}
+
+#downloadBtn{
+  display:none;margin-top:20px;
+  background:var(--accent);padding:14px 20px;border:0;
+  color:#fff;border-radius:10px;font-size:16px;font-weight:600;
+  cursor:pointer;
+}
+
+.section{
+  background:#fff;padding:22px;border-radius:16px;
+  margin-top:26px;border:1px solid #eee;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+.section h2{color:var(--accent);margin:0 0 12px 0;}
+footer{
+  text-align:center;padding:18px;margin-top:40px;
+  background:#fff;border-top:1px solid #eee;color:#666;
+}
+a{color:#1677ff;}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo" onclick="location.href='/'">❤️ I❤ImagePDF</div>
+</header>
+
+<div class="container">
+<h1 style="text-align:center;color:#d9232e;">Fill PDF Forms Online 📝</h1>
+<p style="text-align:center;color:#555;">Fill text fields, checkboxes, dropdowns & more — fully offline & secure.</p>
+
+<div class="upload-box" id="dropZone">
+  <h2>📄 Upload PDF Form</h2>
+  <p>Click or Drag & Drop a PDF Form</p>
+  <input type="file" id="fileInput" accept="application/pdf" style="display:none;">
+</div>
+
+<div id="fieldsContainer" class="form-fields" style="display:none;"></div>
+
+<button id="downloadBtn">Download Filled PDF</button>
+
+<!-- WHY CHOOSE US -->
+<div class="section">
+  <h2>Why Choose This PDF Form Filler?</h2>
+  <ul>
+    <li>Detects form fields automatically.</li>
+    <li>Supports text, checkbox, dropdown, radio fields.</li>
+    <li>100% offline — nothing uploaded.</li>
+    <li>Free, fast & mobile-friendly.</li>
+    <li>Download filled PDF instantly.</li>
+  </ul>
+</div>
+
+<!-- SECURITY -->
+<div class="section">
+  <h2>Security & Privacy 🔐</h2>
+  <p>Your file never leaves your device. All processing is done using PDF-Lib inside your browser.</p>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="section">
+  <h2>How It Works ⚙️</h2>
+  <ol>
+    <li>Upload your PDF form.</li>
+    <li>All form fields are detected automatically.</li>
+    <li>Enter your data in the form fields.</li>
+    <li>Click download to get your filled PDF.</li>
+  </ol>
+</div>
+
+<!-- FAQ -->
+<div class="section">
+  <h2>FAQs ❓</h2>
+
+  <p><strong>Does this tool upload my PDF?</strong><br>No. It runs 100% offline.</p>
+
+  <p><strong>Does it support checkboxes & dropdowns?</strong><br>Yes, fully supported.</p>
+
+  <p><strong>Is it free?</strong><br>Yes, completely free.</p>
+
+  <p><strong>Does it work on mobile?</strong><br>Yes, fully responsive.</p>
+</div>
+
+<footer>
+ © 2025 ❤️ I❤ImagePDF | <a href="/about.html">About</a> | <a href="/privacy.html">Privacy Policy</a>
+</footer>
+
+</div>
+
+<script>
+const dropZone = document.getElementById("dropZone");
+const fileInput = document.getElementById("fileInput");
+const fieldsContainer = document.getElementById("fieldsContainer");
+const downloadBtn = document.getElementById("downloadBtn");
+
+let loadedPdf = null;
+let formFields = {};
+
+dropZone.onclick = () => fileInput.click();
+
+dropZone.addEventListener("dragover", e => {
+  e.preventDefault();
+  dropZone.style.borderColor="#d9232e";
+});
+
+dropZone.addEventListener("dragleave", () => {
+  dropZone.style.borderColor="#bbb";
+});
+
+dropZone.addEventListener("drop", e => {
+  e.preventDefault();
+  dropZone.style.borderColor="#bbb";
+  loadPDF(e.dataTransfer.files[0]);
+});
+
+fileInput.onchange = () => loadPDF(fileInput.files[0]);
+
+async function loadPDF(file){
+  const buffer = await file.arrayBuffer();
+  loadedPdf = await PDFLib.PDFDocument.load(buffer);
+  const form = loadedPdf.getForm();
+
+  fieldsContainer.innerHTML="";
+  fieldsContainer.style.display="block";
+  downloadBtn.style.display="block";
+
+  form.getFields().forEach((field,i)=>{
+    const name = field.getName();
+    const type = field.constructor.name;
+
+    formFields[name] = field;
+
+    // UI Builder
+    fieldsContainer.innerHTML += `<label>${name}</label>`;
+
+    if(type.includes("TextField")){
+      fieldsContainer.innerHTML += `<input type="text" onchange="updateField('${name}', this.value)">`;
+    }
+    else if(type.includes("CheckBox")){
+      fieldsContainer.innerHTML += `<input type="checkbox" onchange="toggleCheck('${name}', this.checked)">`;
+    }
+    else if(type.includes("Dropdown") || type.includes("ComboBox")){
+      fieldsContainer.innerHTML += `<input type="text" placeholder="Enter value" onchange="updateField('${name}', this.value)">`;
+    }
+    else{
+      fieldsContainer.innerHTML += `<input type="text" onchange="updateField('${name}', this.value)">`;
+    }
+  });
+}
+
+function updateField(name,value){
+  const field = formFields[name];
+  if(field) field.setText(value);
+}
+
+function toggleCheck(name,value){
+  const field = formFields[name];
+  if(value) field.check();
+  else field.uncheck();
+}
+
+downloadBtn.onclick = async () =>{
+  const pdfBytes = await loadedPdf.save();
+  const blob = new Blob([pdfBytes],{type:"application/pdf"});
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href=url;
+  a.download="filled-form.pdf";
+  a.click();
+};
+</script>
+
+</body>
+</html>
