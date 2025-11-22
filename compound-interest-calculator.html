@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Compound Interest Calculator – Fast & Private | I❤ImagePDF</title>
+
+<meta name="description" content="Accurate compound interest calculator — calculate growth, maturity value, and interest earned with yearly, monthly or daily compounding. 100% private and client-side.">
+<meta name="keywords" content="compound interest calculator, interest calculator, compound growth, wealth calculator, savings calculator, investment calculator, future value calculator, offline calculator, client side finance tools">
+
+<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/compound-interest-calculator.html">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root { --accent:#d9232e; --bg:#f6f8fb; }
+
+body{
+  margin:0;
+  background:var(--bg);
+  font-family:"Inter",sans-serif;
+  color:#222;
+}
+
+header{
+  background:#fff;
+  padding:15px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+.logo{font-size:22px;font-weight:800;cursor:pointer;}
+.logo span{color:var(--accent);}
+
+.container{max-width:900px;margin:auto;padding:20px;}
+
+.box{
+  background:#fff;
+  padding:25px;
+  border-radius:16px;
+  border:1px solid #eee;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+
+input, select {
+  width:100%;
+  padding:14px;
+  margin:10px 0;
+  border-radius:10px;
+  border:1px solid #ccc;
+  font-size:15px;
+}
+
+button{
+  width:100%;
+  padding:14px;
+  margin-top:10px;
+  border-radius:10px;
+  border:0;
+  cursor:pointer;
+  font-size:15px;
+  font-weight:600;
+  background:var(--accent);
+  color:#fff;
+}
+
+.result-box{
+  background:#fff;
+  padding:20px;
+  margin-top:20px;
+  border-radius:14px;
+  border:1px solid #ddd;
+  text-align:center;
+  font-size:18px;
+}
+
+.section{
+  background:#fff;
+  padding:22px;
+  border-radius:14px;
+  margin-top:28px;
+  border:1px solid #eee;
+}
+.section h2{color:var(--accent);}
+
+footer{
+  text-align:center;
+  background:#fff;
+  padding:20px;
+  margin-top:35px;
+  color:#555;
+}
+footer a{color:#1677ff;text-decoration:none;}
+</style>
+
+</head>
+
+<body>
+
+<header>
+  <div class="logo" onclick="location.href='/'">❤️ I❤ImagePDF</div>
+</header>
+
+<div class="container">
+
+<h1 style="text-align:center;color:#d9232e;">Compound Interest Calculator 💹</h1>
+<p style="text-align:center;color:#555;">See how your money grows over time — secure & 100% offline</p>
+
+<div class="box">
+
+<label>Principal Amount (₹)</label>
+<input type="number" id="principal" placeholder="e.g., 10000">
+
+<label>Annual Interest Rate (%)</label>
+<input type="number" id="rate" placeholder="e.g., 8">
+
+<label>Time Duration (Years)</label>
+<input type="number" id="years" placeholder="e.g., 5">
+
+<label>Compounding Frequency</label>
+<select id="frequency">
+  <option value="1">Yearly (1×)</option>
+  <option value="2">Half-Yearly (2×)</option>
+  <option value="4">Quarterly (4×)</option>
+  <option value="12">Monthly (12×)</option>
+  <option value="365">Daily (365×)</option>
+</select>
+
+<button onclick="calculateCI()">Calculate</button>
+
+<div id="result" class="result-box" style="display:none;"></div>
+
+</div>
+
+<!-- WHY CHOOSE -->
+<div class="section">
+<h2>Why Choose This Compound Interest Calculator?</h2>
+<ul>
+  <li>100% client-side — your financial data stays on your device.</li>
+  <li>Accurate calculations for investment growth.</li>
+  <li>Daily, monthly, quarterly & yearly compounding.</li>
+  <li>Fast, lightweight & mobile friendly.</li>
+  <li>No ads inside calculator, no tracking.</li>
+</ul>
+</div>
+
+<!-- SECURITY -->
+<div class="section">
+<h2>Your Security 🔐</h2>
+<p>This tool runs entirely offline in your browser. Nothing is sent to any server, ensuring complete privacy of your financial inputs.</p>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="section">
+<h2>How It Works ⚙️</h2>
+<ol>
+  <li>Enter principal investment amount.</li>
+  <li>Enter annual interest rate.</li>
+  <li>Select compounding frequency.</li>
+  <li>Click calculate → see compound growth instantly.</li>
+</ol>
+</div>
+
+<!-- FAQ -->
+<div class="section">
+<h2>FAQs ❓</h2>
+
+<p><strong>What is compound interest?</strong><br>Interest earned on both principal and previously earned interest.</p>
+
+<p><strong>Which compounding method grows money fastest?</strong><br>Daily → Monthly → Quarterly → Yearly.</p>
+
+<p><strong>Does this tool store data?</strong><br>No. Refresh page = everything clears.</p>
+
+<p><strong>Is this suitable for long-term planning?</strong><br>Yes, great for savings, FD, RD, mutual funds, investments.</p>
+
+</div>
+
+<footer>
+© 2025 ❤️ I❤ImagePDF — 100% Client-Side & Secure |
+<a href="/about.html">About</a> | <a href="/privacy.html">Privacy Policy</a>
+</footer>
+
+</div>
+
+<script>
+function calculateCI() {
+  let P = parseFloat(document.getElementById("principal").value);
+  let R = parseFloat(document.getElementById("rate").value);
+  let T = parseFloat(document.getElementById("years").value);
+  let n = parseFloat(document.getElementById("frequency").value);
+
+  if (!P || !R || !T) {
+    alert("Please enter all fields!");
+    return;
+  }
+
+  let rate = R / 100;
+
+  let final = P * Math.pow((1 + rate / n), n * T);
+  let interest = final - P;
+
+  document.getElementById("result").style.display = "block";
+  document.getElementById("result").innerHTML = `
+    <strong>Maturity Amount:</strong> ₹${final.toFixed(2).toLocaleString()} <br><br>
+    <strong>Total Interest Earned:</strong> ₹${interest.toFixed(2).toLocaleString()} <br><br>
+    <strong>Principal Invested:</strong> ₹${P.toLocaleString()}
+  `;
+}
+</script>
+
+</body>
+</html>
