@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Investment Return Calculator – CAGR & Portfolio Growth | I❤ImagePDF</title>
+
+<meta name="description" content="Calculate your investment return, future value, total return, interest earned, and CAGR. Supports monthly or yearly investments. 100% private and client-side.">
+<meta name="keywords" content="investment return calculator, roi calculator, cagr calculator, portfolio calculator, future value calculator, investment growth, annual return tool, investing calculator, sip return calculator, wealth calculator">
+
+<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/investment-return-calculator.html">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root { --accent:#d9232e; --bg:#f6f8fb; }
+
+body{
+  margin:0;
+  background:var(--bg);
+  font-family:"Inter",sans-serif;
+  color:#222;
+}
+
+header{
+  background:#fff;
+  padding:15px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+.logo{font-size:22px;font-weight:800;cursor:pointer;}
+.logo span{color:var(--accent);}
+
+.container{max-width:900px;margin:auto;padding:20px;}
+
+.box{
+  background:#fff;
+  padding:25px;
+  border-radius:16px;
+  border:1px solid #eee;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+
+input, select {
+  width:100%;
+  padding:14px;
+  margin:10px 0;
+  border-radius:10px;
+  border:1px solid #ccc;
+  font-size:15px;
+}
+
+button{
+  width:100%;
+  padding:14px;
+  margin-top:10px;
+  border-radius:10px;
+  border:0;
+  cursor:pointer;
+  font-size:15px;
+  font-weight:600;
+  background:var(--accent);
+  color:#fff;
+}
+
+.result-box{
+  background:#fff;
+  padding:20px;
+  margin-top:20px;
+  border-radius:14px;
+  border:1px solid #ddd;
+  text-align:center;
+  font-size:18px;
+}
+
+.section{
+  background:#fff;
+  padding:22px;
+  border-radius:14px;
+  margin-top:28px;
+  border:1px solid #eee;
+}
+.section h2{color:var(--accent);}
+
+footer{
+  text-align:center;
+  background:#fff;
+  padding:20px;
+  margin-top:35px;
+  color:#555;
+}
+footer a{color:#1677ff;text-decoration:none;}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo" onclick="location.href='/'">❤️ I❤ImagePDF</div>
+</header>
+
+<div class="container">
+
+<h1 style="text-align:center;color:#d9232e;">Investment Return Calculator 📈</h1>
+<p style="text-align:center;color:#555;">Calculate portfolio growth, total returns & CAGR — 100% offline</p>
+
+<div class="box">
+
+<label>Initial Investment (₹)</label>
+<input type="number" id="initial" placeholder="e.g., 50000">
+
+<label>Additional Investment</label>
+<input type="number" id="contribution" placeholder="e.g., 2000">
+
+<label>Contribution Frequency</label>
+<select id="frequency">
+  <option value="12">Monthly</option>
+  <option value="1">Yearly</option>
+</select>
+
+<label>Expected Annual Return (%)</label>
+<input type="number" id="rate" placeholder="e.g., 12">
+
+<label>Investment Duration (Years)</label>
+<input type="number" id="years" placeholder="e.g., 10">
+
+<button onclick="calculateInvestment()">Calculate Returns</button>
+
+<div id="result" class="result-box" style="display:none;"></div>
+
+</div>
+
+
+<!-- WHY CHOOSE -->
+<div class="section">
+<h2>Why Choose This Investment Calculator?</h2>
+<ul>
+  <li>100% private — nothing uploaded or stored.</li>
+  <li>Supports monthly & yearly recurring investments.</li>
+  <li>Shows CAGR, total returns & portfolio value.</li>
+  <li>Easy to use & extremely accurate.</li>
+  <li>Works on all devices — mobile, laptop, desktop.</li>
+</ul>
+</div>
+
+<!-- SECURITY -->
+<div class="section">
+<h2>Your Security 🔐</h2>
+<p>This tool runs completely inside your browser. No data is uploaded, saved, or tracked. Your investment details stay on your device only.</p>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="section">
+<h2>How It Works ⚙️</h2>
+<ol>
+  <li>Enter your initial investment.</li>
+  <li>Add monthly or yearly contributions.</li>
+  <li>Enter expected annual return %.</li>
+  <li>Choose investment duration.</li>
+  <li>Get final value, interest earned & CAGR instantly.</li>
+</ol>
+</div>
+
+<!-- FAQ -->
+<div class="section">
+<h2>FAQs ❓</h2>
+
+<p><strong>Is this a SIP calculator?</strong><br>Yes, it works for SIP, lump-sum and combo investments.</p>
+
+<p><strong>Does it calculate CAGR?</strong><br>Yes, exact Annualized Growth Rate is shown.</p>
+
+<p><strong>Is my data stored?</strong><br>No! Refresh the page and all data disappears.</p>
+
+<p><strong>Which investment types can I calculate?</strong><br>Mutual funds, stocks, crypto, gold, FD+SIP mix — everything.</p>
+
+</div>
+
+<footer>
+© 2025 ❤️ I❤ImagePDF — 100% Client-Side & Secure |
+<a href="/about.html">About</a> | <a href="/privacy.html">Privacy Policy</a>
+</footer>
+
+</div>
+
+<script>
+function calculateInvestment() {
+  let initial = parseFloat(document.getElementById("initial").value);
+  let contrib = parseFloat(document.getElementById("contribution").value);
+  let freq = parseFloat(document.getElementById("frequency").value);
+  let rate = parseFloat(document.getElementById("rate").value);
+  let years = parseFloat(document.getElementById("years").value);
+
+  if (!initial || !rate || !years) {
+    alert("Please enter required fields!");
+    return;
+  }
+
+  let periods = years * freq;
+  let periodicRate = rate / 100 / freq;
+
+  let futureValue = initial * Math.pow(1 + periodicRate, periods);
+
+  for (let i = 1; i <= periods; i++) {
+    futureValue += contrib * Math.pow(1 + periodicRate, periods - i);
+  }
+
+  let totalInvested = initial + (contrib * periods);
+  let interestEarned = futureValue - totalInvested;
+
+  let CAGR = Math.pow(futureValue / totalInvested, 1 / years) - 1;
+
+  document.getElementById("result").style.display = "block";
+  document.getElementById("result").innerHTML = `
+    <strong>Total Investment:</strong> ₹${totalInvested.toFixed(2).toLocaleString()}<br><br>
+    <strong>Final Portfolio Value:</strong> ₹${futureValue.toFixed(2).toLocaleString()}<br><br>
+    <strong>Total Returns Earned:</strong> ₹${interestEarned.toFixed(2).toLocaleString()}<br><br>
+    <strong>CAGR:</strong> ${(CAGR * 100).toFixed(2)}%
+  `;
+}
+</script>
+
+</body>
+</html>
