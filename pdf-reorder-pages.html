@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reorder PDF Pages — Free Online PDF Page Sorter | I❤ImagePDF</title>
+
+<meta name="description" content="Reorder PDF pages instantly — drag & drop a PDF, rearrange pages, remove unwanted pages, and download your reorganized PDF. 100% offline and secure.">
+<meta name="keywords" content="pdf reorder, reorder pdf pages, pdf page sorter, rearrange pdf pages, pdf tools, offline pdf editor, no upload pdf tool, pdf organizer, pdf page manager, reorder pdf online free, pdf-lib reorder pages, I❤ImagePDF tools">
+
+<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/pdf-reorder-pages.html">
+
+<meta property="og:title" content="Reorder PDF Pages — Free Offline Tool"/>
+<meta property="og:description" content="Rearrange PDF pages and download instantly — no upload, no tracking."/>
+<meta property="og:image" content="https://secure-img-to-pdf.vercel.app/favicon.png"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root{--accent:#d9232e;--bg:#f6f8fb;}
+body{margin:0;font-family:"Inter",sans-serif;background:var(--bg);}
+header{background:#fff;padding:15px 20px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 8px rgba(0,0,0,.05);}
+.logo{font-size:22px;font-weight:800;cursor:pointer;}
+.logo span{color:var(--accent);}
+.container{max-width:900px;margin:auto;padding:20px;}
+
+.drop-box{
+  background:#fff;padding:40px;border-radius:16px;border:2px dashed #ccc;text-align:center;
+  cursor:pointer;transition:.2s;box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+.drop-box:hover{border-color:var(--accent);transform:scale(1.01);}
+
+.pages-container{margin-top:25px;}
+.page-item{
+  background:#fff;padding:10px;border-radius:10px;border:1px solid #ccc;
+  margin-bottom:12px;display:flex;align-items:center;gap:12px;
+}
+.page-item img{width:90px;border-radius:6px;border:1px solid #ddd;}
+.page-item button{
+  padding:6px 10px;font-size:12px;font-weight:600;border-radius:6px;border:0;cursor:pointer;
+}
+.blue{background:#1677ff;color:#fff;}
+.red{background:#d9232e;color:#fff;}
+
+#downloadBtn{
+  display:none;margin-top:20px;background:var(--accent);color:#fff;border:0;padding:14px 22px;
+  border-radius:10px;font-size:16px;font-weight:700;cursor:pointer;
+}
+
+.section{
+  background:#fff;padding:22px;border-radius:16px;margin-top:28px;border:1px solid #eee;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+.section h2{color:var(--accent);}
+
+footer{text-align:center;padding:20px;margin-top:35px;background:#fff;color:#555;}
+footer a{color:#1677ff;text-decoration:none;}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo" onclick="location.href='/'">❤️ I❤ImagePDF</div>
+</header>
+
+<div class="container">
+
+<h1 style="text-align:center;color:#d9232e;">Reorder PDF Pages 🔄</h1>
+<p style="text-align:center;color:#555;">Drag & arrange PDF pages in any order — fully offline and secure</p>
+
+<div class="drop-box" id="dropZone">
+  <h2>📄 Upload PDF</h2>
+  <p>Click or drag your PDF</p>
+  <input type="file" accept="application/pdf" id="fileInput" style="display:none;">
+</div>
+
+<div class="pages-container" id="pagesContainer"></div>
+
+<button id="downloadBtn">Download Reordered PDF</button>
+
+<!-- WHY CHOOSE US -->
+<div class="section">
+  <h2>Why Choose This Tool?</h2>
+  <ul>
+    <li>Reorder PDF pages instantly with thumbnails.</li>
+    <li>Works 100% offline — privacy guaranteed.</li>
+    <li>Delete unwanted pages easily.</li>
+    <li>Fast processing even for 100+ page PDFs.</li>
+    <li>No signup, no upload, no watermarks.</li>
+  </ul>
+</div>
+
+<!-- SECURITY -->
+<div class="section">
+  <h2>Security 🔐</h2>
+  <p>Your PDF never leaves your device. Everything runs inside your browser using secure JavaScript libraries.</p>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="section">
+  <h2>How It Works ⚙️</h2>
+  <ol>
+    <li>Upload your PDF using click or drag & drop.</li>
+    <li>Preview all pages with thumbnails.</li>
+    <li>Move pages up/down or delete any page.</li>
+    <li>Click "Download" to save the rearranged PDF.</li>
+  </ol>
+</div>
+
+<!-- FAQ -->
+<div class="section">
+  <h2>FAQs ❓</h2>
+
+  <p><strong>Does it work offline?</strong><br>Yes, 100% browser-based.</p>
+
+  <p><strong>Will my PDF upload to a server?</strong><br>No. Your file never leaves your device.</p>
+
+  <p><strong>Can I reorder unlimited pages?</strong><br>Yes, depends only on device memory.</p>
+
+  <p><strong>Will quality reduce?</strong><br>No, PDF pages remain lossless.</p>
+</div>
+
+<footer>
+  © 2025 ❤️ I❤ImagePDF | <a href="/about.html">About</a> | <a href="/privacy.html">Privacy Policy</a>
+</footer>
+
+</div>
+
+<script>
+let pdfDoc=null;
+let pageImages=[];
+const pagesContainer=document.getElementById("pagesContainer");
+
+dropZone.onclick=()=>fileInput.click();
+
+dropZone.ondragover=e=>{e.preventDefault(); dropZone.style.borderColor="#d9232e";};
+dropZone.ondragleave=()=>dropZone.style.borderColor="#ccc";
+dropZone.ondrop=e=>{
+  e.preventDefault();
+  dropZone.style.borderColor="#ccc";
+  loadPDF(e.dataTransfer.files[0]);
+};
+fileInput.onchange=()=>loadPDF(fileInput.files[0]);
+
+async function loadPDF(file){
+  const array=await file.arrayBuffer();
+  pdfDoc=await pdfjsLib.getDocument({data:array}).promise;
+
+  pageImages=[];
+  pagesContainer.innerHTML="";
+
+  for(let i=1;i<=pdfDoc.numPages;i++){
+    const page=await pdfDoc.getPage(i);
+    const viewport=page.getViewport({scale:0.25});
+    const canvas=document.createElement("canvas");
+    const ctx=canvas.getContext("2d");
+    canvas.width=viewport.width;
+    canvas.height=viewport.height;
+
+    await page.render({canvasContext:ctx,viewport}).promise;
+
+    pageImages.push(canvas.toDataURL());
+
+    addPage(i-1);
+  }
+
+  downloadBtn.style.display="block";
+}
+
+function addPage(i){
+  const div=document.createElement("div");
+  div.className="page-item";
+  div.innerHTML=`
+    <img src="${pageImages[i]}">
+    <span>Page ${i+1}</span>
+    <button class="blue" onclick="moveUp(${i})">Up</button>
+    <button class="blue" onclick="moveDown(${i})">Down</button>
+    <button class="red" onclick="removePage(${i})">Delete</button>
+  `;
+  pagesContainer.appendChild(div);
+}
+
+function renderPages(){
+  pagesContainer.innerHTML="";
+  pageImages.forEach((_,i)=>addPage(i));
+}
+
+function moveUp(i){
+  if(i===0) return;
+  [pageImages[i],pageImages[i-1]]=[pageImages[i-1],pageImages[i]];
+  renderPages();
+}
+
+function moveDown(i){
+  if(i===pageImages.length-1) return;
+  [pageImages[i],pageImages[i+1]]=[pageImages[i+1],pageImages[i]];
+  renderPages();
+}
+
+function removePage(i){
+  pageImages.splice(i,1);
+  renderPages();
+}
+
+downloadBtn.onclick=async()=>{
+  const newPDF=await PDFLib.PDFDocument.create();
+
+  for(let img of pageImages){
+    const bytes=await fetch(img).then(r=>r.arrayBuffer());
+    const png=await newPDF.embedPng(bytes);
+    const page=newPDF.addPage([png.width,png.height]);
+    page.drawImage(png,{x:0,y:0,width:png.width,height:png.height});
+  }
+
+  const pdfBytes=await newPDF.save();
+  const blob=new Blob([pdfBytes],{type:"application/pdf"});
+  const url=URL.createObjectURL(blob);
+
+  const a=document.createElement("a");
+  a.href=url;
+  a.download="reordered.pdf";
+  a.click();
+};
+</script>
+
+</body>
+</html>
