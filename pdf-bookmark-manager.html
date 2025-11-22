@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>PDF Bookmark Manager — Edit, Add & Remove Bookmarks | I❤ImagePDF</title>
+
+<meta name="description" content="Manage PDF bookmarks easily — view, rename, delete & add bookmarks. Fully client-side PDF bookmark manager with privacy protection. Fast, free & secure.">
+<meta name="keywords" content="pdf bookmark manager, edit pdf bookmarks, remove pdf bookmarks, add bookmarks pdf, pdf outline editor, pdf chapters editor, pdf navigation manager, pdf table of contents editor, client side pdf tools, pdf lib bookmark editor, pdf js bookmark viewer, secure pdf editing, offline pdf bookmark tool, free pdf utilities, pdf outline viewer, pdf toc manager, ilovepdf alternative, smallpdf alternative, pdf tools 2025">
+
+<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/pdf-bookmark-manager.html"/>
+
+<meta property="og:title" content="PDF Bookmark Manager — Free & Secure"/>
+<meta property="og:description" content="Edit PDF bookmarks securely in your browser — no upload."/>
+<meta property="og:image" content="https://secure-img-to-pdf.vercel.app/favicon.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+
+<!-- PDF.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+
+<!-- PDF-LIB -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+:root{--accent:#d9232e;--bg:#f6f8fb;--card:#fff;}
+
+body{margin:0;font-family:"Inter",sans-serif;background:var(--bg);color:#222;}
+
+header{
+  background:#fff;padding:15px 22px;display:flex;
+  align-items:center;justify-content:space-between;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+  position:sticky;top:0;z-index:10;
+}
+.logo{font-size:22px;font-weight:800;cursor:pointer;}
+.logo span{color:var(--accent);}
+
+.container{max-width:980px;margin:auto;padding:18px;}
+
+.upload-box{
+  background:#fff;padding:40px;border-radius:16px;
+  border:2px dashed #bbb;text-align:center;
+  cursor:pointer;transition:.2s;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+.upload-box:hover{border-color:var(--accent);transform:scale(1.01);}
+
+.bookmark-list{
+  margin-top:25px;padding:18px;background:#fff;
+  border-radius:16px;border:1px solid #eee;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+.bm-item{
+  padding:10px;border-radius:10px;
+  border:1px solid #ddd;margin-bottom:10px;background:#fafafa;
+}
+.bm-item input{
+  width:100%;padding:8px;border-radius:8px;border:1px solid #ccc;
+}
+
+#addBookmarkBtn,#downloadBtn{
+  background:var(--accent);color:#fff;border:0;
+  padding:12px 18px;border-radius:10px;font-size:15px;
+  cursor:pointer;font-weight:600;margin-top:14px;display:none;
+}
+
+.section{
+  background:#fff;padding:22px;border-radius:16px;
+  margin-top:26px;border:1px solid #eee;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+.section h2{color:var(--accent);margin:0 0 12px 0;}
+
+footer{
+  text-align:center;padding:18px;margin-top:40px;
+  background:#fff;border-top:1px solid #eee;color:#666;
+}
+a{color:#1677ff;}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo" onclick="location.href='/'">❤️ I❤ImagePDF</div>
+</header>
+
+<div class="container">
+
+<h1 style="text-align:center;color:#d9232e;">PDF Bookmark Manager 📑</h1>
+<p style="text-align:center;color:#555;">View, edit, remove & add bookmarks — 100% offline & secure.</p>
+
+<div class="upload-box" id="dropZone">
+  <h2>📄 Upload PDF</h2>
+  <p>Click or Drag & Drop your PDF file</p>
+  <input type="file" id="fileInput" accept="application/pdf" style="display:none;">
+</div>
+
+<div id="bookmarkContainer" class="bookmark-list" style="display:none;"></div>
+
+<button id="addBookmarkBtn">Add New Bookmark</button>
+<button id="downloadBtn">Download Updated PDF</button>
+
+<!-- Why Choose Us -->
+<div class="section">
+  <h2>Why Choose Our Bookmark Manager?</h2>
+  <ul>
+    <li>Fully offline — no file uploads.</li>
+    <li>Supports adding, removing & renaming bookmarks.</li>
+    <li>Fast processing using PDF-LIB & PDF.js.</li>
+    <li>Works on mobile & desktop.</li>
+    <li>Free forever.</li>
+  </ul>
+</div>
+
+<!-- Security -->
+<div class="section">
+  <h2>Your Security & Privacy 🔐</h2>
+  <p>Your PDF stays on your device. No servers are involved — complete privacy guaranteed.</p>
+</div>
+
+<!-- How It Works -->
+<div class="section">
+  <h2>How It Works ⚙️</h2>
+  <ol>
+    <li>Upload your PDF.</li>
+    <li>Existing bookmarks will appear.</li>
+    <li>Edit or add new bookmarks.</li>
+    <li>Download updated PDF instantly.</li>
+  </ol>
+</div>
+
+<!-- FAQs -->
+<div class="section">
+  <h2>FAQs ❓</h2>
+
+  <p><strong>Does this tool upload my PDF?</strong><br>
+  No. Everything runs offline.</p>
+
+  <p><strong>Can I add new bookmarks?</strong><br>
+  Yes, you can freely add unlimited bookmarks.</p>
+
+  <p><strong>Is this tool free?</strong><br>
+  100% free forever.</p>
+
+  <p><strong>Does it work on mobile?</strong><br>
+  Yes, completely mobile-friendly.</p>
+</div>
+
+<footer>
+ © 2025 ❤️ I❤ImagePDF  
+ | <a href="/about.html">About</a> | <a href="/privacy.html">Privacy Policy</a>
+</footer>
+
+</div>
+
+<script>
+const dropZone = document.getElementById("dropZone");
+const fileInput = document.getElementById("fileInput");
+
+const bookmarkContainer = document.getElementById("bookmarkContainer");
+const addBookmarkBtn = document.getElementById("addBookmarkBtn");
+const downloadBtn = document.getElementById("downloadBtn");
+
+let pdfDoc = null;
+let bookmarkList = [];
+
+dropZone.onclick = () => fileInput.click();
+
+dropZone.addEventListener("dragover", e => {
+  e.preventDefault();
+  dropZone.style.borderColor="#d9232e";
+});
+dropZone.addEventListener("dragleave", () => {
+  dropZone.style.borderColor="#bbb";
+});
+dropZone.addEventListener("drop", e => {
+  e.preventDefault();
+  dropZone.style.borderColor="#bbb";
+  loadPDF(e.dataTransfer.files[0]);
+});
+
+fileInput.onchange = () => loadPDF(fileInput.files[0]);
+
+async function loadPDF(file){
+  const buffer = await file.arrayBuffer();
+  pdfDoc = await PDFLib.PDFDocument.load(buffer);
+  
+  const outlines = pdfDoc.context.lookup(pdfDoc.catalog.get(PDFLib.PDFName.of("Outlines")));
+
+  bookmarkList = [];
+
+  if (outlines) {
+    let first = outlines.get(PDFLib.PDFName.of("First"));
+    while (first) {
+      let title = first.get(PDFLib.PDFName.of("Title")).decodeText();
+      bookmarkList.push({ title });
+      first = first.get(PDFLib.PDFName.of("Next"));
+    }
+  }
+
+  displayBookmarks();
+}
+
+function displayBookmarks(){
+  bookmarkContainer.innerHTML="";
+  bookmarkContainer.style.display="block";
+  addBookmarkBtn.style.display="inline-block";
+  downloadBtn.style.display="inline-block";
+
+  bookmarkList.forEach((bm, i)=>{
+    bookmarkContainer.innerHTML += `
+      <div class="bm-item">
+        <label>Bookmark ${i+1}</label>
+        <input type="text" value="${bm.title}" 
+               onchange="updateBookmark(${i}, this.value)">
+        <button onclick="removeBookmark(${i})" 
+          style="margin-top:6px;background:#444;color:#fff;border:0;padding:6px 10px;border-radius:8px;">
+          Delete
+        </button>
+      </div>
+    `;
+  });
+}
+
+function updateBookmark(i,value){
+  bookmarkList[i].title = value;
+}
+
+function removeBookmark(i){
+  bookmarkList.splice(i,1);
+  displayBookmarks();
+}
+
+addBookmarkBtn.onclick = () =>{
+  bookmarkList.push({title:"New Bookmark"});
+  displayBookmarks();
+};
+
+downloadBtn.onclick = async ()=>{
+  const pdf = pdfDoc;
+  const pages = pdf.getPages();
+
+  // Reset outlines
+  const outlineDict = pdf.context.obj({
+    Type: "Outlines",
+    First: null,
+    Last: null
+  });
+
+  pdf.catalog.set(PDFLib.PDFName.of("Outlines"), outlineDict);
+
+  let prev = null;
+
+  bookmarkList.forEach((bm, i)=>{
+    const dest = pdf.context.obj({
+      Type: "XYZ",
+      Left: 0,
+      Top: pages[0].getHeight(),
+      Zoom: 1
+    });
+
+    const entry = pdf.context.obj({
+      Title: PDFLib.PDFHexString.fromText(bm.title),
+      Parent: outlineDict,
+      Dest: dest
+    });
+
+    if(i === 0){
+      outlineDict.set(PDFLib.PDFName.of("First"), entry);
+    }
+
+    if(prev){
+      prev.set(PDFLib.PDFName.of("Next"), entry);
+      entry.set(PDFLib.PDFName.of("Prev"), prev);
+    }
+
+    prev = entry;
+  });
+
+  outlineDict.set(PDFLib.PDFName.of("Last"), prev);
+
+  const pdfBytes = await pdf.save();
+  const blob = new Blob([pdfBytes],{type:"application/pdf"});
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href=url;
+  a.download="updated-bookmarks.pdf";
+  a.click();
+};
+</script>
+
+</body>
+</html>
