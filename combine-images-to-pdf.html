@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Combine Images to PDF — Free Image to PDF Maker | I❤ImagePDF</title>
+
+<meta name="description" content="Combine multiple JPG, PNG, and WebP images into a single PDF instantly. Fully offline, secure, and free. Drag & drop images and convert to a high-quality PDF in seconds.">
+<meta name="keywords" content="combine images to pdf, merge images pdf, jpg to pdf, png to pdf, image to pdf converter, offline image to pdf, no upload image to pdf, free pdf maker, photo to pdf tool, secure pdf converter, client side pdf converter, I❤ImagePDF tools, create pdf from images, image merge pdf, multiple images to pdf">
+
+<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/combine-images-to-pdf.html"/>
+
+<meta property="og:title" content="Combine Images to PDF — Free Offline PDF Maker"/>
+<meta property="og:description" content="Merge multiple images into a single PDF — fully offline and secure."/>
+<meta property="og:image" content="https://secure-img-to-pdf.vercel.app/favicon.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+:root{--accent:#d9232e;--bg:#f6f8fb;--card:#fff;}
+body{margin:0;background:var(--bg);font-family:"Inter",sans-serif;}
+header{background:#fff;padding:15px 22px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 8px rgba(0,0,0,.05);}
+.logo{font-size:22px;font-weight:800;cursor:pointer;}
+.logo span{color:var(--accent);}
+.container{max-width:980px;margin:auto;padding:18px;}
+
+.box{
+  background:#fff;padding:40px;border-radius:16px;border:2px dashed #bbb;
+  text-align:center;cursor:pointer;transition:.2s;box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+.box:hover{border-color:var(--accent);transform:scale(1.01);}
+
+#imageList img{width:90px;border-radius:8px;margin-right:8px;margin-bottom:8px;border:1px solid #ccc;}
+
+.image-item{
+  display:flex;align-items:center;background:#fff;border:1px solid #ddd;
+  padding:10px;border-radius:10px;margin-bottom:8px;
+}
+.image-item span{flex:1;font-size:14px;}
+
+.btn-sm{
+  padding:6px 12px;border:0;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;
+  margin-left:6px;
+}
+
+.red{background:#d9232e;color:#fff;}
+.blue{background:#1677ff;color:#fff;}
+.green{background:#22aa55;color:#fff;}
+
+select,input{width:100%;padding:12px;border-radius:10px;border:1px solid #ccc;font-size:15px;margin-top:18px;}
+
+#downloadBtn{
+  display:none;margin-top:20px;background:var(--accent);color:#fff;border:0;
+  padding:14px 20px;border-radius:10px;font-size:16px;cursor:pointer;font-weight:700;
+}
+
+.section{
+  background:#fff;padding:22px;border-radius:16px;margin-top:26px;border:1px solid #eee;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+.section h2{color:var(--accent);}
+
+footer{text-align:center;padding:18px;margin-top:40px;background:#fff;border-top:1px solid #eee;color:#666;}
+a{color:#1677ff;}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo" onclick="location.href='/'">❤️ I❤ImagePDF</div>
+</header>
+
+<div class="container">
+
+<h1 style="text-align:center;color:#d9232e;">Combine Images to PDF 🖼️ ➝ 📄</h1>
+<p style="text-align:center;color:#555;">Merge multiple images into a single PDF — offline, fast, and secure</p>
+
+<div class="box" id="dropZone">
+  <h2>📸 Upload Images</h2>
+  <p>Click or drag multiple JPG/PNG/WebP</p>
+  <input type="file" accept="image/*" id="fileInput" multiple style="display:none;">
+</div>
+
+<h3 style="margin-top:25px;">Selected Images</h3>
+<div id="imageList"></div>
+
+<select id="pageSize">
+  <option value="auto">Auto Fit</option>
+  <option value="A4">A4 Size</option>
+  <option value="Letter">Letter Size</option>
+</select>
+
+<input type="number" id="margin" placeholder="Page Margin (default 20px)" value="20">
+
+<button id="downloadBtn">Download PDF</button>
+
+<!-- WHY CHOOSE US -->
+<div class="section">
+  <h2>Why Choose This Tool?</h2>
+  <ul>
+    <li>Combine unlimited images into one PDF.</li>
+    <li>100% offline — images never leave your device.</li>
+    <li>High-quality PDF output.</li>
+    <li>Drag & drop support.</li>
+    <li>Mobile-friendly & fast.</li>
+  </ul>
+</div>
+
+<!-- SECURITY -->
+<div class="section">
+  <h2>Your Security 🔐</h2>
+  <p>All processing happens inside your browser. Your images never upload to a server.</p>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="section">
+  <h2>How It Works ⚙️</h2>
+  <ol>
+    <li>Upload multiple images.</li>
+    <li>Arrange them in your desired order.</li>
+    <li>Select page size & margin.</li>
+    <li>Download a combined PDF.</li>
+  </ol>
+</div>
+
+<!-- FAQ -->
+<div class="section">
+  <h2>FAQs ❓</h2>
+
+  <p><strong>How many images can I combine?</strong><br>Unlimited — depends only on your device memory.</p>
+
+  <p><strong>Does it work offline?</strong><br>Yes, 100% offline.</p>
+
+  <p><strong>Does it reduce image quality?</strong><br>No, original quality is preserved.</p>
+
+  <p><strong>Supported formats?</strong><br>JPG, PNG, WebP.</p>
+</div>
+
+<footer>
+  © 2025 ❤️ I❤ImagePDF | <a href="/about.html">About</a> | <a href="/privacy.html">Privacy Policy</a>
+</footer>
+
+</div>
+
+<script>
+let images=[];
+const list=document.getElementById("imageList");
+const fileInput=document.getElementById("fileInput");
+const dropZone=document.getElementById("dropZone");
+const downloadBtn=document.getElementById("downloadBtn");
+
+dropZone.onclick=()=>fileInput.click();
+
+dropZone.ondragover=e=>{
+  e.preventDefault();
+  dropZone.style.borderColor="#d9232e";
+};
+dropZone.ondragleave=()=>dropZone.style.borderColor="#bbb";
+dropZone.ondrop=e=>{
+  e.preventDefault();
+  dropZone.style.borderColor="#bbb";
+  handleFiles(e.dataTransfer.files);
+};
+
+fileInput.onchange=()=>handleFiles(fileInput.files);
+
+function handleFiles(files){
+  [...files].forEach(file=>{
+    const reader=new FileReader();
+    reader.onload=e=>{
+      images.push({name:file.name,src:e.target.result});
+      renderList();
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function renderList(){
+  list.innerHTML="";
+  images.forEach((img,i)=>{
+    const div=document.createElement("div");
+    div.className="image-item";
+    div.innerHTML=`
+      <img src="${img.src}" width="60">
+      <span>${img.name}</span>
+      <button class="btn-sm blue" onclick="moveUp(${i})">Up</button>
+      <button class="btn-sm blue" onclick="moveDown(${i})">Down</button>
+      <button class="btn-sm red" onclick="removeImg(${i})">Remove</button>
+    `;
+    list.appendChild(div);
+  });
+  if(images.length>0) downloadBtn.style.display="block";
+}
+
+function moveUp(i){
+  if(i===0) return;
+  [images[i],images[i-1]]=[images[i-1],images[i]];
+  renderList();
+}
+
+function moveDown(i){
+  if(i===images.length-1) return;
+  [images[i],images[i+1]]=[images[i+1],images[i]];
+  renderList();
+}
+
+function removeImg(i){
+  images.splice(i,1);
+  renderList();
+}
+
+downloadBtn.onclick=async()=>{
+  const pdf=await PDFLib.PDFDocument.create();
+  const margin=parseInt(document.getElementById("margin").value)||20;
+  const pageSize=document.getElementById("pageSize").value;
+
+  for(let img of images){
+    const bytes=await fetch(img.src).then(r=>r.arrayBuffer());
+    const embed=img.src.includes("png") || img.src.includes("webp")
+                 ? await pdf.embedPng(bytes)
+                 : await pdf.embedJpg(bytes);
+
+    let width=embed.width;
+    let height=embed.height;
+
+    let page;
+
+    if(pageSize==="A4"){
+      page=pdf.addPage([595,842]); // A4
+    } else if(pageSize==="Letter"){
+      page=pdf.addPage([612,792]); // Letter
+    } else {
+      page=pdf.addPage([width+margin*2,height+margin*2]);
+    }
+
+    const pw=page.getWidth();
+    const ph=page.getHeight();
+
+    const scale=Math.min(
+      (pw-margin*2)/width,
+      (ph-margin*2)/height
+    );
+
+    page.drawImage(embed,{
+      x:(pw-width*scale)/2,
+      y:(ph-height*scale)/2,
+      width:width*scale,
+      height:height*scale
+    });
+  }
+
+  const pdfBytes=await pdf.save();
+  const blob=new Blob([pdfBytes],{type:"application/pdf"});
+  const url=URL.createObjectURL(blob);
+
+  const a=document.createElement("a");
+  a.href=url;
+  a.download="images-to-pdf.pdf";
+  a.click();
+};
+</script>
+
+</body>
+</html>
