@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Bulk File Renamer — Rename Multiple Files Instantly | I❤ImagePDF</title>
+
+<meta name="description" content="Free bulk file renamer tool — rename multiple files with prefix, suffix, numbering, replace text, and more. 100% offline, secure and fast. No upload, full privacy.">
+<meta name="keywords" content="file renamer, bulk file rename, rename files, offline renamer, rename tool, batch rename, prefix rename, suffix rename, numbering rename, file name editor, rename documents, secure rename tool, client side renamer, no upload file rename, I❤ImagePDF tools, file manager rename, modify filenames, change filenames, rename image files, rename pdf files, rename jpg, rename png, rename text files">
+
+<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/file-renamer.html">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root { --accent:#d9232e; --bg:#f6f8fb; }
+body { margin:0; background:var(--bg); font-family:"Inter", sans-serif; }
+
+header {
+  background:#fff; padding:15px 20px;
+  display:flex; align-items:center; justify-content:space-between;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+.logo { font-size:22px; font-weight:800; cursor:pointer; }
+.logo span { color:var(--accent); }
+
+.container { max-width:900px; margin:auto; padding:20px; }
+
+.drop-box {
+  background:#fff; padding:40px;
+  border:2px dashed #ccc; border-radius:16px;
+  text-align:center; cursor:pointer; transition:.2s;
+}
+.drop-box:hover { border-color:var(--accent); transform:scale(1.01); }
+
+input, select {
+  width:100%; padding:12px; margin-top:12px;
+  border-radius:10px; border:1px solid #ccc;
+  font-size:15px;
+}
+
+button {
+  padding:12px 18px; border-radius:10px; border:0;
+  cursor:pointer; font-size:15px; font-weight:600;
+  margin-top:10px;
+}
+.red { background:#d9232e; color:#fff; }
+.blue { background:#1677ff; color:#fff; }
+.green { background:#22aa55; color:#fff; }
+
+.file-list {
+  margin-top:20px; background:#fff; padding:20px;
+  border-radius:12px; border:1px solid #ddd;
+}
+.file-item {
+  padding:8px 0; border-bottom:1px solid #eee; font-size:14px;
+}
+.section {
+  background:#fff; padding:22px; border-radius:16px;
+  margin-top:28px; border:1px solid #eee;
+}
+.section h2 { color:var(--accent); }
+
+footer {
+  text-align:center; padding:20px; margin-top:35px;
+  background:#fff; color:#555;
+}
+footer a { color:#1677ff; text-decoration:none; }
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo" onclick="location.href='/'">❤️ I❤ImagePDF</div>
+</header>
+
+<div class="container">
+
+<h1 style="text-align:center;color:#d9232e;">Bulk File Renamer 📝</h1>
+<p style="text-align:center;color:#555;">Rename multiple files instantly — offline & private</p>
+
+<div class="drop-box" id="dropZone">
+  <h2>📁 Upload Files</h2>
+  <p>Click or drag & drop multiple files</p>
+  <input type="file" id="fileInput" multiple style="display:none;">
+</div>
+
+<div class="file-list" id="fileList"></div>
+
+<h3>Rename Settings</h3>
+
+<input type="text" id="prefix" placeholder="Add Prefix (optional)">
+<input type="text" id="suffix" placeholder="Add Suffix (optional)">
+<input type="text" id="replaceFrom" placeholder="Replace this text...">
+<input type="text" id="replaceTo" placeholder="...with this text">
+<input type="number" id="startNum" placeholder="Start Number (default 1)" value="1">
+
+<button class="blue" onclick="applyRename()">Apply Rename</button>
+<button class="green" id="downloadAll" style="display:none;" onclick="downloadRenamed()">Download Renamed Files</button>
+
+<!-- WHY CHOOSE -->
+<div class="section">
+  <h2>Why Choose This File Renamer?</h2>
+  <ul>
+    <li>Rename unlimited files in one go.</li>
+    <li>Fully offline — no upload, no risk.</li>
+    <li>Add prefix, suffix, numbering, replace text.</li>
+    <li>Download renamed files instantly.</li>
+    <li>Safe for images, PDFs, documents, videos & more.</li>
+  </ul>
+</div>
+
+<!-- SECURITY -->
+<div class="section">
+  <h2>Your Security 🔐</h2>
+  <p>Your files never leave your device. All renaming happens inside your browser.</p>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="section">
+  <h2>How It Works ⚙️</h2>
+  <ol>
+    <li>Upload or drag & drop files.</li>
+    <li>Configure rename rules.</li>
+    <li>Preview new names instantly.</li>
+    <li>Download renamed files.</li>
+  </ol>
+</div>
+
+<!-- FAQ -->
+<div class="section">
+  <h2>FAQs ❓</h2>
+
+  <p><strong>Does this tool upload my files?</strong><br>No. Everything is offline.</p>
+
+  <p><strong>Which file types can be renamed?</strong><br>All: JPG, PNG, PDF, DOCX, ZIP, MP4, TXT, etc.</p>
+
+  <p><strong>Is numbering supported?</strong><br>Yes — auto numbering like 001, 002, 003…</p>
+
+  <p><strong>Maximum file size?</strong><br>No limit. Browser limit only.</p>
+</div>
+
+<footer>
+  © 2025 ❤️ I❤ImagePDF |
+  <a href="/about.html">About</a> |
+  <a href="/privacy.html">Privacy Policy</a>
+</footer>
+
+</div>
+
+<script>
+let files = [];
+
+dropZone.onclick = () => fileInput.click();
+dropZone.ondragover = e => { e.preventDefault(); dropZone.style.borderColor="#d9232e"; }
+dropZone.ondragleave = () => dropZone.style.borderColor="#ccc";
+dropZone.ondrop = e => {
+  e.preventDefault();
+  dropZone.style.borderColor="#ccc";
+  handleFiles(e.dataTransfer.files);
+};
+
+fileInput.onchange = () => handleFiles(fileInput.files);
+
+function handleFiles(selectedFiles) {
+  files = [...selectedFiles];
+  renderFileList();
+}
+
+function renderFileList() {
+  const list = document.getElementById("fileList");
+  list.innerHTML = "";
+
+  files.forEach((f, i) => {
+    const div = document.createElement("div");
+    div.className = "file-item";
+    div.textContent = `${i+1}. ${f.name}`;
+    list.appendChild(div);
+  });
+}
+
+function applyRename() {
+  if (!files.length) return alert("Upload files first!");
+
+  const prefix = document.getElementById("prefix").value;
+  const suffix = document.getElementById("suffix").value;
+  const replaceFrom = document.getElementById("replaceFrom").value;
+  const replaceTo = document.getElementById("replaceTo").value;
+  let num = parseInt(document.getElementById("startNum").value) || 1;
+
+  files = files.map(f => {
+    const ext = f.name.split('.').pop();
+    let name = f.name.replace("." + ext, "");
+
+    if (replaceFrom) name = name.replaceAll(replaceFrom, replaceTo);
+    if (prefix) name = prefix + name;
+    if (suffix) name = name + suffix;
+
+    const numbered = name + "_" + String(num).padStart(3, "0") + "." + ext;
+    num++;
+
+    return new File([f], numbered, { type: f.type });
+  });
+
+  renderFileList();
+  document.getElementById("downloadAll").style.display = "inline-block";
+
+  alert("Preview updated!");
+}
+
+function downloadRenamed() {
+  files.forEach(f => {
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(f);
+    a.download = f.name;
+    a.click();
+  });
+}
+</script>
+
+</body>
+</html>
