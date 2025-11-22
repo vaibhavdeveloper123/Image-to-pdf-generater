@@ -4,58 +4,127 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-<title>PDF Metadata Viewer – View PDF Title, Author & Info | ❤️ I❤ImagePDF</title>
+<title>PDF Metadata Viewer — Free, Secure & Instant | I❤ImagePDF</title>
 
-<meta name="description" content="View PDF metadata instantly: title, author, subject, creator, keywords, creation date, version and more — 100% client-side, secure and offline.">
-<meta name="keywords" content="pdf metadata viewer, view pdf info, pdf metadata extractor, pdf title viewer, pdf author viewer, pdf info tool, pdf version viewer, offline pdf metadata, client side pdf analyzer, I❤ImagePDF pdf tools, secure metadata viewer, pdf inspector, pdf details viewer, read pdf metadata, online pdf metadata tool, privacy pdf info tool">
+<meta name="description" content="Free PDF Metadata Viewer Tool - View all PDF information including title, author, subject, keywords, creation date, modification date, PDF version, file size & more — 100% client-side & secure.">
+<meta name="keywords" content="pdf metadata viewer, view pdf info, read pdf metadata, pdf title viewer, pdf author viewer, pdf subject viewer, pdf info extractor, metadata extractor pdf, pdf tags viewer, client side pdf metadata, secure pdf viewer, pdf tools, adobe metadata viewer, pdf creation date, pdf modified date, pdf version detector, pdf file analyzer, free pdf utilities, online pdf tools, fast pdf metadata tool, no upload pdf tool, privacy pdf tool, offline pdf metadata, browser pdf inspector, pdf document properties viewer, ilovepdf alternative, pdf details checker, metadata reader pdf, pdf inspector tool, pdf info online, pdf meta reader, best pdf metadata tool, pdf details extractor, pdf content analyzer, secure pdf parser, lightweight pdf tools, pdf document analyzer, file metadata viewer, pdf pages count viewer">
 
 <link rel="canonical" href="https://secure-img-to-pdf.vercel.app/pdf-metadata-viewer.html" />
-<meta property="og:title" content="PDF Metadata Viewer – Free & Secure">
-<meta property="og:description" content="Extract full PDF metadata offline without uploading.">
-<meta property="og:image" content="https://secure-img-to-pdf.vercel.app/favicon.png">
-<meta name="twitter:card" content="summary_large_image">
 
-<!-- JSON-LD -->
-<script type="application/ld+json">
-{
- "@context": "https://schema.org",
- "@type": "WebApplication",
- "name": "PDF Metadata Viewer",
- "url": "https://secure-img-to-pdf.vercel.app/pdf-metadata-viewer.html",
- "description": "View PDF metadata offline — title, author, subject, version, keywords & more.",
- "applicationCategory": "UtilityApplication",
- "operatingSystem": "All",
- "provider": { "@type": "Organization", "name": "I❤ImagePDF" }
-}
-</script>
+<meta property="og:title" content="PDF Metadata Viewer — Free & Secure" />
+<meta property="og:description" content="View complete PDF metadata securely in your browser — no upload, full privacy." />
+<meta property="og:image" content="https://secure-img-to-pdf.vercel.app/favicon.png" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-:root{--accent:#d9232e;--bg:#f6f8fb;--card:#fff;}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
 
-*{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:"Inter",sans-serif;background:var(--bg);color:#222;line-height:1.6;}
-header{background:#fff;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 8px rgba(0,0,0,.05);position:sticky;top:0;z-index:20;}
-.logo{font-size:22px;font-weight:800;cursor:pointer;}
+:root{--accent:#d9232e;--bg:#f6f8fb;--card:#ffffff;}
+
+body{
+  margin:0;
+  font-family:"Inter",sans-serif;
+  background:var(--bg);
+  color:#222;
+}
+
+header{
+  background:#fff;
+  padding:15px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 2px 8px rgba(0,0,0,0.05);
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+.logo{
+  font-size:22px;
+  font-weight:800;
+  color:#000;
+  cursor:pointer;
+}
 .logo span{color:var(--accent);}
 
-.container{max-width:900px;margin:auto;padding:22px;}
-h1{text-align:center;font-size:28px;color:var(--accent);margin-bottom:10px;}
-p.intro{text-align:center;color:#555;margin-bottom:20px;}
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:18px;
+}
 
-.tool-box{background:#fff;border:1px solid #eee;border-radius:16px;padding:25px;box-shadow:0 2px 8px rgba(0,0,0,.05);}
-#dropZone{border:2px dashed var(--accent);border-radius:16px;padding:40px;text-align:center;cursor:pointer;transition:.3s;background:#fff;}
-#dropZone:hover{background:#fff4f4;}
-#dropZone.dragover{background:#ffecec;border-color:#b31319;}
-.meta-box{margin-top:20px;background:#fafafa;border-radius:16px;padding:20px;border:1px solid #ddd;}
-.meta-box p strong{color:var(--accent);}
+/* Upload box */
+.upload-box{
+  background:#fff;
+  border:2px dashed #ccc;
+  border-radius:16px;
+  padding:40px;
+  text-align:center;
+  cursor:pointer;
+  transition:.2s;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+.upload-box:hover{
+  border-color:var(--accent);
+  transform:scale(1.01);
+}
+.upload-box p{margin:8px 0;font-size:15px;color:#444;}
 
-footer{text-align:center;margin-top:25px;padding:18px;background:#fff;color:#555;font-size:14px;}
+/* Metadata Section */
+#metaContainer{
+  display:none;
+  background:#fff;
+  padding:22px;
+  border-radius:16px;
+  margin-top:22px;
+  border:1px solid #eee;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+#metaContainer h3{
+  margin:0 0 15px 0;
+  color:var(--accent);
+}
+.meta-list p{
+  margin:5px 0;
+  font-size:15px;
+  color:#333;
+}
+
+/* Sections */
+.section{
+  background:#fff;
+  margin-top:24px;
+  padding:22px;
+  border-radius:16px;
+  border:1px solid #eee;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+.section h2{
+  color:var(--accent);
+  margin:0 0 12px 0;
+}
+.section p, .section li{
+  color:#444;
+  font-size:15px;
+  line-height:1.6;
+}
+
+footer{
+  margin-top:40px;
+  background:#fff;
+  text-align:center;
+  padding:18px;
+  font-size:14px;
+  color:#777;
+  border-top:1px solid #eee;
+}
 a{color:#1677ff;text-decoration:none;}
 a:hover{text-decoration:underline;}
 </style>
 </head>
-
 <body>
 
 <header>
@@ -63,84 +132,121 @@ a:hover{text-decoration:underline;}
 </header>
 
 <div class="container">
-<h1>PDF Metadata Viewer 📄🔍</h1>
-<p class="intro">View complete PDF metadata including title, author, subject, creator, keywords, version & more — fully offline and private.</p>
 
-<div class="tool-box">
-  <div id="dropZone">
-    <p><strong>📂 Drag & Drop PDF</strong><br>or click to select</p>
-    <input type="file" id="fileInput" accept="application/pdf" style="display:none;">
-  </div>
+<h1 style="text-align:center;color:#d9232e;">PDF Metadata Viewer 🔍</h1>
+<p style="text-align:center;color:#555;">Extract Title, Author, Keywords, Creation Date, PDF Version & More — Fully Offline & Secure</p>
 
-  <div class="meta-box" id="metaBox" style="display:none;">
-    <h2 style="color:var(--accent);margin-bottom:10px;">PDF Metadata</h2>
-    <p><strong>File Name:</strong> <span id="fileName"></span></p>
-    <p><strong>File Size:</strong> <span id="fileSize"></span></p>
-    <p><strong>PDF Version:</strong> <span id="pdfVersion"></span></p>
-    <p><strong>Pages:</strong> <span id="pageCount"></span></p>
-    <hr style="margin:12px 0;">
-    <p><strong>Title:</strong> <span id="metaTitle"></span></p>
-    <p><strong>Author:</strong> <span id="metaAuthor"></span></p>
-    <p><strong>Subject:</strong> <span id="metaSubject"></span></p>
-    <p><strong>Creator:</strong> <span id="metaCreator"></span></p>
-    <p><strong>Producer:</strong> <span id="metaProducer"></span></p>
-    <p><strong>Creation Date:</strong> <span id="metaCreationDate"></span></p>
-    <p><strong>Modified Date:</strong> <span id="metaModDate"></span></p>
-    <p><strong>Keywords:</strong> <span id="metaKeywords"></span></p>
-  </div>
+<div class="upload-box" id="dropZone">
+  <h2>📄 Upload PDF</h2>
+  <p>Click or Drag & Drop your PDF file here</p>
+  <input type="file" id="fileInput" accept="application/pdf" style="display:none;">
+</div>
+
+<!-- Metadata Output -->
+<div id="metaContainer">
+  <h3>📑 Extracted PDF Metadata</h3>
+  <div class="meta-list" id="metaList"></div>
+</div>
+
+<!-- Why Choose Us -->
+<div class="section">
+  <h2>Why Choose Our PDF Metadata Viewer?</h2>
+  <ul>
+    <li>100% client-side — your PDF never leaves your device.</li>
+    <li>Super-fast metadata extraction in milliseconds.</li>
+    <li>Privacy-first, secure & lightweight.</li>
+    <li>No login, no signup, no uploading required.</li>
+    <li>Works on mobile, desktop & all modern browsers.</li>
+  </ul>
+</div>
+
+<!-- Security Section -->
+<div class="section">
+  <h2>Your Security & Privacy 🔐</h2>
+  <p>All processing is done using <strong>PDF.js inside your browser</strong>. Your file is never uploaded to any server — ensuring complete data privacy and security.</p>
+</div>
+
+<!-- How It Works -->
+<div class="section">
+  <h2>How It Works ⚙️</h2>
+  <ol>
+    <li>Upload or drag & drop any PDF file.</li>
+    <li>The tool extracts metadata instantly offline.</li>
+    <li>View full document details with no wait time.</li>
+  </ol>
+</div>
+
+<!-- FAQs -->
+<div class="section">
+  <h2>Frequently Asked Questions ❓</h2>
+
+  <p><strong>1. Is my PDF uploaded online?</strong><br>
+  No. Everything happens offline inside your browser.</p>
+
+  <p><strong>2. Which metadata can I extract?</strong><br>
+  Title, Author, Creator, Producer, Keywords, Version, Page count, File size, Dates, and more.</p>
+
+  <p><strong>3. Does this work on mobile?</strong><br>
+  Yes, fully mobile-friendly.</p>
+
+  <p><strong>4. Is this tool free?</strong><br>
+  100% free, forever.</p>
 </div>
 
 <footer>
-© 2025 ❤️ I❤ImagePDF — 100% Client-Side |
-<a href="/about.html">About</a> | <a href="/privacy.html">Privacy Policy</a>
+ © 2025 ❤️ I❤ImagePDF — Privacy-Focused Tools  
+ | <a href="/about.html">About</a> | <a href="/privacy.html">Privacy Policy</a>
 </footer>
-</div>
 
-<!-- PDF.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.10.111/pdf.min.js"></script>
+</div>
 
 <script>
 const dropZone = document.getElementById("dropZone");
 const fileInput = document.getElementById("fileInput");
-const metaBox = document.getElementById("metaBox");
+const metaContainer = document.getElementById("metaContainer");
+const metaList = document.getElementById("metaList");
 
-// Drag Upload
-dropZone.addEventListener("click", ()=> fileInput.click());
-dropZone.addEventListener("dragover", e => { e.preventDefault(); dropZone.classList.add("dragover"); });
-dropZone.addEventListener("dragleave", ()=> dropZone.classList.remove("dragover"));
+dropZone.onclick = () => fileInput.click();
+
+dropZone.addEventListener("dragover", e => {
+  e.preventDefault();
+  dropZone.style.borderColor = "#d9232e";
+});
+dropZone.addEventListener("dragleave", () => {
+  dropZone.style.borderColor = "#ccc";
+});
 dropZone.addEventListener("drop", e => {
   e.preventDefault();
-  dropZone.classList.remove("dragover");
-  extractPDF(e.dataTransfer.files[0]);
+  dropZone.style.borderColor = "#ccc";
+  handleFile(e.dataTransfer.files[0]);
 });
-fileInput.addEventListener("change", ()=> extractPDF(fileInput.files[0]));
 
-// Extract Metadata
-async function extractPDF(file){
-  if(!file || file.type !== "application/pdf") return alert("Upload a valid PDF file.");
+fileInput.onchange = () => handleFile(fileInput.files[0]);
 
-  const loadingTask = pdfjsLib.getDocument(await file.arrayBuffer());
+async function handleFile(file){
+  if(!file) return;
+
+  const arrayBuffer = await file.arrayBuffer();
+  const loadingTask = pdfjsLib.getDocument({data: arrayBuffer});
+  
   const pdf = await loadingTask.promise;
-  const meta = await pdf.getMetadata().catch(()=>({info:{}}));
+  const meta = await pdf.getMetadata();
 
-  // Fill metadata
-  document.getElementById("fileName").textContent = file.name;
-  document.getElementById("fileSize").textContent = (file.size/1024/1024).toFixed(2)+" MB";
-  document.getElementById("pdfVersion").textContent = pdf.pdfInfo?.pdfFormatVersion || "Unknown";
-  document.getElementById("pageCount").textContent = pdf.numPages;
-
-  const info = meta.info || {};
-
-  document.getElementById("metaTitle").textContent = info.Title || "–";
-  document.getElementById("metaAuthor").textContent = info.Author || "–";
-  document.getElementById("metaSubject").textContent = info.Subject || "–";
-  document.getElementById("metaCreator").textContent = info.Creator || "–";
-  document.getElementById("metaProducer").textContent = info.Producer || "–";
-  document.getElementById("metaCreationDate").textContent = info.CreationDate || "–";
-  document.getElementById("metaModDate").textContent = info.ModDate || "–";
-  document.getElementById("metaKeywords").textContent = info.Keywords || "–";
-
-  metaBox.style.display = "block";
+  metaContainer.style.display = "block";
+  metaList.innerHTML = `
+    <p><strong>File Name:</strong> ${file.name}</p>
+    <p><strong>File Size:</strong> ${(file.size/1024/1024).toFixed(2)} MB</p>
+    <p><strong>Pages:</strong> ${pdf.numPages}</p>
+    <p><strong>Title:</strong> ${meta.info.Title || "N/A"}</p>
+    <p><strong>Author:</strong> ${meta.info.Author || "N/A"}</p>
+    <p><strong>Subject:</strong> ${meta.info.Subject || "N/A"}</p>
+    <p><strong>Keywords:</strong> ${meta.info.Keywords || "N/A"}</p>
+    <p><strong>Creator:</strong> ${meta.info.Creator || "N/A"}</p>
+    <p><strong>Producer:</strong> ${meta.info.Producer || "N/A"}</p>
+    <p><strong>PDF Version:</strong> ${meta.info.PDFFormatVersion || "N/A"}</p>
+    <p><strong>Created On:</strong> ${meta.info.CreationDate || "N/A"}</p>
+    <p><strong>Modified On:</strong> ${meta.info.ModDate || "N/A"}</p>
+  `;
 }
 </script>
 
