@@ -5,112 +5,82 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>PDF Protector – Add Password to PDF (AES-256) | I❤ImagePDF</title>
+<title>PDF Protector – Add Password to PDF (AES-256 Encryption) | I❤ImagePDF</title>
 
-<meta name="description" content="Add password protection to your PDF securely using AES-256 encryption. 100% client-side, no uploads, no tracking. Free, fast and safe PDF protector tool.">
-<meta name="keywords" content="pdf protector, lock pdf, protect pdf, pdf password, encrypt pdf, aes 256 pdf, pdf security, secure pdf, offline pdf protector, client side pdf encryption">
+<meta name="description"
+ content="Protect PDF with AES-256 password encryption. Fully offline, 100% client-side, secure PDF locker, no upload, no tracking. Best free PDF protector 2025 for privacy-focused users.">
+
+<meta name="keywords"
+ content="pdf protector, lock pdf, password protect pdf, encrypt pdf, secure pdf offline, aes 256 pdf encryption, pdf password tool, free pdf locker, pdf security online, protect pdf browser, no upload pdf protection, privacy pdf tool, secure pdf generator, pdf encryption india, pdf lock tool 2025, pdf secure converter, pdf shield, password encrypt pdf, free pdf encryptor, pdf protect app, I❤ImagePDF pdf protector">
 
 <link rel="canonical" href="https://secure-img-to-pdf.vercel.app/pdf-protector.html">
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
-:root { --accent:#d9232e; --bg:#f6f8fb; }
+:root{--accent:#d9232e;--bg:#f6f8fb;}
 
-body{
-  margin:0;
-  background:var(--bg);
-  font-family:"Inter",sans-serif;
-  color:#222;
-}
+body{margin:0;background:var(--bg);font-family:"Inter",sans-serif;color:#222;}
 
 header{
-  background:#fff;
-  padding:15px 20px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  box-shadow:0 2px 8px rgba(0,0,0,.05);
+ background:#fff;padding:15px 20px;display:flex;align-items:center;justify-content:space-between;
+ box-shadow:0 2px 8px rgba(0,0,0,.05);
 }
-
-.logo{
-  font-size:22px;
-  font-weight:800;
-  cursor:pointer;
-}
+.logo{font-size:22px;font-weight:800;cursor:pointer;}
 .logo span{color:var(--accent);}
 
 .container{max-width:850px;margin:auto;padding:20px;}
 
 .drop-area{
-  background:#fff;
-  border:2px dashed #ccc;
-  border-radius:16px;
-  padding:40px;
-  text-align:center;
-  cursor:pointer;
-  transition:.2s;
+ background:#fff;border:2px dashed #ccc;border-radius:16px;padding:40px;text-align:center;
+ cursor:pointer;transition:.25s;
 }
 .drop-area:hover{border-color:var(--accent);}
 .drop-area p{color:#555;font-size:15px;}
 
 input[type="password"]{
-  width:100%;
-  padding:14px;
-  margin-top:14px;
-  border-radius:10px;
-  border:1px solid #ccc;
-  font-size:15px;
+ width:100%;padding:14px;margin-top:14px;border-radius:10px;border:1px solid #ccc;font-size:15px;
 }
 
 button{
-  background:var(--accent);
-  color:#fff;
-  border:0;
-  padding:15px;
-  width:100%;
-  margin-top:15px;
-  border-radius:10px;
-  font-size:16px;
-  cursor:pointer;
+ background:var(--accent);color:#fff;border:0;padding:15px;width:100%;margin-top:15px;
+ border-radius:10px;font-size:16px;cursor:pointer;font-weight:600;
 }
 
 .result-box{
-  background:#fff;
-  padding:20px;
-  border-radius:14px;
-  border:1px solid #ddd;
-  text-align:center;
-  margin-top:20px;
-  display:none;
+ background:#fff;padding:20px;border-radius:14px;border:1px solid #ddd;text-align:center;
+ margin-top:20px;display:none;
 }
+
+.section{
+ background:#fff;padding:22px;border-radius:14px;border:1px solid #eee;margin-top:28px;
+ box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+.section h2{margin:0 0 12px;color:var(--accent);}
+.section p, .section li{color:#444;line-height:1.6;font-size:15px;}
 
 footer{
-  margin-top:40px;
-  padding:20px;
-  background:#fff;
-  text-align:center;
-  color:#555;
+ margin-top:40px;padding:20px;background:#fff;text-align:center;color:#555;
 }
 footer a{color:#1677ff;text-decoration:none;}
-
 </style>
-
 </head>
+
 <body>
 
 <header>
-  <div class="logo" onclick="location.href='/'">❤️ I❤ImagePDF</div>
+ <div class="logo" onclick="location.href='/'">❤️ I❤ImagePDF</div>
 </header>
 
 <div class="container">
+
 <h1 style="text-align:center;color:#d9232e;">PDF Protector 🔒</h1>
-<p style="text-align:center;color:#666;">Add secure AES-256 password protection to any PDF — fully offline</p>
+<p style="text-align:center;color:#666;">Add secure AES-256 password protection to any PDF — fully offline, private & instant.</p>
 
 <!-- PDF SELECT BOX -->
 <div class="drop-area" id="drop-area">
-  <input type="file" id="fileInput" accept="application/pdf" hidden>
-  <p>📄 Drag & Drop PDF here<br>or click to select</p>
+    <input type="file" id="fileInput" accept="application/pdf" hidden>
+    <p>📄 Drag & Drop PDF here<br>or click to select</p>
 </div>
 
 <!-- PASSWORD INPUT -->
@@ -126,9 +96,69 @@ footer a{color:#1677ff;text-decoration:none;}
   </a>
 </div>
 
+
+<!-- WHY CHOOSE US -->
+<div class="section">
+<h2>Why Choose This PDF Protector?</h2>
+<ul>
+ <li>🔒 Uses **AES-256 military-grade encryption** for maximum protection.</li>
+ <li>⚡ 100% client-side — processing happens entirely inside your browser.</li>
+ <li>📁 No file uploads, no servers, no tracking — total privacy.</li>
+ <li>📱 Works on all devices — Android, iOS, Windows, Mac.</li>
+ <li>💯 Completely free PDF password protection tool.</li>
+ <li>🌍 SEO-optimized, fast and lightweight.</li>
+</ul>
 </div>
 
-<!-- PDF-LIB LIBRARY -->
+<!-- SECURITY SECTION -->
+<div class="section">
+<h2>Security & Privacy 🔐</h2>
+<p>
+Your PDF stays 100% safe because this PDF Protector runs fully in your browser.  
+No data leaves your device — **no upload, no cloud, no saving, no logs**.  
+We use <strong>pdf-lib AES-256 standard encryption</strong>, the same level of security used in industry-grade encryption models.
+</p>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="section">
+<h2>How It Works ⚙️</h2>
+<ol>
+ <li>Select or drop your PDF into the box.</li>
+ <li>Enter a new password to lock the document.</li>
+ <li>Click “Protect PDF”.</li>
+ <li>Your encrypted PDF will be ready instantly for download.</li>
+</ol>
+</div>
+
+<!-- FAQ SECTION -->
+<div class="section">
+<h2>Frequently Asked Questions ❓</h2>
+
+<p><strong>1. Is this PDF password protector free?</strong><br>
+Yes, completely free with no limits and no account needed.</p>
+
+<p><strong>2. Will my PDF be uploaded?</strong><br>
+No! Everything happens offline inside your browser.</p>
+
+<p><strong>3. Which encryption method is used?</strong><br>
+AES-256 bit encryption — the strongest PDF encryption standard.</p>
+
+<p><strong>4. Is the tool safe for confidential documents?</strong><br>
+Absolutely. Nothing is stored or transmitted. Perfect for business, school, and government files.</p>
+
+<p><strong>5. Does it work on mobile?</strong><br>
+Yes, works on Android, iPhone, iPad, Windows, macOS, and Linux.</p>
+
+<p><strong>6. Can I remove the password later?</strong><br>
+Yes! Use our **PDF Unlocker** tool for that.</p>
+
+</div>
+
+
+</div>
+
+<!-- PDF LIB -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
 
 <script>
@@ -140,68 +170,52 @@ let selectedFile = null;
 dropArea.addEventListener("click", () => fileInput.click());
 fileInput.addEventListener("change", e => setFile(e.target.files[0]));
 
-dropArea.addEventListener("dragover", (e) => {
-  e.preventDefault();
-  dropArea.style.borderColor = "#d9232e";
+dropArea.addEventListener("dragover", e => {
+ e.preventDefault();
+ dropArea.style.borderColor = "#d9232e";
 });
 dropArea.addEventListener("dragleave", () => dropArea.style.borderColor = "#ccc");
-dropArea.addEventListener("drop", (e) => {
-  e.preventDefault();
-  setFile(e.dataTransfer.files[0]);
+dropArea.addEventListener("drop", e => {
+ e.preventDefault();
+ setFile(e.dataTransfer.files[0]);
 });
 
-function setFile(file) {
-  if (file.type !== "application/pdf") {
-    alert("Please upload a valid PDF file!");
-    return;
-  }
-  selectedFile = file;
-  dropArea.innerHTML = `<p>📄 Selected: <strong>${file.name}</strong></p>`;
+function setFile(file){
+ if(file.type !== "application/pdf"){
+   alert("Please upload a valid PDF file!");
+   return;
+ }
+ selectedFile = file;
+ dropArea.innerHTML = `<p>📄 Selected: <strong>${file.name}</strong></p>`;
 }
 
 // ------------ PDF ENCRYPTION ---------------
-async function encryptPDF() {
+async function encryptPDF(){
+ if(!selectedFile){ alert("Please select a PDF!"); return; }
+ const password = document.getElementById("password").value;
+ if(!password){ alert("Please enter a password!"); return; }
 
-  if (!selectedFile) {
-    alert("Please select a PDF first!");
-    return;
-  }
+ try {
+   const arrayBuffer = await selectedFile.arrayBuffer();
+   const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
 
-  const password = document.getElementById("password").value;
+   pdfDoc.encrypt({
+     ownerPassword: password,
+     userPassword: password,
+     algorithm: PDFLib.EncryptionAlgorithms.AES256
+   });
 
-  if (!password) {
-    alert("Please enter a password!");
-    return;
-  }
+   const encryptedBytes = await pdfDoc.save();
+   const blob = new Blob([encryptedBytes], {type:"application/pdf"});
+   const url = URL.createObjectURL(blob);
 
-  try {
-    const arrayBuffer = await selectedFile.arrayBuffer();
+   document.getElementById("downloadLink").href = url;
+   document.getElementById("resultBox").style.display = "block";
 
-    // Load pdf
-    const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
-
-    // Encrypt PDF using AES-256
-    pdfDoc.encrypt({
-      ownerPassword: password,
-      userPassword: password,
-      permissions: { printing: 'highResolution' },
-      algorithm: PDFLib.EncryptionAlgorithms.AES256
-    });
-
-    const encryptedPdfBytes = await pdfDoc.save();
-
-    // Create download link
-    const blob = new Blob([encryptedPdfBytes], { type: "application/pdf" });
-    const url = URL.createObjectURL(blob);
-
-    document.getElementById("downloadLink").href = url;
-
-    document.getElementById("resultBox").style.display = "block";
-
-  } catch (err) {
-    alert("Failed to encrypt PDF! Try another PDF.");
-    console.error(err);
-  }
+ } catch(err){
+   alert("Failed to encrypt PDF!");
+   console.error(err);
+ }
 }
 </script>
 
