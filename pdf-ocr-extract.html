@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+
+<title>PDF OCR Extract — Convert PDF to Text (100% Offline) | I❤ImagePDF</title>
+
+<meta name="description" content="Extract text from scanned PDFs using OCR — fully offline, fast & secure. Convert PDF to editable text with Tesseract.js, no upload required. Free forever.">
+<meta name="keywords" content="pdf ocr, pdf to text, extract text from pdf, scanned pdf ocr, free ocr tool, offline ocr, tesseract js ocr, client side pdf ocr, pdf text extractor, secure pdf ocr, best pdf ocr 2025, online ocr tool, pdf scanner extractor, convert scanned pdf, image pdf ocr, pdf.js ocr, I❤ImagePDF ocr, ilovepdf ocr alternative">
+
+<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/pdf-ocr-extract.html"/>
+
+<meta property="og:title" content="PDF OCR Extract — Free & Secure OCR Tool"/>
+<meta property="og:description" content="Extract text from scanned PDFs securely in your browser — no upload."/>
+<meta property="og:image" content="https://secure-img-to-pdf.vercel.app/favicon.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+
+<!-- PDF.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+
+<!-- Tesseract.js -->
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@4.0.2/dist/tesseract.min.js"></script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+:root{--accent:#d9232e;--bg:#f6f8fb;--card:#fff;}
+
+body{margin:0;font-family:"Inter",sans-serif;background:var(--bg);color:#222;}
+
+header{
+  background:#fff;padding:15px 22px;display:flex;
+  align-items:center;justify-content:space-between;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+  position:sticky;top:0;z-index:10;
+}
+.logo{font-size:22px;font-weight:800;cursor:pointer;}
+.logo span{color:var(--accent);}
+
+.container{max-width:980px;margin:auto;padding:18px;}
+
+.upload-box{
+  background:#fff;padding:40px;border-radius:16px;
+  border:2px dashed #bbb;text-align:center;
+  cursor:pointer;transition:.2s;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+.upload-box:hover{border-color:var(--accent);transform:scale(1.01);}
+
+#outputBox{
+  background:#fff;margin-top:22px;padding:22px;
+  border-radius:16px;border:1px solid #eee;
+  display:none;white-space:pre-wrap;
+  font-size:15px;line-height:1.5;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+
+#downloadBtn{
+  display:none;margin-top:20px;
+  background:var(--accent);padding:12px 20px;border:none;
+  color:#fff;border-radius:10px;font-size:16px;font-weight:600;
+  cursor:pointer;
+}
+
+.progress{
+  margin-top:12px;color:#d9232e;font-weight:600;
+}
+
+.section{
+  background:#fff;padding:22px;border-radius:16px;
+  margin-top:26px;border:1px solid #eee;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+.section h2{color:var(--accent);margin:0 0 12px 0;}
+
+footer{
+  text-align:center;padding:18px;margin-top:40px;
+  background:#fff;border-top:1px solid #eee;color:#666;
+}
+a{color:#1677ff;}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo" onclick="location.href='/'">❤️ I❤ImagePDF</div>
+</header>
+
+<div class="container">
+
+<h1 style="text-align:center;color:#d9232e;">PDF OCR Extract 🔍</h1>
+<p style="text-align:center;color:#555;">Extract text from scanned PDFs — fast, accurate & offline OCR.</p>
+
+<div class="upload-box" id="dropZone">
+  <h2>📄 Upload PDF</h2>
+  <p>Click or Drag & Drop your PDF file</p>
+  <input type="file" id="fileInput" accept="application/pdf" style="display:none;">
+</div>
+
+<div class="progress" id="progress" style="display:none;">Processing...</div>
+
+<pre id="outputBox"></pre>
+
+<button id="downloadBtn">Download Extracted Text</button>
+
+<!-- WHY CHOOSE US -->
+<div class="section">
+  <h2>Why Choose This PDF OCR Tool?</h2>
+  <ul>
+    <li>Extract text from scanned PDFs with high accuracy.</li>
+    <li>100% client-side — nothing uploaded.</li>
+    <li>Tesseract.js OCR engine for fast results.</li>
+    <li>Works in English + Hindi + 100 other languages.</li>
+    <li>Download extracted text instantly.</li>
+  </ul>
+</div>
+
+<!-- SECURITY -->
+<div class="section">
+  <h2>Security & Privacy 🔐</h2>
+  <p>Your PDF never leaves your device. All OCR is fully offline using WebAssembly.</p>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="section">
+  <h2>How It Works ⚙️</h2>
+  <ol>
+    <li>Upload any scanned or image-based PDF.</li>
+    <li>The tool converts each page to image.</li>
+    <li>Tesseract.js extracts readable text.</li>
+    <li>Your extracted text appears instantly.</li>
+  </ol>
+</div>
+
+<!-- FAQ -->
+<div class="section">
+  <h2>FAQs ❓</h2>
+
+  <p><strong>Does this work on scanned PDFs?</strong><br>Yes — this tool is made for scanned PDFs.</p>
+
+  <p><strong>Is my file uploaded?</strong><br>No. Everything happens offline.</p>
+
+  <p><strong>Does it support Hindi?</strong><br>Yes. Multilanguage support.</p>
+
+  <p><strong>Is it free?</strong><br>Yes, forever.</p>
+</div>
+
+<footer>
+ © 2025 ❤️ I❤ImagePDF  
+ | <a href="/about.html">About</a> | <a href="/privacy.html">Privacy Policy</a>
+</footer>
+
+</div>
+
+<script>
+const dropZone = document.getElementById("dropZone");
+const fileInput = document.getElementById("fileInput");
+const outputBox = document.getElementById("outputBox");
+const progress = document.getElementById("progress");
+const downloadBtn = document.getElementById("downloadBtn");
+
+dropZone.onclick = () => fileInput.click();
+
+dropZone.addEventListener("dragover", e => {
+  e.preventDefault();
+  dropZone.style.borderColor="#d9232e";
+});
+dropZone.addEventListener("dragleave", () => {
+  dropZone.style.borderColor="#bbb";
+});
+dropZone.addEventListener("drop", e => {
+  e.preventDefault();
+  dropZone.style.borderColor="#bbb";
+  handleFile(e.dataTransfer.files[0]);
+});
+
+fileInput.onchange = () => handleFile(fileInput.files[0]);
+
+async function handleFile(file){
+  const buffer = await file.arrayBuffer();
+  const pdf = await pdfjsLib.getDocument({data: buffer}).promise;
+
+  outputBox.innerHTML="";
+  outputBox.style.display="block";
+  progress.style.display="block";
+
+  let finalText = "";
+
+  for(let i=1; i<=pdf.numPages; i++){
+    progress.innerHTML = `Extracting text from page ${i} of ${pdf.numPages}...`;
+
+    const page = await pdf.getPage(i);
+    const viewport = page.getViewport({scale:2});
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+
+    await page.render({canvasContext: ctx, viewport}).promise;
+
+    const imageData = canvas.toDataURL("image/png");
+
+    const result = await Tesseract.recognize(imageData, "eng", {
+      logger: m => console.log(m)
+    });
+
+    finalText += `\n\n--- PAGE ${i} ---\n\n`;
+    finalText += result.data.text;
+  }
+
+  outputBox.textContent = finalText;
+  progress.style.display="none";
+  downloadBtn.style.display="inline-block";
+
+  downloadBtn.onclick = () => {
+    const blob = new Blob([finalText],{type:"text/plain"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href=url;
+    a.download="extracted-text.txt";
+    a.click();
+  };
+}
+</script>
+
+</body>
+</html>
