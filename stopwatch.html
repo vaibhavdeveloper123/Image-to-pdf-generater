@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Stopwatch — Online Timer & Lap Recorder | I❤ImagePDF</title>
+
+<meta name="description" content="Free online stopwatch with lap timer, pause, resume, and reset. 100% client-side, fast, accurate, and secure. No install, no upload — works on all devices.">
+<meta name="keywords" content="stopwatch, online stopwatch, lap timer, timer tool, online timer, stopwatch web tool, productivity tools, client side timer, accurate stopwatch, free timer tool, stopwatch android, stopwatch browser">
+
+<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/stopwatch.html">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root { --accent:#d9232e; --bg:#f6f8fb; }
+
+body {
+  margin:0;
+  background:var(--bg);
+  font-family:"Inter", sans-serif;
+}
+
+header {
+  background:#fff;
+  padding:15px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+
+.logo {
+  font-size:22px;
+  font-weight:800;
+  cursor:pointer;
+}
+.logo span { color:var(--accent); }
+
+.container {
+  max-width:850px;
+  margin:auto;
+  padding:20px;
+}
+
+.stopwatch-display {
+  font-size:48px;
+  text-align:center;
+  background:#fff;
+  padding:25px;
+  border-radius:18px;
+  border:1px solid #eee;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+  margin-bottom:25px;
+}
+
+button {
+  padding:14px 22px;
+  border-radius:10px;
+  border:0;
+  cursor:pointer;
+  font-size:16px;
+  font-weight:600;
+  margin:5px;
+}
+
+.green { background:#22aa55; color:#fff; }
+.red { background:#d9232e; color:#fff; }
+.blue { background:#1677ff; color:#fff; }
+.gray { background:#666; color:#fff; }
+
+.laps-box {
+  background:#fff;
+  padding:20px;
+  border-radius:14px;
+  margin-top:20px;
+  border:1px solid #eee;
+  max-height:280px;
+  overflow-y:auto;
+}
+
+.section {
+  background:#fff;
+  padding:22px;
+  border-radius:14px;
+  margin-top:28px;
+  border:1px solid #eee;
+}
+.section h2 { color:var(--accent); }
+
+footer {
+  text-align:center;
+  padding:20px;
+  margin-top:35px;
+  background:#fff;
+  color:#555;
+}
+footer a {
+  color:#1677ff;
+  text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo" onclick="location.href='/'">❤️ I❤ImagePDF</div>
+</header>
+
+<div class="container">
+
+<h1 style="text-align:center;color:#d9232e;">Stopwatch ⏱️</h1>
+<p style="text-align:center;color:#555;">Accurate online stopwatch with lap recording — 100% offline & private</p>
+
+<div id="display" class="stopwatch-display">00:00:00.000</div>
+
+<div style="text-align:center;">
+  <button class="green" onclick="startStopwatch()">Start</button>
+  <button class="blue" onclick="pauseStopwatch()">Pause</button>
+  <button class="blue" onclick="resumeStopwatch()">Resume</button>
+  <button class="red" onclick="resetStopwatch()">Reset</button>
+  <button class="gray" onclick="addLap()">Lap</button>
+</div>
+
+<div class="laps-box" id="lapsBox">
+  <h3>Laps</h3>
+  <div id="lapsList"></div>
+</div>
+
+<!-- WHY CHOOSE -->
+<div class="section">
+  <h2>Why Choose This Stopwatch?</h2>
+  <ul>
+    <li>High-precision millisecond accuracy.</li>
+    <li>100% client-side — nothing is uploaded.</li>
+    <li>Lap timer built-in for productivity & sports.</li>
+    <li>Free, fast, lightweight, no installation.</li>
+    <li>Works on Android, iOS, Windows, Mac — everywhere.</li>
+  </ul>
+</div>
+
+<!-- SECURITY -->
+<div class="section">
+  <h2>Your Security 🔐</h2>
+  <p>This stopwatch works fully offline in your browser. No data is stored, shared, or uploaded — complete privacy guaranteed.</p>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="section">
+  <h2>How It Works ⚙️</h2>
+  <ol>
+    <li>Press Start to begin the stopwatch.</li>
+    <li>Use Pause/Resume anytime.</li>
+    <li>Press Lap to mark a split time.</li>
+    <li>Press Reset to clear everything.</li>
+  </ol>
+</div>
+
+<!-- FAQ -->
+<div class="section">
+  <h2>FAQs ❓</h2>
+
+  <p><strong>Is this stopwatch accurate?</strong><br>Yes — it uses high-precision JavaScript performance timers.</p>
+
+  <p><strong>Does it work offline?</strong><br>Yes, fully offline & client-side.</p>
+
+  <p><strong>Can it record laps?</strong><br>Yes — unlimited laps.</p>
+
+  <p><strong>Will it stop if I switch tabs?</strong><br>No, it runs even if you change tabs.</p>
+
+</div>
+
+<footer>
+  © 2025 ❤️ I❤ImagePDF |
+  <a href="/about.html">About</a> |
+  <a href="/privacy.html">Privacy Policy</a>
+</footer>
+
+</div>
+
+<script>
+let startTime = 0;
+let elapsedTime = 0;
+let interval = null;
+let running = false;
+
+function formatTime(ms) {
+  let hrs = Math.floor(ms / 3600000);
+  let mins = Math.floor((ms % 3600000) / 60000);
+  let secs = Math.floor((ms % 60000) / 1000);
+  let milli = ms % 1000;
+
+  return (
+    String(hrs).padStart(2, '0') + ":" +
+    String(mins).padStart(2, '0') + ":" +
+    String(secs).padStart(2, '0') + "." +
+    String(milli).padStart(3, '0')
+  );
+}
+
+function startStopwatch() {
+  if (!running) {
+    startTime = Date.now() - elapsedTime;
+    interval = setInterval(updateDisplay, 10);
+    running = true;
+  }
+}
+
+function pauseStopwatch() {
+  if (running) {
+    clearInterval(interval);
+    running = false;
+  }
+}
+
+function resumeStopwatch() {
+  if (!running) {
+    startTime = Date.now() - elapsedTime;
+    interval = setInterval(updateDisplay, 10);
+    running = true;
+  }
+}
+
+function resetStopwatch() {
+  clearInterval(interval);
+  running = false;
+  elapsedTime = 0;
+  document.getElementById("display").textContent = "00:00:00.000";
+  document.getElementById("lapsList").innerHTML = "";
+}
+
+function updateDisplay() {
+  elapsedTime = Date.now() - startTime;
+  document.getElementById("display").textContent = formatTime(elapsedTime);
+}
+
+function addLap() {
+  if (!running) return;
+  const lapTime = formatTime(elapsedTime);
+  const lapItem = document.createElement("div");
+  lapItem.textContent = "Lap: " + lapTime;
+  document.getElementById("lapsList").prepend(lapItem);
+}
+</script>
+
+</body>
+</html>
