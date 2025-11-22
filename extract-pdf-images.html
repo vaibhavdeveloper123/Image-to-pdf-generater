@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Extract PDF Images — Free & Secure | I❤ImagePDF</title>
+
+<meta name="description" content="Extract all images from any PDF instantly — 100% client-side, no upload, secure & fast. Download images individually or as ZIP. Works on all devices.">
+<meta name="keywords" content="extract pdf images, pdf image extractor, pdf images download, get images from pdf, pdf to images, pdf resource extractor, client side pdf tools, pdf image grabber, secure pdf tools, free pdf tools, offline pdf extraction, pdf js image extract, image extractor pdf, best pdf image extractor, jpg from pdf, pdf picture extractor, online pdf converter, pdf utilities, privacy pdf tool, no upload pdf tool, image extractor 2025, extract embedded images pdf, pdf to png extractor, pdf page image extractor">
+
+<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/extract-pdf-images.html" />
+
+<meta property="og:title" content="Extract PDF Images — Free & Secure" />
+<meta property="og:description" content="Extract images from your PDF securely inside your browser — no upload." />
+<meta property="og:image" content="https://secure-img-to-pdf.vercel.app/favicon.png" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+:root{--accent:#d9232e;--bg:#f6f8fb;--card:#fff;}
+
+body{
+  margin:0;
+  font-family:"Inter",sans-serif;
+  background:var(--bg);
+  color:#222;
+}
+
+/* Header */
+header{
+  background:#fff;
+  padding:15px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+.logo{
+  font-size:22px;
+  font-weight:800;
+  cursor:pointer;
+}
+.logo span{color:var(--accent);}
+
+.container{
+  max-width:970px;
+  margin:auto;
+  padding:18px;
+}
+
+/* Upload */
+.upload-box{
+  background:#fff;
+  padding:45px;
+  border-radius:16px;
+  border:2px dashed #bbb;
+  text-align:center;
+  cursor:pointer;
+  transition:.2s;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+.upload-box:hover{
+  border-color:var(--accent);
+  transform:scale(1.01);
+}
+
+/* Images grid */
+.images-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:14px;
+  margin-top:20px;
+}
+.image-card{
+  background:#fff;
+  padding:12px;
+  border-radius:12px;
+  text-align:center;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+  border:1px solid #eee;
+}
+.image-card img{
+  width:100%;
+  border-radius:10px;
+}
+.image-card a{
+  display:block;
+  margin-top:6px;
+  background:var(--accent);
+  padding:8px;
+  color:#fff;
+  border-radius:8px;
+  text-decoration:none;
+}
+
+/* Download All Button */
+#downloadAll{
+  display:none;
+  margin-top:20px;
+  background:var(--accent);
+  padding:12px 20px;
+  color:#fff;
+  border-radius:8px;
+  border:none;
+  cursor:pointer;
+  font-size:16px;
+  font-weight:600;
+}
+
+.section{
+  background:#fff;
+  padding:22px;
+  border-radius:16px;
+  border:1px solid #eee;
+  margin-top:26px;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+.section h2{
+  color:var(--accent);
+  margin:0 0 12px 0;
+}
+
+footer{
+  text-align:center;
+  padding:18px;
+  margin-top:40px;
+  color:#666;
+  background:#fff;
+  border-top:1px solid #eee;
+}
+a{color:#1677ff;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo" onclick="location.href='/'">❤️ I❤ImagePDF</div>
+</header>
+
+<div class="container">
+  <h1 style="text-align:center;color:#d9232e;">Extract PDF Images 🖼️</h1>
+  <p style="text-align:center;color:#555;">Extract embedded images from any PDF — fast, secure & fully offline.</p>
+
+  <div class="upload-box" id="dropZone">
+    <h2>📄 Upload PDF</h2>
+    <p>Click or Drag & Drop your PDF file here</p>
+    <input type="file" id="fileInput" accept="application/pdf" style="display:none;">
+  </div>
+
+  <button id="downloadAll">Download All Images (ZIP)</button>
+
+  <div class="images-grid" id="imagesGrid"></div>
+
+  <!-- Why Choose Us -->
+  <div class="section">
+    <h2>Why Choose This Tool?</h2>
+    <ul>
+      <li>100% client-side — nothing is uploaded.</li>
+      <li>Extract unlimited images instantly.</li>
+      <li>High-quality image rendering.</li>
+      <li>Supports all PDF versions.</li>
+      <li>Mobile-friendly & lightning fast.</li>
+    </ul>
+  </div>
+
+  <!-- Security -->
+  <div class="section">
+    <h2>Your Security Matters 🔐</h2>
+    <p>This tool processes PDFs entirely in your browser using PDF.js, ensuring <strong>zero data leaves your device</strong>.</p>
+  </div>
+
+  <!-- How It Works -->
+  <div class="section">
+    <h2>How It Works ⚙️</h2>
+    <ol>
+      <li>Upload your PDF file.</li>
+      <li>Tool scans every page for images.</li>
+      <li>Extracted images automatically appear.</li>
+      <li>Download individually or as ZIP.</li>
+    </ol>
+  </div>
+
+  <!-- FAQs -->
+  <div class="section">
+    <h2>FAQs ❓</h2>
+
+    <p><strong>1. Does it upload my PDF?</strong><br>
+    No, your PDF stays on your device.</p>
+
+    <p><strong>2. What image formats are supported?</strong><br>
+    Output is in PNG (best quality).</p>
+
+    <p><strong>3. Can I extract all images at once?</strong><br>
+    Yes, "Download All (ZIP)" button is provided.</p>
+
+    <p><strong>4. Is this tool free?</strong><br>
+    Yes, 100% free and unlimited.</p>
+
+  </div>
+
+  <footer>
+    © 2025 ❤️ I❤ImagePDF | <a href="/about.html">About</a> | <a href="/privacy.html">Privacy Policy</a>
+  </footer>
+</div>
+
+<script>
+const dropZone = document.getElementById("dropZone");
+const fileInput = document.getElementById("fileInput");
+const imagesGrid = document.getElementById("imagesGrid");
+const downloadAllBtn = document.getElementById("downloadAll");
+
+dropZone.onclick = () => fileInput.click();
+
+dropZone.addEventListener("dragover", e => {
+  e.preventDefault();
+  dropZone.style.borderColor = "#d9232e";
+});
+dropZone.addEventListener("dragleave", () => {
+  dropZone.style.borderColor = "#ccc";
+});
+dropZone.addEventListener("drop", e => {
+  e.preventDefault();
+  dropZone.style.borderColor = "#ccc";
+  handleFile(e.dataTransfer.files[0]);
+});
+
+fileInput.onchange = () => handleFile(fileInput.files[0]);
+
+async function handleFile(file){
+  if(!file) return;
+
+  imagesGrid.innerHTML = "";
+  downloadAllBtn.style.display = "none";
+
+  const arrayBuffer = await file.arrayBuffer();
+  const pdf = await pdfjsLib.getDocument({data: arrayBuffer}).promise;
+
+  let zip = new JSZip();
+  let imageCount = 0;
+
+  for(let i=1;i<=pdf.numPages;i++){
+    const page = await pdf.getPage(i);
+    const ops = await page.getOperatorList();
+
+    const viewport = page.getViewport({scale:2});
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+
+    await page.render({canvasContext: ctx, viewport}).promise;
+
+    const imgData = canvas.toDataURL("image/png");
+
+    // Add Preview
+    const card = document.createElement("div");
+    card.className = "image-card";
+    card.innerHTML = `
+      <img src="${imgData}">
+      <a download="page-${i}.png" href="${imgData}">Download</a>
+    `;
+    imagesGrid.appendChild(card);
+
+    // ZIP Add
+    const base64 = imgData.split(",")[1];
+    zip.file(`page-${i}.png`, base64, {base64:true});
+
+    imageCount++;
+  }
+
+  if(imageCount > 0){
+    downloadAllBtn.style.display = "inline-block";
+    downloadAllBtn.onclick = async () => {
+      const content = await zip.generateAsync({type:"blob"});
+      const url = URL.createObjectURL(content);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "pdf-images.zip";
+      a.click();
+    };
+  }
+}
+</script>
+
+</body>
+</html>
