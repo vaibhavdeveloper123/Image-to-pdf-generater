@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>Clipboard Manager — Secure Client-Side Clipboard Saver | I❤ImagePDF</title>
+
+<meta name="description" content="Free online clipboard manager to save, copy, paste, and export text snippets. 100% private and fully client-side — no uploads, no tracking. Fast, secure & works on all devices.">
+<meta name="keywords" content="clipboard manager, copy tool, save clipboard, text snippets, clipboard history, offline clipboard manager, browser clipboard tool, productivity tool, text saver, copy paste manager, I❤ImagePDF tools, best clipboard web app">
+
+<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/clipboard-manager.html" />
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root { --accent:#d9232e; --bg:#f6f8fb; }
+
+body{
+  margin:0;
+  font-family:"Inter",sans-serif;
+  background:var(--bg);
+  color:#222;
+}
+
+header{
+  background:#fff;
+  padding:15px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+
+.logo{font-size:22px;font-weight:800;cursor:pointer;}
+.logo span{color:var(--accent);}
+
+.container{
+  max-width:850px;
+  margin:auto;
+  padding:20px;
+}
+
+.box{
+  background:#fff;
+  padding:25px;
+  border-radius:16px;
+  border:1px solid #eee;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+
+textarea{
+  width:100%;
+  padding:14px;
+  border-radius:10px;
+  border:1px solid #ccc;
+  resize:none;
+  height:90px;
+  font-size:15px;
+}
+
+button{
+  padding:12px 20px;
+  border-radius:10px;
+  border:0;
+  cursor:pointer;
+  margin:6px;
+  font-weight:600;
+  font-size:15px;
+}
+
+.red{background:#d9232e;color:#fff;}
+.green{background:#22aa55;color:#fff;}
+.blue{background:#1677ff;color:#fff;}
+.gray{background:#555;color:#fff;}
+
+.clip-item{
+  padding:14px;
+  border-radius:12px;
+  background:#fff;
+  border:1px solid #ddd;
+  margin-bottom:10px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.clip-text{width:80%;font-size:14px;color:#444;}
+
+.section{
+  background:#fff;
+  padding:22px;
+  border-radius:14px;
+  margin-top:28px;
+  border:1px solid #eee;
+}
+.section h2{color:var(--accent);}
+footer{
+  text-align:center;
+  background:#fff;
+  padding:20px;
+  margin-top:30px;
+}
+footer a{color:#1677ff;text-decoration:none;}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo" onclick="location.href='/'">❤️ I❤ImagePDF</div>
+</header>
+
+<div class="container">
+
+<h1 style="text-align:center;color:#d9232e;">Clipboard Manager 📋</h1>
+<p style="text-align:center;color:#555;">Save, reuse & copy text—100% secure & offline</p>
+
+<div class="box">
+
+<textarea id="inputText" placeholder="Type or paste text here..."></textarea>
+
+<div style="text-align:center; margin-top:12px;">
+  <button class="green" onclick="addClipboard()">➕ Add</button>
+  <button class="blue" onclick="pasteFromClipboard()">📥 Paste</button>
+  <button class="red" onclick="clearAll()">🗑️ Clear All</button>
+  <button class="gray" onclick="exportTXT()">⬇️ Export TXT</button>
+</div>
+
+</div>
+
+<h2 style="margin-top:25px;">Saved Clips</h2>
+
+<div id="clipsContainer"></div>
+
+
+<!-- WHY CHOOSE US -->
+<div class="section">
+<h2>Why Choose This Clipboard Manager?</h2>
+<ul>
+  <li>Fully client-side — text never leaves your device.</li>
+  <li>Instantly save and copy frequently used snippets.</li>
+  <li>Export notes & clipboard text as TXT.</li>
+  <li>Fast, lightweight, no installation required.</li>
+  <li>Works perfectly on Android, iOS, Windows & Mac.</li>
+</ul>
+</div>
+
+
+<!-- SECURITY -->
+<div class="section">
+<h2>Security & Privacy 🔒</h2>
+<p>This clipboard manager runs fully offline in your browser. No uploads, no data stored on servers, and no analytics. Everything is processed locally on your device for maximum privacy.</p>
+</div>
+
+
+<!-- HOW IT WORKS -->
+<div class="section">
+<h2>How It Works ⚙️</h2>
+<ol>
+  <li>Type or paste text into the input box.</li>
+  <li>Press “Add” to store it in your clipboard list.</li>
+  <li>Tap any saved item to instantly copy it again.</li>
+  <li>Export or clear your clipboard anytime.</li>
+</ol>
+</div>
+
+
+<!-- FAQ -->
+<div class="section">
+<h2>FAQs ❓</h2>
+
+<p><strong>Does this store my text online?</strong><br>No. Everything stays in your browser only.</p>
+
+<p><strong>Can I export all my saved clips?</strong><br>Yes, export to a TXT file anytime.</p>
+
+<p><strong>Will the clips remain after refresh?</strong><br>No — for privacy reasons everything clears on page reload.</p>
+
+<p><strong>Does it work on mobile?</strong><br>Yes, fully responsive and mobile-friendly.</p>
+</div>
+
+<footer>
+© 2025 ❤️ I❤ImagePDF — 100% Client-Side & Secure |
+<a href="/about.html">About</a> | <a href="/privacy.html">Privacy Policy</a>
+</footer>
+
+</div>
+
+<script>
+let clips = [];
+
+function renderClips() {
+  const box = document.getElementById("clipsContainer");
+  box.innerHTML = "";
+
+  clips.forEach((text, index) => {
+    const div = document.createElement("div");
+    div.className = "clip-item";
+
+    div.innerHTML = `
+      <div class="clip-text">${text}</div>
+      <button class="blue" onclick="copyClip(${index})">Copy</button>
+      <button class="red" onclick="deleteClip(${index})">❌</button>
+    `;
+    box.appendChild(div);
+  });
+}
+
+function addClipboard() {
+  const text = document.getElementById("inputText").value.trim();
+  if (!text) return;
+
+  clips.unshift(text);
+  renderClips();
+  document.getElementById("inputText").value = "";
+}
+
+async function pasteFromClipboard() {
+  try {
+    let txt = await navigator.clipboard.readText();
+    document.getElementById("inputText").value = txt;
+  } catch (err) {
+    alert("Clipboard access blocked. Allow permissions.");
+  }
+}
+
+function copyClip(index) {
+  navigator.clipboard.writeText(clips[index]);
+  alert("Copied!");
+}
+
+function deleteClip(index) {
+  clips.splice(index, 1);
+  renderClips();
+}
+
+function clearAll() {
+  clips = [];
+  renderClips();
+}
+
+function exportTXT() {
+  let content = clips.join("\n\n------------------\n\n");
+  let blob = new Blob([content], { type: "text/plain" });
+
+  let url = URL.createObjectURL(blob);
+  let a = document.createElement("a");
+
+  a.href = url;
+  a.download = "clipboard.txt";
+  a.click();
+}
+</script>
+
+</body>
+</html>
