@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<title>PDF Metadata Viewer – View PDF Title, Author & Info | ❤️ I❤ImagePDF</title>
+
+<meta name="description" content="View PDF metadata instantly: title, author, subject, creator, keywords, creation date, version and more — 100% client-side, secure and offline.">
+<meta name="keywords" content="pdf metadata viewer, view pdf info, pdf metadata extractor, pdf title viewer, pdf author viewer, pdf info tool, pdf version viewer, offline pdf metadata, client side pdf analyzer, I❤ImagePDF pdf tools, secure metadata viewer, pdf inspector, pdf details viewer, read pdf metadata, online pdf metadata tool, privacy pdf info tool">
+
+<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/pdf-metadata-viewer.html" />
+<meta property="og:title" content="PDF Metadata Viewer – Free & Secure">
+<meta property="og:description" content="Extract full PDF metadata offline without uploading.">
+<meta property="og:image" content="https://secure-img-to-pdf.vercel.app/favicon.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- JSON-LD -->
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebApplication",
+ "name": "PDF Metadata Viewer",
+ "url": "https://secure-img-to-pdf.vercel.app/pdf-metadata-viewer.html",
+ "description": "View PDF metadata offline — title, author, subject, version, keywords & more.",
+ "applicationCategory": "UtilityApplication",
+ "operatingSystem": "All",
+ "provider": { "@type": "Organization", "name": "I❤ImagePDF" }
+}
+</script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+:root{--accent:#d9232e;--bg:#f6f8fb;--card:#fff;}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:"Inter",sans-serif;background:var(--bg);color:#222;line-height:1.6;}
+header{background:#fff;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 8px rgba(0,0,0,.05);position:sticky;top:0;z-index:20;}
+.logo{font-size:22px;font-weight:800;cursor:pointer;}
+.logo span{color:var(--accent);}
+
+.container{max-width:900px;margin:auto;padding:22px;}
+h1{text-align:center;font-size:28px;color:var(--accent);margin-bottom:10px;}
+p.intro{text-align:center;color:#555;margin-bottom:20px;}
+
+.tool-box{background:#fff;border:1px solid #eee;border-radius:16px;padding:25px;box-shadow:0 2px 8px rgba(0,0,0,.05);}
+#dropZone{border:2px dashed var(--accent);border-radius:16px;padding:40px;text-align:center;cursor:pointer;transition:.3s;background:#fff;}
+#dropZone:hover{background:#fff4f4;}
+#dropZone.dragover{background:#ffecec;border-color:#b31319;}
+.meta-box{margin-top:20px;background:#fafafa;border-radius:16px;padding:20px;border:1px solid #ddd;}
+.meta-box p strong{color:var(--accent);}
+
+footer{text-align:center;margin-top:25px;padding:18px;background:#fff;color:#555;font-size:14px;}
+a{color:#1677ff;text-decoration:none;}
+a:hover{text-decoration:underline;}
+</style>
+</head>
+
+<body>
+
+<header>
+ <div class="logo" onclick="location.href='/'">❤️ I❤ImagePDF</div>
+</header>
+
+<div class="container">
+<h1>PDF Metadata Viewer 📄🔍</h1>
+<p class="intro">View complete PDF metadata including title, author, subject, creator, keywords, version & more — fully offline and private.</p>
+
+<div class="tool-box">
+  <div id="dropZone">
+    <p><strong>📂 Drag & Drop PDF</strong><br>or click to select</p>
+    <input type="file" id="fileInput" accept="application/pdf" style="display:none;">
+  </div>
+
+  <div class="meta-box" id="metaBox" style="display:none;">
+    <h2 style="color:var(--accent);margin-bottom:10px;">PDF Metadata</h2>
+    <p><strong>File Name:</strong> <span id="fileName"></span></p>
+    <p><strong>File Size:</strong> <span id="fileSize"></span></p>
+    <p><strong>PDF Version:</strong> <span id="pdfVersion"></span></p>
+    <p><strong>Pages:</strong> <span id="pageCount"></span></p>
+    <hr style="margin:12px 0;">
+    <p><strong>Title:</strong> <span id="metaTitle"></span></p>
+    <p><strong>Author:</strong> <span id="metaAuthor"></span></p>
+    <p><strong>Subject:</strong> <span id="metaSubject"></span></p>
+    <p><strong>Creator:</strong> <span id="metaCreator"></span></p>
+    <p><strong>Producer:</strong> <span id="metaProducer"></span></p>
+    <p><strong>Creation Date:</strong> <span id="metaCreationDate"></span></p>
+    <p><strong>Modified Date:</strong> <span id="metaModDate"></span></p>
+    <p><strong>Keywords:</strong> <span id="metaKeywords"></span></p>
+  </div>
+</div>
+
+<footer>
+© 2025 ❤️ I❤ImagePDF — 100% Client-Side |
+<a href="/about.html">About</a> | <a href="/privacy.html">Privacy Policy</a>
+</footer>
+</div>
+
+<!-- PDF.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.10.111/pdf.min.js"></script>
+
+<script>
+const dropZone = document.getElementById("dropZone");
+const fileInput = document.getElementById("fileInput");
+const metaBox = document.getElementById("metaBox");
+
+// Drag Upload
+dropZone.addEventListener("click", ()=> fileInput.click());
+dropZone.addEventListener("dragover", e => { e.preventDefault(); dropZone.classList.add("dragover"); });
+dropZone.addEventListener("dragleave", ()=> dropZone.classList.remove("dragover"));
+dropZone.addEventListener("drop", e => {
+  e.preventDefault();
+  dropZone.classList.remove("dragover");
+  extractPDF(e.dataTransfer.files[0]);
+});
+fileInput.addEventListener("change", ()=> extractPDF(fileInput.files[0]));
+
+// Extract Metadata
+async function extractPDF(file){
+  if(!file || file.type !== "application/pdf") return alert("Upload a valid PDF file.");
+
+  const loadingTask = pdfjsLib.getDocument(await file.arrayBuffer());
+  const pdf = await loadingTask.promise;
+  const meta = await pdf.getMetadata().catch(()=>({info:{}}));
+
+  // Fill metadata
+  document.getElementById("fileName").textContent = file.name;
+  document.getElementById("fileSize").textContent = (file.size/1024/1024).toFixed(2)+" MB";
+  document.getElementById("pdfVersion").textContent = pdf.pdfInfo?.pdfFormatVersion || "Unknown";
+  document.getElementById("pageCount").textContent = pdf.numPages;
+
+  const info = meta.info || {};
+
+  document.getElementById("metaTitle").textContent = info.Title || "–";
+  document.getElementById("metaAuthor").textContent = info.Author || "–";
+  document.getElementById("metaSubject").textContent = info.Subject || "–";
+  document.getElementById("metaCreator").textContent = info.Creator || "–";
+  document.getElementById("metaProducer").textContent = info.Producer || "–";
+  document.getElementById("metaCreationDate").textContent = info.CreationDate || "–";
+  document.getElementById("metaModDate").textContent = info.ModDate || "–";
+  document.getElementById("metaKeywords").textContent = info.Keywords || "–";
+
+  metaBox.style.display = "block";
+}
+</script>
+
+</body>
+</html>
