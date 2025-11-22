@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>SIP Calculator – Calculate Mutual Fund SIP Returns | I❤ImagePDF</title>
+
+<meta name="description" content="Free online SIP calculator to calculate mutual fund returns. Enter monthly investment, expected return rate, and duration to get maturity value instantly. 100% client-side & private.">
+<meta name="keywords" content="sip calculator, mutual fund sip calculator, online sip calculator, sip maturity calculator, investment calculator, wealth calculator, sip return calculator, monthly sip calculator, finance tool, client side calculator">
+
+<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/sip-calculator.html">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root { --accent:#d9232e; --bg:#f6f8fb; }
+
+body {
+  margin:0;
+  background:var(--bg);
+  font-family:"Inter", sans-serif;
+}
+
+header {
+  background:#fff;
+  padding:15px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+
+.logo {
+  font-size:22px;
+  font-weight:800;
+  cursor:pointer;
+}
+.logo span { color:var(--accent); }
+
+.container {
+  max-width:900px;
+  margin:auto;
+  padding:20px;
+}
+
+.box {
+  background:#fff;
+  padding:25px;
+  border-radius:16px;
+  border:1px solid #eee;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+
+input {
+  width:100%;
+  padding:14px;
+  margin:10px 0;
+  border-radius:10px;
+  border:1px solid #ccc;
+  font-size:15px;
+}
+
+button {
+  padding:14px 20px;
+  border-radius:10px;
+  border:0;
+  cursor:pointer;
+  font-size:15px;
+  font-weight:600;
+  margin-top:10px;
+  background:#d9232e;
+  color:#fff;
+  width:100%;
+}
+
+.result-box {
+  background:#fff;
+  padding:20px;
+  margin-top:20px;
+  border-radius:14px;
+  border:1px solid #ddd;
+  text-align:center;
+  font-size:18px;
+}
+
+.section {
+  background:#fff;
+  padding:22px;
+  border-radius:14px;
+  margin-top:28px;
+  border:1px solid #eee;
+}
+.section h2 { color:var(--accent); }
+
+footer {
+  text-align:center;
+  padding:20px;
+  margin-top:35px;
+  background:#fff;
+  color:#555;
+}
+footer a {
+  color:#1677ff;
+  text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo" onclick="location.href='/'">❤️ I❤ImagePDF</div>
+</header>
+
+<div class="container">
+
+<h1 style="text-align:center;color:#d9232e;">SIP Calculator 📈</h1>
+<p style="text-align:center;color:#555;">Calculate your SIP returns instantly — private & offline</p>
+
+<div class="box">
+
+<label>Monthly SIP Amount (₹)</label>
+<input type="number" id="sipAmount" placeholder="e.g., 2000">
+
+<label>Expected Annual Return (%)</label>
+<input type="number" id="sipRate" placeholder="e.g., 12">
+
+<label>Investment Duration (Years)</label>
+<input type="number" id="sipYears" placeholder="e.g., 10">
+
+<button onclick="calculateSIP()">Calculate</button>
+
+<div id="result" class="result-box" style="display:none;"></div>
+
+</div>
+
+
+<!-- WHY CHOOSE -->
+<div class="section">
+<h2>Why Choose This SIP Calculator?</h2>
+<ul>
+  <li>100% client-side — no data upload.</li>
+  <li>Instant and accurate SIP projections.</li>
+  <li>Perfect for long-term wealth planning.</li>
+  <li>Simple UI — works on all devices.</li>
+  <li>Completely free and secure.</li>
+</ul>
+</div>
+
+<!-- SECURITY -->
+<div class="section">
+<h2>Your Security 🔐</h2>
+<p>This SIP calculator runs entirely in your browser. Your financial inputs never leave your device. No tracking, no storage — total privacy.</p>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="section">
+<h2>How It Works ⚙️</h2>
+<ol>
+  <li>Enter your monthly SIP amount.</li>
+  <li>Enter estimated return rate (like 10–15%).</li>
+  <li>Choose investment duration in years.</li>
+  <li>Click “Calculate” → SIP maturity value appears instantly.</li>
+</ol>
+</div>
+
+<!-- FAQs -->
+<div class="section">
+<h2>FAQs ❓</h2>
+
+<p><strong>Is this SIP calculator accurate?</strong><br>Yes, it uses the standard mutual fund SIP formula.</p>
+
+<p><strong>Does it store financial data?</strong><br>No, everything stays on your device.</p>
+
+<p><strong>What is SIP?</strong><br>SIP is Systematic Investment Plan for mutual funds.</p>
+
+<p><strong>What is compounding?</strong><br>Your returns earn returns over time — helping money grow faster.</p>
+</div>
+
+<footer>
+© 2025 ❤️ I❤ImagePDF — 100% Client-Side & Secure |
+<a href="/about.html">About</a> | <a href="/privacy.html">Privacy Policy</a>
+</footer>
+
+</div>
+
+<script>
+function calculateSIP() {
+  let amount = parseFloat(document.getElementById("sipAmount").value);
+  let rate = parseFloat(document.getElementById("sipRate").value);
+  let years = parseFloat(document.getElementById("sipYears").value);
+
+  if (!amount || !rate || !years) {
+    alert("Please enter all fields!");
+    return;
+  }
+
+  let months = years * 12;
+  let monthlyRate = rate / 12 / 100;
+
+  let maturity = amount * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) * (1 + monthlyRate);
+
+  document.getElementById("result").style.display = "block";
+  document.getElementById("result").innerHTML = `
+    <strong>Total Investment:</strong> ₹${(amount * months).toLocaleString()} <br><br>
+    <strong>Maturity Amount:</strong> ₹${maturity.toLocaleString()} <br><br>
+    <strong>Estimated Wealth Gain:</strong> ₹${(maturity - amount * months).toLocaleString()}
+  `;
+}
+</script>
+
+</body>
+</html>
