@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>ZIP Extractor — Free Online ZIP Unzip Tool | I❤ImagePDF</title>
+
+<meta name="description" content="Free ZIP extractor and unzip tool — extract ZIP files instantly in your browser. No upload, 100% offline, secure, fast. Download individual files or extract all.">
+<meta name="keywords" content="zip extractor, unzip online, zip opener, extract zip files, unzip tool, unzip without uploading, offline zip extractor, secure zip tool, zip file manager, unzip browser, jszip unzip tool">
+
+<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/zip-extractor.html">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root { --accent:#d9232e; --bg:#f6f8fb; }
+body { margin:0; background:var(--bg); font-family:"Inter", sans-serif; }
+
+header {
+  background:#fff; padding:15px 20px;
+  display:flex; align-items:center; justify-content:space-between;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+.logo { font-size:22px; font-weight:800; cursor:pointer; }
+.logo span { color:var(--accent); }
+
+.container { max-width:900px; margin:auto; padding:20px; }
+
+.drop-box {
+  background:#fff; padding:40px; border:2px dashed #ccc;
+  text-align:center; border-radius:16px; cursor:pointer; transition:.2s;
+}
+.drop-box:hover { border-color:var(--accent); transform:scale(1.01); }
+
+.file-list { margin-top:25px; }
+.file-item {
+  background:#fff; border:1px solid #ccc; padding:12px;
+  border-radius:10px; margin-bottom:10px; display:flex;
+  align-items:center; justify-content:space-between;
+}
+.btn {
+  padding:8px 14px; border-radius:8px; border:0;
+  color:#fff; font-weight:600; cursor:pointer;
+}
+.red { background:#d9232e; }
+.blue { background:#1677ff; }
+.green { background:#22aa55; }
+
+.section {
+  background:#fff; padding:22px; border-radius:16px;
+  border:1px solid #eee; margin-top:28px;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+.section h2 { color:var(--accent); }
+
+footer {
+  text-align:center; padding:20px; margin-top:35px;
+  background:#fff; color:#555;
+}
+footer a { color:#1677ff; text-decoration:none; }
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo" onclick="location.href='/'">❤️ I❤ImagePDF</div>
+</header>
+
+<div class="container">
+
+<h1 style="text-align:center;color:#d9232e;">ZIP Extractor — Unzip Files Instantly 📦</h1>
+<p style="text-align:center;color:#555;">Extract ZIP files securely in your browser — no upload, fully offline</p>
+
+<div class="drop-box" id="dropZone">
+  <h2>📁 Upload ZIP File</h2>
+  <p>Click or drag & drop ZIP</p>
+  <input type="file" id="fileInput" accept=".zip" style="display:none;">
+</div>
+
+<div id="fileList" class="file-list"></div>
+
+<button id="downloadAll" class="btn green" style="display:none; margin-top:20px;">
+  Download All as Folder
+</button>
+
+<!-- WHY CHOOSE -->
+<div class="section">
+  <h2>Why Choose This ZIP Extractor?</h2>
+  <ul>
+    <li>Extract ZIP files instantly — no waiting.</li>
+    <li>100% offline processing.</li>
+    <li>Download individual files easily.</li>
+    <li>Safe & private — nothing gets uploaded.</li>
+    <li>Fast unzip even for large ZIP archives.</li>
+  </ul>
+</div>
+
+<!-- SECURITY -->
+<div class="section">
+  <h2>Your Security 🔐</h2>
+  <p>This ZIP extractor works entirely offline. Your ZIP file and extracted data never leave your device — total privacy guaranteed.</p>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="section">
+  <h2>How It Works ⚙️</h2>
+  <ol>
+    <li>Upload or drag & drop your ZIP file.</li>
+    <li>Tool extracts all internal files instantly.</li>
+    <li>Download individual files or download all.</li>
+  </ol>
+</div>
+
+<!-- FAQ -->
+<div class="section">
+  <h2>FAQs ❓</h2>
+
+  <p><strong>Does it upload my ZIP online?</strong><br>No, everything is offline.</p>
+
+  <p><strong>Maximum file size?</strong><br>Depends on your RAM — usually up to 500MB.</p>
+
+  <p><strong>Supported file type?</strong><br>ZIP only.</p>
+
+  <p><strong>Will it extract images, PDFs, docs, videos?</strong><br>Yes, all formats inside ZIP are supported.</p>
+</div>
+
+<footer>
+  © 2025 ❤️ I❤ImagePDF |
+  <a href="/about.html">About</a> | <a href="/privacy.html">Privacy Policy</a>
+</footer>
+
+</div>
+
+
+<script>
+const dropZone = document.getElementById("dropZone");
+const fileInput = document.getElementById("fileInput");
+const fileList = document.getElementById("fileList");
+const downloadAllBtn = document.getElementById("downloadAll");
+
+dropZone.onclick = () => fileInput.click();
+
+dropZone.ondragover = e => {
+  e.preventDefault();
+  dropZone.style.borderColor = "#d9232e";
+};
+dropZone.ondragleave = () => dropZone.style.borderColor = "#ccc";
+
+dropZone.ondrop = e => {
+  e.preventDefault();
+  dropZone.style.borderColor = "#ccc";
+  handleZIP(e.dataTransfer.files[0]);
+};
+
+fileInput.onchange = () => handleZIP(fileInput.files[0]);
+
+async function handleZIP(file) {
+  if (!file) return;
+
+  const zip = new JSZip();
+  const zipData = await zip.loadAsync(file);
+
+  fileList.innerHTML = "";
+  downloadAllBtn.style.display = "block";
+
+  for (const fileName in zipData.files) {
+    const item = zipData.files[fileName];
+
+    if (!item.dir) {
+      const div = document.createElement("div");
+      div.className = "file-item";
+      div.innerHTML = `
+        <span>${fileName}</span>
+        <button class="btn blue" onclick="downloadFile('${fileName}')">Download</button>
+      `;
+      fileList.appendChild(div);
+    }
+  }
+}
+
+async function downloadFile(name) {
+  const zip = new JSZip();
+  const file = await zip.loadAsync(fileInput.files[0]);
+  const content = await file.files[name].async("blob");
+
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(content);
+  a.download = name;
+  a.click();
+}
+
+downloadAllBtn.onclick = async () => {
+  const zip = new JSZip();
+  const file = await zip.loadAsync(fileInput.files[0]);
+
+  const out = new JSZip();
+
+  for (const name in file.files) {
+    if (!file.files[name].dir) {
+      const content = await file.files[name].async("blob");
+      out.file(name, content);
+    }
+  }
+
+  const blob = await out.generateAsync({ type: "blob" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "extracted.zip";
+  a.click();
+};
+</script>
+
+</body>
+</html>
