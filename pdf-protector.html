@@ -2,10 +2,15 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>PDF Protector – Secure AES-256 Password Lock | I❤ImagePDF</title>
+<title>PDF Protector – Add Password to PDF | I❤ImagePDF</title>
+
+<meta name="description" content="Protect your PDF with a secure password using our 100% client-side PDF Protector. No uploads, no tracking — works fully offline and supports all PDF types.">
+<meta name="keywords" content="pdf protector, lock pdf, secure pdf, pdf password, pdf encryption, protect pdf offline, client side pdf tool, aes pdf lock, safe pdf locker, ilovepdf alternative">
+
+<link rel="canonical" href="https://secure-img-to-pdf.vercel.app/pdf-protector.html" />
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
@@ -16,21 +21,22 @@ header{background:#fff;padding:15px 20px;display:flex;align-items:center;justify
 box-shadow:0 2px 8px rgba(0,0,0,.05);}
 .logo{font-size:22px;font-weight:800;cursor:pointer;}
 .logo span{color:var(--accent);}
+
 .container{max-width:850px;margin:auto;padding:20px;}
 
 .drop-area{
-background:#fff;border:2px dashed #ccc;border-radius:16px;padding:40px;text-align:center;
-cursor:pointer;transition:.2s;}
+background:#fff;border:2px dashed #ccc;border-radius:16px;padding:40px;
+text-align:center;cursor:pointer;transition:0.2s;}
 .drop-area:hover{border-color:var(--accent);}
-.drop-area p{color:#555;}
+.drop-area p{color:#444;}
 
 input[type="password"]{
-width:100%;padding:14px;margin-top:14px;border:1px solid #ccc;border-radius:10px;
+width:100%;padding:14px;margin-top:14px;border:1px solid #ccc;border-radius:10px;font-size:15px;
 }
 
 button{
 background:var(--accent);color:#fff;padding:15px;border-radius:10px;width:100%;
-margin-top:15px;border:0;cursor:pointer;font-size:16px;
+border:0;font-size:16px;margin-top:14px;cursor:pointer;font-weight:600;
 }
 
 .result-box{
@@ -38,9 +44,9 @@ background:#fff;padding:20px;border:1px solid #ddd;border-radius:14px;
 margin-top:20px;text-align:center;display:none;
 }
 
-.section{background:#fff;padding:22px;border-radius:14px;margin-top:24px;border:1px solid #eee;}
+.section{background:#fff;padding:22px;border-radius:14px;margin-top:28px;border:1px solid #eee;}
 .section h2{color:var(--accent);}
-.section p,li{color:#444;}
+.section p, li{color:#444;line-height:1.6;}
 
 footer{margin-top:40px;padding:20px;background:#fff;text-align:center;color:#555;}
 footer a{color:#1677ff;text-decoration:none;}
@@ -51,118 +57,135 @@ footer a{color:#1677ff;text-decoration:none;}
 <body>
 
 <header>
-  <div class="logo" onclick="location.href='/'">❤️ I❤ImagePDF</div>
+ <div class="logo" onclick="location.href='/'">❤️ I❤ImagePDF</div>
 </header>
 
 <div class="container">
 
 <h1 style="text-align:center;color:#d9232e;">PDF Protector 🔒</h1>
-<p style="text-align:center;color:#666;">Add strong AES-256 password encryption — 100% offline.</p>
+<p style="text-align:center;color:#555;">Protect any PDF with a strong password — fully offline & secure.</p>
 
+<!-- UPLOAD -->
 <div class="drop-area" id="dropArea">
-  <input type="file" id="fileInput" hidden accept="application/pdf">
-  <p>📄 Drag & drop PDF or click to choose</p>
+  <input type="file" hidden id="fileInput" accept="application/pdf">
+  <p>📄 Drag & drop or click to select PDF</p>
 </div>
 
 <input type="password" id="password" placeholder="Enter password">
 
 <button onclick="protectPDF()">Protect PDF</button>
 
+<!-- RESULT -->
 <div class="result-box" id="resultBox">
-  <h3>🔐 Protected Successfully!</h3>
+  <h3>🔐 PDF Protected Successfully!</h3>
   <a id="downloadBtn" download="protected.pdf">
     <button style="background:#28a745">Download Protected PDF</button>
   </a>
 </div>
 
 
-<!-- WHY CHOOSE -->
+<!-- WHY CHOOSE US -->
 <div class="section">
-<h2>Why Choose This PDF Protector?</h2>
+<h2>Why Choose Our PDF Protector?</h2>
 <ul>
-<li>Military-grade AES-256 encryption</li>
-<li>Compatible with ALL PDFs (scanned, signed, WhatsApp, online forms)</li>
-<li>Runs fully offline in your browser</li>
-<li>No upload, no tracking, 100% privacy</li>
-<li>Fastest and most stable encryption</li>
+<li>100% client-side — no upload, no tracking</li>
+<li>Works on all PDFs: scanned, signed, fillable, WhatsApp PDFs</li>
+<li>Compatible with Android, iOS, Windows & macOS</li>
+<li>Fastest processing — encrypts in seconds</li>
+<li>Free forever with no limits</li>
 </ul>
 </div>
 
 <!-- SECURITY -->
 <div class="section">
 <h2>Security & Privacy</h2>
-<p>This tool never uploads your PDFs. AES-256 client-side encryption ensures your confidential files remain safe on your device.</p>
+<p>
+Your PDF never leaves your device. This tool runs fully offline in your browser,
+ensuring complete privacy. Perfect for business, legal, school or confidential documents.
+</p>
 </div>
 
 <!-- HOW IT WORKS -->
 <div class="section">
 <h2>How It Works</h2>
 <ol>
-<li>Upload your PDF</li>
+<li>Select any PDF</li>
 <li>Enter a password</li>
 <li>Click “Protect PDF”</li>
-<li>Download encrypted PDF instantly</li>
+<li>A new password-protected PDF will download instantly</li>
 </ol>
 </div>
 
-<!-- FAQ -->
+<!-- FAQs -->
 <div class="section">
-<h2>FAQs</h2>
+<h2>Frequently Asked Questions</h2>
 
-<p><strong>Does this tool upload my PDF?</strong><br>No, everything stays on your device.</p>
+<p><strong>Does this actually lock the PDF?</strong><br>
+Yes — it generates a new protected PDF that requires a password to open.</p>
 
-<p><strong>Does it work on mobile?</strong><br>Yes, Android & iPhone both.</p>
+<p><strong>Is it safe?</strong><br>
+100% secure. No files are uploaded.</p>
 
-<p><strong>Can I unlock the PDF later?</strong><br>Yes, use our PDF Unlocker tool.</p>
+<p><strong>Does it work on mobile?</strong><br>Yes, works flawlessly on Android & iPhone.</p>
+
+<p><strong>Can I unlock the PDF later?</strong><br>
+Yes, use our PDF Unlocker tool.</p>
+
+<p><strong>Is it free?</strong><br>
+Yes, completely free with no limits.</p>
 
 </div>
 
 </div>
 
-
-<!-- CryptoJS AES -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+<!-- PDF-LIB -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
 
 <script>
-let fileData = null;
+let selectedFile = null;
 
 const dropArea = document.getElementById("dropArea");
 const fileInput = document.getElementById("fileInput");
 
 dropArea.onclick = () => fileInput.click();
-fileInput.onchange = e => loadFile(e.target.files[0]);
+fileInput.onchange = e => setFile(e.target.files[0]);
 
-dropArea.addEventListener("dragover", e => { e.preventDefault(); dropArea.style.borderColor = "#d9232e"; });
-dropArea.addEventListener("dragleave", () => dropArea.style.borderColor = "#ccc");
-dropArea.addEventListener("drop", e => { e.preventDefault(); loadFile(e.dataTransfer.files[0]); });
+dropArea.addEventListener("dragover", e => {e.preventDefault(); dropArea.style.borderColor="#d9232e";});
+dropArea.addEventListener("dragleave", () => dropArea.style.borderColor="#ccc");
+dropArea.addEventListener("drop", e => {e.preventDefault(); setFile(e.dataTransfer.files[0]);});
 
-function loadFile(file){
-  if(file.type !== "application/pdf"){
-    alert("Please select a valid PDF");
-    return;
-  }
-  const reader = new FileReader();
-  reader.onload = () => fileData = reader.result;
-  reader.readAsDataURL(file);
-  dropArea.innerHTML = `<p>📄 Selected: <b>${file.name}</b></p>`;
+function setFile(file){
+    if(file.type !== "application/pdf"){ alert("Please upload a valid PDF"); return; }
+    selectedFile = file;
+    dropArea.innerHTML = `<p>📄 Selected: <b>${file.name}</b></p>`;
 }
 
-function protectPDF(){
-  if(!fileData){ alert("Please select a PDF"); return; }
-  let pw = document.getElementById("password").value.trim();
-  if(!pw){ alert("Enter password"); return; }
+async function protectPDF(){
+    if(!selectedFile){ alert("Please select a PDF"); return; }
+    const password = document.getElementById("password").value.trim();
+    if(!password){ alert("Enter a password"); return; }
 
-  let encrypted = CryptoJS.AES.encrypt(fileData, pw).toString();
-  let blob = new Blob([encrypted], {type:"application/octet-stream"});
-  let url = URL.createObjectURL(blob);
+    const bytes = await selectedFile.arrayBuffer();
+    const pdfDoc = await PDFLib.PDFDocument.load(bytes);
 
-  document.getElementById("downloadBtn").href = url;
-  document.getElementById("resultBox").style.display = "block";
+    pdfDoc.encrypt({
+        userPassword: password,
+        ownerPassword: password,
+        permissions:{ printing:"lowResolution" },
+        algorithm: PDFLib.EncryptionAlgorithms.AES256
+    });
+
+    const newPdfBytes = await pdfDoc.save();
+    const blob = new Blob([newPdfBytes], {type:"application/pdf"});
+    const url = URL.createObjectURL(blob);
+
+    document.getElementById("downloadBtn").href = url;
+    document.getElementById("resultBox").style.display = "block";
 }
 </script>
 
 <footer>
-© 2025 ❤️ I❤ImagePDF — 100% Client-Side |
+© 2025 ❤️ I❤ImagePDF — Fully Client-Side Tools |
 <a href="/about.html">About</a> | <a href="/privacy.html">Privacy</a>
 </footer>
 
