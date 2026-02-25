@@ -5,219 +5,141 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>I❤ImagePDF — Free PDF & Image Tools (100% Client-Side)</title>
 
-<!-- 🔥 Strong SEO -->
 <meta name="description" content="Free PDF & Image Tools — JPG to PDF, Merge PDF, Split PDF, Compress PDF, Background Remover, Image Resizer, Finance Calculators & more. 100% client-side, secure, no upload." />
-<meta name="keywords" content="pdf tools,image tools,online pdf converter,jpg to pdf,merge pdf,split pdf,compress pdf,background remover,image compressor,finance calculators,free tools,client side tools,privacy tools,ocr,image to text,pdf unlocker,pdf protector,pdf watermark remover,pdf rotator,ai upscale,photo enhancer,qr generator,word counter,image cropper,image resizer,heic to jpg,base64 converter,case converter,secure pdf tools,no upload tools,offline pdf tools,instant converter,fast pdf tools,mobile pdf tools" />
-
-<meta property="og:title" content="I❤ImagePDF — Free PDF & Image Tools" />
-<meta property="og:description" content="45+ free PDF, Image, Finance & Utility tools. No upload, 100% client-side, private & secure." />
-<meta property="og:type" content="website" />
-
-<!-- JSON-LD Schema -->
-<script type="application/ld+json">
-{
- "@context": "https://schema.org",
- "@type": "WebSite",
- "name": "I❤ImagePDF",
- "url": "https://secure-img-to-pdf.vercel.app",
- "description": "50+ client-side PDF, Image, Finance & Utility tools.",
- "publisher": { "@type": "Organization", "name": "I❤ImagePDF" }
-}
-</script>
+<meta name="keywords" content="pdf tools,image tools,online pdf converter,jpg to pdf,merge pdf,split pdf,compress pdf,background remover,image compressor,finance calculators,free tools,client side tools,privacy tools" />
 
 <style>
-body {
-    font-family: Arial, sans-serif;
-    background: #ffffff;
-    margin: 0;
-    padding: 0;
-    color: #222;
-}
-header {
-    text-align: center;
-    padding: 25px 10px;
-    background: #fff;
-    border-bottom: 1px solid #eee;
-}
-h1 {
-    font-size: 32px;
-    margin: 0;
-}
-.container {
-    width: 95%;
-    max-width: 1100px;
-    margin: auto;
-}
-.section-title {
-    font-size: 24px;
-    margin-top: 40px;
-}
-.tools-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 14px;
-}
-.tool-box {
-    padding: 14px;
-    background: #fafafa;
-    border-radius: 10px;
-    text-align: center;
-    border: 1px solid #eee;
-    font-size: 16px;
-}
-.tool-box:hover {
-    background: #f0f0f0;
-    cursor: pointer;
-}
-footer {
-    text-align: center;
-    margin: 30px 0;
-    padding: 20px;
-    border-top: 1px solid #eee;
-}
-a {
-    text-decoration: none;
-    color: inherit;
-}
-</style>
+body{font-family:Arial,sans-serif;background:#fff;margin:0;color:#222}
+header{text-align:center;padding:25px 10px;border-bottom:1px solid #eee}
+h1{font-size:32px;margin:0}
+.container{width:95%;max-width:1100px;margin:auto}
+.section-title{font-size:24px;margin-top:40px}
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
+.tool-box{padding:14px;background:#fafafa;border-radius:10px;text-align:center;border:1px solid #eee}
+.tool-box:hover{background:#f0f0f0;cursor:pointer}
+footer{text-align:center;margin:30px 0;padding:20px;border-top:1px solid #eee}
+a{text-decoration:none;color:inherit}
 
+/* login modal */
+#loginModal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:9999;align-items:center;justify-content:center}
+#loginBox{background:#fff;padding:20px;width:90%;max-width:360px;border-radius:12px}
+#loginBox input{width:100%;padding:10px;margin-bottom:10px}
+#loginBox button{width:100%;padding:10px;margin-bottom:6px}
+</style>
 </head>
+
 <body>
 
 <header>
-    <h1>❤️ I❤ImagePDF</h1>
-    <p>All-in-One PDF, Image, Finance & Utility Tools — 100% Client-Side, Free & Secure ⚡</p>
+<h1>❤️ I❤ImagePDF</h1>
+<p>All-in-One PDF, Image, Finance & Utility Tools — 100% Client-Side, Free & Secure ⚡</p>
+
+<button id="loginBtn" onclick="openLogin()" style="
+margin-top:10px;
+padding:8px 16px;
+border-radius:20px;
+border:1px solid #ddd;
+background:#fff;
+cursor:pointer">
+Login
+</button>
 </header>
 
 <div class="container">
 
-<!-- ⭐ PDF TOOLS -->
 <h2 class="section-title">📄 PDF Tools</h2>
 <div class="tools-grid">
-
 <a href="jpg-to-pdf.html"><div class="tool-box">📄 JPG to PDF</div></a>
 <a href="merge-pdf.html"><div class="tool-box">📚 Merge PDF</div></a>
 <a href="split-pdf.html"><div class="tool-box">✂️ Split PDF</div></a>
 <a href="compress-pdf.html"><div class="tool-box">💾 Compress PDF</div></a>
 <a href="pdf-to-jpg.html"><div class="tool-box">🖼️ PDF to JPG</div></a>
-<a href="esign-pdf.html"><div class="tool-box">🖋️ eSign PDF</div></a>
-<a href="pdf-unlocker.html"><div class="tool-box">🔓 PDF Unlocker</div></a>
-<a href="pdf-protector.html"><div class="tool-box">🔐 PDF Protector</div></a>
-<a href="pdf-watermark-remover.html"><div class="tool-box">💧 Watermark Remover</div></a>
-<a href="pdf-rotator.html"><div class="tool-box">🔄 PDF Rotator</div></a>
-
-<!-- 10 NEW PDF TOOLS -->
-<a href="pdf-page-numberer.html"><div class="tool-box">📑 PDF Page Numberer</div></a>
-<a href="pdf-editor.html"><div class="tool-box">📝 PDF Editor (Client-side)</div></a>
-<a href="pdf-metadata-viewer.html"><div class="tool-box">🔍 PDF Metadata Viewer</div></a>
-<a href="extract-pdf-images.html"><div class="tool-box">📥 Extract PDF Images</div></a>
-<a href="fill-pdf-form.html"><div class="tool-box">✏️ Fill PDF Forms</div></a>
-<a href="pdf-bookmark-manager.html"><div class="tool-box">📌 PDF Bookmark Manager</div></a>
-<a href="pdf-ocr-extract.html"><div class="tool-box">🧾 PDF OCR Extract</div></a>
-<a href="pdf-shrinker-ultra.html"><div class="tool-box">📤 PDF Shrinker Ultra</div></a>
-<a href="combine-images-to-pdf.html"><div class="tool-box">📚 Combine Images to PDF</div></a>
-<a href="pdf-reorder-pages.html"><div class="tool-box">🔁 PDF Reorder Pages</div></a>
-
 </div>
 
-<!-- ⭐ IMAGE TOOLS -->
 <h2 class="section-title">🖼️ Image Tools</h2>
 <div class="tools-grid">
-
 <a href="image-compressor.html"><div class="tool-box">🗜️ Image Compressor</div></a>
 <a href="image-resizer.html"><div class="tool-box">📏 Image Resizer</div></a>
 <a href="background-remover.html"><div class="tool-box">🧹 Background Remover</div></a>
-<a href="ai-image-scaler.html"><div class="tool-box">🪄 AI Upscaler</div></a>
-<a href="photo-enhancer.html"><div class="tool-box">✨ Photo Enhancer</div></a>
-<a href="image-cropper.html"><div class="tool-box">✂️ Image Cropper</div></a>
-<a href="image-color-picker.html"><div class="tool-box">🎨 Color Picker</div></a>
-<a href="image-to-text.html"><div class="tool-box">🔤 Image to Text (OCR)</div></a>
-<a href="heic-to-jpg.html"><div class="tool-box">📷 HEIC to JPG</div></a>
-<a href="meme-generator.html"><div class="tool-box">🤣 Meme Generator</div></a>
-
 </div>
 
-<!-- ⭐ FINANCE TOOLS (Emoji Icons) -->
 <h2 class="section-title">💰 Finance Tools</h2>
 <div class="tools-grid">
-
 <a href="sip-calculator.html"><div class="tool-box">💵 SIP Calculator</div></a>
-<a href="loan-emi-calculator.html"><div class="tool-box">📉 Loan EMI Calculator</div></a>
-<a href="compound-interest-calculator.html"><div class="tool-box">📈 Compound Interest</div></a>
-<a href="credit-card-payoff-calculator.html"><div class="tool-box">💳 Credit Card Payoff</div></a>
-<a href="fd-calculator.html"><div class="tool-box">🏦 Fixed Deposit</div></a>
-<a href="investment-return-calculator.html"><div class="tool-box">📊 Investment Return</div></a>
-<a href="#"><div class="tool-box">💱 Currency Converter</div></a>
-<a href="#"><div class="tool-box">📉 Inflation Calculator</div></a>
-<a href="#"><div class="tool-box">📆 Retirement Planner</div></a>
-<a href="#"><div class="tool-box">💼 Business Profit Calc</div></a>
-
-<a href="#"><div class="tool-box">📉 Break-even Calc</div></a>
-<a href="#"><div class="tool-box">📘 Tax Estimator</div></a>
-<a href="#"><div class="tool-box">💲 VAT/GST Calculator</div></a>
-<a href="#"><div class="tool-box">📈 ROI Calculator</div></a>
-<a href="#"><div class="tool-box">💱 Gold Price Converter</div></a>
-
-<!-- More (Total 25) -->
-<a href="#"><div class="tool-box">💹 Stock Profit Calc</div></a>
-<a href="#"><div class="tool-box">💵 Savings Planner</div></a>
-<a href="#"><div class="tool-box">📉 Debt Calculator</div></a>
-<a href="#"><div class="tool-box">📊 Portfolio Tracker</div></a>
-<a href="#"><div class="tool-box">📉 CAGR Calculator</div></a>
-
+<a href="loan-emi-calculator.html"><div class="tool-box">📉 Loan EMI</div></a>
 </div>
-
-<!-- ⭐ UTILITY TOOLS -->
-<h2 class="section-title">🛠️ Utility Tools</h2>
-<div class="tools-grid">
-
-<a href="qr-code-generator.html"><div class="tool-box">🔳 QR Generator</div></a>
-<a href="word-counter.html"><div class="tool-box">📝 Word Counter</div></a>
-<a href="base64-converter.html"><div class="tool-box">🔤 Base64 Converter</div></a>
-<a href="case-converter.html"><div class="tool-box">🔠 Case Converter</div></a>
-<a href="zip-extractor.html"><div class="tool-box">📁 ZIP Extractor (Offline)</div></a>
-<a href="json-formatter.html"><div class="tool-box">🧮 JSON Formatter</div></a>
-<a href="file-renamer.html"><div class="tool-box">📦 File Renamer</div></a>
-<a href="screen-recorder.html"><div class="tool-box">🖥️ Screen Recorder</div></a>
-<a href="stopwatch.html"><div class="tool-box">⏱️ Stopwatch</div></a>
-<a href="clipboard-manager.html"><div class="tool-box">📌 Clipboard Manager</div></a>
-
-</div>
-
-<!-- ⭐ WHY CHOOSE US -->
-<h2 class="section-title">Why Choose I❤ImagePDF?</h2>
-<p>
-- 100% client-side — your files never leave your device.<br>
-- Ultra-fast, lightweight & privacy-first.<br>
-- Completely free with no login required.<br>
-- Supports all major file types (PDF, JPG, PNG, WEBP).<br>
-- Mobile-friendly interface for Android & iOS.<br>
-</p>
-
-<!-- ⭐ Security Section -->
-<h2 class="section-title">Security 🔒</h2>
-<p>
-- All tools run 100% locally in your browser.<br>
-- No uploads, no tracking, no analytics.<br>
-- Your files never leave your device.<br>
-- Works offline after first load.<br>
-</p>
-
-<!-- ⭐ FAQ -->
-<h2 class="section-title">Frequently Asked Questions ❓</h2>
-<p>
-<b>Are my files uploaded?</b> No. Everything stays on your device.<br><br>
-<b>Is it free?</b> Yes, forever.<br><br>
-<b>Do I need to sign up?</b> No account required.<br><br>
-<b>Which browsers are supported?</b> Chrome, Edge, Safari, Firefox, Brave.<br>
-</p>
 
 <footer>
-    © 2025 ❤️ I❤ImagePDF — 100% Client-Side & Secure |
-    <a href="about.html">About</a> | 
-    <a href="privacy.html">Privacy</a>
+© 2025 ❤️ I❤ImagePDF |
+<a href="about.html">About</a> |
+<a href="privacy.html">Privacy</a>
 </footer>
-
 </div>
+
+<!-- LOGIN MODAL -->
+<div id="loginModal">
+<div id="loginBox">
+<h3>Login / Sign Up</h3>
+
+<input id="email" placeholder="Email">
+<input id="password" type="password" placeholder="Password">
+
+<button onclick="login()">Login</button>
+<button onclick="signup()">Sign Up</button>
+<button onclick="googleLogin()">Continue with Google</button>
+
+<button onclick="closeLogin()" style="background:none;border:none;color:#555">Cancel</button>
+</div>
+</div>
+
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+    apiKey: "AIzaSyDFUARoeNmn0CDxFGtL7N0xhDHMntDh2MU",
+    authDomain: "prompt-book-studio.firebaseapp.com",
+    projectId: "prompt-book-studio",
+    storageBucket: "prompt-book-studio.firebasestorage.app",
+    messagingSenderId: "1030470791261",
+    appId: "1:1030470791261:web:62a1a6c2644781edafddb4",
+    measurementId: "G-HLYLJGMSWK"
+  };
+firebase.initializeApp(firebaseConfig);
+const auth=firebase.auth();
+
+function openLogin(){loginModal.style.display="flex"}
+function closeLogin(){loginModal.style.display="none"}
+
+function login(){
+auth.signInWithEmailAndPassword(email.value,password.value)
+.then(closeLogin)
+.catch(e=>alert(e.message))
+}
+
+function signup(){
+auth.createUserWithEmailAndPassword(email.value,password.value)
+.then(()=>alert("Account created"))
+.catch(e=>alert(e.message))
+}
+
+function googleLogin(){
+auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+.then(closeLogin)
+.catch(e=>alert(e.message))
+}
+
+auth.onAuthStateChanged(u=>{
+if(u){
+loginBtn.innerText=u.email
+loginBtn.onclick=()=>auth.signOut()
+}else{
+loginBtn.innerText="Login"
+loginBtn.onclick=openLogin
+}
+})
+</script>
+
 </body>
 </html>
