@@ -109,74 +109,81 @@ Cancel
 </div>
 
 <!-- FIREBASE -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-
 <script>
 /* FIREBASE CONFIG */
 const firebaseConfig={
-apiKey:"AIzaSyDFUARoeNmn0CDxFGtL7N0xhDHMntDh2MU",
-authDomain:"prompt-book-studio.firebaseapp.com",
-projectId:"prompt-book-studio",
-storageBucket:"prompt-book-studio.firebasestorage.app",
-messagingSenderId:"1030470791261",
-appId:"1:1030470791261:web:62a1a6c2644781edafddb4"
+  apiKey:"AIzaSyDFUARoeNmn0CDxFGtL7N0xhDHMntDh2MU",
+  authDomain:"prompt-book-studio.firebaseapp.com",
+  projectId:"prompt-book-studio",
+  storageBucket:"prompt-book-studio.firebasestorage.app",
+  messagingSenderId:"1030470791261",
+  appId:"1:1030470791261:web:62a1a6c2644781edafddb4"
 };
 firebase.initializeApp(firebaseConfig);
 
-const auth=firebase.auth();
-const provider=new firebase.auth.GoogleAuthProvider();
+const auth = firebase.auth();
+const provider = new firebase.auth.GoogleAuthProvider();
 
-/* UI */
-function openLogin(){loginModal.style.display="flex"}
-function closeLogin(){loginModal.style.display="none"}
+/* UI helpers */
+function openLogin(){ loginModal.style.display="flex"; }
+function closeLogin(){ loginModal.style.display="none"; }
+
+/* LOCK / UNLOCK */
+function lockSite(){
+  content.classList.add("locked");
+  loginBtn.innerText = "Login";
+  loginBtn.onclick = openLogin;
+}
+
+function unlockSite(user){
+  content.classList.remove("locked");
+  loginBtn.innerText = user.email;   // 🔥 EMAIL SHOW
+  loginBtn.onclick = ()=>auth.signOut();
+  closeLogin();
+}
 
 /* EMAIL LOGIN */
 function login(){
-auth.signInWithEmailAndPassword(email.value,password.value)
-.catch(e=>alert(e.message));
+  auth.signInWithEmailAndPassword(email.value,password.value)
+  .catch(e=>alert(e.message));
 }
 
 /* SIGNUP */
 function signup(){
-auth.createUserWithEmailAndPassword(email.value,password.value)
-.then(()=>alert("Account created"))
-.catch(e=>alert(e.message));
+  auth.createUserWithEmailAndPassword(email.value,password.value)
+  .catch(e=>alert(e.message));
 }
 
 /* GOOGLE LOGIN */
 function googleLogin(){
-const isMobile=/Android|iPhone|iPad/i.test(navigator.userAgent);
-if(isMobile){
-auth.signInWithRedirect(provider);
-}else{
-auth.signInWithPopup(provider)
-.catch(e=>alert(e.message));
-}
+  const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
+  if(isMobile){
+    auth.signInWithRedirect(provider);
+  }else{
+    auth.signInWithPopup(provider).catch(e=>alert(e.message));
+  }
 }
 
-/* 🔥 IMPORTANT: HANDLE REDIRECT RESULT */
+/* 🔥 HANDLE REDIRECT RESULT (MANDATORY) */
 auth.getRedirectResult()
 .then(result=>{
-if(result.user){
-console.log("Google login success:",result.user.email);
-}
+  if(result.user){
+    unlockSite(result.user);
+  }
 })
-.catch(e=>console.error(e.message));
+.catch(()=>{});
 
-/* AUTH STATE (FINAL AUTHORITY) */
+/* 🔥 SINGLE SOURCE OF TRUTH */
 auth.onAuthStateChanged(user=>{
-if(user){
-content.classList.remove("locked");
-loginBtn.innerText="Logout";
-loginBtn.onclick=()=>auth.signOut();
-closeLogin();
-}else{
-content.classList.add("locked");
-loginBtn.innerText="Login";
-loginBtn.onclick=openLogin;
-}
+  if(user){
+    unlockSite(user);
+  }else{
+    lockSite();
+  }
 });
+
+/* INITIAL STATE */
+lockSite();
 </script>
 
 </body>
