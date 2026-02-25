@@ -1,12 +1,11 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>I❤ImagePDF — Free PDF & Image Tools (100% Client-Side)</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I❤ImagePDF — Free PDF & Image Tools</title>
 
-<meta name="description" content="Free PDF & Image Tools — JPG to PDF, Merge PDF, Split PDF, Compress PDF, Background Remover, Image Resizer, Finance Calculators & more. 100% client-side, secure, no upload." />
-<meta name="keywords" content="pdf tools,image tools,online pdf converter,jpg to pdf,merge pdf,split pdf,compress pdf,background remover,image compressor,finance calculators,free tools,client side tools,privacy tools" />
+<meta name="description" content="Free PDF & Image Tools — 100% client-side">
 
 <style>
 body{font-family:Arial,sans-serif;background:#fff;margin:0;color:#222}
@@ -20,11 +19,27 @@ h1{font-size:32px;margin:0}
 footer{text-align:center;margin:30px 0;padding:20px;border-top:1px solid #eee}
 a{text-decoration:none;color:inherit}
 
-/* login modal */
-#loginModal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:9999;align-items:center;justify-content:center}
-#loginBox{background:#fff;padding:20px;width:90%;max-width:360px;border-radius:12px}
+/* LOGIN MODAL */
+#loginModal{
+display:none;position:fixed;inset:0;
+background:rgba(0,0,0,.4);
+z-index:9999;
+align-items:center;justify-content:center
+}
+#loginBox{
+background:#fff;padding:20px;
+width:90%;max-width:360px;
+border-radius:12px
+}
 #loginBox input{width:100%;padding:10px;margin-bottom:10px}
-#loginBox button{width:100%;padding:10px;margin-bottom:6px}
+#loginBox button{width:100%;padding:10px;margin-bottom:8px}
+
+/* LOCK */
+.locked{
+pointer-events:none;
+opacity:.4;
+filter:blur(1px);
+}
 </style>
 </head>
 
@@ -32,9 +47,9 @@ a{text-decoration:none;color:inherit}
 
 <header>
 <h1>❤️ I❤ImagePDF</h1>
-<p>All-in-One PDF, Image, Finance & Utility Tools — 100% Client-Side, Free & Secure ⚡</p>
+<p>All-in-One PDF, Image, Finance & Utility Tools</p>
 
-<button id="loginBtn" onclick="openLogin()" style="
+<button id="loginBtn" style="
 margin-top:10px;
 padding:8px 16px;
 border-radius:20px;
@@ -45,7 +60,7 @@ Login
 </button>
 </header>
 
-<div class="container">
+<div class="container locked" id="content">
 
 <h2 class="section-title">📄 PDF Tools</h2>
 <div class="tools-grid">
@@ -53,7 +68,6 @@ Login
 <a href="merge-pdf.html"><div class="tool-box">📚 Merge PDF</div></a>
 <a href="split-pdf.html"><div class="tool-box">✂️ Split PDF</div></a>
 <a href="compress-pdf.html"><div class="tool-box">💾 Compress PDF</div></a>
-<a href="pdf-to-jpg.html"><div class="tool-box">🖼️ PDF to JPG</div></a>
 </div>
 
 <h2 class="section-title">🖼️ Image Tools</h2>
@@ -88,7 +102,9 @@ Login
 <button onclick="signup()">Sign Up</button>
 <button onclick="googleLogin()">Continue with Google</button>
 
-<button onclick="closeLogin()" style="background:none;border:none;color:#555">Cancel</button>
+<button onclick="closeLogin()" style="background:none;border:none;color:#555">
+Cancel
+</button>
 </div>
 </div>
 
@@ -97,48 +113,66 @@ Login
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 
 <script>
-const firebaseConfig = {
-    apiKey: "AIzaSyDFUARoeNmn0CDxFGtL7N0xhDHMntDh2MU",
-    authDomain: "prompt-book-studio.firebaseapp.com",
-    projectId: "prompt-book-studio",
-    storageBucket: "prompt-book-studio.firebasestorage.app",
-    messagingSenderId: "1030470791261",
-    appId: "1:1030470791261:web:62a1a6c2644781edafddb4",
-    measurementId: "G-HLYLJGMSWK"
-  };
+const firebaseConfig={
+apiKey:"AIzaSyDFUARoeNmn0CDxFGtL7N0xhDHMntDh2MU",
+authDomain:"prompt-book-studio.firebaseapp.com",
+projectId:"prompt-book-studio",
+storageBucket:"prompt-book-studio.firebasestorage.app",
+messagingSenderId:"1030470791261",
+appId:"1:1030470791261:web:62a1a6c2644781edafddb4"
+};
+
 firebase.initializeApp(firebaseConfig);
 const auth=firebase.auth();
+const provider=new firebase.auth.GoogleAuthProvider();
 
+/* UI */
 function openLogin(){loginModal.style.display="flex"}
 function closeLogin(){loginModal.style.display="none"}
 
+/* EMAIL LOGIN */
 function login(){
 auth.signInWithEmailAndPassword(email.value,password.value)
 .then(closeLogin)
 .catch(e=>alert(e.message))
 }
 
+/* SIGNUP */
 function signup(){
 auth.createUserWithEmailAndPassword(email.value,password.value)
-.then(()=>alert("Account created"))
+.then(()=>alert("Account Created"))
 .catch(e=>alert(e.message))
 }
 
+/* GOOGLE LOGIN (FIXED) */
 function googleLogin(){
-auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+const isMobile=/Android|iPhone|iPad/i.test(navigator.userAgent);
+if(isMobile){
+auth.signInWithRedirect(provider);
+}else{
+auth.signInWithPopup(provider)
 .then(closeLogin)
 .catch(e=>alert(e.message))
 }
-
-auth.onAuthStateChanged(u=>{
-if(u){
-loginBtn.innerText=u.email
-loginBtn.onclick=()=>auth.signOut()
-}else{
-loginBtn.innerText="Login"
-loginBtn.onclick=openLogin
 }
-})
+
+/* REDIRECT HANDLER */
+auth.getRedirectResult().catch(()=>{});
+
+/* AUTH STATE */
+auth.onAuthStateChanged(user=>{
+if(user){
+content.classList.remove("locked");
+loginBtn.innerText="Logout";
+loginBtn.onclick=()=>auth.signOut();
+closeLogin();
+}else{
+content.classList.add("locked");
+loginBtn.innerText="Login";
+loginBtn.onclick=openLogin;
+openLogin();
+}
+});
 </script>
 
 </body>
