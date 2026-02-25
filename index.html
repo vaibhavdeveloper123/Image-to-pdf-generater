@@ -5,41 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>I❤ImagePDF — Free PDF & Image Tools</title>
 
-<meta name="description" content="Free PDF & Image Tools — 100% client-side">
-
 <style>
-body{font-family:Arial,sans-serif;background:#fff;margin:0;color:#222}
-header{text-align:center;padding:25px 10px;border-bottom:1px solid #eee}
-h1{font-size:32px;margin:0}
+body{font-family:Arial,sans-serif;margin:0}
+header{text-align:center;padding:25px;border-bottom:1px solid #eee}
+h1{margin:0}
 .container{width:95%;max-width:1100px;margin:auto}
 .section-title{font-size:24px;margin-top:40px}
 .tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
 .tool-box{padding:14px;background:#fafafa;border-radius:10px;text-align:center;border:1px solid #eee}
-.tool-box:hover{background:#f0f0f0;cursor:pointer}
-footer{text-align:center;margin:30px 0;padding:20px;border-top:1px solid #eee}
-a{text-decoration:none;color:inherit}
-
-/* LOGIN MODAL */
-#loginModal{
-display:none;position:fixed;inset:0;
-background:rgba(0,0,0,.4);
-z-index:9999;
-align-items:center;justify-content:center
-}
-#loginBox{
-background:#fff;padding:20px;
-width:90%;max-width:360px;
-border-radius:12px
-}
-#loginBox input{width:100%;padding:10px;margin-bottom:10px}
-#loginBox button{width:100%;padding:10px;margin-bottom:8px}
-
-/* LOCKED CONTENT */
-.locked{
-pointer-events:none;
-opacity:.4;
-filter:blur(1px);
-}
+.tool-box:hover{background:#f0f0f0}
+.locked{pointer-events:none;opacity:.4;filter:blur(1px)}
+#loginModal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:9999;align-items:center;justify-content:center}
+#loginBox{background:#fff;padding:20px;width:90%;max-width:360px;border-radius:12px}
+#loginBox input,#loginBox button{width:100%;padding:10px;margin-bottom:10px}
 </style>
 </head>
 
@@ -47,131 +25,79 @@ filter:blur(1px);
 
 <header>
 <h1>❤️ I❤ImagePDF</h1>
-<p>All-in-One PDF, Image, Finance & Utility Tools</p>
-
-<button id="loginBtn" style="
-margin-top:10px;
-padding:8px 16px;
-border-radius:20px;
-border:1px solid #ddd;
-background:#fff;
-cursor:pointer">
-Login
-</button>
+<p>All-in-One PDF, Image, Finance Tools</p>
+<button id="loginBtn">Login</button>
 </header>
 
 <div class="container locked" id="content">
-
-<h2 class="section-title">📄 PDF Tools</h2>
+<h2 class="section-title">PDF Tools</h2>
 <div class="tools-grid">
-<a href="jpg-to-pdf.html"><div class="tool-box">📄 JPG to PDF</div></a>
-<a href="merge-pdf.html"><div class="tool-box">📚 Merge PDF</div></a>
-<a href="split-pdf.html"><div class="tool-box">✂️ Split PDF</div></a>
-<a href="compress-pdf.html"><div class="tool-box">💾 Compress PDF</div></a>
+<div class="tool-box">JPG to PDF</div>
+<div class="tool-box">Merge PDF</div>
+<div class="tool-box">Split PDF</div>
 </div>
-
-<h2 class="section-title">🖼️ Image Tools</h2>
-<div class="tools-grid">
-<a href="image-compressor.html"><div class="tool-box">🗜️ Image Compressor</div></a>
-<a href="image-resizer.html"><div class="tool-box">📏 Image Resizer</div></a>
-<a href="background-remover.html"><div class="tool-box">🧹 Background Remover</div></a>
-</div>
-
-<h2 class="section-title">💰 Finance Tools</h2>
-<div class="tools-grid">
-<a href="sip-calculator.html"><div class="tool-box">💵 SIP Calculator</div></a>
-<a href="loan-emi-calculator.html"><div class="tool-box">📉 Loan EMI</div></a>
-</div>
-
-<footer>
-© 2025 ❤️ I❤ImagePDF |
-<a href="about.html">About</a> |
-<a href="privacy.html">Privacy</a>
-</footer>
 </div>
 
 <!-- LOGIN MODAL -->
 <div id="loginModal">
 <div id="loginBox">
-<h3>Login / Sign Up</h3>
-
+<h3>Login</h3>
 <input id="email" placeholder="Email">
-<input id="password" type="password" placeholder="Password">
-
+<input id="password" type="password">
 <button onclick="login()">Login</button>
 <button onclick="signup()">Sign Up</button>
 <button onclick="googleLogin()">Continue with Google</button>
-
-<button onclick="closeLogin()" style="background:none;border:none;color:#555">
-Cancel
-</button>
+<button onclick="closeLogin()">Cancel</button>
 </div>
 </div>
 
-<!-- FIREBASE -->
+<!-- 🔥 FIREBASE SDK (MANDATORY) -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+
 <script>
-/* FIREBASE CONFIG */
-const firebaseConfig={
+/* CONFIG */
+firebase.initializeApp({
   apiKey:"AIzaSyDFUARoeNmn0CDxFGtL7N0xhDHMntDh2MU",
   authDomain:"prompt-book-studio.firebaseapp.com",
   projectId:"prompt-book-studio",
-  storageBucket:"prompt-book-studio.firebasestorage.app",
-  messagingSenderId:"1030470791261",
   appId:"1:1030470791261:web:62a1a6c2644781edafddb4"
-};
-firebase.initializeApp(firebaseConfig);
+});
 
 const auth = firebase.auth();
 const provider = new firebase.auth.GoogleAuthProvider();
 
-/* UI helpers */
+/* UI */
 function openLogin(){ loginModal.style.display="flex"; }
 function closeLogin(){ loginModal.style.display="none"; }
 
-/* LOCK / UNLOCK */
 function lockSite(){
   content.classList.add("locked");
-  loginBtn.innerText = "Login";
-  loginBtn.onclick = openLogin;
+  loginBtn.innerText="Login";
+  loginBtn.onclick=openLogin;
 }
 
 function unlockSite(user){
   content.classList.remove("locked");
-  loginBtn.innerText = user.email;   // 🔥 EMAIL SHOW
-  loginBtn.onclick = ()=>auth.signOut();
+  loginBtn.innerText=user.email;
+  loginBtn.onclick=()=>auth.signOut();
   closeLogin();
 }
 
-/* EMAIL LOGIN */
+/* AUTH */
 function login(){
   auth.signInWithEmailAndPassword(email.value,password.value)
   .catch(e=>alert(e.message));
 }
 
-/* SIGNUP */
 function signup(){
   auth.createUserWithEmailAndPassword(email.value,password.value)
   .catch(e=>alert(e.message));
 }
 
-/* GOOGLE LOGIN */
 function googleLogin(){
-  const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
-  if(isMobile){
-    auth.signInWithRedirect(provider);
-  }else{
-    auth.signInWithPopup(provider).catch(e=>alert(e.message));
-  }
+  auth.signInWithRedirect(provider);
 }
-
-/* 🔥 HANDLE REDIRECT RESULT (MANDATORY) */
-auth.getRedirectResult()
-.then(result=>{
-  if(result.user){
-    unlockSite(result.user);
-  }
-})
-.catch(()=>{});
 
 /* 🔥 SINGLE SOURCE OF TRUTH */
 auth.onAuthStateChanged(user=>{
@@ -182,7 +108,7 @@ auth.onAuthStateChanged(user=>{
   }
 });
 
-/* INITIAL STATE */
+/* INIT */
 lockSite();
 </script>
 
